@@ -1,20 +1,37 @@
+var tiles = [];
+var cells = [];
+
 var generateGrid = function(width, height) {
     // Clear grid before generating new one
     // TODO: add individual styling to grid depending on dimensions
     $grid = $('#shufflegrid');
     $grid.empty();
+    tiles = [];
+    cells = [];
 
     for (var y=0; y<height; y++) {
         var $tr = $("<tr></tr>");
         $grid.append($tr);
         for (var x=0; x<width; x++) {
-            var $cell = (x===width-1 && y===height-1) ? 
-                    $('<td><div class="cell empty"></div></td>') : 
-                    $('<td><div class="cell"><img src="images/Ammonite.gif"/></div></td>');
+            var $cell = $('<td class="cell"></td>');
+            if (x===width-1 && y===height-1) {  // if this is the final cell
+                $cell.addClass('empty');
+            } else {
+                var $tile = $('<div class="tile"><p>'+x+','+y+'</p></div>');
+                $cell.append($tile);
+                tiles.push($tile);
+            }
             $tr.append($cell);
+            cells.push($cell);
         }
     }
 };
+
+var checkSolved = function() {
+    for (var i=0; i<tiles.length; i++) 
+        if (cells[i].has(tiles[i]).length!==1) return false;
+    return true;
+}
 
 $(document).ready(function() {
 
@@ -22,11 +39,11 @@ $(document).ready(function() {
     generateGrid(3, 3);
 
     $('.cell').click(function() {
-        /* TODO: check for not the empty cell, if necessary? */
-        var $img = $(this).children('img');
+        var $tile = $(this).children('.tile');
         var $empty = $('.empty');
-        $empty.append($img);
+        $empty.append($tile);
         $empty.removeClass('empty');
         $(this).addClass('empty');
+        console.log(checkSolved());
     });
 });

@@ -1,3 +1,7 @@
+#shufflegrid {
+    border-collapse: collapse;
+}
+
 img {
     height: 200px;
     width: 200px;
@@ -6,4 +10,14 @@ img {
 .cell {
     height: 200px;
     width: 200px;
+}
+
+.tile {
+    height: 200px;
+    width: 200px;
+    border: 1px black solid;
+}
+
+.correct {
+    background-color: green;
 }
