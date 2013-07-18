@@ -1,13 +1,11 @@
 #shufflegrid {
     border: 1px black solid;
     position: absolute;
-    height: 606px;
-    width: 606px;
+    height: 400px;
+    width: 400px;
 }
 
 .tile {
-    height: 200px;
-    width: 200px;
-    border: 1px black solid;
+    margin: 1px;
     position: absolute;
 }
