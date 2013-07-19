@@ -1,11 +1,28 @@
-var SLIDING_DURATION = 100;
+var SLIDING_DURATION = 50;
+var COMPLETED_FADE_IN_DURATION = 2000;
+var INITIAL_SHUFFLE_DELAY = 300;
 
-var currentLevel;
+var allowInput = false;
 
 var tiles;
 var tileHeight, tileWidth;
+var gridHeight, gridWidth;
 
-var generateGrid = function(width, height, columns, rows, emptyx, emptyy) {
+var currentLevel;
+var currentLevelIndex = -1;
+
+var LEVELS = [
+      { name: "Ammonite", image: "images/ammonite.gif", aspectRatio: 1, 
+        difficulty: 0.3, gridSize: [3, 3], emptyTile: [2, 2], shuffles: 3 },  //TODO change back to 50
+      { name: "Shark Teeth", image: "images/shark-teeth.gif", aspectRatio: 1, 
+        difficulty: 0.5, gridSize: [3, 4], emptyTile: [2, 3], shuffles: 3 },  //TODO change back to 75
+      { name: "Ammonite Shell", image: "images/ammonite-shell.gif", aspectRatio: 1, 
+        difficulty: 0.7, gridSize: [4, 4], emptyTile: [3, 3], shuffles: 100 }  //TODO change back to 100
+    ];
+                
+
+
+var generateGrid = function(width, height, columns, rows, emptyx, emptyy, image) {
 
     // Clear grid before generating new one
     $grid = $('#shufflegrid');
@@ -18,8 +35,8 @@ var generateGrid = function(width, height, columns, rows, emptyx, emptyy) {
 
     // The width and heigh parameters are the desired height and width only, 
     // actual height and width may vary to eliminate gaps.
-    var gridWidth = tileWidth*columns;
-    var gridHeight = tileHeight*rows;
+    gridWidth = tileWidth*columns;
+    gridHeight = tileHeight*rows;
 
     // Set the new dimensions of the grid
     $grid.css("width", gridWidth);
@@ -53,9 +70,8 @@ var generateGrid = function(width, height, columns, rows, emptyx, emptyy) {
                 $tile.data("y", y);
 
                 // Set the background image (clipped)
-                $tile.css("background-image", "url(images/Ammonite.gif)");
+                $tile.css("background-image", "url("+image+")");
                 $tile.css("background-size", gridWidth+"px "+gridHeight+"px");
-                $tile.css("background-repeat", "no-repeat");  //TODO is this necessary?
                 $tile.css("background-position", (-1*tileWidth*x-1)+"px "+(-1*tileHeight*y-1)+"px");
 
                 $grid.append($tile);
@@ -66,13 +82,23 @@ var generateGrid = function(width, height, columns, rows, emptyx, emptyy) {
 
     // Setup triggers for clicking on tiles
     $('.tile').click(function() {
-        tryMoveTile($(this));
+        if (!allowInput) return;
+        allowInput = false;
+        tryMoveTile($(this), function() { 
+            allowInput = true; 
+            if (isSolved()) {
+                levelComplete();
+            }
+        });
     });
 
 };
 
-var tryMoveTile = function($tile) {
-    if ($tile === null) return;
+var tryMoveTile = function($tile, callback) {
+    if ($tile === null) {
+        callback(false);
+        return;
+    }
 
     // Get x and y positions of this tile and the empty tile
     for (var y=0; y<tiles.length; y++) {
@@ -98,24 +124,31 @@ var tryMoveTile = function($tile) {
         animation = { left: "+="+tileWidth };
     }
 
-    // Move the tile
-    // TODO: make animation synchronous using callbacks
+    // Move the tile, then swap tiles in the array and then call the callback function with the success value
     if (animation !== null) {
-        $tile.animate(animation, SLIDING_DURATION);
-        tiles[emptyy][emptyx] = tiles[thisy][thisx];
-        tiles[thisy][thisx] = null;
+        $tile.animate(animation, SLIDING_DURATION, function() {
+            tiles[emptyy][emptyx] = tiles[thisy][thisx];
+            tiles[thisy][thisx] = null;
+            callback(true);
+        });
+    } else {
+        callback(false);
     }
-
-    console.log(isSolved());
-    return animation !== null;
 }
 
 var randomShuffle = function(numMoves) {
-    // Randomly select any tile from the grid and try to move it, only continue if a tile was actually moved
-    for (var i=0; i<numMoves;) {
-        var randomTile = tiles[Math.floor(Math.random()*tiles.length)][Math.floor(Math.random()*tiles[0].length)];
-        if (tryMoveTile(randomTile)) i++;
+    // Disable user input while shuffling, reenable when finished
+    allowInput = false;
+    if (numMoves===0) {
+        allowInput = true;
+        return;
     }
+
+    // Randomly select any tile from the grid and try to move it, try again if tile was not moved
+    var randomTile = tiles[Math.floor(Math.random()*tiles.length)][Math.floor(Math.random()*tiles[0].length)];
+    tryMoveTile(randomTile, function(moved) {
+        randomShuffle(moved ? numMoves-1 : numMoves);
+    });
 }
 
 var isSolved = function() {
@@ -130,12 +163,34 @@ var isSolved = function() {
     return true;
 }
 
+var levelComplete = function() {
+    allowInput = false;
+    $img = $('<img style="height: 100%; width: 100%;" src="'+currentLevel.image+'"/>');
+    $img.fadeIn(COMPLETED_FADE_IN_DURATION, function() {
+        $("#shufflegrid").click(function() {
+            $(this).off("click");
+            loadNextLevel();
+        });
+    });
+    $grid.prepend($img);
+}
+
+var loadLevel = function(level) {
+    console.log("Loading level: "+level.name+" "+level.gridSize[0]+"x"+level.gridSize[1]);
+    currentLevel = level;
+    generateGrid(400, 400, level.gridSize[0], level.gridSize[1], 
+                 level.emptyTile[0], level.emptyTile[1], level.image);
+    window.setTimeout(function() { randomShuffle(level.shuffles); }, 2000);
+}
+
+var loadNextLevel = function() {
+    if (currentLevelIndex+1>=LEVELS.length) return;  // No more levels available
+    currentLevelIndex++;
+    loadLevel(LEVELS[currentLevelIndex]);
+}
+
 $(document).ready(function() {
 
-    // Setup initial grid
-    generateGrid(300, 300, 3, 3, 2, 2);
-
-    //TODO number of shuffles needs to be different depending on grid size
-    randomShuffle(3);
+    loadNextLevel();
 
 });
