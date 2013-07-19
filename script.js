@@ -1,6 +1,6 @@
 var SLIDING_DURATION = 50;
 var COMPLETED_FADE_IN_DURATION = 2000;
-var INITIAL_SHUFFLE_DELAY = 300;
+var INITIAL_SHUFFLE_DELAY = 200;
 
 var allowInput = false;
 
@@ -13,11 +13,11 @@ var currentLevelIndex = -1;
 
 var LEVELS = [
       { name: "Ammonite", image: "images/ammonite.gif", aspectRatio: 1, 
-        difficulty: 0.3, gridSize: [3, 3], emptyTile: [2, 2], shuffles: 3 },  //TODO change back to 50
+        difficulty: 0.3, gridSize: [3, 3], emptyTile: [2, 2] },
       { name: "Shark Teeth", image: "images/shark-teeth.gif", aspectRatio: 1, 
-        difficulty: 0.5, gridSize: [3, 4], emptyTile: [2, 3], shuffles: 3 },  //TODO change back to 75
+        difficulty: 0.5, gridSize: [3, 4], emptyTile: [2, 3] },
       { name: "Ammonite Shell", image: "images/ammonite-shell.gif", aspectRatio: 1, 
-        difficulty: 0.7, gridSize: [4, 4], emptyTile: [3, 3], shuffles: 100 }  //TODO change back to 100
+        difficulty: 0.7, gridSize: [4, 4], emptyTile: [3, 3] }
     ];
                 
 
@@ -136,31 +136,42 @@ var tryMoveTile = function($tile, callback) {
     }
 }
 
-var randomShuffle = function(numMoves) {
+var randomShuffle = function(lastTile) {
     // Disable user input while shuffling, reenable when finished
     allowInput = false;
-    if (numMoves===0) {
+
+    // Keep shuffling until almost every tile has been moved away from it's original position
+    if (numNotCorrect()>=tiles[0].length*tiles.length-2) {
         allowInput = true;
         return;
     }
 
     // Randomly select any tile from the grid and try to move it, try again if tile was not moved
-    var randomTile = tiles[Math.floor(Math.random()*tiles.length)][Math.floor(Math.random()*tiles[0].length)];
+    var randomTile;
+    do {
+        randomTile = tiles[Math.floor(Math.random()*tiles.length)][Math.floor(Math.random()*tiles[0].length)];
+    } while (lastTile !== null && randomTile === lastTile);
+
     tryMoveTile(randomTile, function(moved) {
-        randomShuffle(moved ? numMoves-1 : numMoves);
+        randomShuffle(moved ? randomTile : lastTile);
     });
 }
 
-var isSolved = function() {
+var numNotCorrect = function() {
     // For all tiles in the tiles array, check that their actual position matches their creation position
     //TODO prevent moving a tile back to where it was immediately before?
+    var count = 0;
     for (var y=0; y<tiles.length; y++) {
         for (var x=0; x<tiles[0].length; x++) {
             if (tiles[y][x] !== null && (tiles[y][x].data("x") !== x || tiles[y][x].data("y") !== y)) 
-                return false;
+                count++;
         }
     }
-    return true;
+    return count;
+}
+
+var isSolved = function() {
+    return numNotCorrect()===0;
 }
 
 var levelComplete = function() {
@@ -180,7 +191,7 @@ var loadLevel = function(level) {
     currentLevel = level;
     generateGrid(400, 400, level.gridSize[0], level.gridSize[1], 
                  level.emptyTile[0], level.emptyTile[1], level.image);
-    window.setTimeout(function() { randomShuffle(level.shuffles); }, 2000);
+    window.setTimeout(function() { randomShuffle(null); }, 2000);
 }
 
 var loadNextLevel = function() {
