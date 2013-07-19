@@ -1,9 +1,11 @@
 var SLIDING_DURATION = 100;
 
+var currentLevel;
+
 var tiles;
 var tileHeight, tileWidth;
 
-var generateGrid = function(width, height, columns, rows) {
+var generateGrid = function(width, height, columns, rows, emptyx, emptyy) {
 
     // Clear grid before generating new one
     $grid = $('#shufflegrid');
@@ -19,17 +21,21 @@ var generateGrid = function(width, height, columns, rows) {
     var gridWidth = tileWidth*columns;
     var gridHeight = tileHeight*rows;
 
-    console.log(gridWidth, gridHeight, tileWidth, tileHeight);
-
     // Set the new dimensions of the grid
     $grid.css("width", gridWidth);
     $grid.css("height", gridHeight);
+
+    // Check empty tile position is valid, if not use last tile
+    if (emptyx<0 || emptyy<0 || emptyx>columns-1 || emptyy>rows-1) {
+        emptyx = columns-1;
+        emptyy = rows-1;
+    }
 
     // Generate grid and tiles
     for (var y=0; y<rows; y++) {
         tiles[y] = [];
         for (var x=0; x<columns; x++) {
-            if (x===columns-1 && y===rows-1) {  // if this is the final cell
+            if (x===emptyx && y===emptyy) {
                 tiles[y][x] = null;  //TODO don't use null, use hidden tile instead
             } else {
                 var $tile = $('<div class="tile"></div>');
@@ -114,7 +120,7 @@ var randomShuffle = function(numMoves) {
 
 var isSolved = function() {
     // For all tiles in the tiles array, check that their actual position matches their creation position
-    //TODO prevent moving a tile back to where it was immediately before 
+    //TODO prevent moving a tile back to where it was immediately before?
     for (var y=0; y<tiles.length; y++) {
         for (var x=0; x<tiles[0].length; x++) {
             if (tiles[y][x] !== null && (tiles[y][x].data("x") !== x || tiles[y][x].data("y") !== y)) 
@@ -127,9 +133,9 @@ var isSolved = function() {
 $(document).ready(function() {
 
     // Setup initial grid
-    generateGrid(300, 300, 3, 3);
+    generateGrid(300, 300, 3, 3, 2, 2);
 
     //TODO number of shuffles needs to be different depending on grid size
-    randomShuffle(50);
+    randomShuffle(3);
 
 });
