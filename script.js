@@ -1,7 +1,3 @@
-var SLIDING_DURATION = 50;
-var COMPLETED_FADE_IN_DURATION = 2000;
-var INITIAL_SHUFFLE_DELAY = 200;
-
 var LEVELS = [
   { name: "Ammonite", image: "images/ammonite.gif",
     gridSize: [3, 3], emptyTile: [2, 2] },
@@ -12,13 +8,18 @@ var LEVELS = [
 ];
 
 
+/* ShuffleGrid **************************************************************/
+
 /* First create a grid from level data and maximum dimensions and tell it where to put itself
    Then shuffle the grid and start the game
    Give it a callback function to be called when the game is completed
    Finally destroy it once you are done with it and want to load another one */
 
-
 function ShuffleGrid(level, $container, maxWidth, maxHeight) {
+
+    // Setup timing "constants" for grid (can be changed if necessary)
+    this.SLIDING_DURATION = 50;
+    this.COMPLETED_FADE_IN_DURATION = 2000;
 
     // Disable user input until level has been started
     this.allowInput = false;
@@ -49,8 +50,6 @@ function ShuffleGrid(level, $container, maxWidth, maxHeight) {
         $tile.css("position", "absolute");
         $tile.css("margin", "1px");
 
-        //$tile.width(this.tileWidth-2);
-        //$tile.height(this.tileHeight-2);
         $tile.css("width", this.tileWidth-2);
         $tile.css("height", this.tileHeight-2);
 
@@ -68,6 +67,7 @@ function ShuffleGrid(level, $container, maxWidth, maxHeight) {
         $tile.css("background-position", (-1*this.tileWidth*x-1)+"px "+(-1*this.tileHeight*y-1)+"px");
 
         // Setup trigger for clicking on tile
+        //TODO remove this for non user interactive grids
         var thisGrid = this;
         $tile.click(function() {
             if (!thisGrid.allowInput) return;
@@ -75,7 +75,7 @@ function ShuffleGrid(level, $container, maxWidth, maxHeight) {
             thisGrid.tryMoveTile_($(this), function(moved) { 
                 if (moved && thisGrid.numIncorrect_() === 0) {
                     $img = $('<img style="height: 100%; width: 100%;" src="'+level.image+'"/>');
-                    $img.fadeIn(COMPLETED_FADE_IN_DURATION, function() {
+                    $img.fadeIn(thisGrid.COMPLETED_FADE_IN_DURATION, function() {
                         thisGrid.completionCallback();
                     });
                     thisGrid.$grid.prepend($img);
@@ -111,31 +111,33 @@ ShuffleGrid.prototype.start = function(completionCallback) {
 
     this.completionCallback = completionCallback;
     var thisGrid = this;
-    var randomShuffle = function($lastTile) {
-
-        // Keep shuffling until every tile has been moved away from it's original position
-        if (thisGrid.numIncorrect_()>=thisGrid.tiles[0].length*thisGrid.tiles.length-1) {
-            thisGrid.allowInput = true;
-            return;
-        }
-
-        // Randomly select any tile from the grid and try to move it, try again if tile was not moved
-        var $randomTile;
-        do {
-            $randomTile = thisGrid.tiles[Math.floor(Math.random()*thisGrid.tiles.length)][Math.floor(Math.random()*thisGrid.tiles[0].length)];
-        } while ($lastTile !== null && $randomTile === $lastTile);
-
-        thisGrid.tryMoveTile_($randomTile, function(moved) {
-            randomShuffle(moved ? $randomTile : $lastTile);
-        });
-    };
-
-    randomShuffle(null);
+    this.randomShuffle_(function() { thisGrid.allowInput = true; }, null);
 };
 
 ShuffleGrid.prototype.destroy = function() {
-    
+    this.$grid.remove();
+    this.tiles = null;
 };
+
+ShuffleGrid.prototype.randomShuffle_ = function(callback, $lastTile) {
+    // Keep shuffling until every tile has been moved away from it's original position
+    if (this.numIncorrect_() >= this.tiles[0].length*this.tiles.length-1) {
+        callback();
+        return;
+    }
+
+    // Randomly select any tile from the grid and try to move it, select again if the tile was the last one which was moved
+    var $randomTile;
+    do {
+        $randomTile = this.tiles[Math.floor(Math.random()*this.tiles.length)][Math.floor(Math.random()*this.tiles[0].length)];
+    } while ($lastTile !== null && $randomTile === $lastTile);
+
+    // Try to move the tile, call again upon completion with the last tile which was actually moved
+    var thisGrid = this;
+    this.tryMoveTile_($randomTile, function(moved) {
+        thisGrid.randomShuffle_(callback, moved ? $randomTile : $lastTile);
+    });
+}
 
 ShuffleGrid.prototype.numIncorrect_ = function() {
     var count = 0;
@@ -180,11 +182,11 @@ ShuffleGrid.prototype.tryMoveTile_ = function($tile, callback) {
     }
 
     // Move the tile, then swap tiles in the array and then call the callback function with the success value
-    var tiles = this.tiles;
+    var thisGrid = this;
     if (animation !== null) {
-        $tile.animate(animation, SLIDING_DURATION, function() {
-            tiles[emptyy][emptyx] = tiles[thisy][thisx];
-            tiles[thisy][thisx] = null;
+        $tile.animate(animation, thisGrid.SLIDING_DURATION, function() {
+            thisGrid.tiles[emptyy][emptyx] = thisGrid.tiles[thisy][thisx];
+            thisGrid.tiles[thisy][thisx] = null;
             callback(true);
         });
     } else {
@@ -194,13 +196,99 @@ ShuffleGrid.prototype.tryMoveTile_ = function($tile, callback) {
 };
 
 
+/* AIShuffleGrid ************************************************************/
+
+function GridState(pastPathCost, lastTile) {
+    this.pastPathCost = pastPathCost;
+    this.lastTile = lastTile;
+    this.children = [];
+}
+
+GridState.prototype.init = function(shuffleGrid) {
+    this.tiles = [];
+    for (var y=0; y<shuffleGrid.tiles.length; y++) {
+        this.tiles[y] = [];
+        for (var x=0; x<shuffleGrid.tiles[0].length; x++) {
+            if (shuffleGrid.tiles[y][x] == null) {
+                this.tiles[y][x] = null;
+            } else {
+                this.tiles[y][x] = [shuffleGrid.tiles[y][x].data("y"), shuffleGrid.tiles[y][x].data("x")];
+            }
+        }
+    }
+}
+
+GridState.prototype.generateChildren = function() {
+    //TODO
+}
+
+GridState.prototype.pastPathCost = function() {
+
+}
+
+GridState.prototype.futurePathCost = function() {
+
+}
+
+GridState.prototype.totalPathCost = function() {
+
+}
+
+GridState.prototype.selectChild = function() {
+
+}
+
+
+function makeAIControlled(shuffleGrid) {
+
+    var MOVE_INTERVAL = 1000;
+
+    var chooseTile = function(shuffleGrid, $lastTile) {
+        var $randomTile;
+        do {
+            $randomTile = shuffleGrid.tiles[Math.floor(Math.random()*shuffleGrid.tiles.length)][Math.floor(Math.random()*shuffleGrid.tiles[0].length)];
+        } while ($lastTile !== null && $randomTile === $lastTile);
+        return $randomTile;
+    }
+
+    var makeMove = function($lastTile) {
+        var $tile = chooseTile(shuffleGrid, $lastTile);
+        shuffleGrid.tryMoveTile_($tile, function(moved) {
+            if (!moved) {
+                makeMove($lastTile);
+            } else {
+                console.log("Moved tile");
+                setTimeout(function() {makeMove($tile);}, MOVE_INTERVAL);
+            }
+        });
+    }
+
+    var startAI = function() {
+        var initialGridState = new GridState(null, null);
+        initialGridState.init(shuffleGrid);
+        console.log(initialGridState.tiles);
+
+        setTimeout(makeMove(null), MOVE_INTERVAL);
+    }
+
+    shuffleGrid.start = function(completionCallback) {
+        shuffleGrid.completionCallback = completionCallback;
+        shuffleGrid.randomShuffle_(startAI);
+    };
+}
+
+
+/* ready ********************************************************************/
+
 $(document).ready(function() {
 
     //loadNextLevel();
-    var shuffleGrid = new ShuffleGrid(LEVELS[0], $("#container"), 400, 400);
-    shuffleGrid.start(function() {console.log("Completed");});
+    var playerShuffleGrid = new ShuffleGrid(LEVELS[0], $("#player-container"), 420, 420);
+    playerShuffleGrid.start(function() {console.log("Player completed");});
 
-    var shuffleGrid2 = new ShuffleGrid(LEVELS[1], $("#container"), 400, 400);
-    shuffleGrid2.start(function() {console.log("Completed");});
-    
+    var floppyShuffleGrid = new ShuffleGrid(LEVELS[0], $("#ai-container"), 240, 240);
+    makeAIControlled(floppyShuffleGrid);
+    floppyShuffleGrid.start(function() {console.log("AI completed");});
+    $("#floppy-thoughts").html("<em>Lets begin!</em>");
+
 });
