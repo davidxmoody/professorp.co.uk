@@ -21,6 +21,12 @@ function ShuffleGrid(level, $container, maxWidth, maxHeight) {
     this.SLIDING_DURATION = 50;
     this.COMPLETED_FADE_IN_DURATION = 2000;
 
+    // Keep track of how many moves were taken
+    this.movesTaken = 0;
+
+    // Make a note of the level for later use
+    this.level = level;
+
     // Disable user input until level has been started
     this.allowInput = false;
 
@@ -74,11 +80,7 @@ function ShuffleGrid(level, $container, maxWidth, maxHeight) {
             thisGrid.allowInput = false;
             thisGrid.tryMoveTile_($(this), function(moved) { 
                 if (moved && thisGrid.numIncorrect_() === 0) {
-                    $img = $('<img style="height: 100%; width: 100%;" src="'+level.image+'"/>');
-                    $img.fadeIn(thisGrid.COMPLETED_FADE_IN_DURATION, function() {
-                        thisGrid.completionCallback();
-                    });
-                    thisGrid.$grid.prepend($img);
+                    thisGrid.gridCompleted_();
                 } else {
                     thisGrid.allowInput = true; 
                 }
@@ -187,6 +189,7 @@ ShuffleGrid.prototype.tryMoveTile_ = function($tile, callback) {
         $tile.animate(animation, thisGrid.SLIDING_DURATION, function() {
             thisGrid.tiles[emptyy][emptyx] = thisGrid.tiles[thisy][thisx];
             thisGrid.tiles[thisy][thisx] = null;
+            thisGrid.movesTaken++;
             callback(true);
         });
     } else {
@@ -195,80 +198,211 @@ ShuffleGrid.prototype.tryMoveTile_ = function($tile, callback) {
     
 };
 
+ShuffleGrid.prototype.gridCompleted_ = function() {
+    var $img = $('<img style="height: 100%; width: 100%;" src="'+this.level.image+'"/>');
+    var thisGrid = this;
+    $img.fadeIn(this.COMPLETED_FADE_IN_DURATION, function() {
+        thisGrid.completionCallback();
+    });
+    this.$grid.prepend($img);
+}
+
 
 /* AIShuffleGrid ************************************************************/
 
-function GridState(pastPathCost, lastTile) {
-    this.pastPathCost = pastPathCost;
-    this.lastTile = lastTile;
-    this.children = [];
-}
+// Nodes contain expected cost and current state
+// Expected cost is calculated from the past path cost plus heuristic future cost
+// Future cost is estimated by taking the sum of the distances of each tile from their correct positions
 
-GridState.prototype.init = function(shuffleGrid) {
-    this.tiles = [];
+// First generate the initial node from the initial grid state
+// Go down the tree repeatedly selecting the children with the lowest expected cost
+// Once you reach a node with no children then generate it's children and add them to the tree
+// Calculate expected values for the children and propagate the minimum of those up the tree, updating the 
+// expected values of all of the nodes above it to be equal to the minimum of their respective children
+// Once a node is reached which has a future cost of 0 then a solution has been found, calculate solution from tree
+
+
+function generateRoot(shuffleGrid) {
+    var root = {};
+    root.state = [];
     for (var y=0; y<shuffleGrid.tiles.length; y++) {
-        this.tiles[y] = [];
+        root.state[y] = [];
         for (var x=0; x<shuffleGrid.tiles[0].length; x++) {
             if (shuffleGrid.tiles[y][x] == null) {
-                this.tiles[y][x] = null;
+                root.state[y][x] = null;
             } else {
-                this.tiles[y][x] = [shuffleGrid.tiles[y][x].data("y"), shuffleGrid.tiles[y][x].data("x")];
+                root.state[y][x] = [shuffleGrid.tiles[y][x].data("y"), shuffleGrid.tiles[y][x].data("x")];
             }
         }
     }
+
+    root.parent = null;
+    root.lastTile = null;
+    root.g = 0;
+    root.h = futurePathCost(root);
+    root.f = root.h;
+
+    return root;
 }
 
-GridState.prototype.generateChildren = function() {
-    //TODO
+// Sum the distances of each tile from its correct position
+function futurePathCost(node) {
+    var total = 0;
+    for (var y=0; y<node.state.length; y++) {
+        for (var x=0; x<node.state[0].length; x++) {
+            var tile = node.state[y][x];
+            if (tile == null) continue;
+            total += Math.abs(y-tile[0]) + Math.abs(x-tile[1]);
+        }
+    }
+    return total;
 }
 
-GridState.prototype.pastPathCost = function() {
-
+function selectRecursively(node) {
+    // Assume that the children are already sorted in ascending order
+    while (typeof node.children !== "undefined") {
+        node = node.children[0];
+    }
+    return node;
 }
 
-GridState.prototype.futurePathCost = function() {
+function generateChildren(node) {
+    node.children = [];
+    // First find null tile
+    for (var y=0; y<node.state.length; y++) {
+        for (var x=0; x<node.state[0].length; x++) {
+            var tile = node.state[y][x];
+            if (tile == null) {
+                var nully = y;
+                var nullx = x;
+            }
+        }
+    }
 
+    // Try selecting the tiles adjacent to the null tile
+    var tiles = [];
+
+    if (nullx >= 1) tiles.push(node.state[nully][nullx-1]);  // Left of null tile
+    if (nullx < node.state[0].length-1) tiles.push(node.state[nully][nullx+1]);  // Right of null tile
+
+    if (nully >= 1) tiles.push(node.state[nully-1][nullx]);  // Above null tile
+    if (nully < node.state.length-1) tiles.push(node.state[nully+1][nullx]);  // Below null tile
+
+    // For each movable tile, generate a new child with that tile moved into the null tile position
+    // Skip over the tile if it was the last tile to be moved (duplicate moves can never be useful)
+    for (var i=0; i<tiles.length; i++) {
+        var tileToMove = tiles[i];
+        if (node.lastTile === tileToMove) continue;
+        
+        // Generate new node and set its state
+        var newNode = {};
+        newNode.state = [];
+        for (var y=0; y<node.state.length; y++) {
+            newNode.state[y] = [];
+            for (var x=0; x<node.state[0].length; x++) {
+                var oldTile = node.state[y][x];
+                if (oldTile === tileToMove) {
+                    newNode.state[y][x] = null;
+                } else if (nully === y && nullx === x) {
+                    newNode.state[y][x] = tileToMove;
+                } else {
+                    newNode.state[y][x] = oldTile;
+                }
+            }
+        }
+
+        // Create all other values for the node
+        newNode.parent = node;
+        newNode.lastTile = tileToMove;
+        newNode.g = node.g + 1;
+        newNode.h = futurePathCost(newNode);
+        newNode.f = newNode.g + newNode.h;
+
+        node.children.push(newNode);
+
+    }
+
+    // Update the f values for all of the nodes parents in the tree
+    updateRecursively(node);
+    
 }
 
-GridState.prototype.totalPathCost = function() {
+function updateRecursively(node) {
+    while (node.parent !== null) {
+        // Sort children in ascending order by f value
+        node.children.sort(function(a, b) {return a.f-b.f});
+        
+        // Update f value of current node to be the minimum of its children
+        node.f = node.children[0].f;
 
+        // Keep going up until the top of the tree has been reached
+        node = node.parent;
+    }
 }
 
-GridState.prototype.selectChild = function() {
+function iterate(rootNode) {
+    var selectedNode = selectRecursively(rootNode);
+    if (selectedNode.h === 0) return true;
+    generateChildren(selectedNode);
+    updateRecursively(selectedNode);
+    return false;
+}
 
+function iterations(rootNode, number) {
+    for (var i=0; i<number; i++) {
+        if (iterate(rootNode)) {
+            return true;
+        }
+    }
+    return false;
 }
 
 
 function makeAIControlled(shuffleGrid) {
 
-    var MOVE_INTERVAL = 1000;
+    var MOVE_INTERVAL = 500;
+    var NUM_ITERATIONS = 20;
 
-    var chooseTile = function(shuffleGrid, $lastTile) {
-        var $randomTile;
-        do {
-            $randomTile = shuffleGrid.tiles[Math.floor(Math.random()*shuffleGrid.tiles.length)][Math.floor(Math.random()*shuffleGrid.tiles[0].length)];
-        } while ($lastTile !== null && $randomTile === $lastTile);
-        return $randomTile;
-    }
+    var makeMove = function(root) {
+        // First perform some iterations
+        iterations(root, NUM_ITERATIONS);
 
-    var makeMove = function($lastTile) {
-        var $tile = chooseTile(shuffleGrid, $lastTile);
-        shuffleGrid.tryMoveTile_($tile, function(moved) {
+        // Extract move from the root and chop off the unused branches of the root
+        root = root.children[0];
+        root.parent = null;  // This should clear the rest of the tree from memory
+
+        // Find out which shuffle grid tile corresponds to the node tile
+        var lastTile = root.lastTile;
+        for (var y=0; y<shuffleGrid.tiles.length; y++) {
+            for (var x=0; x<shuffleGrid.tiles[0].length; x++) {
+                var $gridTile = shuffleGrid.tiles[y][x];
+                if ($gridTile !== null && lastTile[0] == $gridTile.data("y") && lastTile[1] == $gridTile.data("x")) {
+                    var $tileToMove = $gridTile;
+                }
+            }
+        }
+
+        shuffleGrid.tryMoveTile_($tileToMove, function(moved) {
             if (!moved) {
-                makeMove($lastTile);
+                console.log("Tile was not moved: " + lastTile);
             } else {
-                console.log("Moved tile");
-                setTimeout(function() {makeMove($tile);}, MOVE_INTERVAL);
+                if (shuffleGrid.numIncorrect_() === 0) {
+                    // AI has successfully completed the grid!
+                    shuffleGrid.gridCompleted_();
+                } else {
+                    // Still moves to go, schedule next move
+                    setTimeout(function() {makeMove(root);}, MOVE_INTERVAL);
+                }
             }
         });
     }
 
     var startAI = function() {
-        var initialGridState = new GridState(null, null);
-        initialGridState.init(shuffleGrid);
-        console.log(initialGridState.tiles);
+        //TODO move this somewhere else
+        $("#floppy-thoughts").html("<em>Lets begin!</em>");
 
-        setTimeout(makeMove(null), MOVE_INTERVAL);
+        var root = generateRoot(shuffleGrid);
+        setTimeout(makeMove(root), MOVE_INTERVAL);
     }
 
     shuffleGrid.start = function(completionCallback) {
@@ -283,12 +417,24 @@ function makeAIControlled(shuffleGrid) {
 $(document).ready(function() {
 
     //loadNextLevel();
+    var playerFinished = false;
     var playerShuffleGrid = new ShuffleGrid(LEVELS[0], $("#player-container"), 420, 420);
-    playerShuffleGrid.start(function() {console.log("Player completed");});
+    playerShuffleGrid.start(function() {
+        playerFinished = true;
+        console.log("You completed your grid in "+playerShuffleGrid.movesTaken+" moves!");
+    });
 
     var floppyShuffleGrid = new ShuffleGrid(LEVELS[0], $("#ai-container"), 240, 240);
     makeAIControlled(floppyShuffleGrid);
-    floppyShuffleGrid.start(function() {console.log("AI completed");});
-    $("#floppy-thoughts").html("<em>Lets begin!</em>");
+    floppyShuffleGrid.start(function() {
+        console.log("Floppy completed his grid in "+floppyShuffleGrid.movesTaken+" moves!");
+        if (playerFinished) {
+            // Player won first
+            $("#floppy-thoughts").html("You beat me, well done!");
+        } else {
+            // Floppy won first
+            $("#floppy-thoughts").html("<em>Yay!</em> I won!");
+        }
+    });
 
 });
