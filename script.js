@@ -32,16 +32,19 @@ function ShuffleGrid(level, $container, maxWidth, maxHeight) {
     var gridWidth = this.tileWidth*level.gridSize[0];
     var gridHeight = this.tileHeight*level.gridSize[1];
 
-    // Create the actual grid and set dimensions/style
-    this.$grid = $("<div/>");
-    this.$grid.css("position", "relative");
-    this.$grid.css("border", "1px black solid");
-    this.$grid.css("display", "inline-block");
-    this.$grid.css("vertical-align", "top");  // Fixes shifting by one pixel bug
-    this.$grid.width(gridWidth);
-    this.$grid.height(gridHeight);
+    var createEmptyGrid = function(width, height) {
+        var $grid = $("<div/>");
+        $grid.css("position", "relative");
+        $grid.css("border", "1px black solid");
+        $grid.css("display", "inline-block");
+        $grid.css("vertical-align", "top");  // Fixes shifting by one pixel bug
+        $grid.width(width);
+        $grid.height(height);
+        return $grid;
+    };
 
-    // Helper function to make the tile with all the required css
+    this.$grid = createEmptyGrid(gridWidth, gridHeight);
+
     var makeTile = function(y, x) {
 
         var $tile = $("<div/>");
@@ -53,7 +56,6 @@ function ShuffleGrid(level, $container, maxWidth, maxHeight) {
         $tile.css("width", this.tileWidth-2);
         $tile.css("height", this.tileHeight-2);
 
-        // Set tile position
         $tile.css("top", y*this.tileHeight);
         $tile.css("left", x*this.tileWidth);
 
@@ -61,7 +63,6 @@ function ShuffleGrid(level, $container, maxWidth, maxHeight) {
         $tile.data("x", x);
         $tile.data("y", y);
 
-        // Set the background image (clipped)
         $tile.css("background-image", "url("+level.image+")");
         $tile.css("background-size", gridWidth+"px "+gridHeight+"px");
         $tile.css("background-position", (-1*this.tileWidth*x-1)+"px "+(-1*this.tileHeight*y-1)+"px");
@@ -116,19 +117,19 @@ ShuffleGrid.prototype.destroy = function() {
 };
 
 ShuffleGrid.prototype._randomShuffle = function(callback, $lastTile) {
-    // Keep shuffling until every tile has been moved away from it's original position
+    // Stop shuffling once every tile has been moved away from it's original position
     if (this._numIncorrect() >= this.tiles[0].length*this.tiles.length-1) {
         callback();
         return;
     }
 
-    // Randomly select any tile from the grid and try to move it, select again if the tile was the last one which was moved
+    // Randomly select a tile from the grid and try to move it, repeat if that tile had just been moved
     var $randomTile;
     do {
         $randomTile = this.tiles[Math.floor(Math.random()*this.tiles.length)][Math.floor(Math.random()*this.tiles[0].length)];
     } while ($lastTile !== null && $randomTile === $lastTile);
 
-    // Try to move the tile, call again upon completion with the last tile which was actually moved
+    // Try to move the selected tile, recursively call self upon completion, passing the last tile which was actually moved
     var thisGrid = this;
     this._tryMoveTile($randomTile, function(moved) {
         thisGrid._randomShuffle(callback, moved ? $randomTile : $lastTile);
@@ -323,7 +324,7 @@ function generateChildren(node) {
 
 function updateRecursively(node) {
     while (node.parent !== null) {
-        // Sort children in ascending order by f value
+        // Sort children in ascending order by f value (most promising first)
         node.children.sort(function(a, b) {return a.f-b.f});
         
         // Update f value of current node to be the minimum of its children
@@ -364,9 +365,9 @@ function makeAIControlled(shuffleGrid) {
             $("#floppy-thoughts").html("<em>I think I've got it!</em>");
         }
 
-        // Extract move from the root and chop off the unused branches of the root
+        // Set the new root to the most promising child, chop off unreachable branches
         root = root.children[0];
-        root.parent = null;  // This should clear the rest of the tree from memory
+        root.parent = null;
 
         // Find out which shuffle grid tile corresponds to the node tile
         var lastTile = root.lastTile;
@@ -395,7 +396,6 @@ function makeAIControlled(shuffleGrid) {
     }
 
     var startAI = function() {
-        //TODO move this somewhere else
         $("#floppy-thoughts").html("<em>Lets begin!</em>");
 
         var root = generateRoot(shuffleGrid);
@@ -415,7 +415,6 @@ $(document).ready(function() {
 
     var level = LEVELS[1];
 
-    //loadNextLevel();
     var playerFinished = false;
     var playerShuffleGrid = new ShuffleGrid(level, $("#player-container"), 420, 420);
     playerShuffleGrid.start(function() {
@@ -428,10 +427,8 @@ $(document).ready(function() {
     floppyShuffleGrid.start(function() {
         console.log("Floppy completed his grid in "+floppyShuffleGrid.movesTaken+" moves!");
         if (playerFinished) {
-            // Player won first
             $("#floppy-thoughts").html("<em>You beat me, well done!</em>");
         } else {
-            // Floppy won first
             $("#floppy-thoughts").html("<em><strong>Yay!</strong> I won!</em>");
         }
     });
