@@ -17,17 +17,11 @@ var LEVELS = [
 
 function ShuffleGrid(level, $container, maxWidth, maxHeight) {
 
-    // Setup timing "constants" for grid (can be changed if necessary)
     this.SLIDING_DURATION = 50;
     this.COMPLETED_FADE_IN_DURATION = 2000;
 
-    // Keep track of how many moves were taken
     this.movesTaken = 0;
-
-    // Make a note of the level for later use
     this.level = level;
-
-    // Disable user input until level has been started
     this.allowInput = false;
 
     // Tile heights and widths include everything (border, padding, width)
@@ -78,9 +72,9 @@ function ShuffleGrid(level, $container, maxWidth, maxHeight) {
         $tile.click(function() {
             if (!thisGrid.allowInput) return;
             thisGrid.allowInput = false;
-            thisGrid.tryMoveTile_($(this), function(moved) { 
-                if (moved && thisGrid.numIncorrect_() === 0) {
-                    thisGrid.gridCompleted_();
+            thisGrid._tryMoveTile($(this), function(moved) { 
+                if (moved && thisGrid._numIncorrect() === 0) {
+                    thisGrid._gridCompleted();
                 } else {
                     thisGrid.allowInput = true; 
                 }
@@ -113,7 +107,7 @@ ShuffleGrid.prototype.start = function(completionCallback) {
 
     this.completionCallback = completionCallback;
     var thisGrid = this;
-    this.randomShuffle_(function() { thisGrid.allowInput = true; }, null);
+    this._randomShuffle(function() { thisGrid.allowInput = true; }, null);
 };
 
 ShuffleGrid.prototype.destroy = function() {
@@ -121,9 +115,9 @@ ShuffleGrid.prototype.destroy = function() {
     this.tiles = null;
 };
 
-ShuffleGrid.prototype.randomShuffle_ = function(callback, $lastTile) {
+ShuffleGrid.prototype._randomShuffle = function(callback, $lastTile) {
     // Keep shuffling until every tile has been moved away from it's original position
-    if (this.numIncorrect_() >= this.tiles[0].length*this.tiles.length-1) {
+    if (this._numIncorrect() >= this.tiles[0].length*this.tiles.length-1) {
         callback();
         return;
     }
@@ -136,12 +130,12 @@ ShuffleGrid.prototype.randomShuffle_ = function(callback, $lastTile) {
 
     // Try to move the tile, call again upon completion with the last tile which was actually moved
     var thisGrid = this;
-    this.tryMoveTile_($randomTile, function(moved) {
-        thisGrid.randomShuffle_(callback, moved ? $randomTile : $lastTile);
+    this._tryMoveTile($randomTile, function(moved) {
+        thisGrid._randomShuffle(callback, moved ? $randomTile : $lastTile);
     });
 }
 
-ShuffleGrid.prototype.numIncorrect_ = function() {
+ShuffleGrid.prototype._numIncorrect = function() {
     var count = 0;
     for (var y=0; y<this.tiles.length; y++) {
         for (var x=0; x<this.tiles[0].length; x++) {
@@ -152,7 +146,7 @@ ShuffleGrid.prototype.numIncorrect_ = function() {
     return count;
 };
 
-ShuffleGrid.prototype.tryMoveTile_ = function($tile, callback) {
+ShuffleGrid.prototype._tryMoveTile = function($tile, callback) {
     //TODO remove this
     if ($tile === null) {
         callback(false);
@@ -198,7 +192,7 @@ ShuffleGrid.prototype.tryMoveTile_ = function($tile, callback) {
     
 };
 
-ShuffleGrid.prototype.gridCompleted_ = function() {
+ShuffleGrid.prototype._gridCompleted = function() {
     var $img = $('<img style="height: 100%; width: 100%;" src="'+this.level.image+'"/>');
     var thisGrid = this;
     $img.fadeIn(this.COMPLETED_FADE_IN_DURATION, function() {
@@ -360,12 +354,15 @@ function iterations(rootNode, number) {
 
 function makeAIControlled(shuffleGrid) {
 
-    var MOVE_INTERVAL = 500;
-    var NUM_ITERATIONS = 20;
+    var MOVE_INTERVAL = 1000;
+    var NUM_ITERATIONS = 30;
 
     var makeMove = function(root) {
         // First perform some iterations
-        iterations(root, NUM_ITERATIONS);
+        var solutionFound = iterations(root, NUM_ITERATIONS);
+        if (solutionFound) {
+            $("#floppy-thoughts").html("<em>I think I've got it!</em>");
+        }
 
         // Extract move from the root and chop off the unused branches of the root
         root = root.children[0];
@@ -382,13 +379,13 @@ function makeAIControlled(shuffleGrid) {
             }
         }
 
-        shuffleGrid.tryMoveTile_($tileToMove, function(moved) {
+        shuffleGrid._tryMoveTile($tileToMove, function(moved) {
             if (!moved) {
                 console.log("Tile was not moved: " + lastTile);
             } else {
-                if (shuffleGrid.numIncorrect_() === 0) {
+                if (shuffleGrid._numIncorrect() === 0) {
                     // AI has successfully completed the grid!
-                    shuffleGrid.gridCompleted_();
+                    shuffleGrid._gridCompleted();
                 } else {
                     // Still moves to go, schedule next move
                     setTimeout(function() {makeMove(root);}, MOVE_INTERVAL);
@@ -407,7 +404,7 @@ function makeAIControlled(shuffleGrid) {
 
     shuffleGrid.start = function(completionCallback) {
         shuffleGrid.completionCallback = completionCallback;
-        shuffleGrid.randomShuffle_(startAI);
+        shuffleGrid._randomShuffle(startAI);
     };
 }
 
@@ -416,24 +413,26 @@ function makeAIControlled(shuffleGrid) {
 
 $(document).ready(function() {
 
+    var level = LEVELS[1];
+
     //loadNextLevel();
     var playerFinished = false;
-    var playerShuffleGrid = new ShuffleGrid(LEVELS[0], $("#player-container"), 420, 420);
+    var playerShuffleGrid = new ShuffleGrid(level, $("#player-container"), 420, 420);
     playerShuffleGrid.start(function() {
         playerFinished = true;
         console.log("You completed your grid in "+playerShuffleGrid.movesTaken+" moves!");
     });
 
-    var floppyShuffleGrid = new ShuffleGrid(LEVELS[0], $("#ai-container"), 240, 240);
+    var floppyShuffleGrid = new ShuffleGrid(level, $("#ai-container"), 240, 240);
     makeAIControlled(floppyShuffleGrid);
     floppyShuffleGrid.start(function() {
         console.log("Floppy completed his grid in "+floppyShuffleGrid.movesTaken+" moves!");
         if (playerFinished) {
             // Player won first
-            $("#floppy-thoughts").html("You beat me, well done!");
+            $("#floppy-thoughts").html("<em>You beat me, well done!</em>");
         } else {
             // Floppy won first
-            $("#floppy-thoughts").html("<em>Yay!</em> I won!");
+            $("#floppy-thoughts").html("<em><strong>Yay!</strong> I won!</em>");
         }
     });
 
