@@ -1,5 +1,6 @@
+old_script = require 'old-script'
+
 module.exports = App =
   init: ->
-    console.log 'hello world'
-    $(document).ready -> 
-      console.log 'ready'
+    $(document).ready ->
+      old_script.startEverything()
