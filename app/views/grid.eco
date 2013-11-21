@@ -1,0 +1,35 @@
+<% tileWidth = Math.floor((@maxWidth)/@level.gridSize[0]) %>
+<% tileHeight = Math.floor((@maxHeight)/@level.gridSize[1]) %>
+
+<% gridWidth = (tileWidth+1)*@level.gridSize[0]+1 %>
+<% gridHeight = (tileHeight+1)*@level.gridSize[1]+1 %>
+
+<div style="position: relative;
+            border: 1px black solid;
+            display: inline-block;
+            vertical-align: top;
+            width: <%= gridWidth %>px;
+            height: <%= gridHeight %>px;">
+
+<% for y in [0..@level.gridSize[1]-1]: %>
+  <% for x in [0..@level.gridSize[0]-1]: %>
+
+  <% continue if y is @level.emptyTile[1] and x is @level.emptyTile[0] %>
+
+    <div style="position: absolute;
+                margin: 1px;
+                width: <%= tileWidth %>px;
+                height: <%= tileHeight %>px;
+                left: <%= x*(tileHeight+1) %>px;
+                top: <%= y*(tileHeight+1) %>px;
+                background-image: url(<%= @level.image %>);
+                background-size: <%= gridWidth %>px <%= gridHeight %>px;
+                background-position: <%= -1*tileWidth*x-1 %>px 
+                                     <%= -1*tileHeight*y-1 %>px;
+                ">
+    </div>
+
+  <% end %>
+<% end %>
+
+</div>
