@@ -1,6 +1,6 @@
 gridTemplate = require 'views/grid'
 
-class ShuffleGrid
+module.exports = class ShuffleGrid
   constructor: (@level, $container, maxWidth, maxHeight) ->
     @SLIDING_DURATION = 50
     @COMPLETED_FADE_IN_DURATION = 2000
@@ -78,4 +78,50 @@ class ShuffleGrid
       thisGrid._randomShuffle callback, if moved then $randomTile else $lastTile
 
 
-module.exports = ShuffleGrid
+  _numIncorrect: ->
+    count = 0
+    for y in [0..@tiles.length-1]
+      for x in [0..@tiles[0].length-1]
+        #TODO add isCorrectlyPlaced method?
+        count++ unless @tiles[y][x] is null or @tiles[y][x].data('x') is x and @tiles[y][x].data('y') is y
+    count
+
+
+  _tryMoveTile: ($tile, callback) ->
+
+    for y in [0..@tiles.length-1]
+      for x in [0..@tiles[0].length-1]
+        if @tiles[y][x] is null
+          emptyx = x
+          emptyy = y
+        else
+          if @tiles[y][x].data('x') is $tile.data('x') and @tiles[y][x].data('y') is $tile.data('y')
+            thisx = x
+            thisy = y
+
+    if thisx is emptyx and thisy is emptyy+1
+      animation = top: '-='+@tileHeight
+    else if thisx is emptyx and thisy is emptyy-1
+      animation = top: '+='+@tileHeight
+    else if thisx is emptyx+1 and thisy is emptyy
+      animation = left: '-='+@tileWidth
+    else if thisx is emptyx-1 and thisy is emptyy
+      animation = left: '+='+@tileWidth
+
+    thisGrid = this
+    if animation?
+      $tile.animate animation, @SLIDING_DURATION, ->
+        thisGrid.tiles[emptyy][emptyx] = thisGrid.tiles[thisy][thisx]
+        thisGrid.tiles[thisy][thisx] = null
+        thisGrid.movesTaken++
+        callback true
+    else
+      callback false
+
+  
+  _gridCompleted: ->
+    $img = $ "<img style='height: 100%; width: 100%;' src='#{@level.image}'/>"
+    thisGrid = this
+    $img.fadeIn @COMPLETED_FADE_IN_DURATION, ->
+      thisGrid.completionCallback()
+    @$grid.prepend $img
