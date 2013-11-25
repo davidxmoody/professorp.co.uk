@@ -1,11 +1,4 @@
-var LEVELS = [
-  { name: "Ammonite", image: "images/ammonite.gif",
-    gridSize: [3, 3], emptyTile: [2, 2] },
-  { name: "Shark Teeth", image: "images/shark-teeth.gif",
-    gridSize: [3, 4], emptyTile: [2, 3] },
-  { name: "Ammonite Shell", image: "images/ammonite-shell.gif",
-    gridSize: [4, 4], emptyTile: [3, 3] }
-];
+var LEVELS = require('levels');
 
 
 /* ShuffleGrid **************************************************************/
@@ -28,9 +21,6 @@ function ShuffleGrid(level, $container, maxWidth, maxHeight) {
     this.tileWidth = Math.floor(maxWidth/level.gridSize[0]);
     this.tileHeight = Math.floor(maxWidth/level.gridSize[1]);
 
-
-    // Add the grid to the container
-    //$container.append(this.$grid);
 
     var template = require("views/grid");
 

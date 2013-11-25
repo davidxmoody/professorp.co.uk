@@ -14,7 +14,11 @@
 <% for y in [0..@level.gridSize[1]-1]: %>
   <% for x in [0..@level.gridSize[0]-1]: %>
 
-  <% isEmpty = y is @level.emptyTile[1] and x is @level.emptyTile[0] %>
+  <% if @level.emptyTile?: %>
+    <% isEmpty = y is @level.emptyTile[1] and x is @level.emptyTile[0] %>
+  <% else: %>
+    <% isEmpty = y is @level.gridSize[1]-1 and x is @level.gridSize[0]-1 %>
+  <% end %>
 
     <div class="tile <%= 'empty' if isEmpty %>" 
          style="<%= 'display: none;' if isEmpty %>
