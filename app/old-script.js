@@ -4,38 +4,6 @@ var LEVELS = require('levels');
 
 ShuffleGrid = require("shufflegrid");
 
-ShuffleGrid.prototype.start = function(completionCallback) {
-
-    this.completionCallback = completionCallback;
-    var thisGrid = this;
-    this._randomShuffle(function() { thisGrid.allowInput = true; }, null);
-};
-
-ShuffleGrid.prototype.destroy = function() {
-    this.$grid.remove();
-    this.tiles = null;
-};
-
-ShuffleGrid.prototype._randomShuffle = function(callback, $lastTile) {
-    // Stop shuffling once every tile has been moved away from it's original position
-    if (this._numIncorrect() >= this.tiles[0].length*this.tiles.length-1) {
-        callback();
-        return;
-    }
-
-    // Randomly select a tile from the grid and try to move it, repeat if that tile had just been moved
-    var $randomTile;
-    do {
-        $randomTile = this.tiles[Math.floor(Math.random()*this.tiles.length)][Math.floor(Math.random()*this.tiles[0].length)];
-    } while ($lastTile !== null && $randomTile === $lastTile);
-
-    // Try to move the selected tile, recursively call self upon completion, passing the last tile which was actually moved
-    var thisGrid = this;
-    this._tryMoveTile($randomTile, function(moved) {
-        thisGrid._randomShuffle(callback, moved ? $randomTile : $lastTile);
-    });
-};
-
 ShuffleGrid.prototype._numIncorrect = function() {
     var count = 0;
     for (var y=0; y<this.tiles.length; y++) {
