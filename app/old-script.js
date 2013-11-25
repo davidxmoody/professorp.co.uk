@@ -1,65 +1,8 @@
 var LEVELS = require('levels');
 
-
 /* ShuffleGrid **************************************************************/
 
-/* First create a grid from level data and maximum dimensions and tell it where to put itself
-   Then shuffle the grid and start the game
-   Give it a callback function to be called when the game is completed
-   Finally destroy it once you are done with it and want to load another one */
-
-function ShuffleGrid(level, $container, maxWidth, maxHeight) {
-
-    this.SLIDING_DURATION = 50;
-    this.COMPLETED_FADE_IN_DURATION = 2000;
-
-    this.movesTaken = 0;
-    this.level = level;
-    this.allowInput = false;
-
-    // Tile heights and widths include everything (border, padding, width)
-    this.tileWidth = Math.floor(maxWidth/level.gridSize[0]);
-    this.tileHeight = Math.floor(maxWidth/level.gridSize[1]);
-
-
-    var template = require("views/grid");
-
-    this.$grid = $(template({ "level": level, "maxWidth": maxWidth, "maxHeight": maxHeight }));
-
-    var $tiles = this.$grid.children(".tile");
-
-    this.tiles = [];
-
-    var thisGrid = this;
-    $tiles.each(function(index) {
-        var $tile = $(this);
-        var y = Math.floor(index/level.gridSize[0]);
-        var x = index%level.gridSize[0];
-        $tile.data({ "x": x, "y": y });
-
-        if (thisGrid.tiles.length <= y) thisGrid.tiles[y] = [];
-        if ($tile.hasClass('empty')) {
-            thisGrid.tiles[y][x] = null;
-        } else {
-            thisGrid.tiles[y][x] = $tile;
-
-            
-            $tile.click(function() {
-                if (!thisGrid.allowInput) return;
-                thisGrid.allowInput = false;
-                thisGrid._tryMoveTile($(this), function(moved) { 
-                    if (moved && thisGrid._numIncorrect() === 0) {
-                        thisGrid._gridCompleted();
-                    } else {
-                        thisGrid.allowInput = true; 
-                    }
-                });
-            });
-        }
-    });
-
-    $container.append(this.$grid);
-}
+ShuffleGrid = require("shufflegrid");
 
 ShuffleGrid.prototype.start = function(completionCallback) {
 
