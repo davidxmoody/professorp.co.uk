@@ -9,6 +9,7 @@
 // expected values of all of the nodes above it to be equal to the minimum of their respective children
 // Once a node is reached which has a future cost of 0 then a solution has been found, calculate solution from tree
 
+var ShuffleGrid = require("shufflegrid");
 
 function generateRoot(shuffleGrid) {
     var root = {};
@@ -153,10 +154,7 @@ function makeAIControlled(shuffleGrid) {
 
     var makeMove = function(root) {
         // First perform some iterations
-        var solutionFound = iterations(root, NUM_ITERATIONS);
-        if (solutionFound) {
-            $("#floppy-thoughts").html("<em>I think I've got it!</em>");
-        }
+        iterations(root, NUM_ITERATIONS);
 
         // Set the new root to the most promising child, chop off unreachable branches
         root = root.children[0];
@@ -189,8 +187,6 @@ function makeAIControlled(shuffleGrid) {
     }
 
     var startAI = function() {
-        $("#floppy-thoughts").html("<em>Lets begin!</em>");
-
         var root = generateRoot(shuffleGrid);
         setTimeout(makeMove(root), MOVE_INTERVAL);
     }
