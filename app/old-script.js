@@ -28,79 +28,46 @@ function ShuffleGrid(level, $container, maxWidth, maxHeight) {
     this.tileWidth = Math.floor(maxWidth/level.gridSize[0]);
     this.tileHeight = Math.floor(maxWidth/level.gridSize[1]);
 
-    // Actual grid size depends on the number of tiles across and the tile size
-    var gridWidth = this.tileWidth*level.gridSize[0];
-    var gridHeight = this.tileHeight*level.gridSize[1];
-
-    var createEmptyGrid = function(width, height) {
-        var $grid = $("<div/>");
-        $grid.css("position", "relative");
-        $grid.css("border", "1px black solid");
-        $grid.css("display", "inline-block");
-        $grid.css("vertical-align", "top");  // Fixes shifting by one pixel bug
-        $grid.width(width);
-        $grid.height(height);
-        return $grid;
-    };
-
-    this.$grid = createEmptyGrid(gridWidth, gridHeight);
-
-    var makeTile = function(y, x) {
-
-        var $tile = $("<div/>");
-
-        //TODO use .css to set all values at once with an object
-        $tile.css("position", "absolute");
-        $tile.css("margin", "1px");
-
-        $tile.css("width", this.tileWidth-2);
-        $tile.css("height", this.tileHeight-2);
-
-        $tile.css("top", y*this.tileHeight);
-        $tile.css("left", x*this.tileWidth);
-
-        // Set the "correct position" of the tile when checking if solved
-        $tile.data("x", x);
-        $tile.data("y", y);
-
-        $tile.css("background-image", "url("+level.image+")");
-        $tile.css("background-size", gridWidth+"px "+gridHeight+"px");
-        $tile.css("background-position", (-1*this.tileWidth*x-1)+"px "+(-1*this.tileHeight*y-1)+"px");
-
-        // Setup trigger for clicking on tile
-        //TODO remove this for non user interactive grids
-        var thisGrid = this;
-        $tile.click(function() {
-            if (!thisGrid.allowInput) return;
-            thisGrid.allowInput = false;
-            thisGrid._tryMoveTile($(this), function(moved) { 
-                if (moved && thisGrid._numIncorrect() === 0) {
-                    thisGrid._gridCompleted();
-                } else {
-                    thisGrid.allowInput = true; 
-                }
-            });
-        });
-
-        return $tile;
-    }
-
-    // Generate tiles
-    this.tiles = [];
-    for (var y=0; y<level.gridSize[1]; y++) {
-        this.tiles[y] = [];
-        for (var x=0; x<level.gridSize[0]; x++) {
-            if (level.emptyTile[0] === x && level.emptyTile[1] === y) {
-                this.tiles[y][x] = null;
-            } else {
-                var $tile = makeTile.call(this, y, x); //TODO do differently
-                this.$grid.append($tile);
-                this.tiles[y][x] = $tile;
-            }
-        }
-    }
 
     // Add the grid to the container
+    //$container.append(this.$grid);
+
+    var template = require("views/grid");
+
+    this.$grid = $(template({ "level": level, "maxWidth": maxWidth, "maxHeight": maxHeight }));
+
+    var $tiles = this.$grid.children(".tile");
+
+    this.tiles = [];
+
+    var thisGrid = this;
+    $tiles.each(function(index) {
+        var $tile = $(this);
+        var y = Math.floor(index/level.gridSize[0]);
+        var x = index%level.gridSize[0];
+        $tile.data({ "x": x, "y": y });
+
+        if (thisGrid.tiles.length <= y) thisGrid.tiles[y] = [];
+        if ($tile.hasClass('empty')) {
+            thisGrid.tiles[y][x] = null;
+        } else {
+            thisGrid.tiles[y][x] = $tile;
+
+            
+            $tile.click(function() {
+                if (!thisGrid.allowInput) return;
+                thisGrid.allowInput = false;
+                thisGrid._tryMoveTile($(this), function(moved) { 
+                    if (moved && thisGrid._numIncorrect() === 0) {
+                        thisGrid._gridCompleted();
+                    } else {
+                        thisGrid.allowInput = true; 
+                    }
+                });
+            });
+        }
+    });
+
     $container.append(this.$grid);
 }
 
@@ -134,7 +101,7 @@ ShuffleGrid.prototype._randomShuffle = function(callback, $lastTile) {
     this._tryMoveTile($randomTile, function(moved) {
         thisGrid._randomShuffle(callback, moved ? $randomTile : $lastTile);
     });
-}
+};
 
 ShuffleGrid.prototype._numIncorrect = function() {
     var count = 0;
@@ -200,7 +167,7 @@ ShuffleGrid.prototype._gridCompleted = function() {
         thisGrid.completionCallback();
     });
     this.$grid.prepend($img);
-}
+};
 
 
 /* AIShuffleGrid ************************************************************/

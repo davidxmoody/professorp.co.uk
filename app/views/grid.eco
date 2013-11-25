@@ -1,8 +1,8 @@
-<% tileWidth = Math.floor((@maxWidth)/@level.gridSize[0]) %>
-<% tileHeight = Math.floor((@maxHeight)/@level.gridSize[1]) %>
+<% tileWidth = Math.floor(@maxWidth/@level.gridSize[0]) %>
+<% tileHeight = Math.floor(@maxHeight/@level.gridSize[1]) %>
 
-<% gridWidth = (tileWidth+1)*@level.gridSize[0]+1 %>
-<% gridHeight = (tileHeight+1)*@level.gridSize[1]+1 %>
+<% gridWidth = tileWidth*@level.gridSize[0] %>
+<% gridHeight = tileHeight*@level.gridSize[1] %>
 
 <div style="position: relative;
             border: 1px black solid;
@@ -14,14 +14,16 @@
 <% for y in [0..@level.gridSize[1]-1]: %>
   <% for x in [0..@level.gridSize[0]-1]: %>
 
-  <% continue if y is @level.emptyTile[1] and x is @level.emptyTile[0] %>
+  <% isEmpty = y is @level.emptyTile[1] and x is @level.emptyTile[0] %>
 
-    <div style="position: absolute;
+    <div class="tile <%= 'empty' if isEmpty %>" 
+         style="<%= 'display: none;' if isEmpty %>
+                position: absolute;
                 margin: 1px;
-                width: <%= tileWidth %>px;
-                height: <%= tileHeight %>px;
-                left: <%= x*(tileHeight+1) %>px;
-                top: <%= y*(tileHeight+1) %>px;
+                width: <%= tileWidth-2 %>px;
+                height: <%= tileHeight-2 %>px;
+                left: <%= x*tileWidth %>px;
+                top: <%= y*tileHeight %>px;
                 background-image: url(<%= @level.image %>);
                 background-size: <%= gridWidth %>px <%= gridHeight %>px;
                 background-position: <%= -1*tileWidth*x-1 %>px 
