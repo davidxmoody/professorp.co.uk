@@ -9,8 +9,7 @@
 // expected values of all of the nodes above it to be equal to the minimum of their respective children
 // Once a node is reached which has a future cost of 0 then a solution has been found, calculate solution from tree
 
-var ShuffleGrid = require("shufflegrid");
-
+//TODO move this into a getState method of ShuffleGrid
 function generateRoot(shuffleGrid) {
     var root = {};
     root.state = [];
@@ -146,61 +145,31 @@ function iterations(rootNode, number) {
     return false;
 }
 
+//TODO change to accept a state not a ShuffleGrid
+function Solver(shuffleGrid) {
+    this.NUM_ITERATIONS = 40;
 
-function makeAIControlled(shuffleGrid) {
+    this.shuffleGrid = shuffleGrid;
 
-    var MOVE_INTERVAL = 1000;
-    var NUM_ITERATIONS = 30;
+    this.root = generateRoot(shuffleGrid);
 
-    var makeMove = function(root) {
-        // First perform some iterations
-        iterations(root, NUM_ITERATIONS);
+}
 
-        // Set the new root to the most promising child, chop off unreachable branches
-        root = root.children[0];
-        root.parent = null;
+Solver.prototype.getMove = function() {
+    iterations(this.root, this.NUM_ITERATIONS);
 
-        // Find out which shuffle grid tile corresponds to the node tile
-        var lastTile = root.lastTile;
-        for (var y=0; y<shuffleGrid.tiles.length; y++) {
-            for (var x=0; x<shuffleGrid.tiles[0].length; x++) {
-                var $gridTile = shuffleGrid.tiles[y][x];
-                if ($gridTile !== null && lastTile[0] == $gridTile.data("y") && lastTile[1] == $gridTile.data("x")) {
-                    var $tileToMove = $gridTile;
-                }
+    this.root = this.root.children[0];
+    this.root.parent = null;
+
+    var lastTile = this.root.lastTile;
+    for (var y=0; y<this.shuffleGrid.tiles.length; y++) {
+        for (var x=0; x<this.shuffleGrid.tiles[0].length; x++) {
+            var $gridTile = this.shuffleGrid.tiles[y][x];
+            if ($gridTile !== null && lastTile[0] == $gridTile.data("y") && lastTile[1] == $gridTile.data("x")) {
+                return $gridTile;
             }
         }
-
-        shuffleGrid._tryMoveTile($tileToMove, function(moved) {
-            if (!moved) {
-                console.log("Tile was not moved: " + lastTile);
-            } else {
-                if (shuffleGrid._numIncorrect() === 0) {
-                    // AI has successfully completed the grid!
-                    shuffleGrid._gridCompleted();
-                } else {
-                    // Still moves to go, schedule next move
-                    setTimeout(function() {makeMove(root);}, MOVE_INTERVAL);
-                }
-            }
-        });
     }
+};
 
-    var startAI = function() {
-        var root = generateRoot(shuffleGrid);
-        setTimeout(makeMove(root), MOVE_INTERVAL);
-    }
-
-    shuffleGrid.start = function(completionCallback) {
-        shuffleGrid.completionCallback = completionCallback;
-        shuffleGrid._randomShuffle(startAI);
-    };
-}
-
-function AIGrid(level, $container, maxWidth, maxHeight) {
-    var grid = new ShuffleGrid(level, $container, maxWidth, maxHeight);
-    makeAIControlled(grid);
-    return grid;
-}
-
-module.exports = AIGrid;
+module.exports = Solver;
