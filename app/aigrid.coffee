@@ -17,14 +17,13 @@ module.exports = class AIGrid extends ShuffleGrid
     #TODO supply the Solver with the current state instead of the whole grid
     solver = new Solver this
 
-    thisGrid = this
-    moveSingleTile = ->
+    moveSingleTile = =>
       # Note that the move is actually the jquery tile to move
       move = solver.getMove()
-      thisGrid._tryMoveTile move, (moved) ->
-        if thisGrid._numIncorrect() is 0
-          thisGrid._gridCompleted()
+      @_tryMoveTile move, (moved) =>
+        if @_numIncorrect() is 0
+          @_gridCompleted()
         else
           setTimeout moveSingleTile, MOVE_INTERVAL
 
-    moveSingleTile()
+    setTimeout moveSingleTile, MOVE_INTERVAL

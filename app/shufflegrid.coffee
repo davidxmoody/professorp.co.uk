@@ -37,27 +37,10 @@ module.exports = class ShuffleGrid
       else
         thisGrid.tiles[y][x] = $tile
 
-        #TODO delegate this to the main grid
-        $tile.click ->
-          return unless thisGrid.allowInput
-          thisGrid.allowInput = false
-          thisGrid._tryMoveTile $(this), (moved) ->
-            if moved and thisGrid._numIncorrect() is 0
-              thisGrid._gridCompleted()
-            else
-              thisGrid.allowInput = true
-
     $container.append @$grid
 
 
-  start: (@completionCallback) ->
-    thisGrid = this
-    resume = -> thisGrid.allowInput = true
-    @_randomShuffle resume, null
-
-
   destroy: ->
-    #TODO remove click event listeners?
     @$grid.remove()
     @tiles = null
 
@@ -67,7 +50,7 @@ module.exports = class ShuffleGrid
     # Maybe a static method to generate a random sequence of u d l r chars
     # and then another method to convert that into moves
     if @_numIncorrect() >= @tiles[0].length*@tiles.length-1
-      callback()
+      callback?()
       return
 
     until $randomTile? and $randomTile isnt $lastTile
