@@ -13,14 +13,19 @@
 function generateRoot(shuffleGrid) {
     var root = {};
     root.state = [];
-    for (var y=0; y<shuffleGrid.tiles.length; y++) {
+
+    // Fill state with nulls
+    for(var y=0; y<shuffleGrid.level.gridSize[1]; y++) {
         root.state[y] = [];
-        for (var x=0; x<shuffleGrid.tiles[0].length; x++) {
-            if (shuffleGrid.tiles[y][x] == null) {
-                root.state[y][x] = null;
-            } else {
-                root.state[y][x] = [shuffleGrid.tiles[y][x].data("y"), shuffleGrid.tiles[y][x].data("x")];
-            }
+        for(var x=0; x<shuffleGrid.level.gridSize[0]; x++) {
+            root.state[y][x] = null;
+        }
+    }
+
+    // Add in tiles
+    for(tile in shuffleGrid.tiles) {
+        if(!tile.empty) {
+            root.state[tile.currentY][tile.currentX] = [tile.y, tile.x];
         }
     }
 
@@ -151,7 +156,11 @@ function Solver(shuffleGrid) {
 
     this.shuffleGrid = shuffleGrid;
 
+    console.log(this.shuffleGrid);
+
     this.root = generateRoot(shuffleGrid);
+
+    console.log(this.root);
 
 }
 

@@ -1,17 +1,21 @@
 levels = require 'levels'
 PlayerGrid = require 'playergrid'
 AIGrid = require 'aigrid'
+Random = require 'random'
 
 startEverything = ->
-  level = levels[0]
+  level = levels[1]
+  rand = new Random()
 
   playerGrid = new PlayerGrid level, $('#player-container'), 420, 420
-  playerGrid.start ->
-    console.log "You completed your grid in #{playerGrid.movesTaken} moves!"
+  playerGrid.shuffle rand.clone(), 6, ->
+    playerGrid.start ->
+      console.log 'player finished'
 
   floppyGrid = new AIGrid level, $('#ai-container'), 240, 240
-  floppyGrid.start ->
-    console.log "Floppy completed his grid in #{floppyGrid.movesTaken} moves!"
+  floppyGrid.shuffle rand.clone(), 6, ->
+    floppyGrid.start ->
+      console.log 'floppy finished'
 
 
 module.exports = App =

@@ -1,23 +1,24 @@
 ShuffleGrid = require 'shufflegrid'
 
 module.exports = class PlayerGrid extends ShuffleGrid
-  start: (@completionCallback) ->
-    @_randomShuffle @_enableInput
+  constructor: (level, $container, maxWidth, maxHeight) ->
+    super(level, $container, maxWidth, maxHeight)
 
-    thisGrid = this
-    @$grid.on 'click', '.tile', ->
-      return unless thisGrid.allowInput
-      thisGrid._disableInput()
-      thisGrid._tryMoveTile $(this), (moved) ->
-        if moved and thisGrid._numIncorrect() is 0
-          thisGrid._gridCompleted()
-        else
-          thisGrid._enableInput()
-
-
-  _disableInput: =>
     @allowInput = false
 
+    for tile in @tiles
+      tile.$tile.on 'click', $.proxy(@_tileClicked, this, tile)
 
-  _enableInput: =>
+
+  _tileClicked: (tile) ->
+    return unless @allowInput
+    @allowInput = false
+    @tryMoveTile tile, (moved) =>
+      if moved and @_numIncorrect() is 0
+        @_gridCompleted()
+      else
+        @allowInput = true
+
+
+  start: (@completionCallback) ->
     @allowInput = true

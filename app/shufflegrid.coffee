@@ -1,41 +1,40 @@
-gridTemplate = require 'views/grid'
+Tile = require 'tile'
+Random = require 'random'
+
+COMPLETED_FADE_IN_DURATION = 2000
 
 module.exports = class ShuffleGrid
   constructor: (@level, $container, maxWidth, maxHeight) ->
-    @SLIDING_DURATION = 50
-    @COMPLETED_FADE_IN_DURATION = 2000
+    
+    @lastMovedTile = null
+    @movesTaken = 0 #TODO make this work
 
-    @movesTaken = 0
-    @allowInput = false
-
-    # Calculate dimensions
     #TODO add option to keep aspect ratio
-    @tileWidth = Math.floor(maxWidth/level.gridSize[0])
-    @tileHeight = Math.floor(maxHeight/level.gridSize[1])
+    # Calculate dimensions
+    tileWidth = Math.floor(maxWidth/level.gridSize[0])
+    tileHeight = Math.floor(maxHeight/level.gridSize[1])
 
-    @$grid = $ gridTemplate
-      level: level
-      maxWidth: maxWidth
-      maxHeight: maxHeight
+    gridWidth = tileWidth*level.gridSize[0]
+    gridHeight = tileHeight*level.gridSize[1]
 
+    # Make the jQuery grid
+    @$grid = $ '<div/>'
+    @$grid.css
+      position: 'relative'
+      border: '1px black solid'
+      display: 'inline-block'
+      'vertical-align': 'top'
+      width: gridWidth
+      height: gridHeight
+
+    # Make the tiles
     @tiles = []
-
-    thisGrid = this
-
-    @$grid.children('.tile').each (index) ->
-      $tile = $ this
-      y = Math.floor index/level.gridSize[0]
-      x = index%level.gridSize[0]
-      $tile.data
-        x: x
-        y: y
-
-      if thisGrid.tiles.length <= y then thisGrid.tiles[y] = []
-
-      if $tile.hasClass('empty')
-        thisGrid.tiles[y][x] = null
-      else
-        thisGrid.tiles[y][x] = $tile
+    for y in [0..level.gridSize[1]-1]
+      for x in [0..level.gridSize[0]-1]
+        tile = new Tile x, y, tileWidth, tileHeight, level
+        @tiles.push tile
+        @$grid.append tile.$tile
+        @emptyTile = tile if tile.empty
 
     $container.append @$grid
 
@@ -45,66 +44,55 @@ module.exports = class ShuffleGrid
     @tiles = null
 
 
-  _randomShuffle: (callback, $lastTile) ->
-    #TODO do this in a way that allows sequences of shuffles to be shared
-    # Maybe a static method to generate a random sequence of u d l r chars
-    # and then another method to convert that into moves
-    if @_numIncorrect() >= @tiles[0].length*@tiles.length-1
-      callback?()
+  shuffle: (random, maxMoves, callback) ->
+    # Stop if maxMoves reached or grid is completely mixed up
+    if maxMoves<=0 or @_isMixed()
+      callback()
       return
 
-    until $randomTile? and $randomTile isnt $lastTile
-      $randomTile = @tiles[Math.floor(Math.random()*@tiles.length)][Math.floor(Math.random()*@tiles[0].length)]
+    # Initialise random if necessary
+    random ?= new Random()
 
-    thisGrid = this
-    @_tryMoveTile $randomTile, (moved) ->
-      thisGrid._randomShuffle callback, if moved then $randomTile else $lastTile
+    # Choose a random movable tile, don't move the last tile to be moved
+    # (to prevent an annoying double-move behaviour)
+    availableMoves = @_movableTiles(false)
+    tileToMove = random.choose(availableMoves)
 
+    # Move chosen tile and schedule the next move
+    @tryMoveTile tileToMove, =>
+      @shuffle random, maxMoves-1, callback
+    
 
   _numIncorrect: ->
-    count = 0
-    for y in [0..@tiles.length-1]
-      for x in [0..@tiles[0].length-1]
-        #TODO add isCorrectlyPlaced method?
-        count++ unless @tiles[y][x] is null or @tiles[y][x].data('x') is x and @tiles[y][x].data('y') is y
-    count
+    (tile for tile in @tiles when not tile.correctlyPlaced()).length
 
 
-  _tryMoveTile: ($tile, callback) ->
+  _isMixed: ->
+    @_numIncorrect()==@tiles.length
 
-    for y in [0..@tiles.length-1]
-      for x in [0..@tiles[0].length-1]
-        if @tiles[y][x] is null
-          emptyx = x
-          emptyy = y
-        else
-          if @tiles[y][x].data('x') is $tile.data('x') and @tiles[y][x].data('y') is $tile.data('y')
-            thisx = x
-            thisy = y
 
-    if thisx is emptyx and thisy is emptyy+1
-      animation = top: '-='+@tileHeight
-    else if thisx is emptyx and thisy is emptyy-1
-      animation = top: '+='+@tileHeight
-    else if thisx is emptyx+1 and thisy is emptyy
-      animation = left: '-='+@tileWidth
-    else if thisx is emptyx-1 and thisy is emptyy
-      animation = left: '+='+@tileWidth
+  _movableTiles: (allowLastMoved) ->
+    #TODO make this more readable
+    tile for tile in @tiles when tile.vectorTo(@emptyTile).abs()==1 and tile isnt @lastMovedTile
 
-    thisGrid = this
-    if animation?
-      $tile.animate animation, @SLIDING_DURATION, ->
-        thisGrid.tiles[emptyy][emptyx] = thisGrid.tiles[thisy][thisx]
-        thisGrid.tiles[thisy][thisx] = null
-        thisGrid.movesTaken++
-        callback true
+
+  tryMoveTile: (tile, callback) ->
+    # Move the given tile if it is a legal move (i.e. empty tile is adjacent)
+    vector = tile.vectorTo(@emptyTile)
+    if vector.abs() == 1
+      @lastMovedTile = tile
+      tile.swapWith(@emptyTile, callback)
     else
-      callback false
+      callback?(false)
 
   
   _gridCompleted: ->
     $img = $ "<img style='height: 100%; width: 100%;' src='#{@level.image}'/>"
     thisGrid = this
-    $img.fadeIn @COMPLETED_FADE_IN_DURATION, ->
+    $img.fadeIn COMPLETED_FADE_IN_DURATION, ->
       thisGrid.completionCallback()
     @$grid.prepend $img
+
+
+  getState: ->
+    #TODO
