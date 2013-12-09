@@ -4,7 +4,7 @@ Solver = require 'solver/solver'
 module.exports = class AIGrid extends ShuffleGrid
 
   start: (@completionCallback) ->
-    MOVE_INTERVAL = 1000
+    MOVE_INTERVAL = 500
     NUM_ITERATIONS = 250
     
     solver = new Solver(this)

@@ -1,5 +1,3 @@
-re-write in CoffeeScript with Stitch
-
 multi stage level where the completed grid zooms out and becomes a tile of the next grid
 
 balance game when playing against Floppy
