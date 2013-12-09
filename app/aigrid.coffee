@@ -1,5 +1,5 @@
 ShuffleGrid = require 'shufflegrid'
-Solver = require 'solver'
+Solver = require 'solver/solver'
 
 module.exports = class AIGrid extends ShuffleGrid
 

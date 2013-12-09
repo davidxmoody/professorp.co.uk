@@ -23,9 +23,10 @@ function generateRoot(shuffleGrid) {
     }
 
     // Add in tiles
-    for(tile in shuffleGrid.tiles) {
+    for(var i=0; i<shuffleGrid.tiles.length; i++) {
+        var tile = shuffleGrid.tiles[i];
         if(!tile.empty) {
-            root.state[tile.currentY][tile.currentX] = [tile.y, tile.x];
+            root.state[tile.y][tile.x] = [tile.origY, tile.origX];
         }
     }
 
@@ -156,12 +157,7 @@ function Solver(shuffleGrid) {
 
     this.shuffleGrid = shuffleGrid;
 
-    console.log(this.shuffleGrid);
-
     this.root = generateRoot(shuffleGrid);
-
-    console.log(this.root);
-
 }
 
 Solver.prototype.getMove = function() {
@@ -171,12 +167,10 @@ Solver.prototype.getMove = function() {
     this.root.parent = null;
 
     var lastTile = this.root.lastTile;
-    for (var y=0; y<this.shuffleGrid.tiles.length; y++) {
-        for (var x=0; x<this.shuffleGrid.tiles[0].length; x++) {
-            var $gridTile = this.shuffleGrid.tiles[y][x];
-            if ($gridTile !== null && lastTile[0] == $gridTile.data("y") && lastTile[1] == $gridTile.data("x")) {
-                return $gridTile;
-            }
+    var tiles = this.shuffleGrid.tiles
+    for (var i=0; i<tiles.length; i++) {
+        if (tiles[i].origX===lastTile[1] && tiles[i].origY===lastTile[0]) {
+            return tiles[i];
         }
     }
 };
