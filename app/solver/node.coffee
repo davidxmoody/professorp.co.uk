@@ -10,10 +10,12 @@ module.exports = class Node
           matchedTile = tile for tile in tiles when x is tile.x and y is tile.y
           matchedTile
 
+      @parent = null
+      @lastTile = null
       @g = 0
       @h = @futurePathCost()
       @f = @g + @h
-      @numChildren = 0
+      @numChildren = 0  #TODO remove this?
 
 
   hasChildren: ->
@@ -51,7 +53,8 @@ module.exports = class Node
 
     for tileToMove in movableTiles
       # Ignore tile if it was the last one to be moved (because a double-move
-      # will make the child's state identical to the parent's which is pointless)
+      # will make the child's state identical to the parent's which can never
+      # be useful)
       continue if tileToMove is @lastTile
 
       # Generate a new node from the tile to move and current state

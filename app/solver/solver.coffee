@@ -27,6 +27,7 @@ module.exports = class Solver
       
 
   iterations: (maxIterations) ->
+    #TODO is there any point to tracking the number of actual iterations?
     numIterations = 0
     while numIterations<maxIterations
       break if @iterate()

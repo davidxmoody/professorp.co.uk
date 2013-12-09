@@ -7,7 +7,7 @@ module.exports = class ShuffleGrid
   constructor: (@level, $container, maxWidth, maxHeight) ->
     
     @lastMovedTile = null
-    @movesTaken = 0 #TODO make this work
+    @movesTaken = 0
 
     #TODO add option to keep aspect ratio
     # Calculate dimensions
@@ -44,10 +44,10 @@ module.exports = class ShuffleGrid
     @tiles = null
 
 
-  shuffle: (random, maxMoves, callback) ->
+  shuffle: (random, maxMoves=1000, callback) ->
     # Stop if maxMoves reached or grid is completely mixed up
     if maxMoves<=0 or @_isMixed()
-      callback()
+      callback?()
       return
 
     # Initialise random if necessary
@@ -80,6 +80,7 @@ module.exports = class ShuffleGrid
     # Move the given tile if it is a legal move (i.e. empty tile is adjacent)
     vector = tile.vectorTo(@emptyTile)
     if vector.abs() == 1
+      @movesTaken++
       @lastMovedTile = tile
       tile.swapWith(@emptyTile, callback)
     else
@@ -92,7 +93,3 @@ module.exports = class ShuffleGrid
     $img.fadeIn COMPLETED_FADE_IN_DURATION, ->
       thisGrid.completionCallback()
     @$grid.prepend $img
-
-
-  getState: ->
-    #TODO

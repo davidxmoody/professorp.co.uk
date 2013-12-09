@@ -5,11 +5,12 @@ module.exports = class AIGrid extends ShuffleGrid
 
   start: (@completionCallback) ->
     MOVE_INTERVAL = 1000
+    NUM_ITERATIONS = 250
     
-    #TODO supply the Solver with the current state instead of the whole grid
-    solver = new Solver this
+    solver = new Solver(this)
 
     makeMove = =>
+      solver.iterations(NUM_ITERATIONS)
       move = solver.getMove()
       @tryMoveTile move, (moved) =>
         if moved and @_numIncorrect() is 0
