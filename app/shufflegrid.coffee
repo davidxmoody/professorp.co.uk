@@ -4,12 +4,16 @@ Random = require 'random'
 module.exports = class ShuffleGrid
   constructor: (@levels, @random, @$container, @maxWidth, @maxHeight) ->
     @random ?= new Random()
-    @levelIndex = 0
+    @nextLevelIndex = 0
     
 
   init: (@completeCallback) ->
-    @loadLevel(@levels[@levelIndex])
+    @loadLevel(@_getNextLevel())
     @shuffle()
+
+
+  _getNextLevel: ->
+    @levels[@nextLevelIndex++]
 
 
   loadLevel: (@level) ->
@@ -103,12 +107,12 @@ module.exports = class ShuffleGrid
     $img = $ "<img style='height: 100%; width: 100%;' src='#{@level.image}'/>"
     thisGrid = this
     $img.fadeIn 1000, ->
-      thisGrid.levelIndex++
-      if thisGrid.levelIndex>=thisGrid.levels.length
-        thisGrid.completeCallback()
-      else
-        thisGrid.loadLevel(thisGrid.levels[thisGrid.levelIndex])
+      nextLevel = thisGrid._getNextLevel()
+      if nextLevel?
+        thisGrid.loadLevel(nextLevel)
         thisGrid.shuffle()
+      else
+        thisGrid.completeCallback()
     @$grid.prepend $img
 
 
