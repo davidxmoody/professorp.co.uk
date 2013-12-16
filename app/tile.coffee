@@ -1,4 +1,4 @@
-SLIDING_DURATION = 200
+SLIDING_DURATION = 150
 
 class Vector
   constructor: (@x, @y) ->
@@ -33,6 +33,10 @@ module.exports = class Tile
 
   correctlyPlaced: ->
     @x is @origX and @y is @origY
+
+
+  adjacentTo: (tile) ->
+    @vectorTo(tile).abs() == 1
 
 
   swapWith: (tile, callback) ->

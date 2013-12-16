@@ -3,16 +3,16 @@ FakeGrid = require './fakegrid'
 Random = require '../app/random'
 
 
-makeGrid = (seed=0.23456)->
-  grid = new FakeGrid(4, 4)
+makeGrid = (x, y, seed=0.23456)->
+  grid = new FakeGrid(x, y)
   rand = new Random(seed)
   grid.shuffle(20000, rand)
   grid
 
 seeds = (Math.random() for i in [1..10])
 
-makeGrids = ->
-  makeGrid(seed) for seed in seeds
+makeGrids = (x, y) ->
+  makeGrid(x, y, seed) for seed in seeds
 
 
 solveGrid = (grid, iterations) ->
@@ -44,12 +44,13 @@ solveGrid = (grid, iterations) ->
         moves: moves
       }
 
+###
 numIterations = 1
 while numIterations<10000
   stepsTotal = 0
   stepsCount = 0
 
-  for grid in makeGrids()
+  for grid in makeGrids(3, 3)
     result = solveGrid(grid, numIterations)
     stepsTotal += if result? then result.steps else 1000
     stepsCount++
@@ -58,3 +59,14 @@ while numIterations<10000
   console.log("#{numIterations},#{avgSteps}")
 
   numIterations = Math.floor(numIterations*1.2)+2
+###
+
+grid = makeGrid(5, 5, Math.random())
+solver = new Solver(grid)
+
+while true
+  solver.iterations(10000)
+  bestChild = solver.root
+  bestChild = bestChild.selectChild() while bestChild.hasChildren()
+  console.log bestChild.g, bestChild.h
+  solver.getMove()

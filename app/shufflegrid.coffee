@@ -1,18 +1,29 @@
 Tile = require 'tile'
 Random = require 'random'
 
-COMPLETED_FADE_IN_DURATION = 2000
-
 module.exports = class ShuffleGrid
-  constructor: (@level, $container, maxWidth, maxHeight) ->
+  constructor: (@levels, @random, @$container, @maxWidth, @maxHeight) ->
+    @random ?= new Random()
+    @levelIndex = 0
     
-    @lastMovedTile = null
-    @movesTaken = 0
+
+  init: (@completeCallback) ->
+    @loadLevel(@levels[@levelIndex])
+    @shuffle()
+
+
+  loadLevel: (@level) ->
+    #TODO check that all previous level data gets overwritten/erased
+
+    @lastShuffledTile = null
+    #TODO set min and max shuffles from level data
+    @numShuffles = 50
+    @movesTaken = 0 #TODO track moves for each sublevel?
 
     #TODO add option to keep aspect ratio
     # Calculate dimensions
-    tileWidth = Math.floor(maxWidth/level.gridSize[0])
-    tileHeight = Math.floor(maxHeight/level.gridSize[1])
+    tileWidth = Math.floor(@maxWidth/level.gridSize[0])
+    tileHeight = Math.floor(@maxHeight/level.gridSize[1])
 
     gridWidth = tileWidth*level.gridSize[0]
     gridHeight = tileHeight*level.gridSize[1]
@@ -23,7 +34,7 @@ module.exports = class ShuffleGrid
       position: 'relative'
       border: '1px black solid'
       display: 'inline-block'
-      'vertical-align': 'top'
+      'vertical-align': 'top'  #TODO is this needed any more?
       width: gridWidth
       height: gridHeight
 
@@ -31,36 +42,32 @@ module.exports = class ShuffleGrid
     @tiles = []
     for y in [0..level.gridSize[1]-1]
       for x in [0..level.gridSize[0]-1]
-        tile = new Tile x, y, tileWidth, tileHeight, level
-        @tiles.push tile
-        @$grid.append tile.$tile
+        tile = new Tile(x, y, tileWidth, tileHeight, level)
+        @tiles.push(tile)
+        @$grid.append(tile.$tile)
         @emptyTile = tile if tile.empty
 
-    $container.append @$grid
+    @$container.empty()
+    @$container.append(@$grid)
 
 
-  destroy: ->
-    @$grid.remove()
-    @tiles = null
-
-
-  shuffle: (random, maxMoves=1000, callback) ->
+  shuffle: =>
+    #TODO fix below comment and add min moves?
     # Stop if maxMoves reached or grid is completely mixed up
-    if maxMoves<=0 or @_isMixed()
-      callback?()
+    if @numShuffles<=0 or @_isMixed()
+      @setupInput()
+      @readyForInput()
       return
 
-    # Initialise random if necessary
-    random ?= new Random()
-
-    # Choose a random movable tile, don't move the last tile to be moved
+    # Choose a random movable tile but don't move the last tile to be moved
     # (to prevent an annoying double-move behaviour)
     availableMoves = @_movableTiles(false)
-    tileToMove = random.choose(availableMoves)
+    tileToMove = @random.choose(availableMoves)
 
     # Move chosen tile and schedule the next move
-    @tryMoveTile tileToMove, =>
-      @shuffle random, maxMoves-1, callback
+    @numShuffles--
+    @lastShuffledTile = tileToMove
+    tileToMove.swapWith(@emptyTile, @shuffle)
     
 
   _numIncorrect: ->
@@ -71,25 +78,47 @@ module.exports = class ShuffleGrid
     @_numIncorrect()==@tiles.length
 
 
-  _movableTiles: (allowLastMoved) ->
-    #TODO make this more readable
-    tile for tile in @tiles when tile.vectorTo(@emptyTile).abs()==1 and tile isnt @lastMovedTile
+  _isSolved: ->
+    @_numIncorrect()==0
 
 
-  tryMoveTile: (tile, callback) ->
-    # Move the given tile if it is a legal move (i.e. empty tile is adjacent)
-    vector = tile.vectorTo(@emptyTile)
-    if vector.abs() == 1
+  _movableTiles: (allowLastShuffled) ->
+    tile for tile in @tiles when tile.adjacentTo(@emptyTile) and \
+         (allowLastShuffled or tile isnt @lastShuffledTile)
+
+
+  tryMoveTile: (tile) ->
+    if tile.adjacentTo(@emptyTile)
       @movesTaken++
-      @lastMovedTile = tile
-      tile.swapWith(@emptyTile, callback)
+      tile.swapWith @emptyTile, =>
+        if @_isSolved()
+          @levelComplete()
+        else
+          @readyForInput()
     else
-      callback?(false)
+      @readyForInput()
 
-  
-  _gridCompleted: ->
+
+  levelComplete: ->
     $img = $ "<img style='height: 100%; width: 100%;' src='#{@level.image}'/>"
     thisGrid = this
-    $img.fadeIn COMPLETED_FADE_IN_DURATION, ->
-      thisGrid.completionCallback()
+    $img.fadeIn 1000, ->
+      thisGrid.levelIndex++
+      if thisGrid.levelIndex>=thisGrid.levels.length
+        thisGrid.completeCallback()
+      else
+        thisGrid.loadLevel(thisGrid.levels[thisGrid.levelIndex])
+        thisGrid.shuffle()
     @$grid.prepend $img
+
+
+  readyForInput: ->
+    # "Abstract" method meant to be overridden by subclasses
+    # Gets called whenever the grid enters the "waiting for move" state
+    console.log('"readyForInput()" called on a ShuffleGrid instance')
+
+
+  setupInput: ->
+    # "Abstract" method meant to be overridden by subclasses
+    # Gets called once for each level, just after the grid is shuffled
+    console.log('"setupInput()" called on a ShuffleGrid instance')

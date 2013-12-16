@@ -1,21 +1,21 @@
 ShuffleGrid = require 'shufflegrid'
 Solver = require 'solver/solver'
 
+#TODO add a personality variable for storing these values
+MOVE_INTERVAL = 500
+NUM_ITERATIONS = 250
+
 module.exports = class AIGrid extends ShuffleGrid
+  
+  readyForInput: ->
+    setTimeout(@_makeMove, MOVE_INTERVAL)
 
-  start: (@completionCallback) ->
-    MOVE_INTERVAL = 500
-    NUM_ITERATIONS = 250
-    
-    solver = new Solver(this)
 
-    makeMove = =>
-      solver.iterations(NUM_ITERATIONS)
-      move = solver.getMove()
-      @tryMoveTile move, (moved) =>
-        if moved and @_numIncorrect() is 0
-          @_gridCompleted()
-        else
-          setTimeout makeMove, MOVE_INTERVAL
+  _makeMove: =>
+    @solver.iterations(NUM_ITERATIONS)
+    move = @solver.getMove()
+    @tryMoveTile(move)
 
-    setTimeout makeMove, MOVE_INTERVAL
+
+  setupInput: ->
+    @solver = new Solver(this)
