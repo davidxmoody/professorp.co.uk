@@ -16,23 +16,13 @@ module.exports = class ShuffleGrid
       overflow: 'hidden'
       width: maxWidth
       height: maxHeight
+      #TODO give an additional padding of 1px?
 
     @$container.append(@$grid)
 
 
   init: (@completeCallback) ->
     @loadLevel(@_getNextLevel())
-    @shuffle()
-    return
-
-    for tile in @tiles
-      tile.$tile.animate {
-        height: tile.level.gridSize[1]*tile.height
-        width: tile.level.gridSize[0]*tile.width
-        top: tile.origY*tile.height*tile.level.gridSize[1]
-        left: tile.origX*tile.width*tile.level.gridSize[0]
-      }, 2000
-    return  #TODO remove once finished testing
     @shuffle()
 
 
@@ -52,15 +42,9 @@ module.exports = class ShuffleGrid
 
 
   _makeTiles: (level) ->
-    #TODO add option to keep aspect ratio
-    # Calculate dimensions
     tileWidth = Math.floor(@maxWidth/level.gridSize[0])
     tileHeight = Math.floor(@maxHeight/level.gridSize[1])
 
-    #gridWidth = tileWidth*level.gridSize[0]
-    #gridHeight = tileHeight*level.gridSize[1]
-
-    # Make the tiles
     tiles = []
     for y in [0..level.gridSize[1]-1]
       for x in [0..level.gridSize[0]-1]
@@ -93,9 +77,8 @@ module.exports = class ShuffleGrid
 
 
   _isMixed: ->
-    #TODO change back once finished testing
-    #@_numIncorrect()==@tiles.length
-    @_numIncorrect()>=3
+    @_numIncorrect()==@tiles.length
+    #@_numIncorrect()>=3
 
 
   _isSolved: ->
@@ -121,37 +104,41 @@ module.exports = class ShuffleGrid
 
   levelComplete: ->
     oldTiles = @tiles
-    @tiles = @_makeTiles(@_getNextLevel())
-    @emptyTile = tile for tile in @tiles when tile.empty
+    nextLevel = @_getNextLevel()
+    if nextLevel
+      subtilePosition = @level.subtilePosition
+      @level = nextLevel
+      @tiles = @_makeTiles(@level)
+      @emptyTile = tile for tile in @tiles when tile.empty
 
-    for tile in @tiles
-      return if tile.empty
-      oldCSS = tile.$tile.css(['width', 'height', 'left', 'top'])
-      console.log oldCSS
-      tile.$tile.css
-        width: tile.level.gridSize[0]*tile.width
-        height: tile.level.gridSize[1]*tile.height
-        left: tile.origX*tile.width*tile.level.gridSize[0]
-        top: tile.origY*tile.height*tile.level.gridSize[1]
-      tile.$tile.fadeIn 1000, ->
-        for oldTile in oldTiles
-          oldTile.$tile.remove()
-      tile.$tile.animate oldCSS, 2000
-      @$grid.append(tile.$tile)
+      for tile, i in @tiles
+        return if tile.empty
+        oldCSS = tile.$tile.css(['width', 'height', 'left', 'top'])
+        
+        tile.$tile.css
+          width: tile.level.gridSize[0]*tile.width-2
+          height: tile.level.gridSize[1]*tile.height-2
+          left: (tile.origX-subtilePosition[0])*(tile.width+2)*tile.level.gridSize[0]
+          top: (tile.origY-subtilePosition[1])*(tile.height+2)*tile.level.gridSize[1]
 
+        tile.$tile.fadeIn 2000, ->
+          for oldTile in oldTiles
+            oldTile.$tile.remove()
 
-
-    return
-    $img = $ "<img style='height: 100%; width: 100%;' src='#{@level.image}'/>"
-    thisGrid = this
-    $img.fadeIn 1000, ->
-      nextLevel = thisGrid._getNextLevel()
-      if nextLevel?
-        thisGrid.loadLevel(nextLevel)
-        thisGrid.shuffle()
-      else
-        thisGrid.completeCallback()
-    @$grid.prepend $img
+        tile.$tile.animate oldCSS, 4000, (if i is 0 then @shuffle else null)
+        @$grid.append(tile.$tile)
+    
+    else
+      $img = $ "<img style='height: 100%; width: 100%;' src='#{@level.image}'/>"
+      thisGrid = this
+      $img.fadeIn 1000, ->
+        nextLevel = thisGrid._getNextLevel()
+        if nextLevel?
+          thisGrid.loadLevel(nextLevel)
+          thisGrid.shuffle()
+        else
+          thisGrid.completeCallback()
+      @$grid.prepend $img
 
 
   readyForInput: ->
