@@ -4,18 +4,34 @@ Random = require 'random'
 module.exports = class ShuffleGrid
   constructor: (@levels, @random, @$container, @maxWidth, @maxHeight) ->
     @random ?= new Random()
+    @movesTaken = 0
     @nextLevelIndex = 0
     
+    # Make the jQuery grid
+    @$grid = $ '<div/>'
+    @$grid.css
+      position: 'relative'
+      border: '1px black solid' #TODO remove this?
+      display: 'inline-block'
+      overflow: 'hidden'
+      width: maxWidth
+      height: maxHeight
+
+    @$container.append(@$grid)
+
 
   init: (@completeCallback) ->
     @loadLevel(@_getNextLevel())
+    @shuffle()
+    return
+
     for tile in @tiles
       tile.$tile.animate {
         height: tile.level.gridSize[1]*tile.height
         width: tile.level.gridSize[0]*tile.width
         top: tile.origY*tile.height*tile.level.gridSize[1]
         left: tile.origX*tile.width*tile.level.gridSize[0]
-      }, 3000
+      }, 2000
     return  #TODO remove once finished testing
     @shuffle()
 
@@ -25,42 +41,32 @@ module.exports = class ShuffleGrid
 
 
   loadLevel: (@level) ->
-    #TODO check that all previous level data gets overwritten/erased
+    @numShuffles = 50 #TODO set min and max shuffles from level data
 
-    @lastShuffledTile = null
-    #TODO set min and max shuffles from level data
-    @numShuffles = 50
-    @movesTaken = 0 #TODO track moves for each sublevel?
+    @tiles = @_makeTiles(level)
+    @emptyTile = tile for tile in @tiles when tile.empty
 
+    for tile in @tiles
+      @$grid.append(tile.$tile)
+
+
+
+  _makeTiles: (level) ->
     #TODO add option to keep aspect ratio
     # Calculate dimensions
     tileWidth = Math.floor(@maxWidth/level.gridSize[0])
     tileHeight = Math.floor(@maxHeight/level.gridSize[1])
 
-    gridWidth = tileWidth*level.gridSize[0]
-    gridHeight = tileHeight*level.gridSize[1]
-
-    # Make the jQuery grid
-    @$grid = $ '<div/>'
-    @$grid.css
-      position: 'relative'
-      border: '1px black solid'
-      display: 'inline-block'
-      overflow: 'hidden'
-      width: gridWidth
-      height: gridHeight
+    #gridWidth = tileWidth*level.gridSize[0]
+    #gridHeight = tileHeight*level.gridSize[1]
 
     # Make the tiles
-    @tiles = []
+    tiles = []
     for y in [0..level.gridSize[1]-1]
       for x in [0..level.gridSize[0]-1]
         tile = new Tile(x, y, tileWidth, tileHeight, level)
-        @tiles.push(tile)
-        @$grid.append(tile.$tile)
-        @emptyTile = tile if tile.empty
-
-    @$container.empty()
-    @$container.append(@$grid)
+        tiles.push(tile)
+    tiles
 
 
   shuffle: =>
@@ -87,7 +93,9 @@ module.exports = class ShuffleGrid
 
 
   _isMixed: ->
-    @_numIncorrect()==@tiles.length
+    #TODO change back once finished testing
+    #@_numIncorrect()==@tiles.length
+    @_numIncorrect()>=3
 
 
   _isSolved: ->
@@ -112,6 +120,28 @@ module.exports = class ShuffleGrid
 
 
   levelComplete: ->
+    oldTiles = @tiles
+    @tiles = @_makeTiles(@_getNextLevel())
+    @emptyTile = tile for tile in @tiles when tile.empty
+
+    for tile in @tiles
+      return if tile.empty
+      oldCSS = tile.$tile.css(['width', 'height', 'left', 'top'])
+      console.log oldCSS
+      tile.$tile.css
+        width: tile.level.gridSize[0]*tile.width
+        height: tile.level.gridSize[1]*tile.height
+        left: tile.origX*tile.width*tile.level.gridSize[0]
+        top: tile.origY*tile.height*tile.level.gridSize[1]
+      tile.$tile.fadeIn 1000, ->
+        for oldTile in oldTiles
+          oldTile.$tile.remove()
+      tile.$tile.animate oldCSS, 2000
+      @$grid.append(tile.$tile)
+
+
+
+    return
     $img = $ "<img style='height: 100%; width: 100%;' src='#{@level.image}'/>"
     thisGrid = this
     $img.fadeIn 1000, ->
