@@ -25,8 +25,11 @@ module.exports = class Tile
       left: origX*width
       top: origY*height
       'background-image': "url(#{level.image})"
-      'background-size': "#{width*level.gridSize[0]}px #{height*level.gridSize[1]}px"
-      'background-position': "#{-1*width*origX-1}px #{-1*height*origY-1}px"
+      # The following lines will not compile if used with the "#{}" notation
+      'background-size': level.gridSize[0]*100*width/(width-2) + '% ' + level.gridSize[1]*100*height/(height-2) + '%'
+      'background-position': 100*origX/(level.gridSize[0]-1) + '% ' + 100*origY/(level.gridSize[1]-1) + '%'
+      'background-repeat': 'no-repeat'
+      #'background-attachment': 'fixed'
 
     @$tile.css 'display', 'none' if @empty
 

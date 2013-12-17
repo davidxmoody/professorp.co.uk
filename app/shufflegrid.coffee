@@ -9,6 +9,14 @@ module.exports = class ShuffleGrid
 
   init: (@completeCallback) ->
     @loadLevel(@_getNextLevel())
+    for tile in @tiles
+      tile.$tile.animate {
+        height: tile.level.gridSize[1]*tile.height
+        width: tile.level.gridSize[0]*tile.width
+        top: tile.origY*tile.height*tile.level.gridSize[1]
+        left: tile.origX*tile.width*tile.level.gridSize[0]
+      }, 3000
+    return  #TODO remove once finished testing
     @shuffle()
 
 
@@ -38,7 +46,7 @@ module.exports = class ShuffleGrid
       position: 'relative'
       border: '1px black solid'
       display: 'inline-block'
-      'vertical-align': 'top'  #TODO is this needed any more?
+      overflow: 'hidden'
       width: gridWidth
       height: gridHeight
 
