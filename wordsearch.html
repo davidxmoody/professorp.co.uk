@@ -1,13 +1,18 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <title>Professor P Wordsearch Game</title>
-        <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.min.js"></script>
-        <script type="text/javascript" src="script.js"></script>
-    </head>
-    <body>
-        <div id="content" style="width: 520px; margin: auto;">
-            <div id="container"></div>
-        </div>
-    </body>
+  <head>
+    <title>Professor P Wordsearch Game</title>
+    <script type="text/javascript" src="script.js"></script>
+    <script type="text/javascript">
+      document.addEventListener("DOMContentLoaded", function(){
+        var App = require("app");
+        App.init();
+      }, false);
+    </script>
+  </head>
+  <body>
+    <div id="content" style="width: 520px; margin: auto;">
+      <div id="container"></div>
+    </div>
+  </body>
 </html>

@@ -140,7 +140,7 @@ WordsearchGrid.prototype._generateCharacterArray = function(level) {
 
 /* ready *********************************************************************/
 
-$(document).ready(function() {
+module.exports.startEverything = function() {
     var wordsearchGrid = new WordsearchGrid(LEVELS[0], $("#container"), 400, 400);
     wordsearchGrid.start(null);
-});
+};
