@@ -5,11 +5,11 @@ fs = require 'fs'
 # wordlist.txt is newer than the generated file
 task 'wordlist', 'Build lib/wordlist.js from wordlist.txt', ->
   words = fs.readFileSync 'wordlist.txt', 'utf-8'
-  wordList = words.split('\n')
-  wordList = (word.toUpperCase() for word in wordList when \
+  wordlist = words.split('\n')
+  wordlist = (word.toUpperCase() for word in wordlist when \
                  word.length>0 and word.charAt(0) isnt '#')
-  #TODO sort the list by length?
-  fs.writeFile 'app/wordlist.js', "module.exports = #{JSON.stringify(wordList)};"
+  wordlist.sort (a, b) -> b.length-a.length # Sort with descending length
+  fs.writeFile 'app/wordlist.js', "module.exports = #{JSON.stringify(wordlist)};"
 
 
 task 'build', 'Build script.js from /app', ->
