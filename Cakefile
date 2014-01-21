@@ -1,3 +1,4 @@
+stitch = require 'stitch'
 fs = require 'fs'
 
 #TODO add a file timestamp check so this is done every time 
@@ -9,3 +10,14 @@ task 'wordlist', 'Build lib/wordlist.js from wordlist.txt', ->
                                              word.charAt(0) isnt '#')
   #TODO sort the list by length?
   fs.writeFile 'lib/wordlist.js', "module.exports = #{JSON.stringify(wordList)};"
+
+
+task 'build', 'Build script.js from /app', ->
+  pkg = stitch.createPackage
+    paths: [__dirname + '/app']
+    dependencies: [__dirname + '/lib/jquery-1.11.0-beta2.js']
+
+  pkg.compile (err, source) ->
+    fs.writeFile 'script.js', source, (err) ->
+      throw err if err
+      console.log 'compiled script.js'
