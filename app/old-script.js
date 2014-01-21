@@ -1,12 +1,7 @@
+var wordlist = require('wordlist');
+wordlist = [wordlist[0], wordlist[1], wordlist[2]];
 var LEVELS = [
-  { words: ["SHARK",
-            "AMMONITE",
-            "CRINOID",
-            "SHELL",
-            "TRILOBITE",
-            "BELEMNITE",
-            "JURASSIC",
-            "FOSSIL"],
+  { words: wordlist,
     directionWeights: [10, 10, 2, 2, 4, 4, 1, 1],
     gridSize: [12, 12] }
 ];
