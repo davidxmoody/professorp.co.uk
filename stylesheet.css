@@ -1,6 +1,4 @@
-.ws-grid {
-
-}
+.ws-grid { }
 
 .ws-cell {
   display: table-cell;
@@ -10,4 +8,12 @@
   height: 40px;
   font-size: 30px;
   font-family: sans-serif;
+}
+
+.ws-cell:hover {
+  background: radial-gradient(rgba(255,0,0,0.7) 30%, transparent 70%);
+}
+
+.ws-cell.selected {
+  background: radial-gradient(rgba(255,0,0,0.7) 30%, transparent 70%);
 }

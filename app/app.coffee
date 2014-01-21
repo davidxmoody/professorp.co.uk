@@ -15,6 +15,8 @@ startEverything = ->
       $cell.appendTo($row)
 
   $grid.appendTo($('#container'))
+  $(".ws-cell").click ->
+    $(this).toggleClass('selected')
   console.log grid.words
 
 
