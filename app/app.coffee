@@ -15,7 +15,7 @@ startEverything = ->
       $cell.appendTo($row)
 
   $grid.appendTo($('#container'))
-  console.log $grid
+  console.log grid.words
 
 
 module.exports = App =

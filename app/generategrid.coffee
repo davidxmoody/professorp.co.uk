@@ -51,7 +51,7 @@ module.exports = (width=8, height=8, words=wordlist) ->
     for word in words
       grid.tryPutWord(word) if word not in grid.words
 
-  fillerLetters = 'abcdefghijklmnopqrstuvwxyz'
+  fillerLetters = 'AABBCCDDEEFFGGHHIIJKLLMMNNOOPPQRSSTTUUVWXYZ'
   randomChar = -> fillerLetters[Math.floor(Math.random()*fillerLetters.length)]
 
   for x in [0..grid.width-1]
