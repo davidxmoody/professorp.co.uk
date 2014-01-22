@@ -25,3 +25,15 @@
 .ws-cell.selected {
   background: radial-gradient(rgba(255,0,0,0.8) 40%, transparent 70%);
 }
+
+.ws-cell.selected:hover {
+  background: radial-gradient(rgba(255,0,0,0.85) 40%, transparent 70%);
+}
+
+.ws-cell.solved {
+  background: radial-gradient(rgba(0,255,0,0.8) 40%, transparent 70%);
+}
+
+.ws-cell.solved.selected {
+  background: radial-gradient(rgba(255,80,0,0.8) 40%, transparent 70%);
+}
