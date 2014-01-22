@@ -9,6 +9,7 @@
   font-size: 30px;
   font-family: sans-serif;
 
+  transition: background 0.6s;
   cursor: pointer;
   -webkit-touch-callout: none;
   -webkit-user-select: none;
@@ -18,22 +19,22 @@
   user-select: none;
 }
 
-.ws-cell:hover {
-  background: radial-gradient(rgba(255,0,0,0.7) 30%, transparent 70%);
-}
+/*.ws-cell { }*/
+.ws-cell:hover { background: rgba(255,0,0,0.5); }
+.ws-cell.selected { background: rgba(255,0,0,0.7); }
+.ws-cell.selected:hover { background: rgba(255,0,0,0.9); }
 
-.ws-cell.selected {
-  background: radial-gradient(rgba(255,0,0,0.8) 40%, transparent 70%);
-}
+.ws-cell.solved0 { background: rgba(0,255,255,0.8); }
+.ws-cell.solved0:hover { background: rgba(55,200,200,0.9); }
+.ws-cell.solved0.selected { background: rgba(255,80,80,0.8); }
+.ws-cell.solved0.selected:hover { background: rgba(255,80,80,0.9); }
 
-.ws-cell.selected:hover {
-  background: radial-gradient(rgba(255,0,0,0.85) 40%, transparent 70%);
-}
+.ws-cell.solved1 { background: rgba(0,255,0,0.8); }
+.ws-cell.solved1:hover { background: rgba(55,200,0,0.9); }
+.ws-cell.solved1.selected { background: rgba(255,80,0,0.8); }
+.ws-cell.solved1.selected:hover { background: rgba(255,80,0,0.9); }
 
-.ws-cell.solved {
-  background: radial-gradient(rgba(0,255,0,0.8) 40%, transparent 70%);
-}
-
-.ws-cell.solved.selected {
-  background: radial-gradient(rgba(255,80,0,0.8) 40%, transparent 70%);
-}
+.ws-cell.solved2 { background: rgba(0,0,255,0.8); }
+.ws-cell.solved2:hover { background: rgba(55,0,200,0.9); }
+.ws-cell.solved2.selected { background: rgba(255,0,80,0.8); }
+.ws-cell.solved2.selected:hover { background: rgba(255,0,80,0.9); }
