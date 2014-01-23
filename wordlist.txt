@@ -1,6 +1,8 @@
 # List of words to be included in the wordsearch game.
 # Empty lines and lines starting with a '#' are ignored.
 
+# The following Easy, Medium and Hard sections were copied from the original game.
+
 # Easy
 
 shark
@@ -71,3 +73,55 @@ carboniferous
 cephalopod
 crustacean
 echinoderm
+
+
+# Random dinosaur names
+
+astrodon
+allosaurus
+archaeopteryx
+barosaurus
+baryonyx
+ceratops
+cionodon
+deinodon
+draconyx
+gastonia
+kileskus
+ozraptor
+raptorex
+aetonyx
+
+
+# Some short words found in the fossil guide
+
+tide
+cave
+crystal
+cliff
+island
+ocean
+extinct
+species
+tentacle
+pacific
+nautilus
+flipper
+sea
+stone
+
+egg
+leaf
+pebble
+period
+asteroid
+plant
+claw
+jaw
+leaf
+skull
+insect
+mammal
+prey
+bird
+tail
