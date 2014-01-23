@@ -1,25 +1,6 @@
 LetterGrid = require 'lettergrid'
 
 solvedNumber = 0
-
-makeSolved = (start, end, grid) ->
-  [startX, startY] = start.data('position')
-  [endX, endY] = end.data('position')
-  [startX, endX] = [endX, startX] if startX>endX
-  [startY, endY] = [endY, startY] if startY>endY
-
-  diffX = endX-startX
-  diffY = endY-startY
-
-  for row, y in grid.grid
-    for cell, x in row
-      #FIXME this does not work correctly for diagonals
-      if x>=startX and x<=endX and y>=startY and y<=endY
-        $(".row#{y}.col#{x}").addClass("solved#{solvedNumber}")
-
-  solvedNumber = (solvedNumber+1)%3
-
-
 selected = null
 
 startEverything = ->
@@ -42,7 +23,12 @@ startEverything = ->
   $grid.appendTo($('#container'))
   $('.ws-cell').click ->
     if selected?
-      foundWord = grid.reconstructWord(selected.data('position'), $(this).data('position'))
+      path = grid.reconstructWord(selected.data('position'), $(this).data('position'))
+      foundWord = ''
+      if path?
+        for letter in path
+          foundWord += letter.letter
+
       if foundWord in grid.words
         console.log("\"#{foundWord}\" has been found")
         grid.words.splice(grid.words.indexOf(foundWord), 1)
@@ -52,7 +38,9 @@ startEverything = ->
         else
           console.log(grid.words)
 
-        makeSolved(selected, $(this), grid)
+        for letter in path
+          $(".row#{letter.y}.col#{letter.x}").addClass("solved#{solvedNumber}")
+        solvedNumber = (solvedNumber+1)%3
 
       else
         console.log("\"#{foundWord}\" is not a correct word")

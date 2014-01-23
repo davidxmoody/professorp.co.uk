@@ -85,11 +85,17 @@ module.exports = class LetterGrid
         (diffX isnt 0 and diffY isnt 0) and Math.abs(diffX) isnt Math.abs(diffY)
       return null
 
-    word = ''
-    until x is endX and y is endY
-      word += @grid[y][x]
+    letterList = []
+
+    for i in [1..100]
+      letterList.push {
+        letter: @grid[y][x]
+        x: x
+        y: y
+      }
+      if x is endX and y is endY
+        return letterList
       x += stepX
       y += stepY
-    word += @grid[y][x]
 
-    word
+    return null
