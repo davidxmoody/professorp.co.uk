@@ -1,5 +1,8 @@
 defaultWordlist = require './wordlist'
 
+#TODO move this
+solvedNumber = 0
+
 
 # Some helper methods
 
@@ -19,10 +22,75 @@ randomChar = ->
 
 
 module.exports = class LetterGrid
-  constructor: (@width=8, @height=8, wordlist=defaultWordlist) ->
+  constructor: ($container, @width=8, @height=8, wordlist=defaultWordlist) ->
+    # Create empty grid then fill with words
     @grid = (null for x in [1..@width] for y in [1..@height])
-    @words = []
     @_fillGrid(wordlist, 20)
+
+    @selected = null
+
+    @$grid = $('<div/>')
+    @$grid.addClass('ws-grid')
+    for y in [0..@height-1]
+      $row = $('<div/>')
+      $row.appendTo(@$grid)
+      for x in [0..@width-1]
+        $cell = $('<div/>')
+        $cell.addClass('ws-cell')
+        $cell.text(@grid[y][x])
+        $cell.data('position', [x, y])
+        $cell.addClass("row#{y}")
+        $cell.addClass("col#{x}")
+        $cell.appendTo($row)
+        $cell.click($.proxy(@_cellClicked, this, $cell, x, y))
+    @$grid.appendTo($container)
+
+    console.log(@words)
+
+
+  _cellClicked: ($cell, x, y) ->
+    if @selected?
+      path = @reconstructWord(@selected.data('position'), $cell.data('position'))
+      foundWord = ''
+      if path?
+        for letter in path
+          foundWord += letter.letter
+
+      if foundWord in @words
+        console.log("\"#{foundWord}\" has been found")
+        @words.splice(@words.indexOf(foundWord), 1)
+        if @words.length is 0
+          console.log("Congratulations, you won!")
+          $('.ws-cell').off('click')
+        else
+          console.log(@words)
+
+        for letter in path
+          $(".row#{letter.y}.col#{letter.x}").addClass("solved#{solvedNumber}")
+        solvedNumber = (solvedNumber+1)%3
+
+      else
+        console.log("\"#{foundWord}\" is not a correct word")
+
+      @selected.removeClass('selected')
+      @selected = null
+    else
+      @selected = $cell
+      $cell.addClass('selected')
+
+
+  _fillGrid: (wordlist, attempts) ->
+    @words = []
+    # Try to fit in each word in the word list up to the max number of attempts
+    for i in [1..attempts]
+      for word in wordlist
+        @_tryPutWord(word) if word not in @words
+
+    # Fill in all unfilled slots with random letters
+    for x in [0..@width-1]
+      for y in [0..@height-1]
+        if @grid[y][x] is null
+          @grid[y][x] = randomChar()
 
 
   _tryPutWord: (word) ->
@@ -55,19 +123,6 @@ module.exports = class LetterGrid
 
     @words.push(word)
     return true
-
-
-  _fillGrid: (wordlist, attempts) ->
-    # Try to fit in each word in the word list up to the max number of attempts
-    for i in [1..attempts]
-      for word in wordlist
-        @_tryPutWord(word) if word not in @words
-
-    # Fill in all unfilled slots with random letters
-    for x in [0..@width-1]
-      for y in [0..@height-1]
-        if @grid[y][x] is null
-          @grid[y][x] = randomChar()
 
 
   reconstructWord: (start, end) ->
