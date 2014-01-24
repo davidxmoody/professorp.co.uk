@@ -19,7 +19,7 @@ oldLevels = [
 module.exports = multistageLevels = [
   {
     image: 'images/island-cover-stage-1.jpg'
-    gridSize: [3, 3]
+    gridSize: [2, 2]
     subtilePosition: [0, 1]
   }
   {
