@@ -2,21 +2,14 @@ Tile = require 'tile'
 Random = require 'random'
 
 module.exports = class ShuffleGrid
-  constructor: (@levels, @random, @$container, @maxWidth, @maxHeight) ->
+  constructor: (@levels, @random, @$container) ->
     @random ?= new Random()
     @movesTaken = 0
     @nextLevelIndex = 0
     
     # Make the jQuery grid
     @$grid = $ '<div/>'
-    @$grid.css
-      position: 'relative'
-      border: '1px black solid' #TODO remove this?
-      display: 'inline-block'
-      overflow: 'hidden'
-      width: maxWidth
-      height: maxHeight
-      #TODO give an additional padding of 1px?
+    @$grid.addClass('grid')
 
     @$container.append(@$grid)
 
@@ -42,8 +35,8 @@ module.exports = class ShuffleGrid
 
 
   _makeTiles: (level) ->
-    tileWidth = Math.floor(@maxWidth/level.gridSize[0])
-    tileHeight = Math.floor(@maxHeight/level.gridSize[1])
+    tileWidth = Math.floor(@$grid.width()/level.gridSize[0])
+    tileHeight = Math.floor(@$grid.height()/level.gridSize[1])
 
     tiles = []
     for y in [0..level.gridSize[1]-1]
