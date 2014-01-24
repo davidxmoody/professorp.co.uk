@@ -20,6 +20,13 @@ randomChar = ->
   # "Common" letters are more likely to occur than "uncommon" ones
   choose('AABBCCDDEEFFGGHHIIJKLLMMNNOOPPQRSSTTUUVWXYZ')
 
+wordFromPath = (path) ->
+  word = ''
+  if path?
+    for cell in path
+      word += cell.letter
+  word
+
 
 class Cell
   constructor: (@x, @y) ->
@@ -43,28 +50,27 @@ module.exports = class LetterGrid
 
     @$grid = $('<div/>')
     @$grid.addClass('ws-grid')
-    for y in [0..@height-1]
+    for row, y in @cells
       $row = $('<div/>')
       $row.appendTo(@$grid)
-      for x in [0..@width-1]
-        $cell = $('<div/>')
-        $cell.addClass('ws-cell')
-        $cell.text(@cells[y][x].letter)
-        @cells[y][x].$cell = $cell
-        $cell.appendTo($row)
-        $cell.click($.proxy(@_cellClicked, this, @cells[y][x]))
+      for cell, x in row
+        cell.$cell = $('<div/>')
+        cell.$cell.addClass('ws-cell')
+        cell.$cell.text(cell.letter)
+        cell.$cell.appendTo($row)
+        cell.$cell.click($.proxy(@_cellClicked, this, cell))
+        cell.$cell.mouseenter($.proxy(@_cellMouseenter, this, cell))
+        cell.$cell.mouseleave($.proxy(@_cellMouseleave, this, cell))
     @$grid.appendTo($container)
 
+    # Start game by displaying word list
     console.log(@words)
 
 
-  _cellClicked: (clicked) ->
+  _cellClicked: (clicked) =>
     if @selected?
       path = @path([@selected.x, @selected.y], [clicked.x, clicked.y])
-      foundWord = ''
-      if path?
-        for cell in path
-          foundWord += cell.letter
+      foundWord = wordFromPath(path)
 
       if foundWord in @words
         console.log("\"#{foundWord}\" has been found")
@@ -83,11 +89,27 @@ module.exports = class LetterGrid
       else
         console.log("\"#{foundWord}\" is not a correct word")
 
-      @selected.$cell.removeClass('selected')
+      for cell in @selectedPath
+        cell.$cell.removeClass('selected')
       @selected = null
     else
       @selected = clicked
       clicked.$cell.addClass('selected')
+
+
+  _cellMouseenter: (currentCell) ->
+    if @selected?
+      @selectedPath = @path([@selected.x, @selected.y], [currentCell.x, currentCell.y])
+      if @selectedPath?
+        for cell in @selectedPath
+          cell.$cell.addClass('selected')
+
+
+  _cellMouseleave: (currentCell) ->
+    if @selectedPath?
+      for cell in @selectedPath
+        continue if cell is @selected
+        cell.$cell.removeClass('selected')
 
 
   _fillGrid: (wordlist, attempts) ->
