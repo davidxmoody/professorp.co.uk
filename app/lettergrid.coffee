@@ -89,8 +89,10 @@ module.exports = class LetterGrid
       else
         console.log("\"#{foundWord}\" is not a correct word")
 
-      for cell in @selectedPath
-        cell.$cell.removeClass('selected')
+      if @selectedPath?
+        for cell in @selectedPath
+          cell.$cell.removeClass('selected')
+      @selected.$cell.removeClass('selected')
       @selected = null
     else
       @selected = clicked
@@ -98,6 +100,8 @@ module.exports = class LetterGrid
 
 
   _cellMouseenter: (currentCell) ->
+    #TODO highlight word a different colour if it is correct
+    #TODO also enable the dragging behaviour
     if @selected?
       @selectedPath = @path([@selected.x, @selected.y], [currentCell.x, currentCell.y])
       if @selectedPath?

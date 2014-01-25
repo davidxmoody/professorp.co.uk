@@ -9,7 +9,7 @@
   font-size: 30px;
   font-family: sans-serif;
 
-  transition: background 0.6s;
+  transition: background 0.9s;
   cursor: pointer;
   -webkit-touch-callout: none;
   -webkit-user-select: none;
@@ -20,9 +20,9 @@
 }
 
 /*.ws-cell { }*/
-.ws-cell:hover { background: rgba(255,0,0,0.5); }
-.ws-cell.selected { background: rgba(255,0,0,0.7); }
-.ws-cell.selected:hover { background: rgba(255,0,0,0.9); }
+.ws-cell:hover { transition: background 0.2s; background: rgba(255,0,0,0.5); }
+.ws-cell.selected { transition: background 0.2s; background: rgba(255,0,0,0.7); }
+.ws-cell.selected:hover { transition: background 0.2s; background: rgba(255,0,0,0.9); }
 
 .ws-cell.solved0 { background: rgba(0,255,255,0.8); }
 .ws-cell.solved0:hover { background: rgba(55,200,200,0.9); }
