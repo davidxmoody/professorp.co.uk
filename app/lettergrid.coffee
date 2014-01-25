@@ -12,6 +12,7 @@ choose = (array) -> array[Math.floor(Math.random()*array.length)]
 randomStartingPoint = (width, height) ->
   [choose([0..width-1]), choose([0..height-1])]
 
+#TODO make it so that directions that have already been chosen are less likely to appear again
 randomDirection = ->
   choose([ [1, 0], [0, 1], [-1, 0], [0, -1],
            [1, 1], [1, -1], [-1, 1], [-1, -1] ])
@@ -45,6 +46,9 @@ module.exports = class LetterGrid
     # Create empty grid then fill with words
     @cells = (new Cell(x, y) for x in [0..@width-1] for y in [0..@height-1])
     @_fillGrid(wordlist, 15)
+    @$wordlist = $('#wordlist')
+    for word in @words
+      $("<div class='word-wrapper'><div class='word'>#{word}</div></div>").appendTo(@$wordlist)
 
     @selected = null
 
@@ -65,6 +69,7 @@ module.exports = class LetterGrid
 
     # Start game by displaying word list
     console.log(@words)
+    #TODO add words to #wordlist instead
 
 
   _cellClicked: (clicked) =>
@@ -75,6 +80,11 @@ module.exports = class LetterGrid
       if foundWord in @words
         console.log("\"#{foundWord}\" has been found")
         @words.splice(@words.indexOf(foundWord), 1)
+        $('#wordlist .word-wrapper').each ->
+          if $(this).text() is foundWord
+            $(this).addClass('strikethrough')
+            $(this).addClass("strikethrough#{solvedNumber}")
+            $(this).appendTo($('#wordlist'))
         if @words.length is 0
           console.log("Congratulations, you won!")
           $('.ws-cell').off('click')

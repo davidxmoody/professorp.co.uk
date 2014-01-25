@@ -1,3 +1,38 @@
+#container {
+  float: left;
+  display: inline-block;
+  border: 1px solid black;
+}
+
+#wordlist {
+  float: left;
+  margin: 20px;
+  padding: 10px;
+  display: inline-block;
+  border: 1px solid black;
+}
+
+.word {
+  font-size: 20px;
+  color: black;
+}
+
+.word-wrapper.strikethrough {
+  text-decoration: line-through;
+}
+
+.word-wrapper.strikethrough0 .word {
+  color: rgba(0,255,255,0.6);
+}
+
+.word-wrapper.strikethrough1 .word {
+  color: rgb(0,255,0);
+}
+
+.word-wrapper.strikethrough2 .word {
+  color: rgb(0,0,255);
+}
+
 .ws-grid { }
 
 .ws-cell {
