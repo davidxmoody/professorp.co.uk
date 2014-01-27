@@ -15,7 +15,7 @@ task 'wordlist', 'Build lib/wordlist.js from wordlist.txt', ->
 task 'build', 'Build script.js from /app', ->
   pkg = stitch.createPackage
     paths: [__dirname + '/app']
-    dependencies: [__dirname + '/lib/jquery-1.11.0-beta2.js']
+    dependencies: [__dirname + '/lib/jquery-1.11.0.min.js']
 
   pkg.compile (err, source) ->
     fs.writeFile 'script.js', source, (err) ->
