@@ -1,3 +1,8 @@
+$color-highlight: rgba(255,0,0,0.5);
+$color0: rgba(0,255,0,0.5);
+$color1: rgba(0,0,255,0.5);
+
+
 #container {
   float: left;
   display: inline-block;
@@ -52,10 +57,33 @@
   -moz-user-select: none;
   -ms-user-select: none;
   user-select: none;
+
+  div {
+    width: 40px;
+    height: 40px;
+  }
 }
 
-/*.ws-cell { }*/
-.ws-cell:hover { transition: background 0.2s; background: rgba(255,0,0,0.5); }
+/* A .ws-cell can be in the following states:
+ * - default (plain white)
+ * - hovered over (soft highlight)
+ * - selected (stronger highlight)
+ * - selected and hovered over (slightly stronger highlight)
+ * - solved in colour X (weak highlight in colour X)
+ * - solved in colour X and hovered (weak highlight in X and soft highlight)
+ * - solved in colour X and selected (weak highlight in X and strong highlight)
+ * - solved in colour X and selected and hovered (weak highlight in X and stronger highlight)
+ * - solved in colours Y & Z and some other effect (same as above but with X being a blend between Y and Z)
+ *
+ * Here is a list of things that are always applicable:
+ * - hovered over (always a medium strength highlight)
+ * - selected (always a stronger highlight)
+ * - base colour (always a blend between plain white and all solved colours)
+ *
+ * TODO separate out these different types of highlighting, maybe a separate div for each
+*/
+
+.ws-cell:hover {  transition: background 0.2s; background: $color-highlight; }
 .ws-cell.selected { transition: background 0.2s; background: rgba(255,0,0,0.7); }
 .ws-cell.selected:hover { transition: background 0.2s; background: rgba(255,0,0,0.9); }
 

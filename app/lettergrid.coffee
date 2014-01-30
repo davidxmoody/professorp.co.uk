@@ -58,9 +58,7 @@ module.exports = class LetterGrid
       $row = $('<div/>')
       $row.appendTo(@$grid)
       for cell, x in row
-        cell.$cell = $('<div/>')
-        cell.$cell.addClass('ws-cell')
-        cell.$cell.text(cell.letter)
+        cell.$cell = $("<div class='ws-cell'><div>#{cell.letter}</div></div>")
         cell.$cell.appendTo($row)
         cell.$cell.click($.proxy(@_cellClicked, this, cell))
         cell.$cell.mouseenter($.proxy(@_cellMouseenter, this, cell))
