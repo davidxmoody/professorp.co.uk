@@ -50,7 +50,7 @@ module.exports = class LetterGrid
 
     @$wordlist = $('#wordlist')
     for word in @words
-      $("<div class='word-wrapper'><div class='word'>#{word}</div></div>").appendTo(@$wordlist)
+      $("<div class='word'>#{word}</div>").appendTo(@$wordlist)
 
     @selected = null
     @hovered = null
@@ -83,11 +83,10 @@ module.exports = class LetterGrid
       if foundWord in @words
         console.log("\"#{foundWord}\" has been found")
         @words.splice(@words.indexOf(foundWord), 1)
-        $('#wordlist .word-wrapper').each ->
+        solvedColorIndex = @colorIndex
+        $('#wordlist .word').each (index, word) ->
           if $(this).text() is foundWord
-            $(this).addClass('strikethrough')
-            #TODO fix strikethrough colors
-            $(this).addClass("strikethrough1")
+            $(this).addClass("solved#{solvedColorIndex}")
             $(this).appendTo($('#wordlist'))
         if @words.length is 0
           console.log("Congratulations, you won!")
@@ -131,7 +130,7 @@ module.exports = class LetterGrid
 
 
   _cellSolved: (cell) ->
-    cell.$cell.append("<div class='solved color#{@colorIndex}'></div>")
+    cell.$cell.append("<div class='solved#{@colorIndex}'></div>")
 
 
   _updateColors: ->

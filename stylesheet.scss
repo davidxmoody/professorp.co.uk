@@ -17,11 +17,6 @@
   color: black;
 }
 
-.word-wrapper.strikethrough { text-decoration: line-through; } 
-.word-wrapper.strikethrough0 .word { color: rgba(0,255,255,0.6); } 
-.word-wrapper.strikethrough1 .word { color: rgb(0,255,0); } 
-.word-wrapper.strikethrough2 .word { color: rgb(0,0,255); }
-
 .ws-cell {
   display: table-cell;
   text-align: center;
@@ -55,7 +50,7 @@
 
 $bright-colors: pink, lightblue, lightgreen, khaki;
 
-$custom-colors: red, lime, cyan, yellow, magenta;
+$custom-colors: orangered, limegreen, cyan, gold, mediumvioletred;
 
 $colors: $custom-colors;
 
@@ -70,5 +65,7 @@ $colors: $custom-colors;
     //.ws-cell.selected:hover { transition: background 0.2s; background: rgba($color, 0.5); }
   }
 
-  .ws-cell div.solved.color#{$i} { transition: background 0.2s; background: rgba($color, 0.6); }
+  .ws-cell div.solved#{$i} { transition: background 0.2s; background: rgba($color, 0.6); }
+
+  .word.solved#{$i} { transition: color 0.2s; color: $color; text-decoration: line-through; } 
 }
