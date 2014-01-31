@@ -1,10 +1,8 @@
 defaultWordlist = require './wordlist'
 
-NUM_COLORS = 3
-
-#TODO move this
-solvedNumber = 1
-
+# This should be equal to the number of colors defined in the .scss file
+#TODO update to reflect the .scss file
+NUM_COLORS = 5
 
 # Some helper methods
 
@@ -50,8 +48,6 @@ module.exports = class LetterGrid
     @cells = (new Cell(x, y) for x in [0..@width-1] for y in [0..@height-1])
     @_fillGrid(wordlist, 15)
 
-    @colorIndex = 1
-
     @$wordlist = $('#wordlist')
     for word in @words
       $("<div class='word-wrapper'><div class='word'>#{word}</div></div>").appendTo(@$wordlist)
@@ -61,12 +57,13 @@ module.exports = class LetterGrid
 
     @$grid = $('<div/>')
     @$grid.addClass('ws-grid')
+    @colorIndex = 1
+    @$grid.addClass("color#{@colorIndex}")
     for row, y in @cells
       $row = $('<div/>')
       $row.appendTo(@$grid)
       for cell, x in row
-        cell.$cell = $("<div class='ws-cell'><div>#{cell.letter}</div></div>")
-        cell.$cell.addClass("color#{@colorIndex}")
+        cell.$cell = $("<div class='ws-cell'>#{cell.letter}</div>")
         cell.$cell.appendTo($row)
         cell.$cell.click($.proxy(@_cellClicked, this, cell))
         cell.$cell.mouseenter($.proxy(@_cellMouseenter, this, cell))
@@ -80,12 +77,6 @@ module.exports = class LetterGrid
 
   _cellClicked: (clicked) =>
     if @selected?
-      oldColor = @colorIndex
-      @_nextColor()
-      for row in @cells
-        for cell in row
-          cell.$cell.removeClass("color#{oldColor}")
-          cell.$cell.addClass("color#{@colorIndex}")
       path = @path([@selected.x, @selected.y], [clicked.x, clicked.y])
       foundWord = wordFromPath(path)
 
@@ -95,7 +86,8 @@ module.exports = class LetterGrid
         $('#wordlist .word-wrapper').each ->
           if $(this).text() is foundWord
             $(this).addClass('strikethrough')
-            $(this).addClass("strikethrough#{solvedNumber}")
+            #TODO fix strikethrough colors
+            $(this).addClass("strikethrough1")
             $(this).appendTo($('#wordlist'))
         if @words.length is 0
           console.log("Congratulations, you won!")
@@ -105,22 +97,27 @@ module.exports = class LetterGrid
 
         # Highlight cells in path
         for cell in path
-          #TODO change the way classes are added, make it so that colors are 
-          # added at the start to everything and solved divs are added later
-          cell.$cell.addClass("solved#{solvedNumber}")
-        solvedNumber = (solvedNumber+1)%3+1
+          cell.$cell.removeClass('path')
+          cell.$cell.removeClass('correct-path')
+          @_cellSolved(cell)
+
+        @_nextColor()
 
       else
-        console.log("\"#{foundWord}\" is not a correct word")
+        if foundWord and foundWord.length>1
+          console.log("\"#{foundWord}\" is not a correct word")
+          for cell in path
+            cell.$cell.removeClass('path')
+            cell.$cell.removeClass('correct-path')
 
-      if @selectedPath?
-        for cell in @selectedPath
-          cell.$cell.removeClass('selected')
       @selected.$cell.removeClass('selected')
+      @selected.$cell.removeClass('path')
       @selected = null
+
     else
       @selected = clicked
-      clicked.$cell.addClass('selected')
+
+    @_updateColors()
 
 
   _cellMouseenter: (currentCell) ->
@@ -131,6 +128,10 @@ module.exports = class LetterGrid
   _cellMouseleave: (currentCell) ->
     @hovered = null
     @_updateColors()
+
+
+  _cellSolved: (cell) ->
+    cell.$cell.append("<div class='solved color#{@colorIndex}'></div>")
 
 
   _updateColors: ->
@@ -156,7 +157,9 @@ module.exports = class LetterGrid
 
 
   _nextColor: ->
+    @$grid.removeClass("color#{@colorIndex}")
     @colorIndex = @colorIndex%NUM_COLORS+1
+    @$grid.addClass("color#{@colorIndex}")
 
 
   _fillGrid: (wordlist, attempts) ->
