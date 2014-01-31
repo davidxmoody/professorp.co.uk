@@ -1,8 +1,3 @@
-$color-highlight: rgba(255,0,0,0.5);
-$color0: rgba(0,255,0,0.5);
-$color1: rgba(0,0,255,0.5);
-
-
 #container {
   float: left;
   display: inline-block;
@@ -22,21 +17,10 @@ $color1: rgba(0,0,255,0.5);
   color: black;
 }
 
-.word-wrapper.strikethrough {
-  text-decoration: line-through;
-}
-
-.word-wrapper.strikethrough0 .word {
-  color: rgba(0,255,255,0.6);
-}
-
-.word-wrapper.strikethrough1 .word {
-  color: rgb(0,255,0);
-}
-
-.word-wrapper.strikethrough2 .word {
-  color: rgb(0,0,255);
-}
+.word-wrapper.strikethrough { text-decoration: line-through; } 
+.word-wrapper.strikethrough0 .word { color: rgba(0,255,255,0.6); } 
+.word-wrapper.strikethrough1 .word { color: rgb(0,255,0); } 
+.word-wrapper.strikethrough2 .word { color: rgb(0,0,255); }
 
 .ws-grid { }
 
@@ -59,8 +43,8 @@ $color1: rgba(0,0,255,0.5);
   user-select: none;
 
   div {
-    width: 40px;
-    height: 40px;
+    width: 100%;
+    height: 100%;
   }
 }
 
@@ -83,21 +67,19 @@ $color1: rgba(0,0,255,0.5);
  * TODO separate out these different types of highlighting, maybe a separate div for each
 */
 
-.ws-cell:hover {  transition: background 0.2s; background: $color-highlight; }
-.ws-cell.selected { transition: background 0.2s; background: rgba(255,0,0,0.7); }
-.ws-cell.selected:hover { transition: background 0.2s; background: rgba(255,0,0,0.9); }
+//.ws-cell:hover {  transition: background 0.2s; background: rgba(255,0,0,0.5); }
+//.ws-cell.selected { transition: background 0.2s; background: rgba(255,0,0,0.7); }
+//.ws-cell.selected:hover { transition: background 0.2s; background: rgba(255,0,0,0.9); }
 
-.ws-cell.solved0 { background: rgba(0,255,255,0.8); }
-.ws-cell.solved0:hover { background: rgba(55,200,200,0.9); }
-.ws-cell.solved0.selected { background: rgba(255,80,80,0.8); }
-.ws-cell.solved0.selected:hover { background: rgba(255,80,80,0.9); }
+$colors: rgb(255,0,0), rgb(0,255,0), rgb(0,0,255);
 
-.ws-cell.solved1 { background: rgba(0,255,0,0.8); }
-.ws-cell.solved1:hover { background: rgba(55,200,0,0.9); }
-.ws-cell.solved1.selected { background: rgba(255,80,0,0.8); }
-.ws-cell.solved1.selected:hover { background: rgba(255,80,0,0.9); }
+@each $color in $colors {
+  $i: index($colors, $color);
 
-.ws-cell.solved2 { background: rgba(0,0,255,0.8); }
-.ws-cell.solved2:hover { background: rgba(55,0,200,0.9); }
-.ws-cell.solved2.selected { background: rgba(255,0,80,0.8); }
-.ws-cell.solved2.selected:hover { background: rgba(255,0,80,0.9); }
+  //.ws-cell.solved#{$i} { background: $color; }
+  .ws-cell.color#{$i}:hover { background: rgba($color, 0.4); }
+  .ws-cell.color#{$i}.selected { background: rgba($color, 0.6); }
+  .ws-cell.color#{$i}.path { background: rgba($color, 0.6); }
+  .ws-cell.color#{$i}.correct-path { background: rgba($color, 0.8); }
+  .ws-cell.color#{$i}.selected:hover { background: rgba($color, 0.8); }
+}
