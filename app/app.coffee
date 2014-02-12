@@ -1,5 +1,7 @@
+SharkGame = require('sharkgame')
+
 startEverything = ->
-  console.log 'hello world'
+  game = new SharkGame($('#container'))
 
 
 module.exports = App =
