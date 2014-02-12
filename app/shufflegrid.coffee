@@ -9,7 +9,7 @@ module.exports = class ShuffleGrid
     
     # Make the jQuery grid
     @$grid = $ '<div/>'
-    @$grid.addClass('grid')
+    @$grid.addClass('shuffle-grid')
 
     @$container.append(@$grid)
 
@@ -71,7 +71,6 @@ module.exports = class ShuffleGrid
 
   _isMixed: ->
     @_numIncorrect()==@tiles.length
-    #@_numIncorrect()>=3
 
 
   _isSolved: ->

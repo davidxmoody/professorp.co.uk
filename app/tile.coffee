@@ -17,7 +17,7 @@ module.exports = class Tile
       @empty = origX is level.gridSize[0]-1 and origY is level.gridSize[1]-1
 
     @$tile = $ '<div/>'
-    @$tile.addClass('tile')
+    @$tile.addClass('shuffle-tile')
     @$tile.css
       width: width-2
       height: height-2

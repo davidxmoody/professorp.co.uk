@@ -1,4 +1,4 @@
-.grid {
+.shuffle-grid {
   position: relative;
   border: 1px black solid;
   display: inline-block;
@@ -7,7 +7,7 @@
   height: 100%;
 }
 
-.tile {
+.shuffle-tile {
   position: absolute;
   margin: 1px;
   background-repeat: no-repeat;
