@@ -1,27 +1,12 @@
-{print} = require 'util'
-{spawn} = require 'child_process'
+stitch = require 'stitch'
+fs = require 'fs'
 
-build = (callback) ->
-  coffee = spawn 'coffee', ['-c', '-o', 'lib', 'src']
-  coffee.stderr.on 'data', (data) ->
-    process.stderr.write data.toString()
-  coffee.stdout.on 'data', (data) ->
-    print data.toString()
-  coffee.on 'exit', (code) ->
-    callback?() if code is 0
+task 'build', 'Build script.js from /app', ->
+  pkg = stitch.createPackage
+    paths: [__dirname + '/app']
+    dependencies: [__dirname + '/lib/jquery-1.11.0.min.js']
 
-task 'build', 'Build lib/ from src/', ->
-  build()
-
-task 'watch', 'Watch src/ for changes', ->
-  coffee = spawn 'coffee', ['-w', '-c', '-o', 'lib', 'src']
-  coffee.stderr.on 'data', (data) ->
-    process.stderr.write data.toString()
-  coffee.stdout.on 'data', (data) ->
-    print data.toString()
-
-#task 'test', 'Run tests', ->
-#  build ->
-#    process.chdir __dirname
-#    {reporters} = require 'nodeunit'
-#    reporters.default.run ['test']
+  pkg.compile (err, source) ->
+    fs.writeFile 'script.js', source, (err) ->
+      throw err if err
+      console.log 'compiled script.js'

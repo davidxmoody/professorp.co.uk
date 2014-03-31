@@ -6,6 +6,8 @@
 #   Tile - one tile, can be toggled, compared to other tiles
 #   Move - one logical action taken by the user *is this needed?*
 
+console.log 'script is running'
+
 class Level
   constructor: (@images, @back) ->
 
@@ -51,20 +53,13 @@ class MemoryGrid
 
     @tiles = (for i in [0..level.images.length*2-1]
       $tile = $ '<div/>'
-      $tile.css 'margin-top', '20px'
-      $tile.css 'margin-left', '20px'
-      $tile.css 'display', 'inline-block'
-      $tile.css 'border-radius', '2px'
-
-      $tile.width 100
-      $tile.height 100
+      $tile.addClass('tile')
 
       $tile.data 'front', 'url('+level.images[Math.floor(i/2)]+')'
       $tile.data 'back', 'url('+level.back+')'
       $tile.data 'state', 'hidden'
 
       $tile.css 'background-image', $tile.data('back')
-      $tile.css 'background-size', '100% 100%'
 
       thisGrid = this
       $tile.click -> thisGrid._toggleTile $(this) if thisGrid.allowInput
@@ -128,6 +123,6 @@ class MemoryGrid
     count
 
 
-$(document).ready ->
+module.exports.startEverything = ->
   memoryGrid = new MemoryGrid(LEVELS[0], $("#container"), 500, 390)
   memoryGrid.start(null)
