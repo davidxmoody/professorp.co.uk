@@ -1,53 +1,27 @@
-# MODEL #######################################################################
-
-# classes required in models: 
-#   Level - what tiles to present to the user
-#   Grid - container of multiple tiles, information on state of all tiles together
-#   Tile - one tile, can be toggled, compared to other tiles
-#   Move - one logical action taken by the user *is this needed?*
-
-console.log 'script is running'
+Card = require('card')
 
 class Level
   constructor: (@images, @back) ->
 
 LEVELS = [
   new Level([
-    "images/Image0.jpg"
-    "images/Image1.jpg"
-    "images/Image2.jpg"
-    "images/Image3.jpg"
-    "images/Image4.jpg"
-    "images/Image8.jpg"
+    "images/image0.jpg"
+    "images/image1.jpg"
+    "images/image2.jpg"
+    "images/image3.jpg"
+    "images/image4.jpg"
+    "images/image8.jpg"
   ], "images/back.gif")
 ]
 
 
-class Card
-  constructor: (@image) ->
-
-  matches: (card) -> card.image is @image
-
-
-class MemoryGame
-  constructor: (@level) ->
-    @cards = (new Card(image, level.back) for image in level.images+level.images)
-
-
-
 class MemoryGrid
   constructor: (@level, $container, maxWidth, maxHeight) ->
-    @TILE_FLIP_DURATION = 50
-    @movesTaken = 0
-    @allowInput = false
-
     @$selectedTile1 = null
     @$selectedTile2 = null
     
     @$grid = $ '<div/>'
-    @$grid.css 'position', 'relative'
-    @$grid.css 'border', '1px black solid'
-    @$grid.css 'display', 'inline-block'
+    @$grid.addClass('grid')
     @$grid.width maxWidth
     @$grid.height maxHeight
 
@@ -62,7 +36,8 @@ class MemoryGrid
       $tile.css 'background-image', $tile.data('back')
 
       thisGrid = this
-      $tile.click -> thisGrid._toggleTile $(this) if thisGrid.allowInput
+      #TODO delegate to parent grid
+      $tile.click -> thisGrid._toggleTile $(this)
 
       @$grid.append $tile
       $tile
@@ -74,11 +49,6 @@ class MemoryGrid
       randomTiles[0].after randomTiles[1]
 
     $container.append @$grid
-
-  start: (@completeCallback) ->
-    @allowInput = true
-
-  destroy: ->
 
   _toggleTile: ($tile) ->
     return if $tile.data('state') isnt 'hidden'
@@ -106,8 +76,6 @@ class MemoryGrid
         @$selectedTile1 = null
         @$selectedTile2 = null
 
-    @movesTaken++
-
   _hideTile: ($tile) ->
     $tile.css 'background-image', $tile.data 'back'
     $tile.data 'state', 'hidden'
@@ -122,7 +90,9 @@ class MemoryGrid
       count++ if $tile.data 'state' is 'solved'
     count
 
+  _cardClicked: (card) ->
+    #TODO
+
 
 module.exports.startEverything = ->
   memoryGrid = new MemoryGrid(LEVELS[0], $("#container"), 500, 390)
-  memoryGrid.start(null)

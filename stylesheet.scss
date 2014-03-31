@@ -1,4 +1,4 @@
-.tile {
+.memory-card {
   margin-top: 20px;
   margin-left: 20px;
   display: inline-block;
@@ -6,4 +6,16 @@
   width: 100px;
   height: 100px;
   background-size: 100% 100%;
+  background-position: 10000 10000;
+  border: 1px solid black;
+
+  .faceup {
+    background-position: 0 0;
+  }
+}
+
+.memory-grid {
+  position: relative;
+  border: 1px solid black;
+  display: inline-block;
 }

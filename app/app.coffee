@@ -1,6 +1,6 @@
-startEverything = require('script').startEverything
+MemoryGrid = require('memorygrid')
 
 module.exports = App =
   init: ->
     $(document).ready ->
-      startEverything()
+      grid = new MemoryGrid($('#container'))
