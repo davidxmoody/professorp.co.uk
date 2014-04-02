@@ -6,16 +6,15 @@
   width: 100px;
   height: 100px;
   background-size: 100% 100%;
-  background-position: 10000 10000;
+  background-position: 10000px 10000px;
+  background-repeat: no-repeat;
   border: 1px solid black;
+}
 
-  .faceup {
-    background-position: 0 0;
-  }
+.memory-card.faceup {
+  background-position: 0 0;
 }
 
 .memory-grid {
-  position: relative;
   border: 1px solid black;
-  display: inline-block;
 }

@@ -33,11 +33,29 @@ module.exports = class MemoryGrid
 
 
   _cardClicked: (card) ->
-    # Case 1: Clicked on a hidden card and no card already selected
-    #TODO finish this method
+    # First clear any previous selections
+    if @cardsToClear?
+      for cardToClear in @cardsToClear
+        cardToClear.hide()
+      @cardsToClear = null
+
+    # Case 1: Clicked on the previously selected card again
+    if card? and card is @selected
+      card.hide()
+      @selected = null
+      
+    # Case 2: Clicked on a hidden card and no card already selected
     if not card.isMatched() and not @selected?
       card.show()
       @selected = card
 
+    # Case 3: Clicked on a hidden card and another card is already selected
     else if not card.isMatched() and @selected?
       card.show()
+      matched = card.tryMatch(@selected)
+      if not matched
+        @cardsToClear = [card, @selected]
+      @selected = null
+
+    # Case 4: Clicked on a previously matched card
+    # Do nothing
