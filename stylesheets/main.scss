@@ -9,6 +9,13 @@ $card-spacing: 4px;
   height: $card-size;
   border: 1px solid black;
 
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+
   transition: 0.2s;
   transform-style: preserve-3d;
   -webkit-transform-style: preserve-3d;
@@ -39,6 +46,7 @@ $card-spacing: 4px;
 // A card which is clickable
 .memory-card:not(.faceup):hover {
   border: 1px solid red;
+  cursor: pointer;
 }
 
 // A card which is being shown
