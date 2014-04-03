@@ -2,7 +2,7 @@ Card = require('card')
 getRandomImages = require('getrandomimages')
 
 module.exports = class MemoryGrid
-  constructor: ($container, numCards=12) ->
+  constructor: ($container, numCards=6) ->
 
     # Create empty grid to contain the cards
     @$grid = $('<div></div>')
@@ -58,14 +58,17 @@ module.exports = class MemoryGrid
       @selected = null
 
       # Check for completion
-      #FIXME: this doesnt work at all, find out why
+      #TODO use underscore every here instead?
+      completed = true
       for card in @cards
-        console.log card.isMatched()
-        break unless card.isMatched()
-        @_gameCompleted()
+        unless card.isMatched()
+          completed = false
+          break
+      @_gameCompleted() if completed
 
     # Case 4: Clicked on a previously matched card
     # Do nothing
+
 
   _gameCompleted: ->
     alert 'You won!'

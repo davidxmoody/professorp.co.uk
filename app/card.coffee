@@ -7,6 +7,7 @@ module.exports = class Card
 
   tryMatch: (card) ->
     @_matched = card.image is @image
+    card._matched = @_matched
 
   isMatched: ->
     @_matched

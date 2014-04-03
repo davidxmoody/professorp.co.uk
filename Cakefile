@@ -40,7 +40,7 @@ getSubdirs = (dir) ->
   dirs
 
 watchHandler = (event, filename) ->
-  console.log(event, filename)
+  #console.log(event, filename)
   invoke('build:app')
 watchHandler = _.throttle(watchHandler, 50, {leading: false})
 
