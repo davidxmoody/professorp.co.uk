@@ -15,10 +15,7 @@ module.exports = class MemoryGrid
       @cards.push(new Card(image))
 
     # Shuffle the cards
-    for i in [1..numCards*10]
-      index1 = Math.floor(Math.random()*@cards.length)
-      index2 = Math.floor(Math.random()*@cards.length)
-      [@cards[index1], @cards[index2]] = [@cards[index2], @cards[index1]]
+    @cards = _.shuffle(@cards)
 
     # Add cards to $grid and add click handler
     for card in @cards
@@ -58,13 +55,8 @@ module.exports = class MemoryGrid
       @selected = null
 
       # Check for completion
-      #TODO use underscore every here instead?
-      completed = true
-      for card in @cards
-        unless card.isMatched()
-          completed = false
-          break
-      @_gameCompleted() if completed
+      if _.every(@cards, (card) -> card.isMatched())
+        @_gameCompleted()
 
     # Case 4: Clicked on a previously matched card
     # Do nothing

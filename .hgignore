@@ -1,5 +1,5 @@
-images
-node_modules
-script.js
-stylesheet.css
-.sass-cache
+^images$
+^node_modules$
+^script.js$
+^stylesheet.css$
+^.sass-cache$

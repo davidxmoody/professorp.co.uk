@@ -7,6 +7,7 @@ spawn  = require('child_process').spawn
 APP_PATH = './app'
 LIB_PATH = './lib'
 JQUERY_FILE = path.join(LIB_PATH, 'jquery-1.11.0.min.js')
+UNDERSCORE_FILE = path.join(LIB_PATH, 'underscore-1.6.0.min.js')
 OUTPUT_SCRIPT = './script.js'
 
 CSS_PATH = './stylesheets'
@@ -24,7 +25,7 @@ task 'watch:css', "Build #{OUTPUT_CSS} from #{CSS_PATH} whenever the sources cha
 task 'build:app', "Build #{OUTPUT_SCRIPT} from #{APP_PATH}", ->
   pkg = stitch.createPackage
     paths: [APP_PATH]
-    dependencies: [JQUERY_FILE]
+    dependencies: [JQUERY_FILE, UNDERSCORE_FILE]
 
   pkg.compile (err, source) ->
     fs.writeFile OUTPUT_SCRIPT, source, (err) ->
