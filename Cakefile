@@ -1,6 +1,7 @@
 fs     = require('fs')
 stitch = require('stitch')
 path   = require('path')
+_      = require('underscore')
 
 APP_PATH = path.resolve('./app')
 LIB_PATH = path.resolve('./lib')
@@ -27,11 +28,12 @@ getSubdirs = (dir) ->
   dirs
 
 
-task 'watch', 'Run appropriate build whenever the relevant files change', ->
-  handler = (event, filename) ->
-    console.log(event, filename)
-    invoke('build')
+watchHandler = (event, filename) ->
+  console.log(event, filename)
+  invoke('build')
+watchHandler = _.throttle(watchHandler, 50, {leading: false})
 
+
+task 'watch', 'Run appropriate build whenever the relevant files change', ->
   for dir in getSubdirs(APP_PATH)
-    #TODO throttle this handler
-    fs.watch(dir, handler)
+    fs.watch(dir, watchHandler)
