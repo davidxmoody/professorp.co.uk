@@ -1,14 +1,22 @@
+$card-size: 100px;
+$card-spacing: 4px;
+
 .memory-card {
-  margin-top: 20px;
-  margin-left: 20px;
-  display: inline-block;
+  display: table-cell;
   border-radius: 2px;
-  width: 100px;
-  height: 100px;
+  width: $card-size;
+  height: $card-size;
   background-size: 100% 100%;
   background-position: 10000px 10000px;
   background-repeat: no-repeat;
   border: 1px solid black;
+}
+
+// Effects for a card which is clickable
+// TODO is this the best way to do it, it doesn't quite match the semantics of
+// the program
+.memory-card:not(.faceup):hover {
+  border: 1px solid red;
 }
 
 .memory-card.faceup {
@@ -16,5 +24,12 @@
 }
 
 .memory-grid {
+  display: inline-block;
   border: 1px solid black;
+}
+
+.memory-grid>div {
+  margin-top: $card-spacing;
+  margin-bottom: $card-spacing;
+  border-spacing: $card-spacing 0px;
 }

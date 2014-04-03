@@ -2,7 +2,7 @@ Card = require('card')
 getRandomImages = require('getrandomimages')
 
 module.exports = class MemoryGrid
-  constructor: ($container, numCards=6) ->
+  constructor: ($container, numCards=12, cardsPerRow=4) ->
 
     # Create empty grid to contain the cards
     @$grid = $('<div></div>')
@@ -18,8 +18,11 @@ module.exports = class MemoryGrid
     @cards = _.shuffle(@cards)
 
     # Add cards to $grid and add click handler
-    for card in @cards
-      card.$card.appendTo(@$grid)
+    for card, i in @cards
+      if i%cardsPerRow==0
+        $row = $('<div></div>')
+        $row.appendTo(@$grid)
+      card.$card.appendTo($row)
       card.$card.click($.proxy(@_cardClicked, this, card))
 
     # No card is selected at first
