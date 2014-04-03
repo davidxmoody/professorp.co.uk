@@ -2,22 +2,34 @@ fs     = require('fs')
 stitch = require('stitch')
 path   = require('path')
 _      = require('underscore')
+spawn  = require('child_process').spawn
 
-APP_PATH = path.resolve('./app')
-LIB_PATH = path.resolve('./lib')
+APP_PATH = './app'
+LIB_PATH = './lib'
 JQUERY_FILE = path.join(LIB_PATH, 'jquery-1.11.0.min.js')
+OUTPUT_SCRIPT = './script.js'
+
+CSS_PATH = './stylesheets'
+INPUT_CSS = path.join(CSS_PATH, 'main.scss')
+OUTPUT_CSS = './stylesheet.css'
 
 
-task 'build', 'Build script.js from /app', ->
+task 'build:css', "Build #{OUTPUT_CSS} from #{CSS_PATH}", ->
+  spawn('sass', ['--update', "#{INPUT_CSS}:#{OUTPUT_CSS}"], {stdio: 'inherit'})
+
+task 'watch:css', "Build #{OUTPUT_CSS} from #{CSS_PATH} whenever the sources change", ->
+  spawn('sass', ['--watch', "#{INPUT_CSS}:#{OUTPUT_CSS}"], {stdio: 'inherit'})
+
+
+task 'build:app', "Build #{OUTPUT_SCRIPT} from #{APP_PATH}", ->
   pkg = stitch.createPackage
     paths: [APP_PATH]
     dependencies: [JQUERY_FILE]
 
   pkg.compile (err, source) ->
-    fs.writeFile 'script.js', source, (err) ->
+    fs.writeFile OUTPUT_SCRIPT, source, (err) ->
       throw err if err
-      console.log('compiled script.js')
-
+      console.log('rebuilt app')
 
 getSubdirs = (dir) ->
   dirs = [dir]
@@ -27,13 +39,20 @@ getSubdirs = (dir) ->
         dirs.push(subdir)
   dirs
 
-
 watchHandler = (event, filename) ->
   console.log(event, filename)
-  invoke('build')
+  invoke('build:app')
 watchHandler = _.throttle(watchHandler, 50, {leading: false})
 
-
-task 'watch', 'Run appropriate build whenever the relevant files change', ->
+task 'watch:app', "Build #{OUTPUT_SCRIPT} from #{APP_PATH} whenever the sources change", ->
   for dir in getSubdirs(APP_PATH)
     fs.watch(dir, watchHandler)
+
+
+task 'build', 'Run all builds', ->
+  invoke('build:app')
+  invoke('build:css')
+
+task 'watch', 'Run all builds whenever the sources change', ->
+  invoke('watch:app')
+  invoke('watch:css')

@@ -57,5 +57,15 @@ module.exports = class MemoryGrid
         @cardsToClear = [card, @selected]
       @selected = null
 
+      # Check for completion
+      #FIXME: this doesnt work at all, find out why
+      for card in @cards
+        console.log card.isMatched()
+        break unless card.isMatched()
+        @_gameCompleted()
+
     # Case 4: Clicked on a previously matched card
     # Do nothing
+
+  _gameCompleted: ->
+    alert 'You won!'
