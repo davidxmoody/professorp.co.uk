@@ -1,9 +1,14 @@
 module.exports = class Card
   constructor: (@image) ->
     @_matched = false
-    @$card = $('<div></div>')
-    @$card.addClass('memory-card')
-    @$card.css('background-image', "url(#{@image})")
+    @$card = $('<div class="memory-card"></div>')
+
+    $front = $('<div class="front"></div>')
+    $front.css('background-image', "url(#{@image})")
+    $front.appendTo(@$card)
+
+    $back = $('<div class="back"></div>')
+    $back.appendTo(@$card)
 
   tryMatch: (card) ->
     @_matched = card.image is @image

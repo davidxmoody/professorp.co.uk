@@ -1,28 +1,54 @@
 $card-size: 100px;
 $card-spacing: 4px;
 
+// A card which is hidden
 .memory-card {
   display: table-cell;
   border-radius: 2px;
   width: $card-size;
   height: $card-size;
-  background-size: 100% 100%;
-  background-position: 10000px 10000px;
-  background-repeat: no-repeat;
   border: 1px solid black;
+
+  transition: 0.2s;
+  transform-style: preserve-3d;
+  -webkit-transform-style: preserve-3d;
+  position: relative;
+  
+  .front, .back {
+    backface-visibility: hidden;
+    -webkit-backface-visibility: hidden;
+    position: absolute;
+    top: 0;
+    left: 0;
+    background-size: 100% 100%;
+    width: $card-size;
+    height: $card-size;
+  }
+
+  .front {
+    transform: rotateY(180deg);
+    -webkit-transform: rotateY(180deg);
+  }
+
+  .back {
+    background-image: url(images/back.gif);
+    z-index: 2;
+  }
 }
 
-// Effects for a card which is clickable
-// TODO is this the best way to do it, it doesn't quite match the semantics of
-// the program
+// A card which is clickable
 .memory-card:not(.faceup):hover {
   border: 1px solid red;
 }
 
+// A card which is being shown
 .memory-card.faceup {
-  background-position: 0 0;
+  transition: 0.6s;
+  transform: rotateY(180deg);
+  -webkit-transform: rotateY(180deg);
 }
 
+// Sort out even grid like spacing
 .memory-grid {
   display: inline-block;
   border: 1px solid black;
@@ -32,4 +58,5 @@ $card-spacing: 4px;
   margin-top: $card-spacing;
   margin-bottom: $card-spacing;
   border-spacing: $card-spacing 0px;
+  perspective: 1000; //TODO is this line required?
 }

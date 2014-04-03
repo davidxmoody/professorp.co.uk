@@ -33,24 +33,19 @@ module.exports = class MemoryGrid
 
 
   _cardClicked: (card) ->
-    # First clear any previous selections
+    # First clear any previous incorrect selections
     if @cardsToClear?
       for cardToClear in @cardsToClear
         cardToClear.hide()
       @cardsToClear = null
 
-    # Case 1: Clicked on the previously selected card again
-    if card? and card is @selected
-      card.hide()
-      @selected = null
-      
-    # Case 2: Clicked on a hidden card and no card already selected
+    # Case 1: Clicked on a hidden card and no card already selected
     if not card.isMatched() and not @selected?
       card.show()
       @selected = card
 
-    # Case 3: Clicked on a hidden card and another card is already selected
-    else if not card.isMatched() and @selected?
+    # Case 2: Clicked on a hidden card and another (different) card is already selected
+    else if not card.isMatched() and @selected? and @selected isnt card
       card.show()
       matched = card.tryMatch(@selected)
       if not matched
@@ -61,9 +56,10 @@ module.exports = class MemoryGrid
       if _.every(@cards, (card) -> card.isMatched())
         @_gameCompleted()
 
-    # Case 4: Clicked on a previously matched card
+    # Case 3: Clicked on a matched card or the currently selected card
     # Do nothing
 
 
   _gameCompleted: ->
+    #TODO do this without an alert
     alert 'You won!'
