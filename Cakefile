@@ -14,6 +14,9 @@ CSS_PATH = './stylesheets'
 INPUT_CSS = path.join(CSS_PATH, 'main.scss')
 OUTPUT_CSS = './stylesheet.css'
 
+QUESTIONS_DIR = './questions'
+QUESTIONS_JS = path.join(APP_PATH, 'questions.js')
+
 
 task 'build:css', "Build #{OUTPUT_CSS} from #{CSS_PATH}", ->
   spawn('sass', ['--update', "#{INPUT_CSS}:#{OUTPUT_CSS}"], {stdio: 'inherit'})
@@ -53,7 +56,40 @@ task 'watch:app', "Build #{OUTPUT_SCRIPT} from #{APP_PATH} whenever the sources 
 task 'build', 'Run all builds', ->
   invoke('build:app')
   invoke('build:css')
+  invoke('build:questions')
 
 task 'watch', 'Run all builds whenever the sources change', ->
   invoke('watch:app')
   invoke('watch:css')
+  invoke('watch:questions')
+
+
+task 'build:questions', "Build #{QUESTIONS_JS} from #{QUESTIONS_DIR}", ->
+  questions = []
+  for file in fs.readdirSync(QUESTIONS_DIR)
+    if /.+\.txt/.test(file)
+      category = file.replace(/\.txt/, '')
+      lines = fs.readFileSync(path.join(QUESTIONS_DIR, file), 'utf-8').split('\n')
+
+      for line in lines
+        if line is ''
+          if question?
+            questions.push(question)
+            question = null
+        else if line[0] is '#'
+          continue
+        else
+          if not question?
+            question = { category: category, question: line, answers: [] }
+          else
+            question.answers.push(line)
+
+  fs.writeFile(QUESTIONS_JS, "module.exports = #{JSON.stringify(questions)}")
+  console.log("rebuilt #{QUESTIONS_JS}")
+
+questionsWatchHandler = (event, filename) ->
+  invoke('build:questions')
+questionsWatchHandler = _.throttle(questionsWatchHandler, 50, {leading: false})
+
+task 'watch:questions', "Build #{QUESTIONS_JS} from #{QUESTIONS_DIR} whenever the sources change", ->
+  fs.watch(QUESTIONS_DIR, questionsWatchHandler)
