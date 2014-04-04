@@ -1,7 +1,13 @@
 $question-width: 550px;
 
+.questions-container {
+  //TODO make non-selectable
+  width: $question-width;
+}
+
 .question-container {
   width: $question-width;
+  font-family: "Comic Sans MS", cursive, sans-serif;
 }
 
 .question {
@@ -14,10 +20,18 @@ $question-width: 550px;
   border: 1px solid black;
   border-radius: 4px;
   padding: 4px;
-  width: $question-width/2.5;
+  width: $question-width/2;
   font-size: 1.4em;
+  cursor: pointer;
 }
 
-.correct.answer {
-  background: lightgreen;
+.correct.answer.selected {
+  background: lime;
+}
+
+.answer.selected:not(.correct) {
+  background: red;
+  text-decoration: line-through;
+  color: grey;
+  cursor: default;
 }

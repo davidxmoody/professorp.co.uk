@@ -1,8 +1,6 @@
-questions = require('questions')
-questionsTemplate = require('questionstemplate')
+QuestionLoader = require('questionloader')
 
 module.exports = App =
   init: ->
     $(document).ready ->
-      $question = questionsTemplate(questions[0])
-      $('#container').append($question)
+      ql = new QuestionLoader($('#container'))
