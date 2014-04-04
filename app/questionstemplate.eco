@@ -1,0 +1,6 @@
+<div class="question-container">
+  <p class="question"><%= @question %></p>
+  <% for answer in _.shuffle(@answers): %>
+    <p class="<%= 'correct ' if answer is @answers[0] %>answer"><%= answer %></p>
+  <% end %>
+</div>
