@@ -1,8 +1,24 @@
 $question-width: 550px;
 
 .questions-container {
-  //TODO make non-selectable
   width: $question-width;
+
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+
+  .timer {
+    font-family: monospace;
+    text-align: right;
+    font-size: 1.2em;
+  }
+
+  .timer:before {
+    content: "Time ";
+  }
 }
 
 .question-container {
