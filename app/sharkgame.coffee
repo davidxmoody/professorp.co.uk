@@ -1,4 +1,5 @@
 SharkGameTemplate = require('sharkgametemplate')
+Raft = require('raft')
 
 # Note: may not work on older browsers, check that
 timestamp = -> window.performance.now()
@@ -7,7 +8,7 @@ module.exports = class SharkGame
   constructor: (@$container) ->
     @$game = $(SharkGameTemplate())
     @$container.append(@$game)
-    @$raft = @$game.find('.raft')
+    @raft = new Raft(@$game.find('.raft'))
 
     @goLeft = false
     @goRight = false
@@ -34,10 +35,10 @@ module.exports = class SharkGame
 
   update: =>
     if @goLeft and not @goRight
-      @$raft.css({left: '-=10px'})
+      @raft.move(-10)
 
     else if @goRight and not @goLeft
-      @$raft.css({left: '+=10px'})
+      @raft.move(-10)
 
 
   render: =>
