@@ -1,7 +1,6 @@
 defaultWordlist = require './wordlist'
 
 # This should be equal to the number of colors defined in the .scss file
-#TODO update to reflect the .scss file
 NUM_COLORS = 5
 
 # Some helper methods
@@ -214,3 +213,8 @@ module.exports = class LetterGrid
       y += stepY
 
     return null
+
+console.log 'hello world'
+angular.module('wordsearchApp', []).controller 'WordsearchCtrl', ($scope) ->
+  console.log 'WordsearchCtrl created'
+  #$scope.letterGrid = new LetterGrid($("#container))

@@ -1,18 +1,17 @@
 <!DOCTYPE html>
-<html>
+<html ng-app="wordsearchApp">
   <head>
     <title>Professor P Wordsearch Game</title>
     <link rel="stylesheet" type="text/css" href="stylesheet.css"/>
-    <script type="text/javascript" src="script.js"></script>
-    <script type="text/javascript">
-      document.addEventListener("DOMContentLoaded", function(){
-        var App = require("app");
-        App.init();
-      }, false);
-    </script>
+    <script type="text/javascript" src="lib/jquery-1.11.0.min.js"></script>
+    <script type="text/javascript" src="lib/angular-1.3.0.min.js"></script>
+    <script type="text/javascript" src="lib/wordlist.js"></script>
+    <script type="text/javascript" src="lib/wordsearchctrl"></script>
   </head>
   <body>
+  <div ng-controller="WordsearchCtrl">
     <div id="container"></div>
     <div id="wordlist"></div>
+  </div>
   </body>
 </html>
