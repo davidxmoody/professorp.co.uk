@@ -1,5 +1,3 @@
-defaultWordlist = require './wordlist'
-
 # This should be equal to the number of colors defined in the .scss file
 NUM_COLORS = 5
 
@@ -40,7 +38,7 @@ class Cell
     @letter = randomChar() unless @letter?
 
 
-module.exports = class LetterGrid
+class LetterGrid
   #TODO separate the initial grid generation into a separate superclass
   constructor: ($container, @width=8, @height=8, wordlist=defaultWordlist) ->
     # Create empty grid then fill with words
@@ -214,7 +212,5 @@ module.exports = class LetterGrid
 
     return null
 
-console.log 'hello world'
 angular.module('wordsearchApp', []).controller 'WordsearchCtrl', ($scope) ->
-  console.log 'WordsearchCtrl created'
-  #$scope.letterGrid = new LetterGrid($("#container))
+  $scope.letterGrid = new LetterGrid($("#container"))
