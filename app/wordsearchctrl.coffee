@@ -1,7 +1,6 @@
-# This should be equal to the number of colors defined in the .scss file
+# Number of available color classes defined in the Sass file
+# Note that this must manually be kept up to date
 NUM_COLORS = 5
-
-# Some helper methods
 
 # Choose a random element from an array (or string)
 choose = (array) -> array[Math.floor(Math.random()*array.length)]
@@ -28,145 +27,32 @@ wordFromPath = (path) ->
 
 class Cell
   constructor: (@x, @y) ->
+    @solvedColorClasses = []
+    @onPath = false
+    @onCorrectPath = false
 
   willFitLetter: (letter) ->
     not @letter? or @letter is letter
-
-  setLetter: (@letter) ->
 
   randomFill: ->
     @letter = randomChar() unless @letter?
 
 
 class LetterGrid
-  #TODO separate the initial grid generation into a separate superclass
-  constructor: ($container, @width=8, @height=8, wordlist=defaultWordlist) ->
-    # Create empty grid then fill with words
+  constructor: (@width=8, @height=8, wordlist=defaultWordlist, attempts=10) ->
+    # Make an empty grid
     @cells = (new Cell(x, y) for x in [0..@width-1] for y in [0..@height-1])
-    @_fillGrid(wordlist, 15)
-
-    @$wordlist = $('#wordlist')
-    for word in @words
-      $("<div class='word'>#{word}</div>").appendTo(@$wordlist)
-
-    @selected = null
-    @hovered = null
-
-    @$grid = $('<div/>')
-    @$grid.addClass('ws-grid')
-    @colorIndex = 1
-    @$grid.addClass("color#{@colorIndex}")
-    for row, y in @cells
-      $row = $('<div/>')
-      $row.appendTo(@$grid)
-      for cell, x in row
-        cell.$cell = $("<div class='ws-cell'>#{cell.letter}</div>")
-        cell.$cell.appendTo($row)
-        cell.$cell.click($.proxy(@_cellClicked, this, cell))
-        cell.$cell.mouseenter($.proxy(@_cellMouseenter, this, cell))
-        cell.$cell.mouseleave($.proxy(@_cellMouseleave, this, cell))
-    @$grid.appendTo($container)
-
-    # Start game by displaying word list
-    console.log(@words)
-    #TODO add words to #wordlist instead
-
-
-  _cellClicked: (clicked) =>
-    if @selected?
-      path = @path([@selected.x, @selected.y], [clicked.x, clicked.y])
-      foundWord = wordFromPath(path)
-
-      if foundWord in @words
-        console.log("\"#{foundWord}\" has been found")
-        @words.splice(@words.indexOf(foundWord), 1)
-        solvedColorIndex = @colorIndex
-        $('#wordlist .word').each (index, word) ->
-          if $(this).text() is foundWord
-            $(this).addClass("solved#{solvedColorIndex}")
-            $(this).appendTo($('#wordlist'))
-        if @words.length is 0
-          console.log("Congratulations, you won!")
-          $('.ws-cell').off('click')
-        else
-          console.log(@words)
-
-        # Highlight cells in path
-        for cell in path
-          cell.$cell.removeClass('path')
-          cell.$cell.removeClass('correct-path')
-          @_cellSolved(cell)
-
-        @_nextColor()
-
-      else
-        if foundWord and foundWord.length>1
-          console.log("\"#{foundWord}\" is not a correct word")
-          for cell in path
-            cell.$cell.removeClass('path')
-            cell.$cell.removeClass('correct-path')
-
-      @selected.$cell.removeClass('selected')
-      @selected.$cell.removeClass('path')
-      @selected = null
-
-    else
-      @selected = clicked
-
-    @_updateColors()
-
-
-  _cellMouseenter: (currentCell) ->
-    @hovered = currentCell
-    @_updateColors()
-
-
-  _cellMouseleave: (currentCell) ->
-    @hovered = null
-    @_updateColors()
-
-
-  _cellSolved: (cell) ->
-    cell.$cell.append("<div class='solved#{@colorIndex}'></div>")
-
-
-  _updateColors: ->
-    if @selected?
-      # If there is a selected cell then make it appear selected
-      @selected.$cell.addClass('selected')
-
-      # If there is a hovered cell as well then highlight the path between them
-      if @hovered?
-        @selectedPath = @path([@selected.x, @selected.y], [@hovered.x, @hovered.y])
-        correctPath = wordFromPath(@selectedPath) in @words
-        if @selectedPath?
-          for cell in @selectedPath
-            cell.$cell.addClass(if correctPath then 'correct-path' else 'path')
-
-      # If there was a previously selected path but isnt now un-highlight it
-      else
-        if @selectedPath?
-          for cell in @selectedPath
-            cell.$cell.removeClass('path')
-            cell.$cell.removeClass('correct-path')
-        @selectedPath = null
-
-
-  _nextColor: ->
-    @$grid.removeClass("color#{@colorIndex}")
-    @colorIndex = @colorIndex%NUM_COLORS+1
-    @$grid.addClass("color#{@colorIndex}")
-
-
-  _fillGrid: (wordlist, attempts) ->
     @words = []
+
     # Try to fit in each word in the word list up to the max number of attempts
     for i in [1..attempts]
       for word in wordlist
-        @_tryPutWord(word) if word not in @words
+        @_tryPutWord(word) unless word in @words
 
     # Fill in all unfilled slots with random letters
-    cell.randomFill() for cell in row for row in @cells
+    for row in @cells
+      for cell in row
+        cell.randomFill()
 
 
   _tryPutWord: (word) ->
@@ -175,23 +61,23 @@ class LetterGrid
     [dirX, dirY] = randomDirection()
     [endX, endY] = [startX+dirX*(word.length-1), startY+dirY*(word.length-1)]
 
-    cells = @path([startX, startY], [endX, endY])
+    path = @_getPath([startX, startY], [endX, endY])
 
     # Return if word will not fit in grid
-    return false unless cells?
+    return unless path?
 
-    # Return if any cell is already filled
-    for cell, i in cells
-      return false unless cell.willFitLetter(word[i])
+    # Return if any cell is already filled with a conflicting letter
+    for cell, i in path
+      return unless cell.willFitLetter(word[i])
 
     # Set the new word
-    for cell, i in cells
-      cell.setLetter(word[i])
+    for cell, i in path
+      cell.letter = word[i]
     @words.push(word)
-    return true
 
 
-  path: (start, end) ->
+  _getPath: (start, end) ->
+    #TODO can this be tidied up a bit?
     [x, y] = start
     [endX, endY] = end
 
@@ -212,5 +98,62 @@ class LetterGrid
 
     return null
 
+  getPathFromCells: (start, end) ->
+    @_getPath([start.x, start.y], [end.x, end.y])
+
+
+
 angular.module('wordsearchApp', []).controller 'WordsearchCtrl', ($scope) ->
-  $scope.letterGrid = new LetterGrid($("#container"))
+
+  $scope.grid = new LetterGrid()
+  $scope.words = $scope.grid.words
+
+  $scope.enableInput = true
+  colorIndex = 1
+  $scope.colorClass = 'color1'
+
+  $scope.cellClicked = (cell) ->
+    return unless $scope.enableInput
+    if not $scope.selectedCell?
+      $scope.selectedCell = cell
+    else
+      path = $scope.grid.getPathFromCells($scope.selectedCell, cell)
+      $scope.selectedCell = null
+      $scope._submitPath(path)
+      $scope.clearPath()
+
+
+  $scope.updatePath = (cell) ->
+    if $scope.selectedCell?
+      path = $scope.grid.getPathFromCells($scope.selectedCell, cell)
+      if path?
+        for cell in path
+          cell.onPath = true
+          if wordFromPath(path) in $scope.words
+            cell.onCorrectPath = true
+
+
+  $scope.clearPath = ->
+    for row in $scope.grid.cells
+      for cell in row
+        cell.onPath = false
+        cell.onCorrectPath = false
+
+
+  $scope._submitPath = (path) ->
+    foundWord = wordFromPath(path)
+    if foundWord in $scope.words
+      $scope.words.splice($scope.words.indexOf(foundWord), 1)
+      #TODO cross word off wordlist and advance color index
+      for cell in path
+        cell.solvedColorClasses.push($scope.colorClass)
+      $scope.nextColor()
+
+      if $scope.words.length is 0
+        #TODO print congrats message
+        $scope.enableInput = false
+
+
+  $scope.nextColor = ->
+    colorIndex = colorIndex%NUM_COLORS+1
+    $scope.colorClass = "color#{colorIndex}"

@@ -10,8 +10,23 @@
   </head>
   <body>
   <div ng-controller="WordsearchCtrl">
-    <div id="container"></div>
-    <div id="wordlist"></div>
+    <div id="container">
+      <div class="ws-grid" ng-class='colorClass'>
+        <div ng-repeat="row in grid.cells">
+          <div class="ws-cell" ng-repeat="cell in row"
+               ng-click="cellClicked(cell)"
+               ng-mouseenter="updatePath(cell)"
+               ng-mouseleave="selectedCell && clearPath()"
+               ng-class="{selected: selectedCell===cell, path: cell.onPath, 'correct-path': cell.onCorrectPath}">
+            <div class="solved" ng-class="colorClass" ng-repeat="colorClass in cell.solvedColorClasses"></div>
+            {{cell.letter}}
+          </div>
+        </div>
+      </div>
+    </div>
+    <div id="wordlist">
+      <div class="word" ng-repeat="word in words">{{word}}</div>
+    </div>
   </div>
   </body>
 </html>

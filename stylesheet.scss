@@ -59,13 +59,14 @@ $colors: $custom-colors;
 
   .ws-grid.color#{$i} {
     .ws-cell:hover { transition: background 0.2s; background: rgba($color, 0.2); }
+    //TODO Don't need a .selected class any more
     .ws-cell.selected { transition: background 0.2s; background: rgba($color, 0.3); }
     .ws-cell.path { transition: background 0.2s; background: rgba($color, 0.3); }
     .ws-cell.correct-path { transition: background 0.2s; background: rgba($color, 0.5); }
     //.ws-cell.selected:hover { transition: background 0.2s; background: rgba($color, 0.5); }
   }
 
-  .ws-cell div.solved#{$i} { transition: background 0.2s; background: rgba($color, 0.6); }
+  .ws-cell div.solved.color#{$i} { transition: background 0.2s; background: rgba($color, 0.6); }
 
-  .word.solved#{$i} { transition: color 0.2s; color: $color; text-decoration: line-through; } 
+  .word.solved.color#{$i} { transition: color 0.2s; color: $color; text-decoration: line-through; } 
 }
