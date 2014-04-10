@@ -54,16 +54,16 @@ class LetterGrid
 
 
   _tryPutWord: (word) ->
-    # Choose a random start and end point
-    [startX, startY] = [_.random(@width-1), _.random(@height-1)]
+    # Choose a random path which will definitely fit into the grid
     [dirX, dirY] = DIRECTIONS[@words.length%DIRECTIONS.length]
-    [endX, endY] = [startX+dirX*(word.length-1), startY+dirY*(word.length-1)]
+    return if dirX isnt 0 and word.length>@width or dirY isnt 0 and word.length>@height
+
+    startX = _.random((if dirX is -1 then word.length-1 else 0), (if dirX is 1 then @width-word.length else @width-1))
+    startY = _.random((if dirY is -1 then word.length-1 else 0), (if dirY is 1 then @height-word.length else @height-1))
+    endX = startX+dirX*(word.length-1)
+    endY = startY+dirY*(word.length-1)
 
     path = @_getPath([startX, startY], [endX, endY])
-    #TODO move the path choosing code to a separate method
-
-    # Return if word will not fit in grid
-    return unless path?
 
     # Return if any cell is already filled with a conflicting letter
     for cell, i in path
