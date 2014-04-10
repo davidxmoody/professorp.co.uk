@@ -48,25 +48,19 @@
   }
 }
 
-$bright-colors: pink, lightblue, lightgreen, khaki;
-
-$custom-colors: orangered, limegreen, cyan, gold, mediumvioletred;
-
-$colors: $custom-colors;
+$colors: orangered, limegreen, cyan, gold, mediumvioletred;
 
 @each $color in $colors {
   $i: index($colors, $color);
 
   .ws-grid.color#{$i} {
     .ws-cell:hover { transition: background 0.2s; background: rgba($color, 0.2); }
-    //TODO Don't need a .selected class any more
     .ws-cell.selected { transition: background 0.2s; background: rgba($color, 0.3); }
     .ws-cell.path { transition: background 0.2s; background: rgba($color, 0.3); }
     .ws-cell.correct-path { transition: background 0.2s; background: rgba($color, 0.5); }
-    //.ws-cell.selected:hover { transition: background 0.2s; background: rgba($color, 0.5); }
   }
 
   .ws-cell div.solved.color#{$i} { transition: background 0.2s; background: rgba($color, 0.6); }
 
-  .word.solved.color#{$i} { transition: color 0.2s; color: $color; text-decoration: line-through; } 
+  .word.solved.color#{$i} { color: $color; text-decoration: line-through; } 
 }
