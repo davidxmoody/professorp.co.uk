@@ -17,12 +17,16 @@ class Shark
       if @velocityX<0 then 'left' else 'right'
     ]
 
+  isOutOfBounds: ->
+    #TODO should really use the width and height in $scope
+    @left<-100 or @left>500 or @top<-100 or @top>500
+
 
 sharkAttackApp.controller 'SharkAttackCtrl', ($scope) ->
 
   #TODO make these do something
-  $scope.width = 800
-  $scope.height = 500
+  $scope.width = 400
+  $scope.height = 400
 
   $scope.sharks = [
     new Shark(100, 100, 1, 0.5)
@@ -32,15 +36,17 @@ sharkAttackApp.controller 'SharkAttackCtrl', ($scope) ->
   $scope.moveSharks = ->
     for shark in $scope.sharks
       shark.updatePosition()
+    $scope.sharks = _.filter($scope.sharks, (shark) -> not shark.isOutOfBounds())
     $scope.$apply()
 
   setInterval($scope.moveSharks, 10)
 
   $scope.spawnShark = (x, y) ->
-    x = _.random(100, $scope.width-100) unless x?
-    y = _.random(100, $scope.height-100) unless y?
-    velX = if x<$scope.width/2 then 1 else -1
-    velY = 1
+    x = _.random(40, $scope.width-40) unless x?
+    y = _.random(100, $scope.height-250) unless y?
+    speed = 0.5+Math.random()
+    velX = if x<$scope.width/2 then speed else -1*speed
+    velY = speed
     $scope.sharks.push(new Shark(x, y, velX, velY))
 
-  setInterval($scope.spawnShark, 1000)
+  setInterval($scope.spawnShark, 500)
