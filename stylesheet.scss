@@ -7,6 +7,21 @@
   background-image: url('images/frame.gif');
 }
 
+.raft {
+  width: 20px;
+  height: 20px;
+  background-repeat: no-repeat;
+  overflow: hidden;
+  position: absolute;
+  background-image: url('images/raft.gif');
+}
+
+@for $i from 0 through 2 {
+  .raft.frame#{$i} {
+    background-position: $i*-20px;
+  }
+}
+
 .shark {
   width: 20px;
   height: 20px;

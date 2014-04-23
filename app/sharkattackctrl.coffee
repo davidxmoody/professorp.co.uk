@@ -3,6 +3,7 @@ sharkAttackApp = angular.module('sharkAttackApp', [])
 class Shark
   constructor: (@left, @top, @velocityX, @velocityY) ->
     @initialLeft = @left
+    @hasAttacked = false
 
   updatePosition: ->
     @left += @velocityX
@@ -22,31 +23,90 @@ class Shark
     @left<-100 or @left>500 or @top<-100 or @top>500
 
 
+class Raft
+  constructor: (@left=190, @top=350) ->
+    @damage = 0
+
+  updatePosition: (goLeft, goRight) ->
+    if goLeft and not goRight
+      @left += -2
+    else if goRight and not goLeft
+      @left += 2
+    @top += -0.4
+  
+  getStyle: ->
+    { left: "#{Math.floor(@left)}px", top: "#{Math.floor(@top)}px" }
+
+  getClasses: ->
+    [
+      "frame#{Math.min(@damage, 2)}"
+    ]
+
+  takeBite: ->
+    @damage++
+    if @damage>=3
+      #TODO do this better
+      alert "You got eaten!"
+
+
+
 sharkAttackApp.controller 'SharkAttackCtrl', ($scope) ->
 
   #TODO make these do something
   $scope.width = 400
   $scope.height = 400
 
+  $scope.goLeft = false
+  $scope.goRight = false
+
+  $scope.raft = new Raft()
+
   $scope.sharks = [
     new Shark(100, 100, 1, 0.5)
     new Shark(200, 200, -1, 0.1)
   ]
 
-  $scope.moveSharks = ->
+  $scope.update = ->
+    # Move raft first
+    $scope.raft.updatePosition($scope.goLeft, $scope.goRight)
+
+    # Then move sharks
     for shark in $scope.sharks
       shark.updatePosition()
     $scope.sharks = _.filter($scope.sharks, (shark) -> not shark.isOutOfBounds())
+
+    # Then check to see if the raft collides with a shark
+    for shark in $scope.sharks
+      unless shark.hasAttacked
+        if shark.top-20 < $scope.raft.top < shark.top+20 and \
+           shark.left-20 < $scope.raft.left < shark.left+20
+          shark.hasAttacked = true
+          $scope.raft.takeBite()
+
     $scope.$apply()
 
-  setInterval($scope.moveSharks, 10)
+  setInterval($scope.update, 10)
 
   $scope.spawnShark = (x, y) ->
     x = _.random(40, $scope.width-40) unless x?
-    y = _.random(100, $scope.height-250) unless y?
+    y = _.random(50, $scope.height-250) unless y?
     speed = 0.5+Math.random()
     velX = if x<$scope.width/2 then speed else -1*speed
     velY = speed
     $scope.sharks.push(new Shark(x, y, velX, velY))
 
   setInterval($scope.spawnShark, 500)
+
+  $scope.keydown = ($event) ->
+    keycode = $event.which
+    if keycode is 37
+      $scope.goLeft = true
+    else if keycode is 39
+      $scope.goRight = true
+
+  $scope.keyup = ($event) ->
+    keycode = $event.which
+    if keycode is 37
+      $scope.goLeft = false
+    else if keycode is 39
+      $scope.goRight = false
