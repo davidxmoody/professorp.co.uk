@@ -2,9 +2,13 @@ sharkAttackApp = angular.module('sharkAttackApp', [])
 
 class Shark
   constructor: (@left, @top) ->
+    @initialLeft = @left
 
   getStyle: ->
     { left: "#{@left}px", top: "#{@top}px" }
+
+  getFrameClass: ->
+    "frame#{Math.floor(((@left-@initialLeft)/20)%8)}"
 
 sharkAttackApp.controller 'SharkAttackCtrl', ($scope) ->
 
@@ -12,11 +16,6 @@ sharkAttackApp.controller 'SharkAttackCtrl', ($scope) ->
     new Shark(100, 100)
     new Shark(200, 200)
   ]
-
-  $scope.shark = $scope.sharks[0]
-
-  $scope.$watch 'shark', ->
-    console.log 'watched'
 
   $scope.moveSharks = ->
     for shark in $scope.sharks

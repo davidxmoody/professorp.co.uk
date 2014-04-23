@@ -10,7 +10,8 @@
   <body>
     <div class="sharkattack-container" ng-controller="SharkAttackCtrl">
       <div class="shark" ng-repeat="shark in sharks"
-        ng-style="shark.getStyle()"></div>
+        ng-style="shark.getStyle()"
+        ng-class="shark.getFrameClass()"><img src="images/shark-right.gif"></div>
     </div>
   </body>
 </html>
