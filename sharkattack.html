@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html ng-app="sharkAttackApp">
+  <head>
+    <title>Professor P Shark Attack Game</title>
+    <link rel="stylesheet" type="text/css" href="stylesheet.css"/>
+    <script type="text/javascript" src="lib/underscore-1.6.0.min.js"></script>
+    <script type="text/javascript" src="lib/angular-1.3.0.min.js"></script>
+    <script type="text/javascript" src="lib/sharkattackctrl.js"></script>
+  </head>
+  <body>
+    <div class="sharkattack-container" ng-controller="SharkAttackCtrl">
+      <div class="shark" ng-repeat="shark in sharks"
+        ng-style="shark.getStyle()"></div>
+    </div>
+  </body>
+</html>
