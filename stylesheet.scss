@@ -9,10 +9,17 @@
 .shark {
   width: 20px;
   height: 20px;
-  background-image: url('images/shark-right.gif');
   background-repeat: no-repeat;
   overflow: hidden;
   position: absolute;
+}
+
+.shark.right {
+  background-image: url('images/shark-right.gif');
+}
+
+.shark.left {
+  background-image: url('images/shark-left.gif');
 }
 
 @for $i from 0 through 7 {
