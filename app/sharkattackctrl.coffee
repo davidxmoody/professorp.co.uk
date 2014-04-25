@@ -26,13 +26,14 @@ class Shark
 class Raft
   constructor: (@left=190, @top=350) ->
     @damage = 0
+    @forwardSpeed = 0.4
 
   updatePosition: (goLeft, goRight) ->
     if goLeft and not goRight
       @left += -2
     else if goRight and not goLeft
       @left += 2
-    @top += -0.4
+    @top -= @forwardSpeed
   
   getStyle: ->
     { left: "#{Math.floor(@left)}px", top: "#{Math.floor(@top)}px" }
@@ -46,7 +47,7 @@ class Raft
     @damage++
     if @damage>=3
       #TODO do this better
-      alert "You got eaten!"
+      console.log "You got eaten!"
 
 
 
@@ -61,10 +62,7 @@ sharkAttackApp.controller 'SharkAttackCtrl', ($scope) ->
 
   $scope.raft = new Raft()
 
-  $scope.sharks = [
-    new Shark(100, 100, 1, 0.5)
-    new Shark(200, 200, -1, 0.1)
-  ]
+  $scope.sharks = []
 
   $scope.update = ->
     # Move raft first
@@ -87,13 +85,28 @@ sharkAttackApp.controller 'SharkAttackCtrl', ($scope) ->
 
   setInterval($scope.update, 10)
 
-  $scope.spawnShark = (x, y) ->
-    x = _.random(40, $scope.width-40) unless x?
-    y = _.random(50, $scope.height-250) unless y?
-    speed = 0.5+Math.random()
-    velX = if x<$scope.width/2 then speed else -1*speed
-    velY = speed
-    $scope.sharks.push(new Shark(x, y, velX, velY))
+  $scope.spawnShark = ->
+    # 20% chance to spawn a fast shark heading for the raft
+    if Math.random()<0.2
+      speed = 2
+      verticalDistanceFromRaft = 100+Math.random()*80
+      timeToCollision = verticalDistanceFromRaft/(speed+$scope.raft.forwardSpeed)
+      direction = if $scope.raft.left<$scope.width/2 then 1 else -1
+      yDiff = timeToCollision*speed
+      xDiff = timeToCollision*speed*direction
+      y = $scope.raft.top-yDiff
+      x = $scope.raft.left-xDiff
+      if y>50
+        $scope.sharks.push(new Shark(x, y-20, speed*direction, speed))
+
+    else
+      #TODO prevent sharks from spawning directly on top of the raft
+      x = _.random(20, $scope.width-40)
+      y = _.random(50, $scope.height-250)
+      speed = 0.5+Math.random()
+      velX = if x<$scope.width/2 then speed else -1*speed
+      velY = speed
+      $scope.sharks.push(new Shark(x, y, velX, velY))
 
   setInterval($scope.spawnShark, 500)
 
