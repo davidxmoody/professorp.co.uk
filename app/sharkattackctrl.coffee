@@ -1,5 +1,8 @@
 sharkAttackApp = angular.module('sharkAttackApp', [])
 
+#TODO check this works everywhere
+timestamp = -> window.performance.now()
+
 class Shark
   constructor: (@left, @top, @velocityX, @velocityY) ->
     @initialLeft = @left
@@ -51,7 +54,7 @@ class Raft
 
 
 
-sharkAttackApp.controller 'SharkAttackCtrl', ($scope) ->
+sharkAttackApp.controller('SharkAttackCtrl', ['$scope', '$interval', ($scope, $interval) ->
 
   #TODO make these do something
   $scope.width = 400
@@ -63,6 +66,10 @@ sharkAttackApp.controller 'SharkAttackCtrl', ($scope) ->
   $scope.raft = new Raft()
 
   $scope.sharks = []
+
+  $scope.dt = 0
+  $scope.last = timestamp()
+  $scope.step = 1/60
 
   $scope.update = ->
     # Move raft first
@@ -81,12 +88,26 @@ sharkAttackApp.controller 'SharkAttackCtrl', ($scope) ->
           shark.hasAttacked = true
           $scope.raft.takeBite()
 
-    $scope.$apply()
+  #TODO cancel this once the game is over, same for the other one too
+  #$interval($scope.update, 10)
 
-  setInterval($scope.update, 10)
+  $scope.frame = ->
+    $scope.$apply ->
+      now = timestamp()
+      $scope.dt += Math.min(1, (now-$scope.last)/1000) # Prevent too many frames occurring at once
+      while $scope.dt>$scope.step
+        $scope.dt -= $scope.step
+        $scope.update()
+      $scope.last = now
+
+  $scope.startLoop = ->
+    $scope.frame()
+    requestAnimationFrame($scope.startLoop)
+
+  requestAnimationFrame($scope.startLoop)
 
   $scope.spawnShark = ->
-    # 20% chance to spawn a fast shark heading for the raft
+    # Small chance to spawn a fast shark heading for the raft
     if Math.random()<0.2
       speed = 2
       verticalDistanceFromRaft = 100+Math.random()*80
@@ -110,16 +131,9 @@ sharkAttackApp.controller 'SharkAttackCtrl', ($scope) ->
 
   setInterval($scope.spawnShark, 500)
 
-  $scope.keydown = ($event) ->
-    keycode = $event.which
-    if keycode is 37
-      $scope.goLeft = true
-    else if keycode is 39
-      $scope.goRight = true
-
-  $scope.keyup = ($event) ->
-    keycode = $event.which
-    if keycode is 37
-      $scope.goLeft = false
-    else if keycode is 39
-      $scope.goRight = false
+  $scope.keyevent = ($event) ->
+    keydown = $event.type is 'keydown'
+    switch $event.which
+      when 37 then $scope.goLeft = keydown
+      when 39 then $scope.goRight = keydown
+])

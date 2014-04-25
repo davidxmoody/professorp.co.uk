@@ -10,10 +10,9 @@
   <body>
     <div class="sharkattack-container" 
         tabindex="0"
-        autofocus="autofocus"
         ng-controller="SharkAttackCtrl"
-        ng-keydown="keydown($event)"
-        ng-keyup="keyup($event)">
+        ng-keydown="keyevent($event)"
+        ng-keyup="keyevent($event)">
 
       <div class="shark" ng-repeat="shark in sharks"
           ng-style="shark.getStyle()"
