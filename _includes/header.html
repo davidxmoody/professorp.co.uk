@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>{{ page.title }}</title>
+  {% if page.description %} <meta name="description" content="{{ page.description }}"> {% endif %}
+  <link rel="stylesheet" href="stylesheet.css">
+</head>
+<body>
+  <header>
+    <hgroup>
+      <a href=""><h1>Professor P's Website</h1></a>
+      <!-- TODO add tagline -->
+    </hgroup>
+    <nav>
+      <ul>
+        <li><a href="">Books</a>
+          <ul>
+            {% assign books = site.pages | sort:"url" %}
+            {% for book in books %}
+              {% if book.layout == 'book' %}
+                <li><a href="{{ book.url }}">{{ book.title }}</a></li>
+              {% endif %}
+            {% endfor %}
+          </ul>
+        </li>
+        <li><a href="">Games</a>
+          <ul>
+
+          </ul>
+        </li>
+        <li><a href="">Activities</a></li>
+        <li><a href="">FAQ</a></li>
+        <li><a href="">Contact</a></li>
+      </ul>
+    </nav>
+  </header>
