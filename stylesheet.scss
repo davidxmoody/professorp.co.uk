@@ -1,0 +1,64 @@
+$very-light-blue: rgb(204, 255, 255);
+$light-blue: rgb(102, 204, 255);
+$medium-blue: rgb(11, 175, 255);
+$black: rgb(0, 0, 0);
+$grey: rgb(150, 150, 150);
+
+$body-background-color: $very-light-blue;
+$background-color: $light-blue;
+
+$text: $black;
+$faint-text: $grey;
+
+body {
+  background-color: $body-background-color;
+  font-family: cursive;
+  font-size: 16px;
+}
+
+body > header {
+  background-color: $light-blue;
+
+  nav ul {
+    border-radius: 4px;
+    display: inline-table;
+    padding: 2px;
+    list-style: none;
+    position: relative;
+    border-spacing: 5px 0px;
+    background: $medium-blue;
+
+    //TODO add hovering animation
+    li {
+      display: table-cell;
+      text-align: center;
+
+      ul {
+        display: none;
+        position: absolute;;
+
+        li {
+          display: block;
+        }
+      }
+    }
+
+    li:hover {
+      ul {
+        display: block;
+      }
+    }
+  }
+
+}
+
+body > article {
+  max-width: 700px;
+  min-width: 350px;
+  color: $text;
+}
+
+body > footer {
+  font-size: 0.8rem;
+  color: $faint-text;
+}
