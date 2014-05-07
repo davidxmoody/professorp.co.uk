@@ -1,0 +1,10 @@
+{
+  "name": "memory-game",
+  "version": "0.0.0",
+  "license": "MIT",
+  "private": true,
+  "dependencies": {
+    "jquery": "1.11.x",
+    "underscore": "1.6.x"
+  }
+}
