@@ -1,5 +1,7 @@
-Card = require('card')
-getRandomImages = require('getrandomimages')
+$ = require('jquery')
+_ = require('underscore')
+Card = require('./card')
+getRandomImages = require('./getrandomimages')
 
 module.exports = class MemoryGrid
   constructor: ($container, numCards=12, cardsPerRow=4) ->

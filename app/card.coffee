@@ -1,3 +1,6 @@
+$ = require('jquery')
+_ = require('underscore')
+
 module.exports = class Card
   constructor: (@image) ->
     @_matched = false

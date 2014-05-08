@@ -1,6 +1,6 @@
-MemoryGrid = require('memorygrid')
+$ = require('jquery')
+_ = require('underscore')
+MemoryGrid = require('./memorygrid')
 
-module.exports = App =
-  init: ->
-    $(document).ready ->
-      grid = new MemoryGrid($('#container'))
+$(document).ready ->
+  grid = new MemoryGrid($('#container'))

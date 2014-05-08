@@ -1,3 +1,6 @@
+$ = require('jquery')
+_ = require('underscore')
+
 allImages = [
   "images/image0.jpg"
   "images/image1.jpg"

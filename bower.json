@@ -5,6 +5,7 @@
   "private": true,
   "dependencies": {
     "jquery": "1.11.x",
-    "underscore": "1.6.x"
+    "underscore": "1.6.x",
+    "normalize.css": "~3.0.1"
   }
 }

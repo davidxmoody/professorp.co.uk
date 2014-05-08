@@ -4,13 +4,38 @@
   "license": "MIT",
   "private": true,
   "devDependencies": {
+    "bower": "^1.3.1",
+    "browserify": "^3.46.0",
+    "browserify-shim": "^3.4.1",
+    "coffee-script": "^1.7.1",
+    "coffeeify": "^0.6.0",
+    "gulp": "^3.6.2",
+    "gulp-rename": "^1.2.0",
+    "gulp-sass": "^0.7.1",
     "http-server": "^0.6.1",
-    "bower": "^1.3.1"
+    "uglify-js": "^2.4.13",
+    "uglifyify": "^2.1.1",
+    "vinyl-source-stream": "^0.1.1"
   },
   "scripts": {
     "postinstall": "bower install",
-
     "prestart": "npm install",
-    "start": "http-server -a localhost -p 8000"
+    "start": "http-server -a localhost -p 8000",
+    "gulp": "gulp --require coffee-script/register"
+  },
+  "browserify": {
+    "transform": [
+      "coffeeify",
+      "browserify-shim",
+      "uglifyify"
+    ]
+  },
+  "browserify-shim": {
+    "jquery": "global:$",
+    "underscore": "global:_"
+  },
+  "dependencies": {
+    "jquery": "^2.1.1",
+    "underscore": "^1.6.0"
   }
 }
