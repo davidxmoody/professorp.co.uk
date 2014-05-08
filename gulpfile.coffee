@@ -7,7 +7,7 @@ sass = require 'gulp-sass'
 rename = require 'gulp-rename'
 
 gulp.task 'coffee', ->
-  bundler = watchify entries: ['./app/app.coffee'], extensions: ['.coffee']
+  bundler = watchify entries: ['./app/coffee/app.coffee'], extensions: ['.coffee']
 
   rebundle = (ids) ->
     gutil.log if ids then "Rebundling because of change in #{ids}" else 'Bundling'
@@ -24,5 +24,15 @@ gulp.task 'sass', ->
     .pipe sass(errLogToConsole: true)
     .pipe rename('stylesheet.css')
     .pipe gulp.dest('./build/')
+
+gulp.task 'index', ->
+  gulp.src './app/index.html'
+    .pipe rename('index.html')
+    .pipe gulp.dest('./build/')
+
+gulp.task 'images', ->
+  #TODO use different img dir
+  gulp.src './app/img/*'
+    .pipe gulp.dest('./build/images/')
   
 gulp.task 'default', ['coffee', 'sass']
