@@ -1,13 +1,19 @@
 gulp = require 'gulp'
-browserify = require 'browserify'
-coffeeify = require 'coffeeify'
+gutil = require 'gulp-util'
+watchify = require 'watchify'
 source = require 'vinyl-source-stream'
 
-gulp.task 'coffeeify', ->
-  browserify({ entries: ['./app/app.coffee'], extensions: ['.coffee'] })
-    .bundle()
-    .pipe(source('bundle.js'))
-    .pipe(gulp.dest('./build/'))
+gulp.task 'coffee', ->
+  bundler = watchify entries: ['./app/app.coffee'], extensions: ['.coffee']
 
+  rebundle = (ids) ->
+    gutil.log if ids then "Rebundling because of change in #{ids}" else 'Bundling'
+    bundler.bundle()
+      .pipe(source('bundle.js'))
+      .pipe(gulp.dest('./build/'))
+
+  bundler.on 'update', rebundle
+  rebundle()
+  
 gulp.task 'default', ->
   console.log 'default task called'
