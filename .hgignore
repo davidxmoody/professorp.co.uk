@@ -1,3 +1,2 @@
-^script.js
-.sass-cache
-^stylesheet.css
+^node_modules$
+^build$

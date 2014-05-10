@@ -1,3 +1,5 @@
+angular = require 'angular'
+
 # Number of available color classes defined in the Sass file
 # Note that this must manually be kept up to date
 NUM_COLORS = 5
@@ -33,7 +35,7 @@ class Cell
 
 
 class LetterGrid
-  constructor: (@width=8, @height=8, maxWords=20, wordlist=defaultWordlist) ->
+  constructor: (@width=8, @height=8, maxWords=20, wordlist=require('./wordlist')) ->
     # Make an empty grid.
     @cells = (new Cell(x, y) for x in [0..@width-1] for y in [0..@height-1])
     @words = []
@@ -116,7 +118,7 @@ class LetterGrid
 
 
 
-angular.module('wordsearchApp', []).controller 'WordsearchCtrl', ($scope) ->
+angular.module('wordsearchApp', []).controller 'WordsearchCtrl', ['$scope', ($scope) ->
 
   $scope.grid = new LetterGrid()
   $scope.words = $scope.grid.words
@@ -175,3 +177,4 @@ angular.module('wordsearchApp', []).controller 'WordsearchCtrl', ($scope) ->
   $scope.nextColor = ->
     colorIndex = colorIndex%NUM_COLORS+1
     $scope.colorClass = "color#{colorIndex}"
+]
