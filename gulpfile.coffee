@@ -6,9 +6,20 @@ watch = require 'gulp-watch'
 sass = require 'gulp-sass'
 rename = require 'gulp-rename'
 
+fs = require 'fs'
+
 keepWatching = true
 
-gulp.task 'coffee', ->
+gulp.task 'wordlist', ->
+  #TODO do this with streams instead of the old way
+  words = fs.readFileSync('wordlist.txt', 'utf-8')
+  wordlist = words.split('\n')
+  wordlist = (word.toUpperCase() for word in wordlist when \
+                 word.length>0 and word.charAt(0) isnt '#')
+  wordlist.sort((a, b) -> b.length-a.length)  # Sort with descending length
+  fs.writeFile 'app/coffee/wordlist.js', "module.exports = #{JSON.stringify(wordlist)};"
+
+gulp.task 'coffee', ['wordlist'], ->
   bundlerFunction = if keepWatching then watchify else watchify.browserify
   bundler = bundlerFunction entries: ['./app/coffee/app.coffee'], extensions: ['.coffee']
     .transform 'coffeeify'
