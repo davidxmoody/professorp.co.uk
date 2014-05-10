@@ -6,8 +6,14 @@ watch = require 'gulp-watch'
 sass = require 'gulp-sass'
 rename = require 'gulp-rename'
 
+keepWatching = true
+
 gulp.task 'coffee', ->
-  bundler = watchify entries: ['./app/coffee/app.coffee'], extensions: ['.coffee']
+  bundlerFunction = if keepWatching then watchify else watchify.browserify
+  bundler = bundlerFunction entries: ['./app/coffee/app.coffee'], extensions: ['.coffee']
+    .transform 'coffeeify'
+    .transform 'browserify-shim'
+    .transform 'uglifyify'
 
   rebundle = (ids) ->
     gutil.log if ids then "Rebundling because of change in #{ids}" else 'Bundling'
@@ -15,24 +21,26 @@ gulp.task 'coffee', ->
       .pipe source('bundle.js')
       .pipe gulp.dest('./build/')
 
-  bundler.on 'update', rebundle
+  bundler.on('update', rebundle) if keepWatching
   rebundle()
 
 gulp.task 'sass', ->
   gulp.src './app/scss/main.scss'
-    .pipe watch()
+    .pipe if keepWatching then watch() else gutil.noop()
     .pipe sass(errLogToConsole: true)
     .pipe rename('stylesheet.css')
     .pipe gulp.dest('./build/')
 
 gulp.task 'index', ->
   gulp.src './app/index.html'
+    .pipe if keepWatching then watch() else gutil.noop()
     .pipe rename('index.html')
     .pipe gulp.dest('./build/')
 
 gulp.task 'images', ->
   #TODO use different img dir
   gulp.src './app/img/*'
+    .pipe if keepWatching then watch() else gutil.noop()
     .pipe gulp.dest('./build/images/')
   
-gulp.task 'default', ['coffee', 'sass']
+gulp.task 'default', ['coffee', 'sass', 'index', 'images']

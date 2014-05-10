@@ -23,13 +23,6 @@
     "start": "http-server -a localhost -p 8000 ./build",
     "gulp": "gulp --require coffee-script/register"
   },
-  "browserify": {
-    "transform": [
-      "coffeeify",
-      "browserify-shim",
-      "uglifyify"
-    ]
-  },
   "browserify-shim": {
     "jquery": "global:$",
     "underscore": "global:_"
