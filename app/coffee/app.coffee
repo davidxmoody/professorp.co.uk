@@ -1,5 +1,4 @@
 $ = require('jquery')
-_ = require('underscore')
 MemoryGrid = require('./memorygrid')
 
 $(document).ready ->

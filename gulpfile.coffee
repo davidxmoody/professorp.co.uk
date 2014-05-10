@@ -38,8 +38,7 @@ gulp.task 'index', ->
     .pipe gulp.dest('./build/')
 
 gulp.task 'images', ->
-  #TODO use different img dir
-  gulp.src './app/img/*'
+  gulp.src './app/images/*'
     .pipe if keepWatching then watch() else gutil.noop()
     .pipe gulp.dest('./build/images/')
   
