@@ -1,6 +1,6 @@
 ---
 title: Welcome to Professor P's website
-layout: home
+layout: 'default'
 description: Website for the Professor P series of children's books
 ---
   <article>
