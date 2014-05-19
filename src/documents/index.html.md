@@ -7,7 +7,7 @@ description: Website for the Professor P series of children's books
 
 Hi, I'm Peter J Davidson, fossil hunter, dinosaur enthusiast, inventor and author of the Professor P series of books.
 
-Welcome to my website where you'll find lots of free stuff to go with the books - games, deleted scenes, fun facts and exciting things to do.
+Welcome to my website where you'll find lots of free stuff to go with the [books](/books) - games, deleted scenes, fun facts and exciting things to do.
 
 Have fun!
 

@@ -108,6 +108,12 @@ docpadConfig = {
 				site:
 					url: false
 
+  # Plugins
+  
+  plugins:
+    cleanurls:
+      static: true
+
 
 	# =================================
 	# DocPad Events
