@@ -88,11 +88,8 @@ docpadConfig = {
 	# http://bevry.me/queryengine/guide
 
 	collections:
-
-		# Create a collection called posts
-		# That contains all the documents that will be going to the out path posts
-		posts: ->
-			@getCollection('documents').findAllLive({relativeOutDirPath: 'posts'})
+		books: ->
+			@getCollection('documents').findAllLive({layout: 'book'})
 
 
 	# =================================
