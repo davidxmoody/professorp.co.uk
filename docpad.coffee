@@ -77,6 +77,12 @@ docpadConfig = {
 			@site.keywords.concat(@document.keywords or []).join(', ')
 
 
+  # Speed up file watching
+
+  regenerateDelay: 0
+  watchOptions: catchupDelay: 0
+
+
 	# =================================
 	# Collections
 
