@@ -1,5 +1,5 @@
 ---
-layout: 'default'
+layout: default
 description: Website for the Professor P series of children's books
 ---
 

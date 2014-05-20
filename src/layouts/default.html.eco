@@ -1,3 +1,6 @@
+---
+htmlmin: true
+---
 <!DOCTYPE html>
 <!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
 <!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
@@ -10,7 +13,6 @@
 
   <title><%= @getPreparedTitle() %></title>
   <meta name="description" content="<%= @getPreparedDescription() %>" />
-  <meta name="keywords" content="<%= @getPreparedKeywords() %>" />
 
   <%- @getBlock('meta').toHTML() %>
   <%- @getBlock('styles').add(@site.styles).toHTML() %>
