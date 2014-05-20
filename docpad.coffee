@@ -30,7 +30,6 @@ docpadConfig = {
 				"""
 
 			# The website's styles
-      # TODO
 			styles: [
 				'/vendor/normalize.css'
 				'/vendor/h5bp.css'
@@ -96,6 +95,12 @@ docpadConfig = {
 	collections:
 		books: ->
 			@getCollection('documents').findAllLive({layout: 'book'})
+
+		games: ->
+			@getCollection('documents').findAllLive({layout: 'game'})
+
+		activities: ->
+			@getCollection('documents').findAllLive({layout: 'activity'})
 
 
 	# =================================
