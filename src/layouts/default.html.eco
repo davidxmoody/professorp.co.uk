@@ -18,57 +18,35 @@ htmlmin: true
   <%- @getBlock('styles').add(@site.styles).toHTML() %>
 </head>
 <body>
-  <!--[if lt IE 7]>
-  <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
-  <![endif]-->
+  <div class="container">
+    <!--[if lt IE 7]>
+    <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+    <![endif]-->
 
-  <header>
-    <hgroup>
-      <h1><a href="<%= @site.url %>"><%- @site.title %></a></h1>
-    </hgroup>
-    <nav>
-      <ul>
-        <li><a href="/">Home</a></li>
-
-        <li>
-          <a href="/books">Books</a>
-          <ul>
-            <% for page in @getCollection('books').sortArray(name: 1): %>
-              <li><a href="<%= page.url %>"><%= page.title %></a></li>
-            <% end %>
-          </ul>
-        </li>
-
-        <li><a href="/games">Games</a>
-          <ul>
-            <% for page in @getCollection('games').sortArray(name: 1): %>
-              <li><a href="<%= page.url %>"><%= page.title %></a></li>
-            <% end %>
-          </ul>
-        </li>
-
-        <li><a href="/activities">Activities</a>
-          <ul>
-            <% for page in @getCollection('activities').sortArray(name: 1): %>
-              <li><a href="<%= page.url %>"><%= page.title %></a></li>
-            <% end %>
-          </ul>
-        </li>
-
-        <li><a href="/faq">FAQ</a></li>
-
-        <li><a href="/contact">Contact</a></li>
-      </ul>
-    </nav>
-  </header>
-
-  <article>
-    <%- @content %>
-  </article>
-
-  <footer>
-    <p>© 2014 Peter J Davidson</p>
-  </footer>
+    <header>
+      <hgroup>
+        <h1><a href="<%= @site.url %>"><%- @site.title %></a></h1>
+      </hgroup>
+      <nav>
+        <ul>
+          <%- @partial('menuitem', {title: 'Home', url: '/'}) %>
+          <%- @partial('menuitem', {title: 'Books'}) %>
+          <%- @partial('menuitem', {title: 'Games'}) %>
+          <%- @partial('menuitem', {title: 'Activities'}) %>
+          <%- @partial('menuitem', {title: 'FAQ'}) %>
+          <%- @partial('menuitem', {title: 'Contact'}) %>
+        </ul>
+      </nav>
+    </header>
+    
+    <article>
+      <%- @content %>
+    </article>
+    
+    <footer>
+      <p>© 2014 Peter J Davidson</p>
+    </footer>
+  </div>
 
   <%- @getBlock('scripts').add(@site.scripts).toHTML() %>
 </body>

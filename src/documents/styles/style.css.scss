@@ -1,4 +1,6 @@
 @import 'bourbon/bourbon';
+@import 'grid-settings';
+@import 'neat/neat';
 
 $very-light-blue: rgb(204, 255, 255);
 $light-blue: rgb(102, 204, 255);
@@ -12,13 +14,21 @@ $background-color: $light-blue;
 $text: $black;
 $faint-text: $grey;
 
+html {
+  overflow-y: scroll;
+}
+
 body {
   background-color: $body-background-color;
   font-family: cursive;
   font-size: 16px;
 }
 
-body > header {
+div.container {
+  @include outer-container;
+}
+
+header {
   background-color: $light-blue;
 
   nav ul {
@@ -53,13 +63,20 @@ body > header {
   }
 }
 
-body > article {
+article {
   max-width: 700px;
   min-width: 350px;
   color: $text;
 }
 
-body > footer {
+footer {
   font-size: 0.8rem;
   color: $faint-text;
+}
+
+.browsehappy {
+    margin: 0.2em 0;
+    background: #ccc;
+    color: #000;
+    padding: 0.2em 0;
 }

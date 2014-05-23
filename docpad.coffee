@@ -10,8 +10,9 @@ module.exports = docpadConfig = {
         Website for the Professor P series of children's books
         """
       styles: [
-        '/vendor/normalize.css'
-        '/vendor/h5bp.css'
+        '//cdnjs.cloudflare.com/ajax/libs/normalize/3.0.1/normalize.min.css'
+        #'/vendor/normalize.css'
+        #'/vendor/h5bp.css'
         '/styles/style.css'
       ]
       scripts: [ ]

@@ -1,0 +1,11 @@
+<li>
+  <a href="<%= @url or '/'+@title.toLowerCase() %>"><%= @title %></a>
+  <% pages = @getCollection(@collection or @title.toLowerCase())?.sortArray(name: 1) %>
+  <% if pages?.length>0: %>
+    <ul>
+      <% for page in pages: %>
+        <li><a href="<%= page.url %>"><%= page.title %></a></li>
+      <% end %>
+    </ul>
+  <% end %>
+</li>
