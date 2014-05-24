@@ -1,10 +1,13 @@
 <li>
-  <a href="<%= @url or '/'+@title.toLowerCase() %>"><%= @title %></a>
+  <% url = @url or '/'+@title.toLowerCase() %>
+  <a href="<%= url %>"<%= " class='current-page'" if url is @document.url %>><%= @title %></a>
   <% pages = @getCollection(@collection or @title.toLowerCase())?.sortArray(name: 1) %>
   <% if pages?.length>0: %>
     <ul>
       <% for page in pages: %>
-        <li><a href="<%= page.url %>"><%= page.title %></a></li>
+        <li><a href="<%= page.url %>"<%= " class='current-page'" if page.url is @document.url %>>
+          <%= page.title %>
+        </a></li>
       <% end %>
     </ul>
   <% end %>

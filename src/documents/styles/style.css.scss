@@ -2,6 +2,8 @@
 @import 'grid-settings';
 @import 'neat/neat';
 
+@import 'menu';
+
 $very-light-blue: rgb(204, 255, 255);
 $light-blue: rgb(102, 204, 255);
 $medium-blue: rgb(11, 175, 255);
@@ -30,37 +32,7 @@ div.container {
 
 header {
   background-color: $light-blue;
-
-  nav ul {
-    border-radius: 4px;
-    display: inline-table;
-    padding: 2px;
-    list-style: none;
-    position: relative;
-    border-spacing: 5px 0px;
-    background: $medium-blue;
-
-    //TODO add hovering animation
-    li {
-      display: table-cell;
-      text-align: center;
-
-      ul {
-        display: none;
-        position: absolute;;
-
-        li {
-          display: block;
-        }
-      }
-    }
-
-    li:hover {
-      ul {
-        display: block;
-      }
-    }
-  }
+  @include clearfix;
 }
 
 article {
