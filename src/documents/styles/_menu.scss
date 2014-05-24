@@ -7,8 +7,6 @@ nav ul {
   padding: 0;
   list-style: none;
 
-  @include clearfix;
-
   li {
     float: left;
     position: relative;
@@ -18,8 +16,6 @@ nav ul {
     &:hover {
       background: $selected-medium-blue;
     }
-
-    @include clearfix;
 
     a {
       display: block;
@@ -32,27 +28,31 @@ nav ul {
     }
 
     ul {
-      display: block;
       position: absolute;;
-      overflow: hidden;
-      transition: all 0.2s;
+      transition: opacity 0.2s, visibility 0s linear 0.2s;
+      visibility: hidden;
+      opacity: 0;
 
       li {
-        display: block;
-        width: 400px;
+        width: 100%;
 
         a {
-          width: 400px;
+          white-space: nowrap;
         }
       }
     }
 
-    &:not(:hover) ul {
-      height: 0;
+    &:hover ul {
+      transition: opacity 0.4s, visibility 0s linear 0s;
+      visibility: visible;
+      opacity: 1;
+      z-index: 10;
     }
   }
 }
 
+// Add a small indicator to menu items with children
+// TODO: only for desktop and make it a proper arrow
 nav > ul > li > a:first-child:nth-last-child(2):after {
   content: "+";
   position: absolute;
