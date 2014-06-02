@@ -2,5 +2,5 @@
 layout: default
 ---
 
-<% for book in @getCollection('books').sortArray(title: 1): %>
+<% for book in @getCollection('books').sortArray(name: 1): %>
 - [<%= book.title %>](<%= book.url %>) <% end %>

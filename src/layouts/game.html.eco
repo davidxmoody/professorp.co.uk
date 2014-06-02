@@ -2,5 +2,4 @@
 layout: default
 ---
 
-TODO
-<%= @content %>
+<%- @content %>
