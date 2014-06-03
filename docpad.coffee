@@ -13,9 +13,9 @@ module.exports = docpadConfig = {
         #'//cdnjs.cloudflare.com/ajax/libs/normalize/3.0.1/normalize.min.css'
         #'/vendor/normalize.css'
         #'/vendor/h5bp.css'
-        #'/styles/style.css'
         '//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css'
         #'//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap-theme.min.css'
+        '/styles/style.css'
       ]
       scripts: [
         '//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js'

@@ -18,43 +18,40 @@ htmlmin: true
   <%- @getBlock('styles').add(@site.styles).toHTML() %>
 </head>
 <body>
+
   <div class="container">
+
+    <nav class="navbar navbar-default" role="navigation">
+      <div class="container-fluid">
+  
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="<%= @site.url %>"><%= @site.title %></a>
+        </div>
+  
+        <div class="navbar-collapse collapse">
+          <ul class="nav navbar-nav">
+            <%- @partial('menuitem', {title: 'Books'}) %>
+            <%- @partial('menuitem', {title: 'Games'}) %>
+            <%- @partial('menuitem', {title: 'Activities'}) %>
+            <%- @partial('menuitem', {title: 'Events'}) %>
+            <%- @partial('menuitem', {title: 'About Peter', url: '/about-peter'}) %>
+            <%- @partial('menuitem', {title: 'Contact'}) %>
+          </ul>
+        </div>
+  
+      </div>
+    </nav>
+
     <!--[if lt IE 7]>
     <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
     <![endif]-->
 
-    <header>
-      <hgroup>
-        <h1><a href="<%= @site.url %>"><%- @site.title %></a></h1>
-      </hgroup>
-
-      <nav class="navbar navbar-default" role="navigation">
-        <div class="container-fluid">
-
-          <div class="navbar-header">
-            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-              <span class="sr-only">Toggle navigation</span>
-              <span class="icon-bar"></span>
-              <span class="icon-bar"></span>
-              <span class="icon-bar"></span>
-            </button>
-          </div>
-
-          <div class="navbar-collapse collapse">
-            <ul class="nav navbar-nav">
-              <%- @partial('menuitem', {title: 'Home', url: '/'}) %>
-              <%- @partial('menuitem', {title: 'Books'}) %>
-              <%- @partial('menuitem', {title: 'Games'}) %>
-              <%- @partial('menuitem', {title: 'Activities'}) %>
-              <%- @partial('menuitem', {title: 'Events'}) %>
-              <%- @partial('menuitem', {title: 'About Peter', url: '/about-peter'}) %>
-              <%- @partial('menuitem', {title: 'Contact'}) %>
-            </ul>
-          </div>
-
-        </div>
-      </nav>
-    </header>
     
     <article>
       <%- @content %>
