@@ -6,13 +6,13 @@ Please contact me if there is anything more you would like to know about Profess
 
 You can email me at <peter@professorp.co.uk> or write to me at:
 
+<blockquote>
 <address>
-<pre>
-Peter J Davidson
-Positive Books Limited
-66 High Street
-Glastonbury
-Somerset
+**Peter J Davidson**<br>
+Positive Books Limited<br>
+66 High Street<br>
+Glastonbury<br>
+Somerset<br>
 BA6 9DZ
-</pre>
 </address>
+</blockquote>

@@ -10,12 +10,18 @@ module.exports = docpadConfig = {
         Website for the Professor P series of children's books
         """
       styles: [
-        '//cdnjs.cloudflare.com/ajax/libs/normalize/3.0.1/normalize.min.css'
+        #'//cdnjs.cloudflare.com/ajax/libs/normalize/3.0.1/normalize.min.css'
         #'/vendor/normalize.css'
         #'/vendor/h5bp.css'
-        '/styles/style.css'
+        #'/styles/style.css'
+        '//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css'
+        #'//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap-theme.min.css'
       ]
-      scripts: [ ]
+      scripts: [
+        '//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js'
+        '//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js'
+        '//cdnjs.cloudflare.com/ajax/libs/bootstrap-hover-dropdown/2.0.2/bootstrap-hover-dropdown.min.js'
+      ]
 
     # Helper Functions
     getPreparedTitle: ->

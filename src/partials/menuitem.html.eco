@@ -1,14 +1,23 @@
-<li>
-  <% url = @url or '/'+@title.toLowerCase() %>
-  <a href="<%= url %>"<%= " class='current-page'" if url is @document.url %>><%= @title %></a>
-  <% pages = @getCollection(@collection or @title.toLowerCase())?.sortArray(name: 1) %>
-  <% if pages?.length>0: %>
-    <ul>
-      <% for page in pages: %>
-        <li><a href="<%= page.url %>"<%= " class='current-page'" if page.url is @document.url %>>
-          <%= page.title %>
-        </a></li>
-      <% end %>
-    </ul>
+<% url = @url or '/'+@title.toLowerCase() %>
+<% pages = @getCollection(@collection or @title.toLowerCase())?.sortArray(name: 1) %>
+<% hasPages = pages? and pages.length>0 %>
+<% isCurrentPage = url is @document.url %>
+
+<li<% ' class="dropdown"' if hasPages %>>
+  <% unless hasPages: %>
+    <a href="<%= url %>"<%= ' class="active"' if isCurrentPage %>><%= @title %></a>
+  <% else: %>
+    <a href="<%= url %>" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown">
+      <%= @title %> <b class="caret"></b>
+    </a>
+    <% if hasPages: %>
+      <ul class="dropdown-menu">
+        <% for page in pages: %>
+          <li><a href="<%= page.url %>"<%= ' class="active"' if isCurrentPage %>>
+            <%= page.title %>
+          </a></li>
+        <% end %>
+      </ul>
+    <% end %>
   <% end %>
 </li>
