@@ -15,7 +15,7 @@ htmlmin: true
   <meta name="description" content="<%= @getPreparedDescription() %>" />
 
   <%- @getBlock('meta').toHTML() %>
-  <%- @getBlock('styles').add(@site.styles).toHTML() %>
+  <%- @getBlock('styles').add(@site.styles).add(@document.styles).toHTML() %>
 </head>
 <body>
 
@@ -43,7 +43,7 @@ htmlmin: true
             <%- @partial('menuitem', {title: 'Games'}) %>
             <%- @partial('menuitem', {title: 'Activities'}) %>
             <%- @partial('menuitem', {title: 'Events'}) %>
-            <%- @partial('menuitem', {title: 'About Peter', url: '/about-peter'}) %>
+            <%- @partial('menuitem', {title: 'About Peter'}) %>
             <%- @partial('menuitem', {title: 'Contact'}) %>
           </ul>
         </div>
@@ -56,6 +56,6 @@ htmlmin: true
     </article>
   </div>
 
-  <%- @getBlock('scripts').add(@site.scripts).toHTML() %>
+  <%- @getBlock('scripts').add(@site.scripts).add(@document.scripts).toHTML() %>
 </body>
 </html>

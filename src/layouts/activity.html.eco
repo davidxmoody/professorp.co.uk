@@ -2,5 +2,6 @@
 layout: default
 ---
 
-TODO
-<%= @content %>
+Activity content will go here...
+
+<%- @content %>

@@ -67,6 +67,7 @@ module.exports = docpadConfig = {
 
     cleanurls:
       static: true
+      trailingSlashes: true
     
     htmlmin:
       removeComments: true
