@@ -1,6 +1,3 @@
-defaultQuestions = require('questions')
-questionsTemplate = require('questionstemplate')
-
 module.exports = class QuestionLoader
   constructor: ($container, @maxQuestions=10, @time=121, shuffle=true, @questions=defaultQuestions) ->
     @questions = _.shuffle(@questions) if shuffle

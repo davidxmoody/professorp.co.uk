@@ -10,6 +10,7 @@
   "dependencies": {
     "docpad": "~6.65.0",
     "docpad-plugin-cleanurls": "~2.7.0",
+    "docpad-plugin-cson": "~2.0.1",
     "docpad-plugin-eco": "~2.0.3",
     "docpad-plugin-htmlmin": "~2.4.0",
     "docpad-plugin-marked": "~2.2.1",

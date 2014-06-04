@@ -1,0 +1,33 @@
+---
+title: Quiz
+layout: game
+referencesOthers: true
+styles: style.css
+scripts: 
+  - //cdnjs.cloudflare.com/ajax/libs/underscore.js/1.6.0/underscore-min.js
+  - script.js
+---
+
+<div class="row">
+  <div class="unanswered-questions">
+    <% questions = JSON.parse(@include("./questions.json.cson")) %>
+    <% for question in questions: %>
+  
+      <div class="col-sm-4">
+        <div class="panel panel-default">
+          <div class="panel-heading">
+            <h2 class="panel-title"><%= question.text %></h2>
+          </div>
+          <div class="list-group">
+            <% for answer in question.answers: %>
+              <a href='#' class="list-group-item disabled">
+                <%= answer %>
+              </a>
+            <% end %>
+          </div>
+        </div>
+      </div>
+  
+    <% end %>
+  </div>
+</div>

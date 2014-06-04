@@ -1,0 +1,274 @@
+---
+write: false
+---
+[
+  {
+    text: "Where would you be most likely to find Professor P's phone?"
+    answers: [
+      "In Sleepy's basket"
+      "On the hall table"
+      "In the living room"
+    ]
+  }
+
+  {
+    text: "What is the best way to find Professor P's phone?"
+    answers: [
+      "Call out and ask it where it is"
+      "Ask Sleepy to go and fetch it"
+      "Wait for it to ring"
+    ]
+  }
+
+  {
+    text: "Which of Professor P's inventions is polite and helpful?"
+    answers: [
+      "His phone"
+      "His fridge"
+      "His dishwasher"
+    ]
+  }
+
+  {
+    text: "Professor P's fridge is"
+    answers: [
+      "Grumpy"
+      "Helpful"
+      "Funny"
+    ]
+  }
+
+  {
+    text: "What is the best way to open Professor P's fridge?"
+    answers: [
+      "Ask it nicely"
+      "Yank the handle hard"
+      "Prise it open with a screwdriver"
+    ]
+  }
+
+  {
+    text: "Which of Professor P's inventions is bad tempered?"
+    answers: [
+      "His fridge"
+      "His toaster"
+      "His washing machine"
+    ]
+  }
+
+  {
+    text: "Professor P's toaster"
+    answers: [
+      "Tells jokes"
+      "Explodes!"
+      "Hates mornings"
+    ]
+  }
+
+  {
+    text: "Professor P's toaster"
+    answers: [
+      "Sometimes burns toast"
+      "Never burns toast"
+      "Always burns toast"
+    ]
+  }
+
+  {
+    text: "Which of Professor P's inventions tells jokes?"
+    answers: [
+      "His toaster"
+      "His fridge"
+      "His dishwasher"
+    ]
+  }
+
+  {
+    text: "Which of Professor P's inventions doesn't know when to stop talking?"
+    answers: [
+      "His toaster"
+      "His phone"
+      "His washing machine"
+    ]
+  }
+
+  {
+    text: "Professor P's front door"
+    answers: [
+      "Talks in a loud commanding voice"
+      "Often bursts into fits of giggles"
+      "Laughs loudly"
+    ]
+  }
+
+  {
+    text: "Which of Professor P's inventions talks in a loud commanding voice?"
+    answers: [
+      "His front door"
+      "His phone"
+      "His watch"
+    ]
+  }
+
+  {
+    text: "What's unusual about Professor P's cans of self-heating beans?"
+    answers: [
+      "They sometimes explode"
+      "They always explode"
+      "They don't heat up the beans"
+    ]
+  }
+
+  {
+    text: "Which of Professor P's inventions is most likely to explode"
+    answers: [
+      "His can of self-heating beans"
+      "His toaster"
+      "His phone"
+    ]
+  }
+
+  {
+    text: "What is unusual about Professor P dishwasher"
+    answers: [
+      "Nothing, it's just an ordinary dishwasher"
+      "It also washes clothes"
+      "It often breaks the dishes"
+    ]
+  }
+
+  {
+    text: "Which of Professor P's inventions does not talk?"
+    answers: [
+      "His dishwasher"
+      "His phone"
+      "His watch"
+    ]
+  }
+
+  {
+    text: "What colour is Professor P's watch?"
+    answers: [
+      "Purple"
+      "Pink"
+      "Blue"
+    ]
+  }
+
+  {
+    text: "What is unusual about Professor P's watch?"
+    answers: [
+      "It reminds him of appointments"
+      "It often gets the time wrong"
+      "It keeps falling off his wrist"
+    ]
+  }
+
+  {
+    text: "What is the problem with Professor P's automatic dog bathing machine?"
+    answers: [
+      "It pulled some hairs out of Sleepy"
+      "It doesn't get Sleepy clean"
+      "Nothing, it works fine"
+    ]
+  }
+
+  {
+    text: "What is the problem with Professor P's electric flea comb?"
+    answers: [
+      "It gave Sleepy an electric shock"
+      "It doesn't kill fleas"
+      "Nothing, it works fine"
+    ]
+  }
+
+  {
+    text: "What is the problem with Professor P's automatic pet feeder?"
+    answers: [
+      "Nothing, it works fine"
+      "It gave Professor P's cats an electric shock"
+      "It explodes"
+    ]
+  }
+
+  {
+    text: "Which of Professor P's pet products works very well?"
+    answers: [
+      "The automatic pet feeder"
+      "The automatic dog bathing machine"
+      "The electric flea comb"
+    ]
+  }
+
+  {
+    text: "What's special about Professor P's solar powered kettle?"
+    answers: [
+      "It can use sea water"
+      "It tells jokes"
+      "It explodes"
+    ]
+  }
+
+  {
+    text: "What's special about Professor P's dinghy?"
+    answers: [
+      "It's solar powered and self-inflating"
+      "Nothing, it's just an ordinary dinghy"
+      "It explodes"
+    ]
+  }
+
+  {
+    text: "The metal detector Peter and Tara built"
+    answers: [
+      "Blew up"
+      "Worked fine"
+      "Did not have enough capacitors"
+    ]
+  }
+
+  {
+    text: "What is unusual about the lights in Professor P's basement?"
+    answers: [
+      "They won't switch on unless you say \"please\""
+      "They switch on automatically"
+      "They don't work"
+    ]
+  }
+
+  {
+    text: "What is the problem with Professor P's solar powered cool box?"
+    answers: [
+      "There's no room for the food"
+      "It freezes the food"
+      "It explodes"
+    ]
+  }
+
+  {
+    text: "What is unusual about the coloured balls in Professor P's basement?"
+    answers: [
+      "They don't stop bouncing"
+      "They explode"
+      "Nothing, they are just ordinary plastic balls"
+    ]
+  }
+
+  {
+    text: "What is unusual about the Professor P's answer phone?"
+    answers: [
+      "It won't let you talk to Professor P if you're trying to sell something"
+      "It doesn't record messages"
+      "It explodes"
+    ]
+  }
+
+  {
+    text: "What is unusual about the Professor P's answer phone?"
+    answers: [
+      "It sings badly"
+      "Nothing, it works fine"
+      "It explodes"
+    ]
+  }
+]

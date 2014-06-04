@@ -3,3 +3,5 @@ layout: default
 ---
 
 <%- @content %>
+
+<div class="game-container"></div>
