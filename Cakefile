@@ -54,14 +54,14 @@ task 'watch:app', "Build #{OUTPUT_SCRIPT} from #{APP_PATH} whenever the sources 
 
 
 task 'build', 'Run all builds', ->
+  invoke('build:questions')
   invoke('build:app')
   invoke('build:css')
-  invoke('build:questions')
 
 task 'watch', 'Run all builds whenever the sources change', ->
+  invoke('watch:questions')
   invoke('watch:app')
   invoke('watch:css')
-  invoke('watch:questions')
 
 
 task 'build:questions', "Build #{QUESTIONS_JS} from #{QUESTIONS_DIR}", ->

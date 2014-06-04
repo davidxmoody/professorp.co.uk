@@ -131,7 +131,7 @@ Worked fine
 Did not have enough capacitors
 
 What is unusual about the lights in Professor P's basement?
-They won't switch on unless you say ‘please'
+They won't switch on unless you say "please"
 They switch on automatically
 They don't work
 
