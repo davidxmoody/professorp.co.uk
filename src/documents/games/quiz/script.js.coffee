@@ -1,12 +1,15 @@
 #TODO use browserify and require statement
-#TODO require underscore
 
-allQuestions = window.profpQuestions
-introQuestion = window.profpIntroQuestion
+introQuestion = {
+  text: "Are you ready to begin?"
+  answers: [ { text: "Yes", isCorrect: true }, { text: "No" } ]
+}
+
 youWonQuestion = {
   text: "Congratulations!"
   answers: [ { text: "Play again", isCorrect: true } ]
 }
+
 youLostQuestion = {
   text: "You lost, better luck next time!"
   answers: [ { text: "Play again", isCorrect: true } ]
@@ -17,7 +20,7 @@ angular.module('quizGame', []).controller 'QuizCtrl', ($scope, $timeout) ->
   # Game config options
   $scope.numQuestions = 20
   $scope.numAnswered = 0
-  $scope.questions = _.sample(allQuestions, $scope.numQuestions)
+  $scope.questions = window.getQuestions($scope.numQuestions)
   $scope.currentQuestion = introQuestion
   $scope.secondsRemaining = 120
   $scope.penalty = 10
@@ -27,7 +30,7 @@ angular.module('quizGame', []).controller 'QuizCtrl', ($scope, $timeout) ->
     $scope.secondsRemaining += difference
     if $scope.secondsRemaining <= 0
       $scope.secondsRemaining = 0
-      $scope.nextQuestion()
+      $timeout($scope.nextQuestion, 400)
 
   # Helper function for formatting the seconds remaining
   $scope.formatTime = (time) ->

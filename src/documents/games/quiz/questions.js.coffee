@@ -1,4 +1,4 @@
-#TODO require underscore for shuffle function
+#TODO require underscore for shuffle/sample function
 
 class Answer
   constructor: (@text, @isCorrect=false, @isSelected=false, @isDisabled=false) ->
@@ -9,14 +9,8 @@ class Question
     @answers.push(new Answer(correctAnswer, true))
     @answers = _.shuffle(@answers)
 
-window.profpIntroQuestion = new Question(
-  "Are you ready to begin?"
-  "Yes"
-  "No"
-)
-
 #TODO use browserify
-window.profpQuestions = _.shuffle([
+window.getQuestions = (numQuestions) -> _.sample([
   new Question(
     "Where would you be most likely to find Professor P's phone?"
     "In Sleepy's basket"
@@ -197,4 +191,4 @@ window.profpQuestions = _.shuffle([
     "Nothing, it works fine"
     "It explodes"
   )
-])
+], numQuestions)
