@@ -1,20 +1,35 @@
 #TODO use browserify and require statement
 #TODO require underscore
 
-questions = window.profpQuestions
+allQuestions = window.profpQuestions
 introQuestion = window.profpIntroQuestion
+youWonQuestion = {
+  text: "Congratulations!"
+  answers: [ { text: "Play again", isCorrect: true } ]
+}
+youLostQuestion = {
+  text: "You lost, better luck next time!"
+  answers: [ { text: "Play again", isCorrect: true } ]
+}
 
 angular.module('quizGame', []).controller 'QuizCtrl', ($scope, $timeout) ->
-  $scope.secondsRemaining = 120
-  $scope.currentQuestion = introQuestion
 
+  # Game config options
+  $scope.numQuestions = 20
+  $scope.numAnswered = 0
+  $scope.questions = _.sample(allQuestions, $scope.numQuestions)
+  $scope.currentQuestion = introQuestion
+  $scope.secondsRemaining = 120
+  $scope.penalty = 10
+
+  # Update time remaining and trigger end game if time is up
   $scope.updateTimer = (difference) ->
     $scope.secondsRemaining += difference
-    $scope.secondsRemaining = 0 if $scope.secondsRemaining < 0
-    if $scope.secondsRemaining == 0
-      console.log 'time up'
-      #TODO end game
+    if $scope.secondsRemaining <= 0
+      $scope.secondsRemaining = 0
+      $scope.nextQuestion()
 
+  # Helper function for formatting the seconds remaining
   $scope.formatTime = (time) ->
     minutes = Math.floor(time/60)
     seconds = time%60
@@ -22,18 +37,45 @@ angular.module('quizGame', []).controller 'QuizCtrl', ($scope, $timeout) ->
     "#{minutes}:#{seconds}"
 
   $scope.nextQuestion = ->
-    $scope.currentQuestion = questions.shift()
+    # Game has been won
+    if $scope.numQuestions == $scope.numAnswered
+      $scope.currentQuestion = youWonQuestion
+
+    # Game has been lost
+    else if $scope.secondsRemaining <= 0
+      $scope.currentQuestion = youLostQuestion
+
+    # Game still in progress
+    else
+      $scope.currentQuestion = $scope.questions.shift()
 
   $scope.submitAnswer = (answer) ->
-    unless answer.isSelected or $scope.secondsRemaining <= 0
+    if answer.text == "Play again"
+      #TODO do this without forcing a page refresh
+      location.reload()
+
+    unless answer.isSelected or answer.isDisabled
       answer.isSelected = true
-      if answer.isCorrect
-        $timeout($scope.nextQuestion, 400)
-        $timeout(countdownSecond, 1000) if $scope.currentQuestion is introQuestion
+
+      # If asking if you are ready to begin and answer yes then begin
+      if $scope.currentQuestion is introQuestion
+        if answer.isCorrect
+          $timeout($scope.nextQuestion, 400)
+          $timeout(countdownSecond, 1000)
+
       else
-        $scope.updateTimer(-20) unless $scope.currentQuestion is introQuestion
+        if answer.isCorrect
+          # Disable other answers and proceed to next question
+          for otherAnswer in $scope.currentQuestion.answers
+            otherAnswer.isDisabled = true if otherAnswer isnt answer
+          $scope.numAnswered++
+          $timeout($scope.nextQuestion, 400)
+        else
+          # Subtract penalty but continue game
+          $scope.updateTimer(-1*$scope.penalty)
 
   countdownSecond = ->
-    return if $scope.secondsRemaining <= 0
+    # Cancel countdown if game is over
+    return if $scope.secondsRemaining <= 0 or $scope.numQuestions == $scope.numAnswered
     $scope.updateTimer(-1)
-    $timeout countdownSecond, 1000
+    $timeout(countdownSecond, 1000)

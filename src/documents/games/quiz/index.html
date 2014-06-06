@@ -11,12 +11,24 @@ scripts:
 
 <div ng-app="quizGame" ng-controller="QuizCtrl" class="row">
 
-  <div class="col-sm-2 col-md-3">
-    <h2>How to play</h2>
-    {{ formatTime(secondsRemaining) }}
+  <div class="col-sm-6">
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        <h2 class="panel-title">How to play</h2>
+      </div>
+      <div class="panel-body">
+        <p>This quiz will test your knowledge of the Professor P books. 
+           Answer {{ numQuestions }} questions correctly before the time runs out.</p>
+        <p>There is a {{ penalty }} second penalty for every incorrect answer.</p>
+        <p>You have answered <em>{{ numAnswered }} out of
+           {{ numQuestions }}</em> questions so far.</p>
+        <p>Your remaining time is: 
+        <strong>{{ formatTime(secondsRemaining) }}</strong></p>
+      </div>
+    </div>
   </div>
 
-  <div class="col-sm-8 col-md-6">
+  <div class="col-sm-6">
     <div class="panel panel-default">
       <div class="panel-heading">
         <h2 class="panel-title">
@@ -27,14 +39,15 @@ scripts:
         <a ng-repeat="answer in currentQuestion.answers" 
            href="javascript:void(0)" 
            class="list-group-item"
-           ng-class="{correct: answer.isCorrect, selected: answer.isSelected}"
+           ng-class="{ correct: answer.isCorrect, 
+                       selected: answer.isSelected,
+                       disabled: answer.isDisabled }"
            ng-click="submitAnswer(answer)">
           {{ answer.text }}
         </a>
       </div>
     </div>
   </div>
-
 
 <!--
   <% for question in JSON.parse(@include("./questions.json.cson")): %>

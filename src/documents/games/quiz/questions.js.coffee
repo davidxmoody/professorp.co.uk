@@ -1,7 +1,7 @@
 #TODO require underscore for shuffle function
 
 class Answer
-  constructor: (@text, @isCorrect=false, @isSelected=false) ->
+  constructor: (@text, @isCorrect=false, @isSelected=false, @isDisabled=false) ->
 
 class Question
   constructor: (@text, correctAnswer, incorrectAnswers...) ->

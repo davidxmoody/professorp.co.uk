@@ -2,6 +2,13 @@
   color: lime;
 }
 
+.list-group > a.disabled {
+  &:hover, &:focus {
+    background-color: transparent;
+    cursor: not-allowed;
+  }
+}
+
 .list-group > a.selected:not(.correct) {
   text-decoration: line-through;
   color: red;
