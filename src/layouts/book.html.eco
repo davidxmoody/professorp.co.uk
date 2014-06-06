@@ -2,8 +2,10 @@
 layout: default
 ---
 
+<%- @partial('signed') %>
+
 <h2><%= @document.title %></h2>
 <% if @document.coverImage?: %>
-  <img src="<%= @document.coverImage %>" alt="Image of the front cover of <%= @document.title %>">
+  <img src="<%= @document.coverImage %>" alt="Image of the front cover of <%= @document.title %>" class="img-thumbnail">
 <% end %>
 <%- @content %>

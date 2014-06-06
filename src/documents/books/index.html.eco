@@ -1,0 +1,11 @@
+---
+layout: default
+---
+
+<% books = @getCollection('books').sortArray(name: 1) %>
+
+<ul>
+  <% for book in books: %>
+    <li><a href="<%= book.url %>"><%= book.title %></a></li>
+  <% end %>
+</ul>
