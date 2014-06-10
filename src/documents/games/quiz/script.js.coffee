@@ -6,19 +6,19 @@ introQuestion = {
 }
 
 youWonQuestion = {
-  text: "Congratulations!"
+  text: "You won, congratulations!"
   answers: [ { text: "Play again", isCorrect: true } ]
 }
 
 youLostQuestion = {
-  text: "You lost, better luck next time!"
+  text: "Time up, better luck next time!"
   answers: [ { text: "Play again", isCorrect: true } ]
 }
 
 angular.module('quizGame', []).controller 'QuizCtrl', ($scope, $timeout) ->
 
   # Game config options
-  $scope.numQuestions = 20
+  $scope.numQuestions = 15
   $scope.numAnswered = 0
   $scope.questions = window.getQuestions($scope.numQuestions)
   $scope.currentQuestion = introQuestion

@@ -4,8 +4,34 @@ layout: default
 
 <%- @partial('signed') %>
 
-<h2><%= @document.title %></h2>
-<% if @document.coverImage?: %>
-  <img src="<%= @document.coverImage %>" alt="Image of the front cover of <%= @document.title %>" class="img-thumbnail">
-<% end %>
-<%- @content %>
+<div class="row">
+  <div class="col-md-10 col-md-offset-1">
+
+
+    <h1><%= @document.title %></h1>
+    <div class="row">
+      <div class="col-sm-4 text-center">
+        <% if @document.coverImage?: %>
+          <p><img src="<%= @document.coverImage %>" alt="Image of the front cover of <%= @document.title %>" class="img-thumbnail"></p>
+        <% end %>
+      </div>
+      <div class="col-sm-8">
+        <%- @content %>
+        <% if @document.firstChapter?: %>
+          <p>Read the <a href="<%= @document.firstChapter %>">First Chapter (PDF).</a></p>
+        <% end %>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-sm-6">
+        <p><%= @document.price %></p>
+        <p><%= @document.publishDate %></p>
+        <p><%= @document.genre %></p>
+        <p><%= @document.physicalDimensions %></p>
+        <p>ISBN <%= @document.isbn %></p>
+      </div>
+    </div>
+
+  </div>
+</div>
