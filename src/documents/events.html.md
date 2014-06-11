@@ -2,4 +2,302 @@
 layout: default
 ---
 
-Events goes here
+## All past events
+
+- 02/04/14 Horningsham Primary School, Wiltshire
+- 05/12/13 Beaulieu Village Primary School, Hampshire
+- 20/11/13 St. Christopher's School, Totnes, Devon
+- 18/10/13 Tidcombe Primary School, Tiverton, Devon
+- 14/10/13 Lainesmead Primary School, Swindon, Wiltshire
+- 11/10/13 Landscove Primary School, Newton Abbot, Devon
+- 07/10/13 St Andrews Primary School, Yelverton, Devon
+- 18/09/13 Wanborough Primary School, Swindon, Wiltshire
+- 10/08/13 Bridport Library, Dorset
+- 03/08/13 Sherborne Library, Dorset
+- 31/07/13 North Swindon Library
+- 31/07/13 Swindon Central Library
+- 27/07/13 Verwood Library, Dorset
+- 20/07/13 Dorchester Library, Dorset
+- 18/07/13 Newton St Cyres Primary School, Exeter, Devon
+- 16/07/13 Monkleigh Primary School, Devon
+- 12/07/13 Ernesettle Community School, Plymouth
+- 11/07/13 Marpool Primary School, Exmouth, Devon
+- 27/06/13 Thorverton Primary School, Exeter, Devon
+- 25/06/13 Littletown Primary Academy, Honiton, Devon
+- 24/06/13 St Budeaux Foundation Junior School, Plymouth
+- 18/06/13 Swimbridge Primary School, Devon
+- 14/06/13 Hallow Primary School, Worcester
+- 13/06/13 St Michalel's Primary School, Kingsteignton, Devon
+- 10/06/13 North Molton School, Devon
+- 06/06/13 St Mary's Catholic Primary School, Buckfast, Devon
+- 05/06/13 St John's International School, Sidmouth,Devon
+- 04/06/13 Woolacombe School, Devon
+- 04/06/13 Combe Martin Primary School, Devon
+- 20/05/13 Cherhill Primary School, Wiltshire
+- 18/05/13 Christchurch Library, Dorset
+- 01/05/13 Verwood First School, Dorset
+- 22/04/13 Dumpton School, Wimborne, Dorset
+- 26/03/13 Lady Seaward’s Primary School, Clyst St George, Devon
+- 22/03/13 Kelly College Preparatory School, Tavistock, Devon
+- 21/03/13 Colyton Primary School, Devon
+- 20/03/13 Wansdyke Primary School, Devizes, Wiltshire
+- 14/03/13 Shrivenham Primary School, Oxfordshire
+- 08/03/13 Clawton Primary School, Clawton, Devon
+- 07/03/13 Clarendon Junior School, Tidworth, Wiltshire
+- 06/03/13 Highweek Primary School, Newton Abbot, Devon
+- 05/03/13 Blackpool Primary School, Devon
+- 15/02/13 Instow Primary School, Devon
+- 07/02/13 Knowle Primary School, Plymouth
+- 25/01/13 Chudleigh Knighton Primary School, Devon
+- 23/01/13 High Bickington Primary School, Devon
+- 09/01/13 St Bartholomew's Primary School, Swindon, Wiltshire
+- 23/11/12 Sonning Primary School, Reading, Berkshire
+- 18/10/12 Holy Rood Catholic Junior School, Swindon, Wiltshire
+- 17/10/12 Lainesmead Primary School, Swindon, Wiltshire
+- 17/10/12 St Francis School, Pewsey, Wiltshire
+- 10/10/12 Lyneham Primary School, Wiltshire
+- 05/10/12 Millbrook Primary School, Swindon, Wiltshire
+- 04/10/12 Wilton and Barford Primary School, Wiltshire
+- 18/08/12 Corfe Mullen Library, Dorset
+- 11/08/12 Gillingham Library, Dorset
+- 04/08/12 Blandford Library, Dorset
+- 03/07/12 Walwayne Court School, Trowbridge, Wiltshire
+- 02/07/12 St Patrick's Catholic Primary School, Corsham, Wiltshire
+- 29/06/12 Shapwick Prep School, Somerset
+- 27/06/12 Lulworth and Winfrith First School, Dorset
+- 25/06/12 Hampreston First School, Wimborne, Dorset
+- 20/06/12 Shaftesbury Primary School, Dorset
+- 14/06/12 Archbishop Wake Primary School, Blandford Forum, Dorset
+- 13/06/12 Stower Provost Community School, Dorset
+- 12/06/12 Pamphill First School, Dorset
+- 11/06/12 Sixpenny Handley First School, Wiltshire
+- 28/05/12 Lydford Primary School, Devon
+- 23/05/12 Bowerhill Primary School, Melksham, Wiltshire
+- 22/05/12 Harnham Junior School, Salisbury, Wiltshire
+- 21/05/12 Ubley Primary School, Bristol
+- 09/05/12 Oakfield Academy, Frome, Somerset
+- 28/03/12 Oakfield Academy, Frome, Somerset
+- 22/03/12 Braywood First School, Windsor, Berkshire
+- 21/03/12 Corfe Castle First School, Dorset
+- 15/03/12 Wimbourne St Giles First School, Dorset
+- 14/03/12 Manorbrook Primary School, Bristol
+- 07/03/12 Durweston Primary School, Dorset
+- 06/03/12 Chew Magna Primary School, Bristol
+- 05/03/12 Verwood First School, Dorset
+- 02/03/12 Shillingstone Primary School, Dorset
+- 01/03/12 Mrs Ethelston’s Primary School, Lyme Regis, Dorset
+- 29/02/12 Thornford Primary School, Dorset
+- 28/02/12 St Mary the Virgin Primary School, Gillingham, Dorset
+- 27/02/12 Milborne St Andrew First School, Dorset
+- 23/02/12 Hazelbury Bryan Primary School, Dorset
+- 22/02/12 Bovington First School, Wareham, Dorset
+- 10/02/12 St Mary’s Catholic First School, Wool, Dorset
+- 09/02/12 Longwell Green Primary School, Bristol
+- 02/02/12 West Oxford Community Primary School, Oxford
+- 02/02/12 Magdalen College Junior School, Oxford
+- 01/02/12 Stadhampton Primary School, Oxford
+- 01/02/12 Wood Farm Primary School, Oxford
+- 27/01/12 Parrett and Axe Primary School, Mosterton, Dorset
+- 23/01/12 Chew Stoke Primary School, Bristol
+- 05/12/11 Larkrise Primary School, Oxford
+- 23/11/11 Brigidine School Windsor, Berkshire
+- 23/11/11 Cranbourne Primary School, Windsor, Berkshire
+- 22/11/11 King's Court First School, Old Windsor, Berkshire
+- 15/11/11 Begbrook Primary School, Bristol
+- 07/11/11 Bowsland Green Primary School, Bristol
+- 03/11/11 High Littleton Primary School, Bristol
+- 02/11/11 Yatton Infant School, Bristol
+- 18/10/11 Our Lady of Lourdes RC Primary School, Bristol
+- 17/10/11 Woodlands Primary School, Yate, Bristol
+- 11/10/11 Birdham Primary School, Chichester, West Sussex
+- 11/10/11 Jessie Younghusband Primary School, Chichester, West Sussex
+- 10/10/11 St Richard's Catholic Primary School, Chichester, West Sussex
+- 10/10/11 Parklands Community Primary School, Chichester, West Sussex
+- 07/10/11 Cadbury Heath Primary School, Bristol
+- 06/10/11 Otterhampton Primary School, Somerset
+- 05/10/11 Hanham Abbots Junior School, Bristol
+- 29/09/11 Frampton Cotterell Primary School, Bristol
+- 22/09/11 Blagdon Primary School, Bristol
+- 30/07/11 Book signing in Waterstones, Cribbs Causeway, Bristol
+- 01/07/11 West Chinnock Primary School, Somerset
+- 01/07/11 Norton Primary School, Somerset
+- 21/06/11 Clayesmore Preparatory School, Dorset
+- 16/06/11 Ashcott Primary School, Somerset
+- 14/06/11 Kingsbury Episcopi Primary School, Somerset
+- 24/05/11 Winsham Primary School, Somerset
+- 20/05/11 Sedgemoor Manor Junior School, Bridgwater, Somerset
+- 11/05/11 All Hallows School, Frome, Somerset
+- 23/04/11 Book signing in Waterstones, Bridport, Dorset
+- 19/03/11 Book signing in Heffers Children's Bookshop, Cambridge
+- 17/03/11 King's Hedges Primary School, Cambridge
+- 16/03/11 St Albans Catholic Primary School, Cambridge
+- 15/03/11 Orchard Park Primary School, Cambridge
+- 10/03/11 Stourfield Junior School, Bournemouth
+- 09/03/11 Stoke Bishop Primary School, Bristol
+- 07/03/11 Creech St Michael Primary School, Taunton
+- 04/03/11 Burton Bradstock Primary School, Dorset
+- 03/03/11 Kings Hall School, Taunton
+- 03/03/11 Exeter Cathedral School
+- 02/03/11 Powerstock Primary School, Dorset
+- 28/02/11 Weston All Saints Primary School, Bath
+- 18/02/11 Castle Court School, Wimbourne, Dorset
+- 03/02/11 St Anne's Park Primary School, Bristol
+- 14/01/11 Pokesdown Primary School, Bournemouth
+- 11/12/10 Book signing in Waterstones, Weston-super-Mare
+- 09/12/10 Sefton Park Junior School, Bristol
+- 09/12/10 Sefton Park Infant School, Bristol.
+- 06/12/10 School of Christ the King RC Primary School, Bristol
+- 04/12/10 Book signing in Waterstones, Cribbs Causeway
+- 03/12/10 Tockington Manor School, Bristol
+- 01/12/10 St Joseph's RC Primary School, Bristol
+- 30/11/10 Torwood House School, Bristol
+- 29/11/10 Lockleaze Primary School, Bristol
+- 27/11/10 Book signing in Waterstones, Plymouth Drake Circus
+- 26/11/10 Weston Mill Primary School, Plymouth
+- 26/11/10 Cathedral School of St Mary, Plymouth
+- 25/11/10 Manadon Vale Primary School, Plymouth
+- 25/11/10 Stoke Damerel Primary School, Plymouth
+- 24/11/10 Montpelier Primary School, Plymouth
+- 23/11/10 Chilton Cantelo School, Yeovil, Somerset
+- 22/11/10 Widey Court Primary School, Plymouth
+- 18/11/10 St John's Primary School, Midsomer Norton, Avon
+- 16/11/10 St Vigor & St John Primary School, Radstock, Avon
+- 16/11/10 Beckington First School, Frome, Somerset
+- 13/11/10 Book signing in Waterstones, Bristol Galleries
+- 12/11/10 Easton Primary School, Bristol
+- 11/11/10 St Werburgh's Primary School, Bristol
+- 11/11/10 Cleve House School, Bristol
+- 10/11/10 Chester Park Junior School, Bristol
+- 10/11/10 St Michaels on the Mount Primary School, Bristol
+- 09/11/10 St George Primary School, Bristol
+- 08/11/10 Gracefield Preparatory School, Bristol
+- 05/11/10 St Luke's Primary School, Sway, Hampshire
+- 04/11/10 Pennington Junior School, Hampshire
+- 03/11/10 Lymington Infants School, Hampshire
+- 23/10/10 Book signing in Waterstones, Exeter
+- 21/10/10 St Leonard's Primary School, Exeter
+- 21/10/10 Newtown Primary School, Exeter
+- 18/10/10 Bishop's Hull Primary School, Taunton
+- 16/10/10 Book signing in Waterstones, Lymington
+- 09/10/10 Book signing in Waterstones, Cambridge
+- 08/10/10 Icknield Primary School, Sawston, Cambridge
+- 07/10/10 St Matthews Primary School, Cambridge
+- 06/10/10 St Laurence Catholic Primary School, Cambridge
+- 05/10/10 Bar Hill Primary School, Cambridge
+- 25/09/10 Book signing in Waterstones, Bournemouth
+- 23/09/10 Park School, Bournemouth
+- 21/08/10 Book signing in Waterstones, Portsmouth
+- 14/08/10 Book signing in Waterstones, Scarborough
+- 01/08/10 Talk and reading at Milverton Literary Festival
+- 31/07/10 Book signing in Waterstones, Bath
+- 24/07/10 Book signing in Waterstones, Poole
+- 22/07/10 Parkfield Primary School, Taunton, Somerset
+- 20/07/10 Castle Cary Primary School, Somerset
+- 17/07/10 Book signing in Waterstones, Weston-super-Mare
+- 14/07/10 St Mark's First School, Swanage, Dorset
+- 10/07/10 Book signing in Waterstones, Newport, Isle of Wight
+- 09/07/10 Chale Primary School, Isle of Wight
+- 09/07/10 Wootton Primary School, Isle of Wight
+- 08/07/10 St Helens Primary School, Isle of Wight
+- 07/07/10 Priory School, Shanklin, Isle of Wight
+- 26/06/10 Book signing in Waterstones, Taunton
+- 23/06/10 Lulworth and Winfrith First School, Dorset
+- 19/06/10 Book signing in Waterstones, Dorchester
+- 15/06/10 Musbury Primary School, Devon
+- 29/05/10 Book signing in Waterstones, Wells
+- 22/05/10 Book signing in Waterstones, Yeovil
+- 20/05/10 Park School, Yeovil, Somerset
+- 02/05/10 Talk and reading at Fossil Festival, Lyme Regis, Dorset
+- 01/05/10 Book signing in Serendip Bookshop, Lyme Regis, Dorset
+- 27/04/10 Sylvan First School, Poole, Dorset
+- 09/06/09 Damers First School, Dorchester, Dorset
+- 11/04/09 Langport Library, Somerset
+- 06/03/09 Widey Court Primary School, Plymouth, Devon
+- 19/02/09 Frome Library, Somerset
+- 17/10/08 Sylvan First School, Poole, Dorset
+- 13/05/08 Lulworth & Winfrith First School, Dorset
+- 28/04/08 Oakhyrst Grange School, Surrey
+- 04/03/08 Hugh Sexey Middle School, Somerset
+- 11/02/08 Churcher's College Junior School, Hampshire
+- 15/01/08 Hugh Sexey Middle School, Somerset
+- 16/11/07 Cleve House School, Bristol
+- 17/10/07 Trinity School, Teignmouth, Devon
+- 09/07/07 Seaton Primary School, Devon
+- 25/05/07 Torwood House School, Bristol
+- 23/05/07 Hugh Sexey Middle School, Somerset
+- 21/05/07 Ashwater Primary School, Devon
+- 19/03/07 Martock Primary School, Somerset
+- 05/03/07 Ashcott Primary School, Somerset
+- 01/03/07 Denbury Primary School, Newton Abbot, Devon
+- 28/02/07 Widey Court Primary School, Plymouth, Devon
+- 27/02/07 Widewell Primary School, Plymouth, Devon
+- 12/02/07 Blagdon Hill Primary School, Taunton, Somerset
+- 05/02/07 Bolham Primary School, Tiverton, Devon
+- 26/01/07 Downsend School, Leatherhead, Surrey
+- 15/01/07 Mead Vale Primary School, Weston-super-Mare, North Somerset
+- 27/11/06 Peasedown St John Primary School, Somerset
+- 13/11/06 Grove Primary School, Trowbridge, Wiltshire
+- 06/11/06 Uphill Community Primary School, Weston-super-Mare, North Somerset
+- 16/10/06 Weston All Saints Primary School, Bath
+- 12/10/06 Staplegrove Primary School, Taunton, Somerset
+- 09/10/06 Manor Primary School, Ivybridge, Devon
+- 02/10/06 Hazlegrove Preparatory School, Somerset
+- 25/09/06 Lipson Vale Primary School, Plymouth
+- 18/09/06 East Worlington Primary School, Devon
+- 11/09/06 Churchill Primary School, North Somerset
+- 17/07/06 Ilsington Primary School, Devon
+- 12/07/06 Chawleigh Primary School, Devon
+- 28/06/06 St Andrews Junior School, Congresbury, Bristol
+- 26/06/06 St David's Primary School, Exeter
+- 21/06/06 Trinity Primary School, Radstock, Bath
+- 19/06/06 Park Street Primary School, Cambridge
+- 14/06/06 Shute Primary School, Axminster, Devon
+- 12/06/06 Woodlands Junior School, Tonbridge, Kent
+- 07/06/06 St Mary's Primary School, Timsbury, Bath
+- 24/05/06 Clyst St Mary Primary School, Exeter, Devon
+- 22/05/06 St Mary's Catholic Primary School, Axminster, Devon
+- 17/05/06 Stogursey Primary School, Bridgwater, Somerset
+- 16/05/06 Creech St Michael Primary School, Taunton, Somerset
+- 15/05/06 Priorswood Primary School, Taunton, Somerset
+- 08/05/06 St Sidwell's Primary School, Exeter, Devon
+- 24/04/06 Compton Dundon Primary School, Somerset
+- 04/03/06 Heffers Bookshop, Cambridge
+- 03/03/06 St Luke's Primary School, Cambridge
+- 02/03/06 St Catherine's Preparatory School, Cambridge
+- 28/02/06 Bar Hill Community Primary School, Cambridge
+- 27/02/06 Cottenham Primary School, Cambridge
+- 23/02/06 Ottakar's Bookshop, Godalming, Surrey
+- 20/02/06 Buckholme Towers School, Poole, Dorset
+- 10/02/06 St Mary's Primary School, Beaminster, Dorset
+- 06/02/06 Shalfleet Primary School, Newport, Isle of Wight
+- 23/01/06 Clayesmore Preparatory School, Blandford, Dorset
+- 16/01/06 Bethany Junior School, Bournemouth, Dorset
+- 14/11/05 Southill Primary School, Weymouth, Dorset
+- 10/11/05 Northstead Primary School, Scarborough, North Yorkshire
+- 22/10/05 Borders Books, Cambridge
+- 21/10/05 King's College School, Cambridge
+- 20/10/05 Icknield Primary School, Cambridge
+- 19/10/05 Meridian Primary School, Cambridge
+- 18/10/05 Bottisham Primary School, Cambridge
+- 18/10/05 Newnham Croft Primary School, Cambridge
+- 17/10/05 Morley Memorial Primary School, Cambridge
+- 10/10/05 Musbury Primary School, Axminster, Devon
+- 01/10/05 Ottakar's Bookshop, Newport, Isle of Wight
+- 30/09/05 Newchurch Primary School, Isle of Wight
+- 29/09/05 Newport CE Primary School, Newport, Isle of Wight
+- 13/08/05 Borders Books, York
+- 15/07/05 Aldington Primary School, Aldington, Kent
+- 20/06/05 Seaton Primary School, Seaton, Devon
+- 18/06/05 Bournes Bookworld, Weymouth, Dorset
+- 22/03/05 Wookey Primary School, Wells, Somerset
+- 11/03/05 Dharma School, Brighton, East Sussex
+- 04/03/05 Ottakar's Bookshop, Fareham, Hampshire
+- 28/02/05 West Pennard School, Glastonbury, Somerset
+- 26/01/05 Upton Junior School, Poole, Dorset
+- 11/12/04 Ottakar's Bookshop, Petersfield, Hampshire
+- 20/11/04 Ottakar's Bookshop, Wells, Somerset
+- 13/11/04 Mungles Jungle, Brighton, East Sussex
+- 06/11/04 Ottakar's Bookshop, Eastleigh, Hampshire
+- 30/10/04 Ottakar's Bookshop, Poole, Dorset
+- 09/10/04 Ottakar's Bookshop, Dorchester, Dorset
+- 02/10/04 Ottakar's Bookshop, Fareham, Hampshire
