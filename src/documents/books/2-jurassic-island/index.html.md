@@ -9,7 +9,7 @@ publishDate: May 2010
 genre: Children's educational fiction, age 7+
 isbn: 9780954615116
 physicalDimensions: Paperback 240pp 198mm x 129mm
-coverImage: /images/2-jurassic-island.jpg
+coverImage: /images/2-jurassic-island-cover.jpg
 firstChapter: /pdf/profp-jurassic-island-first-chapter.pdf
 ---
 

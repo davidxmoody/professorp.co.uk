@@ -9,7 +9,7 @@ publishDate: Summer 2005 (second edition)
 genre: Children's educational fiction, age 7+
 isbn: 9780954615109
 physicalDimensions: Paperback 248pp 198mm x 129mm
-coverImage: /images/1-jurassic-coast.jpg
+coverImage: /images/1-jurassic-coast-cover.jpg
 firstChapter: /pdf/profp-jurassic-coast-first-chapter.pdf
 ---
 

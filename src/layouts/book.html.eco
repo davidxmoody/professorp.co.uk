@@ -2,11 +2,8 @@
 layout: default
 ---
 
-<%- @partial('signed') %>
-
 <div class="row">
   <div class="col-md-10 col-md-offset-1">
-
 
     <h1><%= @document.title %></h1>
     <div class="row">
@@ -16,22 +13,26 @@ layout: default
         <% end %>
       </div>
       <div class="col-sm-8">
+
         <%- @content %>
+
         <% if @document.firstChapter?: %>
-          <p>Read the <a href="<%= @document.firstChapter %>">First Chapter (PDF).</a></p>
+          <p>Read the <a href="<%= @document.firstChapter %>">First Chapter (PDF)</a>.</p>
         <% end %>
+
+        <br>
+        <p class="text-right small">
+          <%= @document.price %><br>
+          Published <%= @document.publishDate %><br>
+          <%= @document.genre %><br>
+          <!--<%= @document.physicalDimensions %><br>-->
+          ISBN <%= @document.isbn %>
+        </p>
+
       </div>
     </div>
 
-    <div class="row">
-      <div class="col-sm-6">
-        <p><%= @document.price %></p>
-        <p><%= @document.publishDate %></p>
-        <p><%= @document.genre %></p>
-        <p><%= @document.physicalDimensions %></p>
-        <p>ISBN <%= @document.isbn %></p>
-      </div>
-    </div>
+  <%- @partial('signed') %>
 
   </div>
 </div>

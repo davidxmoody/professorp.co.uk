@@ -39,6 +39,10 @@ module.exports = docpadConfig = {
   watchOptions: catchupDelay: 0
 
 
+  # Don't include high-res images
+  ignoreCustomPatterns: /.*high-res.jpg/
+
+
   collections:
     books: ->
       @getCollection('documents').findAllLive({layout: 'book'})
