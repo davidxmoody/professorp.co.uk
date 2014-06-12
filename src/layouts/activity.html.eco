@@ -1,7 +1,0 @@
----
-layout: default
----
-
-Activity content will go here...
-
-<%- @content %>

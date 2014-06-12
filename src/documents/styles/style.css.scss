@@ -1,11 +1,17 @@
 body {
-  padding-top: 20px;
-  padding-bottom: 20px;
+  padding-top: 10px;
+  padding-bottom: 10px;
   overflow-y: scroll;
 }
 
+// Title image border
+body > div > a > img {
+  border-radius: 4px;
+}
+
 .navbar {
-  margin-bottom: 20px;
+  margin-top: 10px;
+  margin-bottom: 10px;
 }
 
 img {

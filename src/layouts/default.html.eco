@@ -21,8 +21,13 @@ htmlmin: true
 
   <div class="container">
     <!--[if lt IE 7]>
-    <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+    <p class="browsehappy">You are using an <strong>outdated</strong> browser. 
+    Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
     <![endif]-->
+
+    <a href="/">
+      <img src="/images/header.jpg" alt="">
+    </a>
 
     <nav class="navbar navbar-default" role="navigation">
       <div class="container-fluid">
@@ -51,9 +56,8 @@ htmlmin: true
       </div>
     </nav>
 
-    <article>
-      <%- @content %>
-    </article>
+    <%- @content %>
+
   </div>
 
   <%- @getBlock('scripts').add(@site.scripts).add(@document.scripts).toHTML() %>
