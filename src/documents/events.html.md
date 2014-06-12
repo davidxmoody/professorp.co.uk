@@ -1,5 +1,5 @@
 ---
-layout: default
+layout: narrow
 ---
 
 ## All past events

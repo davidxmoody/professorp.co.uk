@@ -1,0 +1,53 @@
+---
+title: Colour the pictures
+layout: narrow
+illustrations:
+  - Ammonite in golden section
+  - About the illustrator
+  - Peter and Tara find gold
+  - Exploding beans
+  - Floppy with spots
+  - Peter and Tara in time machine in cave
+  - Island view
+  - Pterodactyl with fish
+  - Building the raft
+  - Ichthyosaurus playing in water
+  - Shark attack
+  - Liopleurodon
+  - Ammonite shell
+  - Dinosaur attack
+  - Car journey
+  - Exibition
+  - Brains on table
+  - Dotty on shelf
+  - Professor P builds computer
+  - The portal
+  - Brains attacks Allosaurus
+  - Journey across plain
+  - Floppy leads the way
+  - Dotty makes a friend
+  - Brains welding car
+  - Hoverjet
+  - Allosaurus
+  - Dryosaurus
+  - Ornitholestes
+---
+
+<p>Here are some of the best illustrations from the books. Choose your favourites to print out and colour in. Have fun!</p>
+
+<p>Click on an illustration to download it as a PDF or right click and click "Save image as..." to save it as a GIF. 
+You can also download all the illustrations as a single <a href="/pdf/illustrations/profp-all-illustrations.zip">ZIP file</a>.</p>
+
+<br>
+
+<% for illustration in @document.illustrations: %>
+  <div class="text-center">
+    <a href="<%= '/pdf/illustrations/profp-'+illustration.replace(/\s+/g, '-').toLowerCase()+'.pdf' %>"><div class="thumbnail">
+        <img src="<%= '/images/illustrations/profp-'+illustration.replace(/\s+/g, '-').toLowerCase()+'.gif' %>" 
+             alt="Click to download an illustration of: <%= illustration %>">
+        <div class="caption">
+          <h4><%= illustration %></h4>
+        </div>
+      </div></a>
+  </div>
+<% end %>
