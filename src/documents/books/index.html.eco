@@ -1,5 +1,5 @@
 ---
-layout: default
+layout: narrow
 ---
 
 <% books = @getCollection('books').sortArray(name: 1) %>
