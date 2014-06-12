@@ -6,20 +6,9 @@ watch = require 'gulp-watch'
 sass = require 'gulp-sass'
 rename = require 'gulp-rename'
 
-fs = require 'fs'
-
 keepWatching = true
 
-gulp.task 'wordlist', ->
-  #TODO do this with streams instead of the old way
-  words = fs.readFileSync('wordlist.txt', 'utf-8')
-  wordlist = words.split('\n')
-  wordlist = (word.toUpperCase() for word in wordlist when \
-                 word.length>0 and word.charAt(0) isnt '#')
-  wordlist.sort((a, b) -> b.length-a.length)  # Sort with descending length
-  fs.writeFile 'app/coffee/wordlist.js', "module.exports = #{JSON.stringify(wordlist)};"
-
-gulp.task 'coffee', ['wordlist'], ->
+gulp.task 'coffee', ->
   bundlerFunction = if keepWatching then watchify else watchify.browserify
   bundler = bundlerFunction entries: ['./app/coffee/app.coffee'], extensions: ['.coffee']
     .transform 'coffeeify'
@@ -36,10 +25,10 @@ gulp.task 'coffee', ['wordlist'], ->
   rebundle()
 
 gulp.task 'sass', ->
-  gulp.src './app/scss/main.scss'
+  gulp.src './app/style.scss'
     .pipe if keepWatching then watch() else gutil.noop()
     .pipe sass(errLogToConsole: true)
-    .pipe rename('stylesheet.css')
+    .pipe rename('style.css')
     .pipe gulp.dest('./build/')
 
 gulp.task 'index', ->
@@ -48,9 +37,4 @@ gulp.task 'index', ->
     .pipe rename('index.html')
     .pipe gulp.dest('./build/')
 
-gulp.task 'images', ->
-  gulp.src './app/images/*'
-    .pipe if keepWatching then watch() else gutil.noop()
-    .pipe gulp.dest('./build/images/')
-  
-gulp.task 'default', ['coffee', 'sass', 'index', 'images']
+gulp.task 'default', ['coffee', 'sass', 'index']
