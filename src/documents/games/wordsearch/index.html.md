@@ -1,6 +1,6 @@
 ---
 title: Wordsearch
-layout: game
+layout: default
 styles: /games/wordsearch-style.css
 ---
 
