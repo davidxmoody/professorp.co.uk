@@ -1,8 +1,7 @@
 ---
+title: All past events
 layout: narrow
 ---
-
-## All past events
 
 - 02/04/14 Horningsham Primary School, Wiltshire
 - 05/12/13 Beaulieu Village Primary School, Hampshire
