@@ -11,10 +11,14 @@ layout: default
       </div>
     <% end %>
 
-    <% if @document.image?: %>
+    <% if @document.image? or @document.sidebarContent?: %>
       <div class="row">
         <div class="col-sm-4 text-center">
-          <p><img src="<%= @document.image %>" alt="<%= @document.imageAlt %>" class="img-thumbnail"></p>
+          <% if @document.image?: %>
+            <p><img src="<%= @document.image %>" alt="<%= @document.imageAlt %>" class="img-thumbnail"></p>
+          <% else: %>
+            <%- @document.sidebarContent %>
+          <% end %>
         </div>
         <div class="col-sm-8">
           <%- @content %>
