@@ -8,12 +8,12 @@ price: £7.99
 publishDate: Summer 2005 (second edition)
 genre: Children's educational fiction, age 7+
 isbn: 9780954615109
-physicalDimensions: Paperback 248pp 198mm x 129mm
-coverImage: /images/1-jurassic-coast-cover.jpg
+image: /images/1-jurassic-coast-cover.jpg
 firstChapter: /pdf/profp-jurassic-coast-first-chapter.pdf
+deletedScenes: /pdf/profp-jurassic-coast-deleted-scenes.pdf
 ---
 
-**An Amazing Adventure in Time!**
+### An Amazing Adventure in Time!
 
 Peter and Tara have just moved to the Jurassic Coast. While searching for fossils on the beach they hear a mysterious explosion from beyond the cliffs. This is the start of a fantastic adventure with Professor P - one that will change their world forever!
 

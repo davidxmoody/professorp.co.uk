@@ -1,41 +1,28 @@
 ---
-layout: default
+layout: narrow
 ---
 
-<div class="row">
-  <div class="col-md-10 col-md-offset-1">
+<%- @content %>
 
-    <div class="page-header">
-      <h1><%= @document.title %></h1>
-    </div>
+<% if @document.firstChapter? or @document.deletedScenes?: %>
+  <hr>
+<% end %>
 
-    <div class="row">
-      <div class="col-sm-4 text-center">
-        <% if @document.coverImage?: %>
-          <p><img src="<%= @document.coverImage %>" alt="Image of the front cover of <%= @document.title %>" class="img-thumbnail"></p>
-        <% end %>
-      </div>
-      <div class="col-sm-8">
+<% if @document.firstChapter?: %>
+  <p>Read the <a href="<%= @document.firstChapter %>">First Chapter (PDF)</a>.</p>
+<% end %>
 
-        <%- @content %>
+<% if @document.deletedScenes?: %>
+  <p>Read the <a href="<%= @document.deletedScenes %>">Deleted Scenes (PDF)</a>.</p>
+<% end %>
 
-        <% if @document.firstChapter?: %>
-          <p>Read the <a href="<%= @document.firstChapter %>">First Chapter (PDF)</a>.</p>
-        <% end %>
+<br>
+<br>
+<p class="text-right small">
+  <% if @document.price?: %><%= @document.price %><br><% end %>
+  <% if @document.publishDate?: %>Published <%= @document.publishDate %><br><% end %>
+  <% if @document.genre?: %><%= @document.genre %><br><% end %>
+  <% if @document.isbn?: %>ISBN <%= @document.isbn %><% end %>
+</p>
 
-        <br>
-        <p class="text-right small">
-          <% if @document.price?: %><%= @document.price %><br><% end %>
-          <% if @document.publishDate?: %>Published <%= @document.publishDate %><br><% end %>
-          <% if @document.genre?: %><%= @document.genre %><br><% end %>
-          <!--<% if @document.physicalDimensions?: %><%= @document.physicalDimensions %><br><% end %>-->
-          <% if @document.isbn?: %>ISBN <%= @document.isbn %><% end %>
-        </p>
-
-      </div>
-    </div>
-
-  <%- @partial('signed') %>
-
-  </div>
-</div>
+<% @document.footerContent = @partial('signed') %>

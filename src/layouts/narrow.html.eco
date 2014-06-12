@@ -28,5 +28,9 @@ layout: default
       <%- @content %>
     <% end %>
 
+    <% if @document.footerContent?: %>
+      <%- @document.footerContent %>
+    <% end %>
+
   </div>
 </div>
