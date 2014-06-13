@@ -18,7 +18,7 @@ gulp.task 'coffee', ->
   rebundle = (ids) ->
     gutil.log if ids then "Rebundling because of change in #{ids}" else 'Bundling'
     bundler.bundle()
-      .pipe source('bundle.js')
+      .pipe source('script.js')
       .pipe gulp.dest('./build/')
 
   bundler.on('update', rebundle) if keepWatching
