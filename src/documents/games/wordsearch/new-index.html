@@ -1,0 +1,31 @@
+---
+layout: default
+title: Wordsearch
+styles: style.css
+scripts:
+  - //ajax.googleapis.com/ajax/libs/angularjs/1.2.17/angular.min.js
+  - //cdnjs.cloudflare.com/ajax/libs/underscore.js/1.6.0/underscore-min.js
+  - script.js
+---
+
+<div ng-app="wordsearchApp" ng-controller="WordsearchCtrl">
+  <div id="container">
+    <div class="ws-grid" ng-class='colorClass'>
+      <div ng-repeat="row in grid.cells">
+        <div class="ws-cell" ng-repeat="cell in row"
+             ng-click="cellClicked(cell)"
+             ng-mouseenter="updatePath(cell)"
+             ng-mouseleave="selectedCell && clearPath()"
+             ng-class="{selected: cell.isSelected, path: cell.onPath, 'correct-path': cell.onCorrectPath}">
+          <div class="solved" ng-class="colorClass" 
+               ng-repeat="colorClass in cell.solvedColorClasses track by $index"></div>
+          {{cell.letter}}
+        </div>
+      </div>
+    </div>
+  </div>
+  <div id="wordlist">
+    <div class="word" ng-repeat="word in words">{{word}}</div>
+    <div class="word solved" ng-class="word.colorClass" ng-repeat="word in foundWords">{{word.word}}</div>
+  </div>
+</div>
