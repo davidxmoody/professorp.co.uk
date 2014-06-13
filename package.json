@@ -8,6 +8,8 @@
     "npm": "1.3"
   },
   "dependencies": {
+    "browserify": "^4.1.10",
+    "browserify-shim": "^3.5.0",
     "docpad": "~6.68.0",
     "docpad-plugin-browserifydocs": "~2.2.0",
     "docpad-plugin-cleanurls": "~2.7.0",
@@ -22,5 +24,13 @@
   "devDependencies": {
     "docpad-plugin-livereload": "~2.6.0"
   },
-  "main": "node_modules/docpad/bin/docpad-server"
+  "main": "node_modules/docpad/bin/docpad-server",
+  "browserify": {
+    "transform": [ "browserify-shim" ]
+  },
+  "browserify-shim": {
+    "angular": "global:angular",
+    "underscore": "global:_",
+    "jquery": "global:$"
+  }
 }

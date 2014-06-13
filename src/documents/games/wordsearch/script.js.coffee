@@ -2,7 +2,8 @@
 browserify: true
 ---
 
-angular = window.angular
+angular = require 'angular'
+_ = require 'underscore'
 defaultWordlist = require './wordlist'
 
 # Number of available color classes defined in the Sass file
