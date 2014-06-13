@@ -126,13 +126,27 @@ class LetterGrid
 
 angular.module('wordsearchApp', []).controller 'WordsearchCtrl', ['$scope', ($scope) ->
 
-  $scope.grid = new LetterGrid()
-  $scope.words = $scope.grid.words
-  $scope.foundWords = []
+  $scope.width = 8
+  $scope.height = 7
+  $scope.levels = []
 
-  $scope.enableInput = true
-  colorIndex = 1
-  $scope.colorClass = 'color1'
+  $scope.nextLevel = ->
+    if $scope.width>$scope.height
+      $scope.height++
+    else
+      $scope.width++
+
+    $scope.levels.push("#{$scope.width}x#{$scope.height}")
+
+    $scope.grid = new LetterGrid($scope.width, $scope.height)
+    $scope.words = $scope.grid.words
+    $scope.foundWords = []
+
+    $scope.enableInput = true
+    $scope.colorIndex = 1
+    $scope.colorClass = 'color1'
+
+  $scope.nextLevel()
 
   $scope.cellClicked = (cell) ->
     return unless $scope.enableInput
@@ -175,12 +189,13 @@ angular.module('wordsearchApp', []).controller 'WordsearchCtrl', ['$scope', ($sc
 
       if $scope.words.length is 0
         $scope.enableInput = false
-        #TODO show a better congrats message
-        alertCongrats = -> alert("Congratulations, you found all #{$scope.foundWords.length} words!")
-        setTimeout(alertCongrats, 100)  # The delay allows the wordlist crossout to be updated
+        alertCongrats = ->
+          alert("Congratulations, you found all #{$scope.foundWords.length} words!")
+          $scope.nextLevel()
+        setTimeout(alertCongrats, 400)  # The delay allows the wordlist crossout to be updated
 
 
   $scope.nextColor = ->
-    colorIndex = colorIndex%NUM_COLORS+1
-    $scope.colorClass = "color#{colorIndex}"
+    $scope.colorIndex = $scope.colorIndex%NUM_COLORS+1
+    $scope.colorClass = "color#{$scope.colorIndex}"
 ]
