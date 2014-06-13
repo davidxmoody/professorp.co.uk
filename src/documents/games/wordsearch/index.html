@@ -8,10 +8,12 @@ scripts:
   - script.js
 ---
 
-<div ng-app="wordsearchApp" ng-controller="WordsearchCtrl">
-  <div id="container">
+<div class="row" ng-app="wordsearchApp" ng-controller="WordsearchCtrl">
+
+  <div class="col-sm-8">
     <div class="ws-grid" ng-class='colorClass'>
       <div ng-repeat="row in grid.cells">
+
         <div class="ws-cell" ng-repeat="cell in row"
              ng-click="cellClicked(cell)"
              ng-mouseenter="updatePath(cell)"
@@ -21,11 +23,16 @@ scripts:
                ng-repeat="colorClass in cell.solvedColorClasses track by $index"></div>
           {{cell.letter}}
         </div>
+        
       </div>
     </div>
   </div>
-  <div id="wordlist">
-    <div class="word" ng-repeat="word in words">{{word}}</div>
-    <div class="word solved" ng-class="word.colorClass" ng-repeat="word in foundWords">{{word.word}}</div>
+
+  <div class="col-sm-4">
+    <ul class="list-group">
+      <li class="list-group-item word" ng-repeat="word in words">{{word}}</li>
+      <li class="list-group-item word solved" ng-class="word.colorClass" ng-repeat="word in foundWords">{{word.word}}</li>
+    </ul>
   </div>
+
 </div>

@@ -1,21 +1,5 @@
-#container {
-  float: left;
-  display: inline-block;
-  border: 1px solid black;
+.ws-grid {
   line-height: normal;
-}
-
-#wordlist {
-  float: left;
-  margin: 20px;
-  padding: 10px;
-  display: inline-block;
-  border: 1px solid black;
-}
-
-.word {
-  font-size: 20px;
-  color: black;
 }
 
 .ws-cell {
