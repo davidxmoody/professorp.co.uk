@@ -1,0 +1,67 @@
+#container {
+  float: left;
+  display: inline-block;
+  border: 1px solid black;
+  line-height: normal;
+}
+
+#wordlist {
+  float: left;
+  margin: 20px;
+  padding: 10px;
+  display: inline-block;
+  border: 1px solid black;
+}
+
+.word {
+  font-size: 20px;
+  color: black;
+}
+
+.ws-cell {
+  display: table-cell;
+  text-align: center;
+  vertical-align: middle;
+  width: 40px;
+  height: 40px;
+  font-size: 30px;
+  font-family: sans-serif;
+
+  position: relative;
+
+  transition: background 0.9s;
+  cursor: pointer;
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+
+  div {
+    position: absolute;
+    display: inline-block;
+    z-index: -1;
+    top: 0px;
+    left: 0px;
+    width: 40px;
+    height: 40px;
+  }
+}
+
+$colors: orangered, limegreen, cyan, gold, mediumvioletred;
+
+@each $color in $colors {
+  $i: index($colors, $color);
+
+  .ws-grid.color#{$i} {
+    .ws-cell:hover { transition: background 0.2s; background: rgba($color, 0.2); }
+    .ws-cell.selected { transition: background 0.2s; background: rgba($color, 0.3); }
+    .ws-cell.path { transition: background 0.2s; background: rgba($color, 0.3); }
+    .ws-cell.correct-path { transition: background 0.2s; background: rgba($color, 0.5); }
+  }
+
+  .ws-cell div.solved.color#{$i} { transition: background 0.2s; background: rgba($color, 0.6); }
+
+  .word.solved.color#{$i} { color: $color; text-decoration: line-through; } 
+}
