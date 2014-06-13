@@ -1,4 +1,9 @@
-angular = require 'angular'
+---
+browserify: true
+---
+
+angular = window.angular
+defaultWordlist = require './wordlist'
 
 # Number of available color classes defined in the Sass file
 # Note that this must manually be kept up to date
@@ -35,7 +40,7 @@ class Cell
 
 
 class LetterGrid
-  constructor: (@width=8, @height=8, maxWords=20, wordlist=require('./wordlist')) ->
+  constructor: (@width=8, @height=8, maxWords=20, wordlist=defaultWordlist) ->
     # Make an empty grid.
     @cells = (new Cell(x, y) for x in [0..@width-1] for y in [0..@height-1])
     @words = []
