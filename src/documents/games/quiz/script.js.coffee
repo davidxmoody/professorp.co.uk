@@ -1,4 +1,9 @@
-#TODO use browserify and require statement
+---
+browserify: true
+---
+
+angular = require 'angular'
+getQuestions = require './questions'
 
 introQuestion = {
   text: "Are you ready to begin?"
@@ -20,7 +25,7 @@ angular.module('quizGame', []).controller 'QuizCtrl', ($scope, $timeout) ->
   # Game config options
   $scope.numQuestions = 15
   $scope.numAnswered = 0
-  $scope.questions = window.getQuestions($scope.numQuestions)
+  $scope.questions = getQuestions($scope.numQuestions)
   $scope.currentQuestion = introQuestion
   $scope.secondsRemaining = 120
   $scope.penalty = 10
