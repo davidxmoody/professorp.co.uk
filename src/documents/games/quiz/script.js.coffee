@@ -27,7 +27,8 @@ angular.module('quizGame', []).controller 'QuizCtrl', ($scope, $timeout) ->
   $scope.numAnswered = 0
   $scope.questions = getQuestions($scope.numQuestions)
   $scope.currentQuestion = introQuestion
-  $scope.secondsRemaining = 120
+  $scope.totalSeconds = 120
+  $scope.secondsRemaining = $scope.totalSeconds
   $scope.penalty = 10
 
   # Update time remaining and trigger end game if time is up

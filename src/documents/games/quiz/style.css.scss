@@ -1,3 +1,43 @@
+.progress {
+  position: relative;
+}
+
+@-webkit-keyframes time-up {
+  0%:  {opacity: 1;}
+  10%: {opacity: 0;}
+  20%: {opacity: 1;}
+  30%: {opacity: 0;}
+  40%: {opacity: 1;}
+  50%: {opacity: 0;}
+  60%: {opacity: 1;}
+  70%: {opacity: 0;}
+  80%: {opacity: 1;}
+}
+
+@keyframes time-up {
+  0%:  {opacity: 1;}
+  10%: {opacity: 0;}
+  20%: {opacity: 1;}
+  30%: {opacity: 0;}
+  40%: {opacity: 1;}
+  50%: {opacity: 0;}
+  60%: {opacity: 1;}
+  70%: {opacity: 0;}
+  80%: {opacity: 1;}
+}
+
+.progress > span {
+  position: absolute;
+  width: 100%;
+  text-align: center;
+  left: 0px;
+
+  &.time-up {
+    animation: time-up 2s;
+    -webkit-animation: time-up 2s;
+  }
+}
+
 .list-group > a.selected.correct {
   color: lime;
 }

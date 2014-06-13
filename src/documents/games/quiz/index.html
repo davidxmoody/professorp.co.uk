@@ -19,10 +19,16 @@ scripts:
         <p>This quiz will test your knowledge of the Professor P books. 
            Answer {{ numQuestions }} questions correctly before the time runs out.</p>
         <p>There is a {{ penalty }} second penalty for every incorrect answer.</p>
-        <p>You have answered <em>{{ numAnswered }} out of
-           {{ numQuestions }}</em> questions so far.</p>
-        <p>Your remaining time is: 
-        <strong>{{ formatTime(secondsRemaining) }}</strong></p>
+
+        <div class="progress">
+          <div class="progress-bar" ng-style="{ width: 100*numAnswered/numQuestions+'%' }"></div>
+          <span>{{ numAnswered }}/{{ numQuestions }}</span>
+        </div>
+
+        <div class="progress">
+          <div class="progress-bar progress-bar-danger" ng-style="{ width: 100*secondsRemaining/totalSeconds+'%' }"></div>
+          <span ng-class="{ 'time-up': secondsRemaining===0 }">{{ formatTime(secondsRemaining) }}</span>
+        </div>
       </div>
     </div>
   </div>
