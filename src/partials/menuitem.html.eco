@@ -1,7 +1,6 @@
-<% url = @url or '/'+@title.replace(/\s+/g, '-').toLowerCase() %>
+<% url = @url or '/'+@title.replace(/\s+/g, '-').toLowerCase()+'/' %>
 <% pages = @getCollection(@collection or @title.toLowerCase())?.sortArray(name: 1) %>
 <% hasPages = pages? and pages.length>0 %>
-<% isCurrentPage = url is @document.url %>
 
 <% if hasPages: %>
   <li class="dropdown">
@@ -11,15 +10,15 @@
 
     <ul class="dropdown-menu">
       <% for page in pages: %>
-        <li><a href="<%= page.url %>"<%= ' class="active"' if isCurrentPage %>>
+        <li<%- ' class="active"' if page.url is @document.url %>><a href="<%= page.url %>">
           <%= page.title %>
         </a></li>
       <% end %>
       <li class="divider"></li>
-      <li><a href="<%= url %>">View all <%= @title %></a></li>
+      <li<%- ' class="active"' if url is @document.url %>><a href="<%= url %>">View all <%= @title %></a></li>
     </ul>
   </li>
 
 <% else: %>
-  <li><a href="<%= url %>"<%= ' class="active"' if isCurrentPage %>><%= @title %></a></li>
+  <li<%- ' class="active"' if url is @document.url %>><a href="<%= url %>"><%= @title %></a></li>
 <% end %>
