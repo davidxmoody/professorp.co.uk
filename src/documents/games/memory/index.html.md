@@ -7,4 +7,6 @@ scripts:
   - script.js
 ---
 
+This is the memory game.
+
 <div id="container"></div>
