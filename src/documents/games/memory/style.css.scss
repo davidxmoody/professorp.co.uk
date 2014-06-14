@@ -8,6 +8,7 @@ $card-spacing: 4px;
   width: $card-size;
   height: $card-size;
   border: 1px solid black;
+  box-sizing: content-box;
 
   -webkit-touch-callout: none;
   -webkit-user-select: none;
@@ -60,6 +61,7 @@ $card-spacing: 4px;
 .memory-grid {
   display: inline-block;
   border: 1px solid black;
+  box-sizing: content-box;
 }
 
 .memory-grid>div {

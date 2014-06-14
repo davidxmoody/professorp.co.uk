@@ -1,0 +1,31 @@
+---
+title: Memory
+layout: narrow
+styles: style.css
+scripts: 
+  - //cdnjs.cloudflare.com/ajax/libs/underscore.js/1.6.0/underscore-min.js
+  - script.js
+---
+
+<div class="panel panel-default">
+  <div class="panel-heading">
+    <h2 class="panel-title">How to play</h2>
+  </div>
+  <div class="panel-body">
+    <div class="row">
+      <div class="col-sm-6">
+        <p>Click the cards to turn them over. Try to pair together the matching cards.</p>
+        <p>Each level is more difficult than the last and the game continues forever.</p>
+      </div>
+      <div class="col-sm-6">
+        <ol id="level-progress" class="breadcrumb"></ol>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-sm-12 text-center">
+    <div id="memory-game-container"></div>
+  </div>
+</div>

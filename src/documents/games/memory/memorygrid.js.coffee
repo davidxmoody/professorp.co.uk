@@ -1,15 +1,11 @@
----
-browserify: true
----
-
 $ = require('jquery')
 _ = require('underscore')
 Card = require('./card')
 getRandomImages = require('./getrandomimages')
 
 
-class MemoryGrid
-  constructor: ($container, numCards=12, cardsPerRow=4) ->
+module.exports = class MemoryGrid
+  constructor: ($container, @callback, numCards=12, cardsPerRow=4) ->
 
     # Create empty grid to contain the cards
     @$grid = $('<div></div>')
@@ -68,9 +64,5 @@ class MemoryGrid
 
 
   _gameCompleted: ->
-    #TODO do this without an alert
-    alert 'You won!'
-
-
-$(document).ready ->
-  grid = new MemoryGrid($('#container'))
+    alert 'Congratulations, you matched all of the cards!'
+    @callback?()
