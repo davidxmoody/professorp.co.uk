@@ -2,8 +2,12 @@
 layout: default
 ---
 
+<% sidebarWidth = @document.sidebarWidth ? 4 %>
+<% fullWidth = @document.fullWidth ? false %>
+
 <div class="row">
-  <div class="col-md-10 col-md-offset-1">
+  <div class="<%= if fullWidth then 'col-md-12' else ' col-md-10 col-md-offset-1' %>">
+    <!--TODO fix the above-->
 
     <% if @document.title?: %>
       <div class="page-header">
@@ -13,14 +17,14 @@ layout: default
 
     <% if @document.image? or @document.sidebarContent?: %>
       <div class="row">
-        <div class="col-sm-4 text-center">
+        <div class="col-sm-<%= sidebarWidth %> text-center">
           <% if @document.image?: %>
             <p><img src="<%= @document.image %>" alt="<%= @document.imageAlt %>" class="img-thumbnail"></p>
           <% else: %>
             <%- @document.sidebarContent %>
           <% end %>
         </div>
-        <div class="col-sm-8">
+        <div class="col-sm-<%= 12-sidebarWidth %>">
           <%- @content %>
         </div>
       </div>
