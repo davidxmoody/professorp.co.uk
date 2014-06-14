@@ -1,8 +1,0 @@
-balance game when playing against Floppy
-add other AIs (Prof P, Brains, toaster, etc.)
-
-add buttons and instructions
-images of different aspect ratios
-
-highscores, recorded locally with cookies, recorded on server
-hints from Floppy in single player version
