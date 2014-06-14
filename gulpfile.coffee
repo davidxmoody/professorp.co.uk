@@ -18,7 +18,7 @@ gulp.task 'coffee', ->
   rebundle = (ids) ->
     gutil.log if ids then "Rebundling because of change in #{ids}" else 'Bundling'
     bundler.bundle()
-      .pipe source('bundle.js')
+      .pipe source('script.js')
       .pipe gulp.dest('./build/')
 
   bundler.on('update', rebundle) if keepWatching
@@ -28,7 +28,7 @@ gulp.task 'sass', ->
   gulp.src './app/scss/main.scss'
     .pipe if keepWatching then watch() else gutil.noop()
     .pipe sass(errLogToConsole: true)
-    .pipe rename('stylesheet.css')
+    .pipe rename('style.css')
     .pipe gulp.dest('./build/')
 
 gulp.task 'index', ->
