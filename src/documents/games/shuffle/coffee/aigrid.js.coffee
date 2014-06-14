@@ -1,5 +1,5 @@
-ShuffleGrid = require 'shufflegrid'
-Solver = require 'solver/solver'
+ShuffleGrid = require './shufflegrid'
+Solver = require './solver/solver'
 
 #TODO add a personality variable for storing these values
 MOVE_INTERVAL = 500

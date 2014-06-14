@@ -23,7 +23,5 @@ startEverything = ->
     console.log "Floppy finished in #{timeTaken} seconds, taking #{floppyGrid.movesTaken} moves!"
 
 
-module.exports = App =
-  init: ->
-    $(document).ready ->
-      startEverything()
+$(document).ready ->
+  startEverything()

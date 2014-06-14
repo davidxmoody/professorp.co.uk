@@ -1,5 +1,5 @@
-Tile = require 'tile'
-Random = require 'random'
+Tile = require './tile'
+Random = require './random'
 
 module.exports = class ShuffleGrid
   constructor: (@levels, @random, @$container) ->
