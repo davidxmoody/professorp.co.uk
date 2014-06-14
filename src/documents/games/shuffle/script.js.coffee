@@ -1,7 +1,11 @@
-levels = require 'levels'
-PlayerGrid = require 'playergrid'
-AIGrid = require 'aigrid'
-Random = require 'random'
+---
+browserify: true
+---
+
+levels = require './coffee/levels'
+PlayerGrid = require './coffee/playergrid'
+AIGrid = require './coffee/aigrid'
+Random = require './coffee/random'
 
 startEverything = ->
   rand = new Random()
