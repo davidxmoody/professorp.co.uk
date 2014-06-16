@@ -1,6 +1,5 @@
 ---
 browserify: true
-referencesOthers: true
 ---
 
 levels = require './coffee/levels'
@@ -10,18 +9,14 @@ AIPersonality = require './coffee/aipersonality'
 Random = require './coffee/random'
 
 $(document).ready ->
+  # Seed both grids with the same random number generator
   rand = new Random()
+
+  playerGrid = new PlayerGrid(levels, rand.clone(), $('#player-container'))
+  floppyGrid = new AIGrid(levels, rand.clone(), $('#ai-container'))
 
   floppyPersonality = new AIPersonality('Floppy')
   floppyPersonality.say("Hi, I'll start when you make your first move.")
-
-  playerGrid = new PlayerGrid(levels, rand.clone(), $('#player-container'))
-  playerGrid.init ->
-    console.log "Player finished in #{playerGrid.movesTaken} moves!"
-    
-  floppyGrid = new AIGrid(levels, rand.clone(), $('#ai-container'))
-  floppyGrid.init ->
-    console.log "Floppy finished in #{floppyGrid.movesTaken} moves!"
 
   # Delay Floppy start until player has moved one tile
   playerGrid.one 'tile-moved', ->
@@ -35,7 +30,7 @@ $(document).ready ->
     floppyGrid.one 'shuffle-finished', ->
       floppyPersonality.say("This should be a bit more challenging.")
     floppyGrid.on 'sublevel-complete', ->
-      if playerGrid.nextLevelIndex<floppyGrid.nextLevelIndex
+      if playerGrid.levelIndex<floppyGrid.levelIndex
         floppyPersonality.randomSay("Looks like I'm winning so far.")
       else
         floppyPersonality.randomSay("You're doing well!")

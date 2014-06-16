@@ -6,12 +6,10 @@ module.exports = class ShuffleGrid
   constructor: (@levels, @random, @$container) ->
     @random ?= new Random()
     @movesTaken = 0
-    @nextLevelIndex = 0
+    @levelIndex = 0
     
     # Make the jQuery grid
-    @$grid = $ '<div/>'
-    @$grid.addClass('shuffle-grid')
-
+    @$grid = $('<div class="shuffle-grid"></div>')
     @$container.append(@$grid)
 
     # Setup custom event handling (delegated to the jQuery @$grid)
@@ -20,25 +18,24 @@ module.exports = class ShuffleGrid
     @one = $.proxy(@$grid.one, @$grid)
     @off = $.proxy(@$grid.off, @$grid)
 
-
-  init: (@completeCallback) ->
-    @loadLevel(@_getNextLevel())
+    # Load first level and shuffle
+    @loadLevel(@levels[@levelIndex])
     @shuffle()
 
 
   _getNextLevel: ->
-    @levels[@nextLevelIndex++]
+    @levels[++@levelIndex]
 
 
   loadLevel: (@level) ->
-    @numShuffles = 50 #TODO set min and max shuffles from level data
+    # Do no more than this number of shuffles, chosen by trial and error
+    @numShuffles = 50
 
     @tiles = @_makeTiles(level)
     @emptyTile = tile for tile in @tiles when tile.empty
 
     for tile in @tiles
       @$grid.append(tile.$tile)
-
 
 
   _makeTiles: (level) ->
@@ -54,23 +51,22 @@ module.exports = class ShuffleGrid
 
 
   shuffle: =>
-    #TODO fix below comment and add min moves?
-    # Stop if maxMoves reached or grid is completely mixed up
+    # Stop if the shuffle limit is reached or if the grid is mixed up
     if @numShuffles<=0 or @_isMixed()
       @setupInput()
       @readyForInput()
       @trigger('shuffle-finished')
-      return
 
-    # Choose a random movable tile but don't move the last tile to be moved
-    # (to prevent an annoying double-move behaviour)
-    availableMoves = @_movableTiles(false)
-    tileToMove = @random.choose(availableMoves)
+    else
+      # Choose a random movable tile but don't move the last tile to be moved 
+      # (to prevent an annoying double-move behaviour)
+      availableMoves = @_movableTiles(false)
+      tileToMove = @random.choose(availableMoves)
 
-    # Move chosen tile and schedule the next move
-    @numShuffles--
-    @lastShuffledTile = tileToMove
-    tileToMove.swapWith(@emptyTile, @shuffle)
+      # Move chosen tile and schedule the next move
+      @numShuffles--
+      @lastShuffledTile = tileToMove
+      tileToMove.swapWith(@emptyTile, @shuffle)
     
 
   _numIncorrect: ->
