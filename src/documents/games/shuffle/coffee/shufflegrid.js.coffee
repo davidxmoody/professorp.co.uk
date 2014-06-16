@@ -5,7 +5,6 @@ Random = require './random'
 module.exports = class ShuffleGrid
   constructor: (@levels, @random, @$container) ->
     @random ?= new Random()
-    @movesTaken = 0
     @levelIndex = 0
     
     # Make the jQuery grid
@@ -89,7 +88,6 @@ module.exports = class ShuffleGrid
   tryMoveTile: (tile) ->
     if tile.adjacentTo(@emptyTile)
       @trigger('tile-moved')
-      @movesTaken++
       tile.swapWith @emptyTile, =>
         if @_isSolved()
           @levelComplete()
@@ -110,16 +108,10 @@ module.exports = class ShuffleGrid
         @_slideTransition(nextLevel)
     
     else
-      $img = $ "<img style='height: 100%; width: 100%;' src='#{@level.image}'/>"
-      thisGrid = this
-      $img.fadeIn 1000, ->
-        nextLevel = thisGrid._getNextLevel()
-        if nextLevel?
-          thisGrid.loadLevel(nextLevel)
-          thisGrid.shuffle()
-        else
-          thisGrid.trigger('level-complete')
-      @$grid.prepend $img
+      $img = $("<img style='height: 100%; width: 100%;' src='#{@level.image}'/>")
+      $img.fadeIn 1000, =>
+        @trigger('level-complete')
+      @$grid.prepend($img)
 
 
   _zoomOutTransition: (nextLevel) ->
@@ -156,7 +148,7 @@ module.exports = class ShuffleGrid
 
     gridWidth = oldTiles[0].width*oldTiles[0].level.gridSize[0]
 
-    $img = $ "<img style='position: absolute; height: 100%; width: 100%;' src='#{oldLevel.image}'/>"
+    $img = $("<img style='position: absolute; height: 100%; width: 100%;' src='#{oldLevel.image}'/>")
     $img.fadeIn 1000, =>
       slideDuration = 3000
       for tile, i in @tiles
