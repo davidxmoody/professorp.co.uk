@@ -1,3 +1,7 @@
+---
+referencesOthers: true
+---
+
 $ = require 'jquery'
 ShuffleGrid = require './shufflegrid'
 

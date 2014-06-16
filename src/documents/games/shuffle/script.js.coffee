@@ -1,5 +1,6 @@
 ---
 browserify: true
+referencesOthers: true
 ---
 
 $ = require 'jquery'

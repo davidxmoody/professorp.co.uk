@@ -100,34 +100,16 @@ module.exports = class ShuffleGrid
 
 
   levelComplete: ->
-    oldTiles = @tiles
     nextLevel = @_getNextLevel()
+
     if nextLevel
       @trigger('sublevel-complete')
-      subtilePosition = @level.subtilePosition
-      @level = nextLevel
-      @tiles = @_makeTiles(@level)
-      @emptyTile = tile for tile in @tiles when tile.empty
-
-      for tile, i in @tiles
-        return if tile.empty
-        oldCSS = tile.$tile.css(['width', 'height', 'left', 'top'])
-        
-        tile.$tile.css
-          width: tile.level.gridSize[0]*tile.width-2
-          height: tile.level.gridSize[1]*tile.height-2
-          left: (tile.origX-subtilePosition[0])*(tile.width+2)*tile.level.gridSize[0]
-          top: (tile.origY-subtilePosition[1])*(tile.height+2)*tile.level.gridSize[1]
-
-        tile.$tile.fadeIn 2000, ->
-          for oldTile in oldTiles
-            oldTile.$tile.remove()
-
-        tile.$tile.animate oldCSS, 4000, (if i is 0 then @shuffle else null)
-        @$grid.append(tile.$tile)
+      if @level.subtilePosition?
+        @_zoomOutTransition(nextLevel)
+      else
+        @_slideTransition(nextLevel)
     
     else
-      @trigger('level-complete')
       $img = $ "<img style='height: 100%; width: 100%;' src='#{@level.image}'/>"
       thisGrid = this
       $img.fadeIn 1000, ->
@@ -136,8 +118,62 @@ module.exports = class ShuffleGrid
           thisGrid.loadLevel(nextLevel)
           thisGrid.shuffle()
         else
-          thisGrid.completeCallback()
+          thisGrid.trigger('level-complete')
       @$grid.prepend $img
+
+
+  _zoomOutTransition: (nextLevel) ->
+    oldTiles = @tiles
+    subtilePosition = @level.subtilePosition
+    @level = nextLevel
+    @tiles = @_makeTiles(@level)
+    @emptyTile = tile for tile in @tiles when tile.empty
+
+    for tile, i in @tiles
+      continue if tile.empty
+      oldCSS = tile.$tile.css(['width', 'height', 'left', 'top'])
+      
+      tile.$tile.css
+        width: tile.level.gridSize[0]*tile.width-2
+        height: tile.level.gridSize[1]*tile.height-2
+        left: (tile.origX-subtilePosition[0])*(tile.width+2)*tile.level.gridSize[0]
+        top: (tile.origY-subtilePosition[1])*(tile.height+2)*tile.level.gridSize[1]
+
+      tile.$tile.fadeIn 2000, ->
+        for oldTile in oldTiles
+          oldTile.$tile.remove()
+
+      tile.$tile.animate oldCSS, 4000, (if i is 0 then @shuffle else null)
+      @$grid.append(tile.$tile)
+    
+
+  _slideTransition: (nextLevel) ->
+    oldLevel = @level
+    oldTiles = @tiles
+    @level = nextLevel
+    @tiles = @_makeTiles(@level)
+    @emptyTile = tile for tile in @tiles when tile.empty
+
+    gridWidth = oldTiles[0].width*oldTiles[0].level.gridSize[0]
+
+    $img = $ "<img style='position: absolute; height: 100%; width: 100%;' src='#{oldLevel.image}'/>"
+    $img.fadeIn 1000, =>
+      slideDuration = 3000
+      for tile, i in @tiles
+        continue if tile.empty
+        oldLeft = tile.$tile.css(['left'])
+        tile.$tile.css({ left: '+='+gridWidth })
+        tile.$tile.animate(oldLeft, slideDuration)
+        @$grid.append(tile.$tile)
+
+      for oldTile in oldTiles
+        oldTile.$tile.animate { left: '-='+gridWidth }, slideDuration, =>
+          oldTile.$tile.remove()
+      $img.animate { left: '-='+gridWidth }, slideDuration, =>
+        $img.remove()
+        @shuffle()
+
+    @$grid.prepend($img)
 
 
   readyForInput: ->
