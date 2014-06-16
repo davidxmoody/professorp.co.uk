@@ -8,7 +8,7 @@ NUM_ITERATIONS = 250
 module.exports = class AIGrid extends ShuffleGrid
   
   readyForInput: ->
-    setTimeout(@_makeMove, MOVE_INTERVAL)
+    setTimeout(@_makeMove, MOVE_INTERVAL) if @gameStarted
 
 
   _makeMove: =>
@@ -19,3 +19,9 @@ module.exports = class AIGrid extends ShuffleGrid
 
   setupInput: ->
     @solver = new Solver(this)
+
+
+  makeFirstMove: ->
+    # Hack to make the AIGrid wait for the player to begin before it starts
+    @gameStarted = true
+    @readyForInput()

@@ -1,3 +1,4 @@
+$ = require 'jquery'
 Tile = require './tile'
 Random = require './random'
 
@@ -12,6 +13,12 @@ module.exports = class ShuffleGrid
     @$grid.addClass('shuffle-grid')
 
     @$container.append(@$grid)
+
+    # Setup custom event handling (delegated to the jQuery @$grid)
+    @trigger = $.proxy(@$grid.trigger, @$grid)
+    @on = $.proxy(@$grid.on, @$grid)
+    @one = $.proxy(@$grid.one, @$grid)
+    @off = $.proxy(@$grid.off, @$grid)
 
 
   init: (@completeCallback) ->
@@ -52,6 +59,7 @@ module.exports = class ShuffleGrid
     if @numShuffles<=0 or @_isMixed()
       @setupInput()
       @readyForInput()
+      @trigger('shuffle-finished')
       return
 
     # Choose a random movable tile but don't move the last tile to be moved
@@ -84,6 +92,7 @@ module.exports = class ShuffleGrid
 
   tryMoveTile: (tile) ->
     if tile.adjacentTo(@emptyTile)
+      @trigger('tile-moved')
       @movesTaken++
       tile.swapWith @emptyTile, =>
         if @_isSolved()
@@ -98,6 +107,7 @@ module.exports = class ShuffleGrid
     oldTiles = @tiles
     nextLevel = @_getNextLevel()
     if nextLevel
+      @trigger('sublevel-complete')
       subtilePosition = @level.subtilePosition
       @level = nextLevel
       @tiles = @_makeTiles(@level)
@@ -121,6 +131,7 @@ module.exports = class ShuffleGrid
         @$grid.append(tile.$tile)
     
     else
+      @trigger('level-complete')
       $img = $ "<img style='height: 100%; width: 100%;' src='#{@level.image}'/>"
       thisGrid = this
       $img.fadeIn 1000, ->
