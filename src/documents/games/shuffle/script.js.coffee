@@ -2,6 +2,7 @@
 browserify: true
 ---
 
+$ = require 'jquery'
 levels = require './coffee/levels'
 PlayerGrid = require './coffee/playergrid'
 AIGrid = require './coffee/aigrid'

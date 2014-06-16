@@ -1,3 +1,5 @@
+$ = require 'jquery'
+
 SLIDING_DURATION = 150
 
 class Vector
@@ -16,8 +18,7 @@ module.exports = class Tile
     else
       @empty = origX is level.gridSize[0]-1 and origY is level.gridSize[1]-1
 
-    @$tile = $ '<div/>'
-    @$tile.addClass('shuffle-tile')
+    @$tile = $('<div class="shuffle-tile"></div>')
     @$tile.css
       width: width-2
       height: height-2
