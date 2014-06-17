@@ -19,6 +19,8 @@ module.exports = class ShuffleGrid
 
     # Load first level and shuffle
     @loadLevel(@levels[@levelIndex])
+    for tile in @tiles
+      @$grid.append(tile.$tile)
     @shuffle()
 
 
@@ -32,9 +34,6 @@ module.exports = class ShuffleGrid
 
     @tiles = @_makeTiles(level)
     @emptyTile = tile for tile in @tiles when tile.empty
-
-    for tile in @tiles
-      @$grid.append(tile.$tile)
 
 
   _makeTiles: (level) ->
@@ -100,7 +99,7 @@ module.exports = class ShuffleGrid
   levelComplete: ->
     nextLevel = @_getNextLevel()
 
-    if nextLevel
+    if nextLevel?
       @trigger('sublevel-complete')
       if @level.subtilePosition?
         @_zoomOutTransition(nextLevel)
@@ -108,18 +107,16 @@ module.exports = class ShuffleGrid
         @_slideTransition(nextLevel)
     
     else
+      @trigger('level-complete')
       $img = $("<img style='height: 100%; width: 100%;' src='#{@level.image}'/>")
-      $img.fadeIn 1000, =>
-        @trigger('level-complete')
+      $img.fadeIn(1000)
       @$grid.prepend($img)
 
 
   _zoomOutTransition: (nextLevel) ->
     oldTiles = @tiles
     subtilePosition = @level.subtilePosition
-    @level = nextLevel
-    @tiles = @_makeTiles(@level)
-    @emptyTile = tile for tile in @tiles when tile.empty
+    @loadLevel(nextLevel)
 
     for tile, i in @tiles
       continue if tile.empty
@@ -142,9 +139,7 @@ module.exports = class ShuffleGrid
   _slideTransition: (nextLevel) ->
     oldLevel = @level
     oldTiles = @tiles
-    @level = nextLevel
-    @tiles = @_makeTiles(@level)
-    @emptyTile = tile for tile in @tiles when tile.empty
+    @loadLevel(nextLevel)
 
     gridWidth = oldTiles[0].width*oldTiles[0].level.gridSize[0]
 
