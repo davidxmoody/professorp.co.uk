@@ -1,6 +1,7 @@
 ---
 title: Make a bookmark
 layout: narrow
+screenshot: /images/profp-jurassic-island-bookmark.jpg
 sidebarContent: >
   <a href="/pdf/profp-jurassic-coast-bookmark.pdf"><img class="img-thumbnail" src="/images/profp-jurassic-coast-bookmark.jpg" alt="Click to download the Jurassic Coast bookmark"></a>
   <a href="/pdf/profp-jurassic-island-bookmark.pdf"><img class="img-thumbnail" src="/images/profp-jurassic-island-bookmark.jpg" alt="Click to download the Jurassic Island bookmark"></a>
