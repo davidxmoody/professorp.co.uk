@@ -94,6 +94,11 @@ angular.module('sharkAttackApp', []).controller('SharkAttackCtrl', ['$scope', ($
       fastSharkChance: 0.3
       sharksPerSecond: 3.0
     }
+    {
+      text: "Very hard"
+      fastSharkChance: 0.5
+      sharksPerSecond: 5.0
+    }
   ]
 
   $scope.currentLevelIndex = 0
@@ -149,14 +154,11 @@ angular.module('sharkAttackApp', []).controller('SharkAttackCtrl', ['$scope', ($
     setTimeout (-> $('.sharkattack-container').focus()), 1
 
 
-  #$(document).ready ->
-  #  $(document).keydown (event) ->
-  #    if event.keyCode is 37 or event.keyCode is 39
-  #      if $scope.showTutorialAlert
-  #        $scope.startGame()
-  #        # Fixes bug where first keypress not registered
-  #        $scope.goLeft = true if event.keyCode is 37
-  #        $scope.goRight = true if event.keyCode is 39
+  # jQuery hack to make the enter key always dismiss the current alert
+  $(document).ready ->
+    $(document).keydown (event) ->
+      if event.keyCode is 13 # (enter key)
+        $('.sharkattack-container > div.alert:not(.ng-hide) button').click()
 
 
   $scope.update = ->
@@ -193,7 +195,7 @@ angular.module('sharkAttackApp', []).controller('SharkAttackCtrl', ['$scope', ($
               $scope.showGameCompletedAlert = true
             else
               $scope.showLevelCompletedAlert = true
-          setTimeout(next, 800)
+          setTimeout(next, 400)
 
         when 'crashed', 'eaten'
           # Restart current level
