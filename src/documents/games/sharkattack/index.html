@@ -8,17 +8,37 @@ scripts:
   - script.js
 ---
 
-<div ng-app="sharkAttackApp" ng-controller="SharkAttackCtrl"
-    class="sharkattack-container" 
-    tabindex="0"
-    ng-keydown="keyevent($event)"
-    ng-keyup="keyevent($event)">
+<div ng-app="sharkAttackApp" ng-controller="SharkAttackCtrl">
 
-  <div class="shark" ng-repeat="shark in sharks"
-      ng-style="shark.getStyle()"
-      ng-class="shark.getClasses()"></div>
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      <h2 class="panel-title">How to play</h2>
+    </div>
+    <div class="panel-body">
+      <div class="row">
+        <div class="col-sm-6">
+          <p>Move the raft left and right with the left and right arrow keys.</p>
+          <p>Try to reach the safety of the beach on the island while avoiding the sharks. 
+          Your raft can take a couple of hits before it goes down.</p>
+        </div>
+        <div class="col-sm-6">
+          <ol id="level-progress" class="breadcrumb"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+    <div class="sharkattack-container" tabindex="0"
+      ng-keydown="keyevent($event)"
+      ng-keyup="keyevent($event)">
+  
+    <div class="shark" ng-repeat="shark in sharks"
+        ng-style="shark.getStyle()"
+        ng-class="shark.getClasses()"></div>
+  
+    <div class="raft"
+        ng-style="raft.getStyle()"
+        ng-class="raft.getClasses()"></div>
+  </div>
 
-  <div class="raft"
-      ng-style="raft.getStyle()"
-      ng-class="raft.getClasses()"></div>
 </div>

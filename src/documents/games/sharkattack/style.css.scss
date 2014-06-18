@@ -2,6 +2,7 @@
   width: 400px;
   height: 400px;
   border: 1px solid black;
+  margin: auto;
   position: relative;
   overflow: hidden;
   background-image: url('images/frame.gif');
@@ -20,6 +21,25 @@
   .raft.frame#{$i} {
     background-position: $i*-20px;
   }
+}
+
+@-webkit-keyframes time-up {
+  0%:  {opacity: 1;}
+  10%: {opacity: 0;}
+  20%: {opacity: 1;}
+  30%: {opacity: 0;}
+  40%: {opacity: 1;}
+  50%: {opacity: 0;}
+  60%: {opacity: 1;}
+  70%: {opacity: 0;}
+  80%: {opacity: 1;}
+  100%: {opacity: 0;}
+}
+
+// TODO add non-webkit animation
+.raft.destroyed {
+  -webkit-animation: time-up 2s;
+  opacity: 0;
 }
 
 .shark {

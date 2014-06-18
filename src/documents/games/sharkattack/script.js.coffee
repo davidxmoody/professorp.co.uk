@@ -1,5 +1,3 @@
-sharkAttackApp = angular.module('sharkAttackApp', [])
-
 #TODO check this works everywhere
 timestamp = -> window.performance.now()
 
@@ -36,46 +34,54 @@ class Shark extends Entity
 
 
 class Raft extends Entity
-  constructor: (x=190, y=350, @maxHorizontalSpeed=2, @forwardSpeed=0.4) ->
+  constructor: (@hp=3, x=190, y=350, @maxHorizontalSpeed=2, @forwardSpeed=0.4) ->
     @damage = 0
     super(x, y, 0, -1*@forwardSpeed)
 
   updatePosition: (goLeft, goRight) ->
-    if goLeft and not goRight
-      @velocityX = -1*@maxHorizontalSpeed
-    else if goRight and not goLeft
-      @velocityX = @maxHorizontalSpeed
-    else
-      @velocityX = 0
-    super()
+    unless @damage>=@hp
+      if goLeft and not goRight
+        @velocityX = -1*@maxHorizontalSpeed
+      else if goRight and not goLeft
+        @velocityX = @maxHorizontalSpeed
+      else
+        @velocityX = 0
+      super()
   
   getClasses: ->
     [
       "frame#{Math.min(@damage, 2)}"
+      if @damage>=@hp then 'destroyed'
     ]
 
   takeBite: ->
     @damage++
-    if @damage>=3
-      #TODO do this better
-      console.log "You got eaten!"
+    if @damage==@hp
+      alertEaten = ->
+        alert 'You got eaten!'
+      setTimeout(alertEaten, 2000)
 
 
-sharkAttackApp.controller('SharkAttackCtrl', ['$scope', ($scope) ->
+angular.module('sharkAttackApp', []).controller('SharkAttackCtrl', ['$scope', ($scope) ->
 
-  #TODO make these do something
+  # Game balance variables
+  $scope.fastSharkChance = 0.3
+  $scope.sharksPerSecond = 3.0
+  $scope.raftHitPoints = 3
+
   $scope.width = 400
   $scope.height = 400
 
   $scope.goLeft = false
   $scope.goRight = false
 
-  $scope.raft = new Raft()
+  $scope.raft = new Raft($scope.raftHitPoints)
   $scope.sharks = []
 
   $scope.dt = 0
   $scope.last = timestamp()
   $scope.step = 1/60
+
 
   $scope.update = ->
     # Move raft first
@@ -111,7 +117,7 @@ sharkAttackApp.controller('SharkAttackCtrl', ['$scope', ($scope) ->
 
   $scope.spawnShark = ->
     # Small chance to spawn a fast shark heading for the raft
-    if Math.random()<0.2
+    if Math.random()<$scope.fastSharkChance
       speed = 2
       verticalDistanceFromRaft = 100+Math.random()*80
       timeToCollision = verticalDistanceFromRaft/(speed+$scope.raft.forwardSpeed)
@@ -124,15 +130,24 @@ sharkAttackApp.controller('SharkAttackCtrl', ['$scope', ($scope) ->
         $scope.sharks.push(new Shark(x, y-20, speed*direction, speed))
 
     else
-      #TODO prevent sharks from spawning directly on top of the raft
-      x = _.random(20, $scope.width-40)
+      # Choose random position and speed
+      x = _.random(20, $scope.width-20)
       y = _.random(50, $scope.height-250)
       speed = 0.5+Math.random()
+
+      # Move its position if it is too close to the raft
+      if 0 < $scope.raft.x-x < 20 and -20 < $scope.raft.y-y < 20
+        x -= 40
+      if -20 < $scope.raft.x-x < 0 and -20 < $scope.raft.y-y < 20
+        x += 40
+
+      # Set the velocity to make the shark travel towards the center of the map
       velX = if x<$scope.width/2 then speed else -1*speed
       velY = speed
+
       $scope.sharks.push(new Shark(x, y, velX, velY))
 
-  setInterval($scope.spawnShark, 500)
+  setInterval($scope.spawnShark, 1000/$scope.sharksPerSecond)
 
   $scope.keyevent = ($event) ->
     keydown = $event.type is 'keydown'
