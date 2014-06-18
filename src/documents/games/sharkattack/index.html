@@ -1,0 +1,24 @@
+---
+layout: narrow
+title: Shark Attack
+styles: style.css
+scripts:
+  - //ajax.googleapis.com/ajax/libs/angularjs/1.2.17/angular.min.js
+  - //cdnjs.cloudflare.com/ajax/libs/underscore.js/1.6.0/underscore-min.js
+  - script.js
+---
+
+<div ng-app="sharkAttackApp" ng-controller="SharkAttackCtrl"
+    class="sharkattack-container" 
+    tabindex="0"
+    ng-keydown="keyevent($event)"
+    ng-keyup="keyevent($event)">
+
+  <div class="shark" ng-repeat="shark in sharks"
+      ng-style="shark.getStyle()"
+      ng-class="shark.getClasses()"></div>
+
+  <div class="raft"
+      ng-style="raft.getStyle()"
+      ng-class="raft.getClasses()"></div>
+</div>
