@@ -3,6 +3,7 @@ if window.performance? and window.performance.now?
 else
   timestamp = -> (new Date()).getTime()
 
+
 class Entity
   constructor: (@x, @y, @velocityX, @velocityY) ->
     @initialX = @x
@@ -31,29 +32,42 @@ class Shark extends Entity
     ]
 
   isOutOfBounds: ->
-    #TODO should really use the width and height in $scope
     @x<-100 or @x>500 or @y<-100 or @y>500
 
 
 class Raft extends Entity
   constructor: (@hp=3, x=190, y=350, @maxHorizontalSpeed=2, @forwardSpeed=0.4) ->
     @damage = 0
+    @safe = false
+    @crashed = false
     super(x, y, 0, -1*@forwardSpeed)
 
   updatePosition: (goLeft, goRight) ->
-    unless @damage>=@hp
-      if goLeft and not goRight
+    unless @damage>=@hp or @safe or @crashed
+      # Adjust velocity unless it would bring the raft off screen
+      if goLeft and not goRight and @x>5
         @velocityX = -1*@maxHorizontalSpeed
-      else if goRight and not goLeft
+      else if goRight and not goLeft and @x<375
         @velocityX = @maxHorizontalSpeed
       else
         @velocityX = 0
+
+      # Call super to actually move the raft
       super()
-  
+
+      # Check to see if the raft has reached the beach or the rocks
+      # These constants represent the safe area as displayed on the image
+      if @y<=32 and 121<=@x<=271
+        console.log 'safe'
+        @safe = true
+      else if @y<=38 and @x<=120 or @y<=34 and @x>=272
+        console.log 'crashed'
+        @crashed = true
+
   getClasses: ->
     [
       "frame#{Math.min(@damage, 2)}"
-      if @damage>=@hp then 'destroyed'
+      if @damage>=@hp or @crashed then 'destroyed'
     ]
 
   takeBite: ->
@@ -67,8 +81,8 @@ class Raft extends Entity
 angular.module('sharkAttackApp', []).controller('SharkAttackCtrl', ['$scope', ($scope) ->
 
   # Game balance variables
-  $scope.fastSharkChance = 0.3
-  $scope.sharksPerSecond = 3.0
+  $scope.fastSharkChance = 0.2
+  $scope.sharksPerSecond = 2.0
   $scope.raftHitPoints = 3
 
   $scope.width = 400
@@ -115,7 +129,8 @@ angular.module('sharkAttackApp', []).controller('SharkAttackCtrl', ['$scope', ($
   $scope.frame = ->
     $scope.$apply ->
       now = timestamp()
-      $scope.dt += Math.min(1, (now-$scope.last)/1000) # Prevent too many frames occurring at once
+      # Prevent too many frames occurring at once if user tabs away
+      $scope.dt += Math.min(1, (now-$scope.last)/1000)
       while $scope.dt>$scope.step
         $scope.dt -= $scope.step
         $scope.update()
