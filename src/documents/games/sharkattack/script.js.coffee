@@ -97,7 +97,7 @@ angular.module('sharkAttackApp', []).controller('SharkAttackCtrl', ['$scope', ($
     {
       text: "Very hard"
       fastSharkChance: 0.5
-      sharksPerSecond: 5.0
+      sharksPerSecond: 4.5
     }
   ]
 
@@ -141,6 +141,8 @@ angular.module('sharkAttackApp', []).controller('SharkAttackCtrl', ['$scope', ($
 
 
   $scope.restartLevel = ->
+    $scope.showLevelCompletedAlert = false
+    $scope.showGameCompletedAlert = false
     $scope.showLevelFailedAlert = false
     $scope.setFocus()
 
@@ -158,7 +160,7 @@ angular.module('sharkAttackApp', []).controller('SharkAttackCtrl', ['$scope', ($
   $(document).ready ->
     $(document).keydown (event) ->
       if event.keyCode is 13 # (enter key)
-        $('.sharkattack-container > div.alert:not(.ng-hide) button').click()
+        $('.sharkattack-container div.alert:not(.ng-hide) button.default-choice').click()
 
 
   $scope.update = ->
@@ -199,6 +201,8 @@ angular.module('sharkAttackApp', []).controller('SharkAttackCtrl', ['$scope', ($
 
         when 'crashed', 'eaten'
           # Restart current level
+          # Customise death message with a bit of a hack
+          $scope.methodOfLastDeath = (if err is 'eaten' then 'got eaten' else 'crashed')
           next = ->
             $scope.showLevelFailedAlert = true
           setTimeout(next, 800)

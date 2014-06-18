@@ -6,13 +6,19 @@
   position: relative;
   overflow: hidden;
   background-image: url('images/frame.gif');
+  display: table;
 }
 
-.sharkattack-container > div.alert {
+.sharkattack-container .alert-container {
+  display: table-cell;
+  text-align: center;
+  vertical-align: middle;
+}
+
+.sharkattack-container .alert {
+  display: inline-block;
   width: 80%;
-  position: absolute;
-  top: 40%;
-  left: 10%;
+  position: relative;
   z-index: 100;
 }
 
@@ -31,6 +37,19 @@
   }
 }
 
+@keyframes time-up {
+  0%:  {opacity: 1;}
+  10%: {opacity: 0;}
+  20%: {opacity: 1;}
+  30%: {opacity: 0;}
+  40%: {opacity: 1;}
+  50%: {opacity: 0;}
+  60%: {opacity: 1;}
+  70%: {opacity: 0;}
+  80%: {opacity: 1;}
+  100%: {opacity: 0;}
+}
+
 @-webkit-keyframes time-up {
   0%:  {opacity: 1;}
   10%: {opacity: 0;}
@@ -44,8 +63,8 @@
   100%: {opacity: 0;}
 }
 
-// TODO add non-webkit animation
 .raft.destroyed {
+  animation: time-up 2s;
   -webkit-animation: time-up 2s;
   opacity: 0;
 }
