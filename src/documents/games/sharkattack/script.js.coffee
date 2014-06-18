@@ -58,11 +58,11 @@ class Raft extends Entity
       # Check to see if the raft has reached the beach or the rocks
       # These constants represent the safe area as displayed on the image
       if @y<=32 and 121<=@x<=271
-        console.log 'safe'
         @safe = true
+        throw 'safe'
       else if @y<=38 and @x<=120 or @y<=34 and @x>=272
-        console.log 'crashed'
         @crashed = true
+        throw 'crashed'
 
   getClasses: ->
     [
@@ -73,17 +73,39 @@ class Raft extends Entity
   takeBite: ->
     @damage++
     if @damage==@hp
-      alertEaten = ->
-        alert 'You got eaten!'
-      setTimeout(alertEaten, 2000)
+      throw 'eaten'
 
 
 angular.module('sharkAttackApp', []).controller('SharkAttackCtrl', ['$scope', ($scope) ->
 
-  # Game balance variables
-  $scope.fastSharkChance = 0.2
-  $scope.sharksPerSecond = 2.0
-  $scope.raftHitPoints = 3
+  $scope.levels = [
+    {
+      text: "Easy"
+      fastSharkChance: 0.1
+      sharksPerSecond: 1.5
+    }
+    {
+      text: "Medium"
+      fastSharkChance: 0.15
+      sharksPerSecond: 2.0
+    }
+    {
+      text: "Hard"
+      fastSharkChance: 0.3
+      sharksPerSecond: 3.0
+    }
+  ]
+
+  $scope.currentLevelIndex = 0
+
+  $scope.raft = new Raft()
+  $scope.sharks = []
+  $scope.updatesUntilNextShark = 0
+
+  $scope.showTutorialAlert = true
+  $scope.showLevelCompletedAlert = false
+  $scope.showGameCompletedAlert = false
+  $scope.showLevelFailedAlert = false
 
   $scope.width = 400
   $scope.height = 400
@@ -91,37 +113,96 @@ angular.module('sharkAttackApp', []).controller('SharkAttackCtrl', ['$scope', ($
   $scope.goLeft = false
   $scope.goRight = false
 
-  $scope.raft = new Raft($scope.raftHitPoints)
-  $scope.sharks = []
-  $scope.updatesUntilNextShark = 0
 
-  $scope.dt = 0
-  $scope.last = timestamp()
-  $scope.step = 1/60
+  $scope.startGame = ->
+    $scope.showTutorialAlert = false
+
+    $scope.dt = 0
+    $scope.last = timestamp()
+    $scope.step = 1/60
+
+    $scope.setFocus()
+    requestAnimationFrame($scope.startLoop)
+
+
+  $scope.nextLevel = ->
+    $scope.showLevelCompletedAlert = false
+    $scope.currentLevelIndex++
+    $scope.setFocus()
+
+    $scope.raft = new Raft()
+    $scope.sharks = []
+    $scope.updatesUntilNextShark = 0
+
+
+  $scope.restartLevel = ->
+    $scope.showLevelFailedAlert = false
+    $scope.setFocus()
+
+    $scope.raft = new Raft()
+    $scope.sharks = []
+    $scope.updatesUntilNextShark = 0
+
+
+  $scope.setFocus = ->
+    # Do it via timeout to prevent angular error
+    setTimeout (-> $('.sharkattack-container').focus()), 1
+
+
+  #$(document).ready ->
+  #  $(document).keydown (event) ->
+  #    if event.keyCode is 37 or event.keyCode is 39
+  #      if $scope.showTutorialAlert
+  #        $scope.startGame()
+  #        # Fixes bug where first keypress not registered
+  #        $scope.goLeft = true if event.keyCode is 37
+  #        $scope.goRight = true if event.keyCode is 39
 
 
   $scope.update = ->
-    # Move raft first
-    $scope.raft.updatePosition($scope.goLeft, $scope.goRight)
+    try
+      # Move raft first
+      $scope.raft.updatePosition($scope.goLeft, $scope.goRight)
 
-    # Then move sharks
-    for shark in $scope.sharks
-      shark.updatePosition()
-    $scope.sharks = _.filter($scope.sharks, (shark) -> not shark.isOutOfBounds())
+      # Then move sharks
+      for shark in $scope.sharks
+        shark.updatePosition()
+      $scope.sharks = _.filter($scope.sharks, (shark) -> not shark.isOutOfBounds())
 
-    # Then check to see if the raft collides with a shark
-    for shark in $scope.sharks
-      unless shark.hasAttacked
-        if shark.y-20 < $scope.raft.y < shark.y+20 and \
-           shark.x-20 < $scope.raft.x < shark.x+20
-          shark.hasAttacked = true
-          $scope.raft.takeBite()
+      # Then check to see if the raft collides with a shark
+      for shark in $scope.sharks
+        unless shark.hasAttacked
+          if shark.y-20 < $scope.raft.y < shark.y+20 and \
+             shark.x-20 < $scope.raft.x < shark.x+20
+            shark.hasAttacked = true
+            $scope.raft.takeBite()
 
-    # Then spawn extra sharks
-    $scope.updatesUntilNextShark--
-    if $scope.updatesUntilNextShark <= 0
-      $scope.spawnShark()
-      $scope.updatesUntilNextShark = 1/$scope.sharksPerSecond/$scope.step
+      # Then spawn extra sharks
+      $scope.updatesUntilNextShark--
+      if $scope.updatesUntilNextShark <= 0
+        $scope.spawnShark()
+        sharksPerSecond = $scope.levels[$scope.currentLevelIndex].sharksPerSecond
+        $scope.updatesUntilNextShark = 1/sharksPerSecond/$scope.step
+        
+    catch err
+      switch err
+        when 'safe'
+          # Load next level
+          next = ->
+            if $scope.currentLevelIndex is $scope.levels.length-1
+              $scope.showGameCompletedAlert = true
+            else
+              $scope.showLevelCompletedAlert = true
+          setTimeout(next, 800)
+
+        when 'crashed', 'eaten'
+          # Restart current level
+          next = ->
+            $scope.showLevelFailedAlert = true
+          setTimeout(next, 800)
+
+        else
+          throw err
 
 
   # Called once per animation frame, will update the game model as many times
@@ -141,12 +222,10 @@ angular.module('sharkAttackApp', []).controller('SharkAttackCtrl', ['$scope', ($
     $scope.frame()
     requestAnimationFrame($scope.startLoop)
 
-  requestAnimationFrame($scope.startLoop)
-
 
   $scope.spawnShark = ->
     # Small chance to spawn a fast shark heading for the raft
-    if Math.random()<$scope.fastSharkChance
+    if Math.random()<$scope.levels[$scope.currentLevelIndex].fastSharkChance
       speed = 2
       verticalDistanceFromRaft = 100+Math.random()*80
       timeToCollision = verticalDistanceFromRaft/(speed+$scope.raft.forwardSpeed)

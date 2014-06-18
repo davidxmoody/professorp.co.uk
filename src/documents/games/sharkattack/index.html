@@ -22,15 +22,40 @@ scripts:
           Your raft can take a couple of hits before it goes down.</p>
         </div>
         <div class="col-sm-6">
-          <ol id="level-progress" class="breadcrumb"></ol>
+          <ol class="breadcrumb">
+            <li ng-repeat="level in levels" ng-class="{ active: currentLevelIndex===$index }">
+              {{ level.text }}
+            </li>
+          </ol>
         </div>
       </div>
     </div>
   </div>
   
-    <div class="sharkattack-container" tabindex="0"
+  <div class="sharkattack-container" tabindex="0"
       ng-keydown="keyevent($event)"
       ng-keyup="keyevent($event)">
+
+    <div class="alert alert-info text-center" ng-show="showTutorialAlert">
+      <p>Try to reach the sandy beach while avoiding the sharks! Use the left and right arrow keys to control the raft.</p>
+      <p><button ng-click="startGame()" class="btn btn-default">Begin</button></p>
+    </div>
+
+    <div class="alert alert-success text-center" ng-show="showLevelCompletedAlert">
+      <p><strong>Well done!</strong> You reached the safety of the beach. 
+      Try the next level which has more sharks.</p>
+      <p><button ng-click="nextLevel()" class="btn btn-default">Next level</button></p>
+    </div>
+  
+    <div class="alert alert-success text-center" ng-show="showGameCompletedAlert">
+      <p><strong>Congratulations!</strong> You've beaten all the levels!</p>
+      <p><button ng-click="location.reload()" class="btn btn-default">Play again</button></p>
+    </div>
+  
+    <div class="alert alert-danger text-center" ng-show="showLevelFailedAlert">
+      <p><strong>Oh no!</strong> You got eaten!</p>
+      <p><button ng-click="restartLevel()" class="btn btn-default">Restart level</button></p>
+    </div>
   
     <div class="shark" ng-repeat="shark in sharks"
         ng-style="shark.getStyle()"

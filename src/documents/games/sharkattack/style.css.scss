@@ -8,6 +8,14 @@
   background-image: url('images/frame.gif');
 }
 
+.sharkattack-container > div.alert {
+  width: 80%;
+  position: absolute;
+  top: 40%;
+  left: 10%;
+  z-index: 100;
+}
+
 .raft {
   width: 20px;
   height: 20px;
