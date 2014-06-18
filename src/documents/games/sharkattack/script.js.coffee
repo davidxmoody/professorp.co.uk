@@ -1,5 +1,7 @@
-#TODO check this works everywhere
-timestamp = -> window.performance.now()
+if window.performance? and window.performance.now?
+  timestamp = -> window.performance.now()
+else
+  timestamp = -> (new Date()).getTime()
 
 class Entity
   constructor: (@x, @y, @velocityX, @velocityY) ->
@@ -77,6 +79,7 @@ angular.module('sharkAttackApp', []).controller('SharkAttackCtrl', ['$scope', ($
 
   $scope.raft = new Raft($scope.raftHitPoints)
   $scope.sharks = []
+  $scope.updatesUntilNextShark = 0
 
   $scope.dt = 0
   $scope.last = timestamp()
@@ -100,6 +103,15 @@ angular.module('sharkAttackApp', []).controller('SharkAttackCtrl', ['$scope', ($
           shark.hasAttacked = true
           $scope.raft.takeBite()
 
+    # Then spawn extra sharks
+    $scope.updatesUntilNextShark--
+    if $scope.updatesUntilNextShark <= 0
+      $scope.spawnShark()
+      $scope.updatesUntilNextShark = 1/$scope.sharksPerSecond/$scope.step
+
+
+  # Called once per animation frame, will update the game model as many times
+  # as necessary before allowing it to be drawn to the screen
   $scope.frame = ->
     $scope.$apply ->
       now = timestamp()
@@ -109,11 +121,13 @@ angular.module('sharkAttackApp', []).controller('SharkAttackCtrl', ['$scope', ($
         $scope.update()
       $scope.last = now
 
+
   $scope.startLoop = ->
     $scope.frame()
     requestAnimationFrame($scope.startLoop)
 
   requestAnimationFrame($scope.startLoop)
+
 
   $scope.spawnShark = ->
     # Small chance to spawn a fast shark heading for the raft
@@ -147,8 +161,8 @@ angular.module('sharkAttackApp', []).controller('SharkAttackCtrl', ['$scope', ($
 
       $scope.sharks.push(new Shark(x, y, velX, velY))
 
-  setInterval($scope.spawnShark, 1000/$scope.sharksPerSecond)
 
+  # Keep track of whether the left and right arrow keys are down
   $scope.keyevent = ($event) ->
     keydown = $event.type is 'keydown'
     switch $event.which
