@@ -3,11 +3,9 @@ layout: default
 ---
 
 <% sidebarWidth = @document.sidebarWidth ? 4 %>
-<% fullWidth = @document.fullWidth ? false %>
 
 <div class="row">
-  <div class="<%= if fullWidth then 'col-md-12' else ' col-md-10 col-md-offset-1' %>">
-    <!--TODO fix the above-->
+  <div class="col-md-10 col-md-offset-1">
 
     <% if @document.title?: %>
       <div class="page-header">
