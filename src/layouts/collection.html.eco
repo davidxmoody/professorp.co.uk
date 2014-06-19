@@ -1,0 +1,31 @@
+---
+layout: narrow
+---
+
+<% collectionName = @document.collectionName ? @document.title.toLowerCase() %>
+<% maxImageHeight = @document.maxImageHeight ? 285 %>
+
+<% pages = @getCollection(collectionName).sortArray(name: 1) %>
+
+<div class="row">
+  <% for page in pages: %>
+    <div class="col-sm-4 col-xs-6 text-center">
+      <a href="<%= page.url %>">
+        <div class="thumbnail">
+          <% image = page.image ? page.screenshot %>
+          <% if image?: %>
+            <!-- Hack to align images vertically -->
+            <div style="height: <%= maxImageHeight %>px; line-height: <%= maxImageHeight %>px;">
+              <img style="max-height: <%= maxImageHeight %>px;" src="<%= image %>" alt="Image for the <%= page.title %> page">
+            </div>
+          <% end %>
+          <div class="caption">
+            <h3><%= page.title %></h3>
+          </div>
+        </div>
+      </a>
+    </div>
+  <% end %>
+</div>
+
+<%- @content %>
