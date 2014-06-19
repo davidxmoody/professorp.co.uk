@@ -260,7 +260,6 @@ image: /images/events/2006/uphill-primary-school.jpg
 > 
 > <footer>Helen Howe</footer>
 
-
 ---
 date: 16 October 2006
 title: Weston All Saints Primary School, Bath
@@ -306,14 +305,6 @@ image: /images/events/2006/hazlegrove-prep.jpg
 > <footer>Richard Fenwick (Headmaster)</footer>
 
 ---
-date: 25 September 2006
-title: Lipson Vale Primary School, Plymouth
-image: /images/events/2006/lipson-vale-primary-school.jpg
----
-
-
-
----
 date: 18 September 2006
 title: East Worlington Primary School, Devon
 image: /images/events/2006/east-worlington-primary-school.jpg
@@ -348,14 +339,6 @@ image: /images/events/2006/ilsington-primary-school.jpg
 ![](/images/events/2006/ilsington_jessicas_letter.jpg)
 
 It was wonderful to receive so many thank you letters from the children at Ilsington - I loved your suggestions and ideas for my next book. Many thanks to Maddie and Jessica for their sample chapters.
-
----
-date: 12 July 2006
-title: Chawleigh Primary School, Devon
-image: /images/events/2006/chawleigh-primary-school.jpg
----
-
-
 
 ---
 date: 28 June 2006
@@ -394,14 +377,6 @@ image: /images/events/2006/st-davids-primary-school.jpg
 > <footer>Rachel</footer>
 
 ---
-date: 21 June 2006
-title: Trinity Primary School, Radstock, Bath
-image: /images/events/2006/trinity-primary-school.jpg
----
-
-
-
----
 date: 19 June 2006
 title: Park Street Primary School, Cambridge
 image: /images/events/2006/park-street-primary-school.jpg
@@ -412,14 +387,6 @@ image: /images/events/2006/park-street-primary-school.jpg
 > Thanks again for such a lovely event.
 > 
 > <footer>Nicki Heppell (Year 5/6 teacher)</footer>
-
----
-date: 14 June 2006
-title: Shute Primary School, Axminster, Devon
-image: /images/events/2006/shute-primary-school.jpg
----
-
-
 
 ---
 date: 12 June 2006
@@ -464,22 +431,6 @@ image: /images/events/2006/clyst-st-mary-primary-school.jpg
 > <footer>Louise Herbert (Headteacher)</footer>
 
 ---
-date: 22 May 2006
-title: St Mary's Catholic Primary School, Axminster, Devon
-image: /images/events/2006/st-marys-primary-school-axminster.jpg
----
-
-
-
----
-date: 17 May 2006
-title: Stogursey Primary School, Bridgwater, Somerset
-image: /images/events/2006/stogursey-primary-school.jpg
----
-
-
-
----
 date: 16 May 2006
 title: Creech St Michael Primary School, Taunton, Somerset
 image: /images/events/2006/creech-st-michael-primary-school.jpg
@@ -500,14 +451,6 @@ image: /images/events/2006/creech-st-michael-primary-school.jpg
 I had such an enthusiastic response at Creech St Michael Primary School! Thanks to Amelia and Alex in Year 5 for sending me such wonderful pieces of writing after my visit. 
 
 Here is [The Brass Curtain](/pdf/creech-st-michaels-alexs-story.pdf) by Alex Coombs.
-
----
-date: 15 May 2006
-title: Priorswood Primary School, Taunton, Somerset
-image: /images/events/2006/priorswood-primary-school-taunton.jpg
----
-
-
 
 ---
 date: 08 May 2006
@@ -565,452 +508,258 @@ image: /images/events/2006/heffers-cambridge.jpg
 > 
 > <footer>Kate Johnson (Children's Manager, Heffers Bookshop)</footer>
 
-23 February 2006
-
-Ottakar's Bookshop, Godalming, Surrey.
-
-image: /images/events/2006/Ottakars_Godalming_small.JPG
-
-Thank you to 
-all those who attended the fantastic talk by Peter J. Davidson. 
-It was a hit amongst children and parents alike who were able to 
-share in their passion for fossils and educational reading...
-
-Kevin Stone 
-(Assistant Manager)
-
-Read more about the 
-talk on the
-
-Ottakar's website
-
-20 February 2006
-
-Buckholme Towers 
-School, Poole, Dorset.
-
-image: /images/events/2006/Buckholme_Towers_small.jpg
-
-We really 
-enjoyed your visit and offer our heart-felt thanks. The children 
-in year 6 suggested that we read the book together in class. To 
-hear about you life and your interests and how your son has 
-inspired you to write, was inspirational and the children 
-thoroughly enjoyed meeting and listening to you,- as did the 
-staff. We wish you every success in the future with your next 
-book...
-Trish Meldrum (Year 6 teacher)
-
-10 February 2006
-
-St Mary's Primary 
-School, Beaminster, Dorset.
-
-image: /images/events/2006/St_Marys_Beaminster_small.jpg
-
-It was wonderful 
-to visit St Mary's Primary School in Beaminster - I was 
-particularly impressed with the Professor P books that year 6 
-were making - they were full of lovely drawings and great ideas. 
-I'd love to see them all when they are finished!
-
-06 February 2006
-
-Shalfleet Primary 
-School, Newport, Isle of Wight.
-
-image: /images/events/2006/Shalfleet_Primary_small.jpg
-
-image: /images/events/2006/Thank_You_Shalfleet1.jpg
-image: /images/events/2006/Thank_You_Shalfleet2.jpg
-
-Thank you 
-very much for coming to visit Sky class yesterday. We loved 
-to see your fossils and hear part of your story. We are 
-still very busy making our own books today.
-
-Sue, Hazel and 
-all the children in Sky class
-
-23 January 2006
-
-Clayesmore Preparatory 
-School, Blandford, Dorset.
-
-image: /images/events/2006/Clayesmore_Prep_small.jpg
-
-... The 
-children really enjoyed your visit and I am 
-sure it has helped in their preparation for the trip to 
-Charmouth...
-
-Heather Bignold 
-(Librarian)
-
-16 January 2006
-
-Bethany Junior 
-School, Bournemouth, Dorset.
-
-image: /images/events/2006/Bethany_Junior_School_small.jpg
-
-Just a quick 
-note to thank you for your visit. The children and staff really 
-enjoyed it and I now have a group of children reading your book 
-in class. The photograph is great and is being put up in a 
-prominent place in the library and the Bournemouth Echo also 
-published it. I will certainly recommend you to other schools in 
-the area. Please keep us advised when of the next book in the 
-series is published...Mary Cusens (Year 5 teacher)
-
-14 November 2005
-
-Southill Primary School, Weymouth, Dorset.
-
-image: /images/events/2005/Weymouth_Southill.jpg
-
-It's always a 
-wonderful experience to visit classes that have read the book. I 
-was overwhelmed by your enthusiasm!
-
-10 November 2005
-
-Northstead Community Primary School, Scarborough, North 
-Yorkshire.
-
-image: /images/events/2005/Scarborough_Northstead_small.jpg
-
-It was great to 
-visit the Yorkshire Jurassic Coast. Thanks to all the children 
-at Northstead for making me feel so welcome. Afterwards I went 
-onto the beach and found some great fossils...
-
-17 October - 22 
-October 2005
-
-Cambridge
-
-Saturday 22 
-October
-
-Booksigning in Borders.image: /images/events/2005/Borders_Cambridge_small.jpg
-
-What a week! It 
-was wonderful to visit Cambridge and be welcomed by so many 
-children and teachers. I'll be back in Cambridge again for World 
-Book Week, visiting more schools and doing a book- signing in 
-Heffers Bookshop in the Grafton Centre on Saturday 4 March 
-between 11.00am and 2.00pm.
-
-Thank you for coming to our school - it was fantastic. I 
-love your story - everyone loves it - you made me read and write 
-a lot more. I really hope you write a lot more books so I can 
-read a lot more...
-
-Jade (Bottisham 
-Primary School)
-
-Friday 21 October
-
-King's College Schoolimage: /images/events/2005/Cambridge_Kings_small.jpg
-
-Thursday 20 
-October
-
-Icknield Primary School.image: /images/events/2005/Cambridge_Icknield_small.jpg
-
-Wednesday 19 
-October
-
-Meridian Primary School.image: /images/events/2005/Cambridge_Meridian_small.jpg
-
-Tuesday 18 
-October
-
-Bottisham Primary School.image: /images/events/2005/Cambridge_Bottisham_small.jpg
-
-Tuesday 18 
-October
-
-Newnham Croft Primary School.image: /images/events/2005/Cambridge_Newnham_small.jpg
-
-Monday 17 October
-
-Morley Memorial Primary School.image: /images/events/2005/Cambridge_Morley_small.JPG
-
-10 October 2005
-
-Musbury Primary School, Axminster, Devon.
-
-image: /images/events/2005/Musbury_small.jpg
-
-Thanks very 
-much for your visit which the children really enjoyed...
-
-Clive Salmon (Headteacher)
-
-After my talk 
-Jessica read me one of her poems. I liked it so much I thought 
-I'd share it with you. It's called
-Wolf.
-
-29 September - 1 
-October 2005
-
-Isle of Wight
-
-Saturday 1 
-October
-
-Booksigning in Ottakar's, Newportimage: /images/events/2005/Newport_signing_small.jpg
-
-What a fantastic 
-reception I had on the Isle of Wight - The Dinosaur Island! I'll 
-be back on the Isle of Wight again in February 2006 visiting 
-Shalfleet Primary School.
-
-Friday 30 
-September
-
-Newchurch Primary Schoolimage: /images/events/2005/Newchurch_small.JPG
-
-Thursday 29 
-September
-
-Newport CE Primary School.image: /images/events/2005/IOW_County_Press_small.JPG
-
-13 August 2005
-
-Borders Books, York.
-
-image: /images/events/2005/York_small.jpg
-
-Thanks 
-so much for coming to visit our store - it was a great 
-success - do hope you can come again next summer
-
-Jess Knox 
-(Children's Manager)
-
-Thanks 
-to everyone who attended - it was great to meet you all! 
-I hope to return in June, visiting schools in York and 
-doing another signing in Borders.
-
-15 July 2005
-
-Aldington Primary School, Kent.
-
-image: /images/events/2005/Aldington_small.jpg
-
-“I did like the book very much because of 
-the way it was written. I like the story plan. I like the idea 
-of a time machine also, I like the fossil guide. I like the way 
-that you keep the reader interested all the time. It keeps you 
-in suspense even at the end. The story is full of adventures. My 
-favourite adventure is when Peter, Tara and Floppy were in the 
-Jurassic Period because it is so unusual. My favourite chapters 
-are the Safe and Shark Attack. It was difficult to put the book 
-down.”
-
-Matthew
-
-20 June 2005
-
-Seaton Primary School, Seaton, Devon.
-
-image: /images/events/2005/Seaton_small.JPG
-
-I have been a 
-teacher for 30 years and have never known a class be so 
-enthralled with a book as they are with Professor P and the 
-Jurassic Coast...
-
-Mrs Hill (Year 5 
-teacher)
-
-18 June 2005
-
-Bournes Bookworld, Weymouth, Dorset.
-
-image: /images/events/2005/Weymouth_small.JPG
-
-After 
-the talk and signing I gave an interview with Peter 
-Lythgoe from
-
-ZZipp Creatives about why I wrote Professor P and 
-the Jurassic Coast and why I decided to publish the 
-book myself.
-
-22 March 
-2005
-
-Wookey Primary School, Wells, Somerset.
-
-image: /images/events/2005/Wookey_Primary_small.jpg
-
-On 
-behalf of all the children at Wookey Primary School I 
-would like to thank you for your visit at the end of 
-last term. The children found it extremely interesting 
-and they are all looking forward to reading Professor P 
-and the Jurassic Coast...
-
-Jim Reeve (Headteacher)
-
-11 March 
-2005 - Comic Relief Day
-
-Dharma School, Brighton, East Sussex.
-
-image: /images/events/2005/Dharma_School_small.JPG
-
-We 
-thoroughly enjoyed your visit and it was to your great 
-credit that you held such a diverse audience for a whole 
-hour...
-
-Phil 
-Ferguson (Teacher)
-
-4 March 
-2005 - World Book Day
-
-Ottakar's Bookshop, Fareham, Hampshire.
-
-image: /images/events/2005/Ottakars_Fareham_small.JPG
-
-It 
-takes a fair amount of self-belief to even contemplate 
-writing your debut novel... And the results are superb. 
-Professor P is an enthralling tale...
-
-Marion 
-Couchman (Children's Manager)
-
-28 February 2005
-
-West Pennard School, Glastonbury, Somerset.
-
-image: /images/events/2005/West_Pennard_small.JPG
-
-I would 
-like to thank you on behalf of the children for your 
-really enthralling talks with the children on Monday. We 
-all loved the tale behind the story...
-
-Ann 
-Scourfield (Headteacher)
-
-26 January 
-2005 
-
-Upton Junior School, Poole, Dorset.
-
-image: /images/events/2005/Upton_Junior_small.JPG
-
-We had such 
-a good morning with you - the children were fascinated and 
-many are now going to be fossil enthusiasts! Thank you for 
-inspiring the children, I'm sure they will remember their 
-meeting with an author for many years to come...
-
-Maggie Woodley 
-(Year 3 teacher)
-
-11 December 2004 
-
-Ottakar's Bookshop, Petersfield, Hampshire.
-
-image: /images/events/2004/Ottakars_Petersfield_small.JPG
-
-It was 
-such a successful event - thank you so much for coming!
-
-Cherry 
-Potts (Children's Manager)
-
-20 November 2004 
-
-Ottakar's Bookshop, Wells, Somerset.
-
-image: /images/events/2004/Ottakars_Wells_small.jpg
-
-I think 
-the book was really good because it was an exciting 
-story. My favourite part was when they got attacked by 
-dinosaurs and sharks and when they played with the 
-friendly but fierce-looking sea creature, the 
-Ichthyosaurus...
-
-Liam (aged 
-11)
-
-11 November 2004 
-
-Mungles Jungle, 
-Brighton, East Sussex.
-
-image: /images/events/2004/Mungles_Jungle_small.jpg
-
-Thank 
-you so much for coming last Saturday. I really 
-appreciate the time you took, the work your did - it was 
-so kind of you. It was really inspirational to hear you 
-explain how Professor P came into being... I sincerely 
-wish you all the best with Prof P - it thoroughly 
-deserves to sell million!
-
-Jane 
-Shepard (Bookshop Manager)
-
-6 November 2004 
-
-Ottakar's Bookshop, Eastleigh, Hampshire.
-
-image: /images/events/2004/Ottakars_Eastleigh_small.JPG
-
-I was 
-great talking to fans who had read Professor P and 
-the Jurassic Coast - thanks for your enthusiasm!
-
-30 October 2004 
-
-Ottakar's Bookshop, Poole, Dorset.
-
-image: /images/events/2004/Ottakars_Poole_small.JPG
-
-It was 
-wonderful to be welcomed by so many fossil enthusiasts 
-full of enthusiasm for Dorset's World Heritage Site 
-Jurassic Coast.
-
-9 October 2004 
-
-Ottakar's Bookshop, Dorchester, Dorset.
-
-image: /images/events/2004/Ottakars_Dorchester_small.jpg
-
-Thank 
-you so much for you time in coming to Ottakar's - it was 
-such a successful day and all the children really 
-enjoyed meeting you.
-
-Lorri Hope 
-(Children's Manager)
-
-2 October 2004 
-
-Ottakar's Bookshop, Fareham, Hampshire.
-
-image: /images/events/2004/Ottakars_Fareham_small.JPG
-
-It 
-takes a fair amount of self-belief to even contemplate 
-writing your debut novel... And the results are superb. 
-Professor P is an enthralling tale...
-
-Marion Couchman 
-(Children's Manager)
-
+---
+date: 23 February 2006
+title: Ottakar's Bookshop, Godalming, Surrey
+image: /images/events/2006/ottakars-godalming.jpg
+---
+
+> Thank you to all those who attended the fantastic talk by Peter J. Davidson. It was a hit amongst children and parents alike who were able to share in their passion for fossils and educational reading...
+> 
+> <footer>Kevin Stone (Assistant Manager)</footer>
+
+---
+date: 20 February 2006
+title: Buckholme Towers School, Poole, Dorset
+image: /images/events/2006/buckholme-towers.jpg
+---
+
+> We really enjoyed your visit and offer our heart-felt thanks. The children in year 6 suggested that we read the book together in class. To hear about you life and your interests and how your son has inspired you to write, was inspirational and the children thoroughly enjoyed meeting and listening to you, as did the staff. We wish you every success in the future with your next book...
+> 
+> <footer>Trish Meldrum (Year 6 teacher)</footer>
+
+---
+date: 10 February 2006
+title: St Mary's Primary School, Beaminster, Dorset
+image: /images/events/2006/st-marys-beaminster.jpg
+---
+
+It was wonderful to visit St Mary's Primary School in Beaminster - I was particularly impressed with the Professor P books that year 6 were making - they were full of lovely drawings and great ideas. I'd love to see them all when they are finished!
+
+---
+date: 06 February 2006
+title: Shalfleet Primary School, Newport, Isle of Wight
+image: /images/events/2006/shalfleet-primary.jpg
+---
+
+![](/images/events/2006/thank-you-shalfleet1.jpg)
+
+![](/images/events/2006/thank-you-shalfleet2.jpg)
+
+> Thank you very much for coming to visit Sky class yesterday. We loved to see your fossils and hear part of your story. We are still very busy making our own books today.
+> 
+> <footer>Sue, Hazel and all the children in Sky class</footer>
+
+---
+date: 23 January 2006
+title: Clayesmore Preparatory School, Blandford, Dorset
+image: /images/events/2006/clayesmore-prep.jpg
+---
+
+> ... The children really enjoyed your visit and I am sure it has helped in their preparation for the trip to Charmouth...
+> 
+> <footer>Heather Bignold (Librarian)</footer>
+
+---
+date: 16 January 2006
+title: Bethany Junior School, Bournemouth, Dorset
+image: /images/events/2006/bethany-junior-school.jpg
+---
+
+> Just a quick note to thank you for your visit. The children and staff really enjoyed it and I now have a group of children reading your book in class. The photograph is great and is being put up in a prominent place in the library and the Bournemouth Echo also published it. I will certainly recommend you to other schools in the area. Please keep us advised when of the next book in the series is published...
+> 
+> <footer>Mary Cusens (Year 5 teacher)</footer>
+
+---
+date: 14 November 2005
+title: Southill Primary School, Weymouth, Dorset
+image: /images/events/2005/weymouth-southill.jpg
+---
+
+It's always a wonderful experience to visit classes that have read the book. I was overwhelmed by your enthusiasm!
+
+---
+date: 10 November 2005
+title: Northstead Community Primary School, Scarborough, North Yorkshire
+image: /images/events/2005/scarborough-northstead.jpg
+---
+
+It was great to visit the Yorkshire Jurassic Coast. Thanks to all the children at Northstead for making me feel so welcome. Afterwards I went onto the beach and found some great fossils...
+
+---
+date: 18 October 2005
+title: Bottisham Primary School
+image: /images/events/2005/cambridge-bottisham.jpg
+---
+
+> Thank you for coming to our school - it was fantastic. I love your story - everyone loves it - you made me read and write a lot more. I really hope you write a lot more books so I can read a lot more...
+> 
+> <footer>Jade (Bottisham Primary School)</footer>
+
+---
+date: 10 October 2005
+title: Musbury Primary School, Axminster, Devon
+image: /images/events/2005/musbury.jpg
+---
+
+> Thanks very much for your visit which the children really enjoyed...
+> 
+> <footer>Clive Salmon (Headteacher)</footer>
+
+After my talk Jessica read me one of her poems. I liked it so much I thought I'd share it with you. It's called [Wolf](/images/events/2005/jessica-poem.jpg).
+
+---
+date: 13 August 2005
+title: Borders Books, York
+image: /images/events/2005/york.jpg
+---
+
+> Thanks so much for coming to visit our store - it was a great success - do hope you can come again next summer.
+> 
+> <footer>Jess Knox (Children's Manager)</footer>
+
+Thanks to everyone who attended - it was great to meet you all! I hope to return in June, visiting schools in York and doing another signing in Borders.
+
+---
+date: 15 July 2005
+title: Aldington Primary School, Kent
+image: /images/events/2005/aldington.jpg
+---
+
+> I did like the book very much because of the way it was written. I like the story plan. I like the idea of a time machine also, I like the fossil guide. I like the way that you keep the reader interested all the time. It keeps you in suspense even at the end. The story is full of adventures. My favourite adventure is when Peter, Tara and Floppy were in the Jurassic Period because it is so unusual. My favourite chapters are the Safe and Shark Attack. It was difficult to put the book down.
+> 
+> <footer>Matthew</footer>
+
+---
+date: 20 June 2005
+title: Seaton Primary School, Seaton, Devon
+image: /images/events/2005/seaton.jpg
+---
+
+> I have been a teacher for 30 years and have never known a class be so enthralled with a book as they are with Professor P and the Jurassic Coast...
+> 
+> <footer>Mrs Hill (Year 5 teacher)</footer>
+
+---
+date: 18 June 2005
+title: Bournes Bookworld, Weymouth, Dorset
+image: /images/events/2005/weymouth.jpg
+---
+
+After the talk and signing I gave an interview with Peter Lythgoe from ZZipp Creatives about why I wrote Professor P and the Jurassic Coast and why I decided to publish the book myself.
+
+---
+date: 22 March 2005
+title: Wookey Primary School, Wells, Somerset
+image: /images/events/2005/wookey-primary.jpg
+---
+
+> On behalf of all the children at Wookey Primary School I would like to thank you for your visit at the end of last term. The children found it extremely interesting and they are all looking forward to reading Professor P and the Jurassic Coast...
+> 
+> <footer>Jim Reeve (Headteacher)</footer>
+
+---
+date: 11 March 2005
+title: Dharma School, Brighton, East Sussex
+image: /images/events/2005/dharma-school.jpg
+---
+
+> We thoroughly enjoyed your visit and it was to your great credit that you held such a diverse audience for a whole hour...
+> 
+> <footer>Phil Ferguson (Teacher)</footer>
+
+---
+date: 4 March 2005
+title: Ottakar's Bookshop, Fareham, Hampshire
+image: /images/events/2005/ottakars-fareham.jpg
+---
+
+> It takes a fair amount of self-belief to even contemplate writing your debut novel... And the results are superb. Professor P is an enthralling tale...
+> 
+> <footer>Marion Couchman (Children's Manager)</footer>
+
+---
+date: 28 February 2005
+title: West Pennard School, Glastonbury, Somerset
+image: /images/events/2005/west-pennard.jpg
+---
+
+> I would like to thank you on behalf of the children for your really enthralling talks with the children on Monday. We all loved the tale behind the story...
+> 
+> <footer>Ann Scourfield (Headteacher)</footer>
+
+---
+date: 26 January 2005 
+title: Upton Junior School, Poole, Dorset
+image: /images/events/2005/upton-junior.jpg
+---
+
+> We had such a good morning with you - the children were fascinated and many are now going to be fossil enthusiasts! Thank you for inspiring the children, I'm sure they will remember their meeting with an author for many years to come...
+> 
+> <footer>Maggie Woodley (Year 3 teacher)</footer>
+
+---
+date: 11 December 2004 
+title: Ottakar's Bookshop, Petersfield, Hampshire
+image: /images/events/2004/ottakars-petersfield.jpg
+---
+
+> It was such a successful event - thank you so much for coming!
+> 
+> <footer>Cherry Potts (Children's Manager)</footer>
+
+---
+date: 20 November 2004 
+title: Ottakar's Bookshop, Wells, Somerset
+image: /images/events/2004/ottakars-wells.jpg
+---
+
+> I think the book was really good because it was an exciting story. My favourite part was when they got attacked by dinosaurs and sharks and when they played with the friendly but fierce-looking sea creature, the Ichthyosaurus...
+> 
+> <footer>Liam (aged 11)</footer>
+
+---
+date: 11 November 2004 
+title: Mungles Jungle, Brighton, East Sussex
+image: /images/events/2004/mungles-jungle.jpg
+---
+
+> Thank you so much for coming last Saturday. I really appreciate the time you took, the work your did - it was so kind of you. It was really inspirational to hear you explain how Professor P came into being... I sincerely wish you all the best with Prof P - it thoroughly deserves to sell million!
+> 
+> <footer>Jane Shepard (Bookshop Manager)</footer>
+
+---
+date: 6 November 2004 
+title: Ottakar's Bookshop, Eastleigh, Hampshire
+image: /images/events/2004/ottakars-eastleigh.jpg
+---
+
+I was great talking to fans who had read Professor P and the Jurassic Coast - thanks for your enthusiasm!
+
+---
+date: 30 October 2004 
+title: Ottakar's Bookshop, Poole, Dorset
+image: /images/events/2004/ottakars-poole.jpg
+---
+
+It was wonderful to be welcomed by so many fossil enthusiasts full of enthusiasm for Dorset's World Heritage Site Jurassic Coast.
+
+---
+date: 9 October 2004 
+title: Ottakar's Bookshop, Dorchester, Dorset
+image: /images/events/2004/ottakars-dorchester.jpg
+---
+
+> Thank you so much for you time in coming to Ottakar's - it was such a successful day and all the children really enjoyed meeting you.
+> 
+> <footer>Lorri Hope (Children's Manager)</footer>
+
+---
+date: 2 October 2004 
+title: Ottakar's Bookshop, Fareham, Hampshire
+image: /images/events/2004/ottakars-fareham.jpg
+---
+
+> It takes a fair amount of self-belief to even contemplate writing your debut novel... And the results are superb. Professor P is an enthralling tale...
+> 
+> <footer>Marion Couchman (Children's Manager) </footer>
