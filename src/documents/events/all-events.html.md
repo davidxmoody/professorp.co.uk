@@ -1,5 +1,5 @@
 ---
-date: 13 May 2008
+date: 2008-05-13
 title: "Lulworth & Winfrith First School, Dorset"
 image: /images/events/2008/lulworth-and-winfrith-first-school.jpg
 ---
@@ -11,7 +11,7 @@ image: /images/events/2008/lulworth-and-winfrith-first-school.jpg
 Thanks for the lovely cards!
 
 ---
-date: 28 April 2008
+date: 2008-04-28
 title: Oakhyrst Grange School, Surrey
 image: /images/events/2008/oakhyrst-grange-school.jpg
 ---
@@ -21,7 +21,7 @@ image: /images/events/2008/oakhyrst-grange-school.jpg
 > <footer>Siobhan Murphy (Year 3/4 teacher)</footer>
 
 ---
-date: 4 March 2008
+date: 2008-03-04
 title: Hugh Sexey Middle School, Somerset
 image: /images/events/2008/hugh-sexey-middle-school-mar-2008.jpg
 ---
@@ -29,7 +29,7 @@ image: /images/events/2008/hugh-sexey-middle-school-mar-2008.jpg
 It was lovely to visit Hugh Sexey Middle School once more and get another enthusiastic response, this time from Year 6.
 
 ---
-date: 11 February 2008
+date: 2008-02-11
 title: Churcher's College Junior School, Hampshire
 image: /images/events/2008/churchers-college-junior-school.jpg
 ---
@@ -43,7 +43,7 @@ image: /images/events/2008/churchers-college-junior-school.jpg
 > <footer>Harris</footer>
 
 ---
-date: 15 January 2008
+date: 2008-01-15
 title: Hugh Sexey Middle School, Somerset
 image: /images/events/2008/hugh-sexey-middle-school-jan-2008.jpg
 ---
@@ -51,7 +51,7 @@ image: /images/events/2008/hugh-sexey-middle-school-jan-2008.jpg
 It was lovely to visit Hugh Sexey Middle School again and get such an enthusiastic response from Year 5.
 
 ---
-date: 16 November 2007
+date: 2007-11-16
 title: Cleve House School, Bristol
 image: /images/events/2007/cleve-house-school.jpg
 ---
@@ -63,7 +63,7 @@ Such a great reception from the whole school! I particularly enjoyed visiting th
 > <footer>Callum and Ben (Year 6)</footer>
 
 ---
-date: 17 October 2007
+date: 2007-10-17
 title: Trinity School, Teignmouth, Devon
 image: /images/events/2007/trinity-school.jpg
 ---
@@ -73,7 +73,7 @@ image: /images/events/2007/trinity-school.jpg
 > <footer>Peter Hargood</footer>
 
 ---
-date: 9 July 2007
+date: 2007-07-09
 title: Seaton Primary School, Dorset
 image: /images/events/2007/seaton-primary-school-2007.jpg
 ---
@@ -83,7 +83,7 @@ image: /images/events/2007/seaton-primary-school-2007.jpg
 > <footer>Wendy Hill</footer>
 
 ---
-date: 25 May 2007
+date: 2007-05-25
 title: Torwood House School, Bristol
 image: /images/events/2007/torwood-house-school.jpg
 ---
@@ -93,7 +93,7 @@ image: /images/events/2007/torwood-house-school.jpg
 > <footer>Emily Freire-Banos</footer>
 
 ---
-date: 23 May 2007
+date: 2007-05-23
 title: Hugh Sexey Middle School, Somerset
 image: /images/events/2007/hugh-sexey-middle-school.jpg
 ---
@@ -105,7 +105,7 @@ image: /images/events/2007/hugh-sexey-middle-school.jpg
 Unfortunately I'm not Doctor Who!
 
 ---
-date: 21 May 2007
+date: 2007-05-21
 title: Ashwater Primary School, Devon
 image: /images/events/2007/ashwater-primary-school.jpg
 ---
@@ -113,7 +113,7 @@ image: /images/events/2007/ashwater-primary-school.jpg
 Thanks for welcoming me to your school - I loved the cards!
 
 ---
-date: 19 March 2007
+date: 2007-03-19
 title: Martock Primary School, Somerset
 image: events/2007/martock-primary-school.jpg
 ---
@@ -123,7 +123,7 @@ image: events/2007/martock-primary-school.jpg
 > <footer>Blythe (Year 4)</footer>
 
 ---
-date: 5 March 2007
+date: 2007-03-05
 title: Ashcott Primary School, Somerset
 image: events/2007/ashcott-primary-school.jpg
 ---
@@ -133,7 +133,7 @@ image: events/2007/ashcott-primary-school.jpg
 > <footer>Emma Jones</footer>
 
 ---
-date: 1 March 2007
+date: 2007-03-01
 title: Denbury Primary School, Newton Abbot, Devon
 image: events/2007/denbury-primary-school.jpg
 ---
@@ -143,7 +143,7 @@ image: events/2007/denbury-primary-school.jpg
 > <footer>Sandra Curtin-Maggs(Librarian)</footer>
 
 ---
-date: 28 February 2007
+date: 2007-02-28
 title: Widey Court Primary School, Plymouth, Devon
 image: /images/events/2007/widey-court-primary-school.jpg
 ---
@@ -159,7 +159,7 @@ Thank you for all your amazing letters!
 > <footer>Habeeba</footer>
 
 ---
-date: 27 February 2007
+date: 2007-02-27
 title: Widewell Primary School, Plymouth, Devon
 image: /images/events/2007/widewell-primary-school.jpg
 ---
@@ -167,7 +167,7 @@ image: /images/events/2007/widewell-primary-school.jpg
 It was lovely to get such an enthusiastic response in Plymouth - I've never met so many keen fossil collectors!
 
 ---
-date: 12 February 2007
+date: 2007-02-12
 title: Blagdon Hill Primary School, Taunton, Somerset
 image: /images/events/2007/blagdon-hill-primary-school.jpg
 ---
@@ -177,7 +177,7 @@ Class one teacher Veronica Cooney told the County Gazette:
 > The children were absolutely enthralled, they were in the palm of his hand.
 
 ---
-date: 05 February 2007
+date: 2007-02-05
 title: Bolham Primary School, Tiverton, Devon
 image: /images/events/2007/bolham-primary-school.jpg
 ---
@@ -193,7 +193,7 @@ Thanks to all the children who wrote to me after my talk.
 > <footer>Sarah and Mitchell</footer>
 
 ---
-date: 26 January 2007
+date: 2007-01-26
 title: Downsend School, Leatherhead, Surrey
 image: /images/events/2007/downsend-school.jpg
 ---
@@ -203,7 +203,7 @@ image: /images/events/2007/downsend-school.jpg
 > <footer>Louise Ellis-Barrett (Librarian)</footer>
 
 ---
-date: 15 January 2007
+date: 2007-01-15
 title: Mead Vale Primary School, Weston-Super-Mare, North Somerset
 image: /images/events/2007/mead-vale-primary-school.jpg
 ---
@@ -211,7 +211,7 @@ image: /images/events/2007/mead-vale-primary-school.jpg
 It was lovely to visit the entire school, from Reception to Year 6 - and get such an great response from all ages. I was very impressed with the Year 6 class who worked so hard to produce my autobiography.
 
 ---
-date: 27 November 2006
+date: 2006-11-27
 title: Peasedown St John Primary School, Somerset
 image: images/events/2006/peasedown_st_john_thank_you.jpg
 ---
@@ -231,7 +231,7 @@ Drawing by Danielle from Sunflower Class
 It was wonderful to visit the whole school (Reception to Year 6) for Dinosaur Week. Yes, I'd love to come again and read some of my next book, **Professor P and the Dinosaur Island**.
 
 ---
-date: 13 November 2006
+date: 2006-11-13
 title: Grove Primary School, Trowbridge, Wiltshire
 image: /images/events/2006/grove-primary-school.jpg
 ---
@@ -249,7 +249,7 @@ I was overwhelmed to receive so many thank you letters and cards from the childr
 Thanks also to Abena for sending me such a lovely story. Here is [A Magical Night](/pdf/grove-primary-abenas-story.pdf) by Abena Biney.
 
 ---
-date: 6 November 2006
+date: 2006-11-06
 title: Uphill Community Primary School, Weston-super-Mare, North Somerset
 image: /images/events/2006/uphill-primary-school.jpg
 ---
@@ -261,7 +261,7 @@ image: /images/events/2006/uphill-primary-school.jpg
 > <footer>Helen Howe</footer>
 
 ---
-date: 16 October 2006
+date: 2006-10-16
 title: Weston All Saints Primary School, Bath
 image: /images/events/2006/weston-all-saints-primary-school.jpg
 ---
@@ -275,7 +275,7 @@ image: /images/events/2006/weston-all-saints-primary-school.jpg
 > <footer>Jasmine (Year 6)</footer>
 
 ---
-date: 12 October 2006
+date: 2006-10-12
 title: Staplegrove Primary School, Taunton, Somerset
 image: /images/events/2006/staplegrove-primary-school.jpg
 ---
@@ -285,7 +285,7 @@ image: /images/events/2006/staplegrove-primary-school.jpg
 > <footer>Kirsti Nelson (Headteacher)</footer>
 
 ---
-date: 9 October 2006
+date: 2006-10-09
 title: Manor Primary School, Ivybridge, Devon
 image: /images/events/2006/manor-primary-school.jpg
 ---
@@ -295,7 +295,7 @@ image: /images/events/2006/manor-primary-school.jpg
 > <footer>Caroline Sargent (Year 5 teacher)</footer>
 
 ---
-date: 2 October 2006
+date: 2006-10-02
 title: Hazlegrove Preparatory School, Somerset
 image: /images/events/2006/hazlegrove-prep.jpg
 ---
@@ -305,7 +305,7 @@ image: /images/events/2006/hazlegrove-prep.jpg
 > <footer>Richard Fenwick (Headmaster)</footer>
 
 ---
-date: 18 September 2006
+date: 2006-09-18
 title: East Worlington Primary School, Devon
 image: /images/events/2006/east-worlington-primary-school.jpg
 ---
@@ -315,7 +315,7 @@ image: /images/events/2006/east-worlington-primary-school.jpg
 > <footer>From all the pupils of East Worlington Primary School</footer>
 
 ---
-date: 11 September 2006
+date: 2006-09-11
 title: Churchill Primary School, North Somerset
 image: /images/events/2006/churchill-primary-school.jpg
 ---
@@ -325,7 +325,7 @@ image: /images/events/2006/churchill-primary-school.jpg
 > <footer>Class 6</footer>
 
 ---
-date: 17 July 2006
+date: 2006-07-17
 title: Ilsington Primary School, Devon
 image: /images/events/2006/ilsington-primary-school.jpg
 ---
@@ -341,7 +341,7 @@ image: /images/events/2006/ilsington-primary-school.jpg
 It was wonderful to receive so many thank you letters from the children at Ilsington - I loved your suggestions and ideas for my next book. Many thanks to Maddie and Jessica for their sample chapters.
 
 ---
-date: 28 June 2006
+date: 2006-06-28
 title: St Andrew's Junior School, Congresbury, Bristol
 image: /images/events/2006/st-andrews-junior-school.jpg
 ---
@@ -355,7 +355,7 @@ image: /images/events/2006/st-andrews-junior-school.jpg
 > <footer>Class 2 and 3</footer>
 
 ---
-date: 26 June 2006
+date: 2006-06-26
 title: St David's Primary School, Exeter
 image: /images/events/2006/st-davids-primary-school.jpg
 ---
@@ -377,7 +377,7 @@ image: /images/events/2006/st-davids-primary-school.jpg
 > <footer>Rachel</footer>
 
 ---
-date: 19 June 2006
+date: 2006-06-19
 title: Park Street Primary School, Cambridge
 image: /images/events/2006/park-street-primary-school.jpg
 ---
@@ -389,7 +389,7 @@ image: /images/events/2006/park-street-primary-school.jpg
 > <footer>Nicki Heppell (Year 5/6 teacher)</footer>
 
 ---
-date: 12 June 2006
+date: 2006-06-12
 title: Woodlands Junior School, Tonbridge, Kent
 image: /images/events/2006/woodlands-junior-school.jpg
 ---
@@ -407,7 +407,7 @@ image: /images/events/2006/woodlands-junior-school.jpg
 > <footer>Lizzie (Year 4)</footer>
 
 ---
-date: 07 June 2006
+date: 2006-06-07
 title: St Mary's Primary School, Timsbury, Bath
 image: /images/events/2006/st-marys-primary-school-timsbury.jpg
 ---
@@ -419,7 +419,7 @@ image: /images/events/2006/st-marys-primary-school-timsbury.jpg
 > <footer>Heather Stephens (Year 5 teacher)</footer>
 
 ---
-date: 24 May 2006
+date: 2006-05-24
 title: Clyst St Mary Primary School, Exeter, Devon
 image: /images/events/2006/clyst-st-mary-primary-school.jpg
 ---
@@ -431,7 +431,7 @@ image: /images/events/2006/clyst-st-mary-primary-school.jpg
 > <footer>Louise Herbert (Headteacher)</footer>
 
 ---
-date: 16 May 2006
+date: 2006-05-16
 title: Creech St Michael Primary School, Taunton, Somerset
 image: /images/events/2006/creech-st-michael-primary-school.jpg
 ---
@@ -453,7 +453,7 @@ I had such an enthusiastic response at Creech St Michael Primary School! Thanks 
 Here is [The Brass Curtain](/pdf/creech-st-michaels-alexs-story.pdf) by Alex Coombs.
 
 ---
-date: 08 May 2006
+date: 2006-05-08
 title: St Sidwell's Primary School, Exeter, Devon
 image: /images/events/2006/st-sidwells-primary-school.jpg
 ---
@@ -463,7 +463,7 @@ image: /images/events/2006/st-sidwells-primary-school.jpg
 > <footer>Anne Hood (Headteacher)</footer>
 
 ---
-date: 24 April 2006
+date: 2006-04-24
 title: Compton Dundon Primary School, Somerset
 image: /images/events/2006/compton-dundon-primary-school.jpg
 ---
@@ -481,7 +481,7 @@ image: /images/events/2006/compton-dundon-primary-school.jpg
 > <footer>Emma Jones (Year 5/6 teacher)</footer>
 
 ---
-date: 2 March 2006
+date: 2006-03-02
 title: St Catherine's Prep
 image: /images/events/2006/st-catherines-prep.jpg
 ---
@@ -499,7 +499,7 @@ image: /images/events/2006/st-catherines-prep.jpg
 > <footer>Cecilia</footer>
 
 ---
-date: Saturday 22 October
+date: 2014-10-22
 title: Heffers Bookshop
 image: /images/events/2006/heffers-cambridge.jpg
 ---
@@ -509,7 +509,7 @@ image: /images/events/2006/heffers-cambridge.jpg
 > <footer>Kate Johnson (Children's Manager, Heffers Bookshop)</footer>
 
 ---
-date: 23 February 2006
+date: 2006-02-23
 title: Ottakar's Bookshop, Godalming, Surrey
 image: /images/events/2006/ottakars-godalming.jpg
 ---
@@ -519,7 +519,7 @@ image: /images/events/2006/ottakars-godalming.jpg
 > <footer>Kevin Stone (Assistant Manager)</footer>
 
 ---
-date: 20 February 2006
+date: 2006-02-20
 title: Buckholme Towers School, Poole, Dorset
 image: /images/events/2006/buckholme-towers.jpg
 ---
@@ -529,7 +529,7 @@ image: /images/events/2006/buckholme-towers.jpg
 > <footer>Trish Meldrum (Year 6 teacher)</footer>
 
 ---
-date: 10 February 2006
+date: 2006-02-10
 title: St Mary's Primary School, Beaminster, Dorset
 image: /images/events/2006/st-marys-beaminster.jpg
 ---
@@ -537,7 +537,7 @@ image: /images/events/2006/st-marys-beaminster.jpg
 It was wonderful to visit St Mary's Primary School in Beaminster - I was particularly impressed with the Professor P books that year 6 were making - they were full of lovely drawings and great ideas. I'd love to see them all when they are finished!
 
 ---
-date: 06 February 2006
+date: 2006-02-06
 title: Shalfleet Primary School, Newport, Isle of Wight
 image: /images/events/2006/shalfleet-primary.jpg
 ---
@@ -551,7 +551,7 @@ image: /images/events/2006/shalfleet-primary.jpg
 > <footer>Sue, Hazel and all the children in Sky class</footer>
 
 ---
-date: 23 January 2006
+date: 2006-01-23
 title: Clayesmore Preparatory School, Blandford, Dorset
 image: /images/events/2006/clayesmore-prep.jpg
 ---
@@ -561,7 +561,7 @@ image: /images/events/2006/clayesmore-prep.jpg
 > <footer>Heather Bignold (Librarian)</footer>
 
 ---
-date: 16 January 2006
+date: 2006-01-16
 title: Bethany Junior School, Bournemouth, Dorset
 image: /images/events/2006/bethany-junior-school.jpg
 ---
@@ -571,7 +571,7 @@ image: /images/events/2006/bethany-junior-school.jpg
 > <footer>Mary Cusens (Year 5 teacher)</footer>
 
 ---
-date: 14 November 2005
+date: 2005-11-14
 title: Southill Primary School, Weymouth, Dorset
 image: /images/events/2005/weymouth-southill.jpg
 ---
@@ -579,7 +579,7 @@ image: /images/events/2005/weymouth-southill.jpg
 It's always a wonderful experience to visit classes that have read the book. I was overwhelmed by your enthusiasm!
 
 ---
-date: 10 November 2005
+date: 2005-11-10
 title: Northstead Community Primary School, Scarborough, North Yorkshire
 image: /images/events/2005/scarborough-northstead.jpg
 ---
@@ -587,7 +587,7 @@ image: /images/events/2005/scarborough-northstead.jpg
 It was great to visit the Yorkshire Jurassic Coast. Thanks to all the children at Northstead for making me feel so welcome. Afterwards I went onto the beach and found some great fossils...
 
 ---
-date: 18 October 2005
+date: 2005-10-18
 title: Bottisham Primary School
 image: /images/events/2005/cambridge-bottisham.jpg
 ---
@@ -597,7 +597,7 @@ image: /images/events/2005/cambridge-bottisham.jpg
 > <footer>Jade (Bottisham Primary School)</footer>
 
 ---
-date: 10 October 2005
+date: 2005-10-10
 title: Musbury Primary School, Axminster, Devon
 image: /images/events/2005/musbury.jpg
 ---
@@ -609,7 +609,7 @@ image: /images/events/2005/musbury.jpg
 After my talk Jessica read me one of her poems. I liked it so much I thought I'd share it with you. It's called [Wolf](/images/events/2005/jessica-poem.jpg).
 
 ---
-date: 13 August 2005
+date: 2005-08-13
 title: Borders Books, York
 image: /images/events/2005/york.jpg
 ---
@@ -621,7 +621,7 @@ image: /images/events/2005/york.jpg
 Thanks to everyone who attended - it was great to meet you all! I hope to return in June, visiting schools in York and doing another signing in Borders.
 
 ---
-date: 15 July 2005
+date: 2005-07-15
 title: Aldington Primary School, Kent
 image: /images/events/2005/aldington.jpg
 ---
@@ -631,7 +631,7 @@ image: /images/events/2005/aldington.jpg
 > <footer>Matthew</footer>
 
 ---
-date: 20 June 2005
+date: 2005-06-20
 title: Seaton Primary School, Seaton, Devon
 image: /images/events/2005/seaton.jpg
 ---
@@ -641,7 +641,7 @@ image: /images/events/2005/seaton.jpg
 > <footer>Mrs Hill (Year 5 teacher)</footer>
 
 ---
-date: 18 June 2005
+date: 2005-06-18
 title: Bournes Bookworld, Weymouth, Dorset
 image: /images/events/2005/weymouth.jpg
 ---
@@ -649,7 +649,7 @@ image: /images/events/2005/weymouth.jpg
 After the talk and signing I gave an interview with Peter Lythgoe from ZZipp Creatives about why I wrote Professor P and the Jurassic Coast and why I decided to publish the book myself.
 
 ---
-date: 22 March 2005
+date: 2005-03-22
 title: Wookey Primary School, Wells, Somerset
 image: /images/events/2005/wookey-primary.jpg
 ---
@@ -659,7 +659,7 @@ image: /images/events/2005/wookey-primary.jpg
 > <footer>Jim Reeve (Headteacher)</footer>
 
 ---
-date: 11 March 2005
+date: 2005-03-11
 title: Dharma School, Brighton, East Sussex
 image: /images/events/2005/dharma-school.jpg
 ---
@@ -669,7 +669,7 @@ image: /images/events/2005/dharma-school.jpg
 > <footer>Phil Ferguson (Teacher)</footer>
 
 ---
-date: 4 March 2005
+date: 2005-03-04
 title: Ottakar's Bookshop, Fareham, Hampshire
 image: /images/events/2005/ottakars-fareham.jpg
 ---
@@ -679,7 +679,7 @@ image: /images/events/2005/ottakars-fareham.jpg
 > <footer>Marion Couchman (Children's Manager)</footer>
 
 ---
-date: 28 February 2005
+date: 2005-02-28
 title: West Pennard School, Glastonbury, Somerset
 image: /images/events/2005/west-pennard.jpg
 ---
@@ -689,7 +689,7 @@ image: /images/events/2005/west-pennard.jpg
 > <footer>Ann Scourfield (Headteacher)</footer>
 
 ---
-date: 26 January 2005 
+date: 2005-01-26
 title: Upton Junior School, Poole, Dorset
 image: /images/events/2005/upton-junior.jpg
 ---
@@ -699,7 +699,7 @@ image: /images/events/2005/upton-junior.jpg
 > <footer>Maggie Woodley (Year 3 teacher)</footer>
 
 ---
-date: 11 December 2004 
+date: 2004-12-11
 title: Ottakar's Bookshop, Petersfield, Hampshire
 image: /images/events/2004/ottakars-petersfield.jpg
 ---
@@ -709,7 +709,7 @@ image: /images/events/2004/ottakars-petersfield.jpg
 > <footer>Cherry Potts (Children's Manager)</footer>
 
 ---
-date: 20 November 2004 
+date: 2004-11-20
 title: Ottakar's Bookshop, Wells, Somerset
 image: /images/events/2004/ottakars-wells.jpg
 ---
@@ -719,7 +719,7 @@ image: /images/events/2004/ottakars-wells.jpg
 > <footer>Liam (aged 11)</footer>
 
 ---
-date: 11 November 2004 
+date: 2004-11-11
 title: Mungles Jungle, Brighton, East Sussex
 image: /images/events/2004/mungles-jungle.jpg
 ---
@@ -729,7 +729,7 @@ image: /images/events/2004/mungles-jungle.jpg
 > <footer>Jane Shepard (Bookshop Manager)</footer>
 
 ---
-date: 6 November 2004 
+date: 2004-11-06
 title: Ottakar's Bookshop, Eastleigh, Hampshire
 image: /images/events/2004/ottakars-eastleigh.jpg
 ---
@@ -737,7 +737,7 @@ image: /images/events/2004/ottakars-eastleigh.jpg
 I was great talking to fans who had read Professor P and the Jurassic Coast - thanks for your enthusiasm!
 
 ---
-date: 30 October 2004 
+date: 2004-10-30
 title: Ottakar's Bookshop, Poole, Dorset
 image: /images/events/2004/ottakars-poole.jpg
 ---
@@ -745,7 +745,7 @@ image: /images/events/2004/ottakars-poole.jpg
 It was wonderful to be welcomed by so many fossil enthusiasts full of enthusiasm for Dorset's World Heritage Site Jurassic Coast.
 
 ---
-date: 9 October 2004 
+date: 2004-10-09
 title: Ottakar's Bookshop, Dorchester, Dorset
 image: /images/events/2004/ottakars-dorchester.jpg
 ---
@@ -755,7 +755,7 @@ image: /images/events/2004/ottakars-dorchester.jpg
 > <footer>Lorri Hope (Children's Manager)</footer>
 
 ---
-date: 2 October 2004 
+date: 2004-10-02
 title: Ottakar's Bookshop, Fareham, Hampshire
 image: /images/events/2004/ottakars-fareham.jpg
 ---
