@@ -19,14 +19,17 @@
     "docpad-plugin-htmlmin": "~2.4.0",
     "docpad-plugin-marked": "~2.2.1",
     "docpad-plugin-partials": "~2.9.1",
-    "docpad-plugin-sass": "~2.7.2"
+    "docpad-plugin-sass": "~2.7.2",
+    "moment": "^2.7.0"
   },
   "devDependencies": {
     "docpad-plugin-livereload": "~2.6.0"
   },
   "main": "node_modules/docpad/bin/docpad-server",
   "browserify": {
-    "transform": [ "browserify-shim" ]
+    "transform": [
+      "browserify-shim"
+    ]
   },
   "browserify-shim": {
     "angular": "global:angular",

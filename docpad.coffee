@@ -1,3 +1,5 @@
+moment = require 'moment'
+
 module.exports = docpadConfig = {
 
   templateData:
@@ -30,6 +32,9 @@ module.exports = docpadConfig = {
     getPreparedDescription: ->
       @document.description or @site.description
 
+    formatDate: (date, format='DD MMMM YYYY') ->
+      moment(date).format(format)
+
 
   # Speed up file watching
   regenerateDelay: 10
@@ -49,6 +54,9 @@ module.exports = docpadConfig = {
 
     activities: ->
       @getCollection('documents').findAllLive({relativeOutPath: /activities\/[^\/]+\/index.html/})
+
+    individualEvents: ->
+      @getCollection('documents').findAllLive({relativeOutPath: /events\/\d\d\d\d-\d\d-\d\d\.html/})
 
 
   # DocPad's default environment is the production environment
