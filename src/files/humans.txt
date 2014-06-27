@@ -1,15 +1,9 @@
-# humanstxt.org/
-# The humans responsible & technology colophon
+/* TEAM */
 
-# TEAM
+    Website developer: David Moody
+    Book author: Peter J Davidson
 
-    <name> -- <role> -- <twitter>
+/* SITE */
 
-# THANKS
-
-    <name>
-
-# TECHNOLOGY COLOPHON
-
-    HTML5, CSS3
-    Normalize.css, jQuery, Modernizr
+    jQuery, AngularJS, Underscore.js, Bootstrap 3
+    DocPad, Sass, CoffeeScript
