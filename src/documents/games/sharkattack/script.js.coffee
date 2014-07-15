@@ -276,5 +276,5 @@ angular.module('sharkAttackApp', []).controller('SharkAttackCtrl', ['$scope', ($
 
 
   $scope.getHP = ->
-    new Array(Math.max($scope.raft.hp - $scope.raft.damage), 0)
+    new Array(Math.max($scope.raft.hp - $scope.raft.damage, 0))
 ])
