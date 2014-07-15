@@ -156,6 +156,21 @@ angular.module('sharkAttackApp', []).controller('SharkAttackCtrl', ['$scope', ($
     $scope.updatesUntilNextShark = 0
 
 
+  #TODO this is absolutely terrible, redo the entire level selection stuff
+  $scope.loadLevel = (levelIndex) ->
+    $scope.showTutorialAlert = false
+    $scope.showLevelCompletedAlert = false
+    $scope.showGameCompletedAlert = false
+    $scope.showLevelFailedAlert = false
+    $scope.currentLevelIndex = levelIndex
+    $scope.setFocus()
+
+    $scope.raft = new Raft()
+    $scope.sharks = []
+    $scope.updatesUntilNextShark = 0
+    $scope.startGame()
+
+
   $scope.setFocus = ->
     # Do it via timeout to prevent angular error
     setTimeout (-> $('.sharkattack-container').focus()), 1

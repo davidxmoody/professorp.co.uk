@@ -24,7 +24,9 @@ scripts:
         <div class="col-sm-6">
           <ol class="breadcrumb">
             <li ng-repeat="level in levels" ng-class="{ active: currentLevelIndex===$index }">
-              {{ level.text }}
+              <a href="javascript:void(0)" ng-click="loadLevel($index)">
+                {{ level.text }}
+              </a>
             </li>
           </ol>
         </div>
