@@ -68,6 +68,10 @@ scripts:
         <p><button ng-click="restartLevel()" class="btn btn-default default-choice">Restart level</button></p>
       </div>
     </div>
+
+    <div class="health-bar">
+      <div class="heart" ng-repeat="i in getHP() track by $index"></div>
+    </div>
   
     <div class="shark" ng-repeat="shark in sharks"
         ng-style="shark.getStyle()"

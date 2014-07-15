@@ -273,4 +273,8 @@ angular.module('sharkAttackApp', []).controller('SharkAttackCtrl', ['$scope', ($
     switch $event.which
       when 37 then $scope.goLeft = keydown
       when 39 then $scope.goRight = keydown
+
+
+  $scope.getHP = ->
+    new Array(Math.max($scope.raft.hp - $scope.raft.damage), 0)
 ])
