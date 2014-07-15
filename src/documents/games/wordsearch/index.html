@@ -11,27 +11,19 @@ scripts:
 
 <div ng-app="wordsearchApp" ng-controller="WordsearchCtrl">
 
-  <div class="row">
-    <div class="col-sm-6">
-      <div class="panel panel-default">
-        <div class="panel-heading">
-          <h2 class="panel-title">How to play</h2>
-        </div>
-        <div class="panel-body">
-          <p>Search for the words hidden within the grid. 
-          Words can be written in any direction including backwards and along diagonals.</p>
-          <p>To submit a word, click the first letter of it and then the last letter.</p>
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      <h2 class="panel-title">How to play</h2>
+    </div>
+    <div class="panel-body">
+      <div class="row">
+        <div class="col-sm-6">
+          <p>Search for the words hidden within the grid. To submit a word, click the first letter of it and then the last letter.</p>
           <p>Each level is more difficult than the last and the game continues forever.</p>
         </div>
-      </div>
-    </div>
-
-    <div class="col-sm-6">
-      <div class="panel panel-default">
-        <div class="panel-heading">
-          <h2 class="panel-title">Progress</h2>
-        </div>
-        <div class="panel-body">
+        <div class="col-sm-6">
+          <p><span class="badge">Hint</span>
+          Words can be written in any direction including backwards and along diagonals.</p>
           <ol class="breadcrumb">
             <li ng-repeat="level in levels" ng-class="{ active: $last }">
               {{ level }}
