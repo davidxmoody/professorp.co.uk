@@ -4,7 +4,6 @@ layout: narrow
 scripts: script.js
 ---
 
-
 <% for event in @getCollection('individualEvents').sortArray(name: 1): %>
   <div class="event-panel panel panel-default hidden">
     <div class="panel-heading">
