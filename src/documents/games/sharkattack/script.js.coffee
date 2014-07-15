@@ -40,6 +40,7 @@ class Raft extends Entity
     @damage = 0
     @safe = false
     @crashed = false
+    @invulnerable = false
     super(x, y, 0, -1*@forwardSpeed)
 
   updatePosition: (goLeft, goRight) ->
@@ -71,9 +72,13 @@ class Raft extends Entity
     ]
 
   takeBite: ->
-    @damage++
-    if @damage==@hp
-      throw 'eaten'
+    unless @invulnerable
+      @damage++
+      if @damage==@hp
+        throw 'eaten'
+      else
+        @invulnerable = true
+        setTimeout((=> @invulnerable = false), 400)
 
 
 angular.module('sharkAttackApp', []).controller('SharkAttackCtrl', ['$scope', ($scope) ->
