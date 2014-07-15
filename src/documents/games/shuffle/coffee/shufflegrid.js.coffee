@@ -8,6 +8,7 @@ module.exports = class ShuffleGrid
     @levelIndex = 0
     
     # Make the jQuery grid
+    @$container.empty()
     @$grid = $('<div class="shuffle-grid"></div>')
     @$container.append(@$grid)
 

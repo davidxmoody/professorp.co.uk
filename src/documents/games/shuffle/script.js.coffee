@@ -10,7 +10,7 @@ AIGrid = require './coffee/aigrid'
 AIPersonality = require './coffee/aipersonality'
 Random = require './coffee/random'
 
-$(document).ready ->
+startGame = (levels) ->
   # Seed both grids with the same random number generator
   rand = new Random()
 
@@ -46,3 +46,13 @@ $(document).ready ->
       floppyPersonality.randomSay("Ah, well done you beat me.", "Oh no, I thought i was going to win that one.")
     else
       floppyPersonality.randomSay("Yay! I win!")
+
+
+$(document).ready ->
+  # Hack to make the breadcrumb links load the correct level sets
+  $('#coverLevels').click ->
+    startGame(levels.coverLevels)
+  $('#fossilLevels').click ->
+    startGame(levels.fossilLevels)
+
+  startGame(levels.coverLevels)
