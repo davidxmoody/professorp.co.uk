@@ -24,11 +24,21 @@ scripts:
         <div class="col-sm-6">
           <p><span class="badge">Hint</span>
           Words can be written in any direction including backwards and along diagonals.</p>
-          <ol class="breadcrumb">
-            <li ng-repeat="level in levels" ng-class="{ active: $last }">
-              {{ level }}
-            </li>
-          </ol>
+
+          <div class="dropdown">
+            <button class="btn btn-default dropdown-toggle" type="button" id="levelSelect" data-toggle="dropdown">
+              Select level ({{ currentLevel.width }}x{{ currentLevel.height }})
+              <span class="caret"></span>
+            </button>
+            <ul id="level-select-dropdown" class="dropdown-menu">
+              <li ng-repeat="level in levels">
+                <a href="javascript:void(0)" ng-click="loadLevel(level)">
+                  {{ level.width }}x{{ level.height }}
+                </a>
+              </li>
+            </ul>
+          </div>
+
         </div>
       </div>
     </div>

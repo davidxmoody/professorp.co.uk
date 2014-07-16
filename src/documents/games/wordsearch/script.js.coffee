@@ -126,19 +126,16 @@ class LetterGrid
 
 angular.module('wordsearchApp', []).controller 'WordsearchCtrl', ['$scope', ($scope) ->
 
-  $scope.width = 8
-  $scope.height = 7
-  $scope.levels = []
+  $scope.levels = [
+    { width: 8, height: 8 }
+    { width: 9, height: 9 }
+    { width: 10, height: 10 }
+    { width: 11, height: 11 }
+  ]
 
-  $scope.nextLevel = ->
-    if $scope.width>$scope.height
-      $scope.height++
-    else
-      $scope.width++
-
-    $scope.levels.push("#{$scope.width}x#{$scope.height}")
-
-    $scope.grid = new LetterGrid($scope.width, $scope.height)
+  $scope.loadLevel = (level) ->
+    $scope.currentLevel = level
+    $scope.grid = new LetterGrid(level.width, level.height)
     $scope.words = $scope.grid.words
     $scope.foundWords = []
 
@@ -146,7 +143,8 @@ angular.module('wordsearchApp', []).controller 'WordsearchCtrl', ['$scope', ($sc
     $scope.colorIndex = 1
     $scope.colorClass = 'color1'
 
-  $scope.nextLevel()
+  $scope.loadLevel($scope.levels[0])
+
 
   $scope.cellClicked = (cell) ->
     return unless $scope.enableInput
@@ -191,7 +189,6 @@ angular.module('wordsearchApp', []).controller 'WordsearchCtrl', ['$scope', ($sc
         $scope.enableInput = false
         alertCongrats = ->
           alert("Congratulations, you found all #{$scope.foundWords.length} words!")
-          $scope.nextLevel()
         setTimeout(alertCongrats, 400)  # The delay allows the wordlist crossout to be updated
 
 
