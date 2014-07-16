@@ -14,7 +14,7 @@ layout: narrow
         <div class="thumbnail">
           <% image = page.image ? page.screenshot %>
           <% if image?: %>
-            <!-- Hack to align images vertically -->
+            <!-- Hack to align images vertically, doesn't work perfectly on smaller screens -->
             <div style="height: <%= maxImageHeight %>px; line-height: <%= maxImageHeight %>px;">
               <img style="max-height: <%= maxImageHeight %>px;" src="<%= image %>" alt="Image for the <%= page.title %> page">
             </div>
