@@ -14,14 +14,20 @@ levels = [
 ]
 
 memoryGrid = null
+currentLevel = null
 
 levelComplete = ->
-  alert 'level complete'+memoryGrid.movesTaken
+  $alert = $("<div class='alert alert-info fade in text-center'><p>Congratulations!</p><p>You completed the level in #{memoryGrid.movesTaken} moves.</p><p><button class='btn btn-default'>Play again</button></p></div>")
+  $alert.find('button').click ->
+    loadLevel(currentLevel)
+  $alert.appendTo $('#memory-game-container')
 
 loadLevel = (level) ->
+  currentLevel = level
   $container = $('#memory-game-container')
   $container.empty()
   memoryGrid = new MemoryGrid($container, levelComplete, level.numCards, level.cardsPerRow)
+  #levelComplete()
 
 $(document).ready ->
   # Add all levels to the dropdown

@@ -74,3 +74,18 @@ $card-spacing: 4px;
 #level-select-dropdown {
   z-index: 100;
 }
+
+.alert {
+  position: absolute;
+  left: 20%;
+  top: 80px;;
+  width: 60%;
+
+  button {
+    z-index: 50;
+  }
+}
+
+#memory-game-container {
+  position: relative;
+}
