@@ -34,6 +34,9 @@ module.exports = class MemoryGrid
     # Make the grid visible
     @$grid.appendTo($container)
 
+    # Keep track of the number of moves taken
+    @movesTaken = 0
+
 
   _cardClicked: (card) ->
     # First clear any previous incorrect selections
@@ -44,11 +47,13 @@ module.exports = class MemoryGrid
 
     # Case 1: Clicked on a hidden card and no card already selected
     if not card.isMatched() and not @selected?
+      @movesTaken++
       card.show()
       @selected = card
 
     # Case 2: Clicked on a hidden card and another (different) card is already selected
     else if not card.isMatched() and @selected? and @selected isnt card
+      @movesTaken++
       card.show()
       matched = card.tryMatch(@selected)
       if not matched
@@ -64,5 +69,4 @@ module.exports = class MemoryGrid
 
 
   _gameCompleted: ->
-    alert 'Congratulations, you matched all of the cards!'
     @callback?()

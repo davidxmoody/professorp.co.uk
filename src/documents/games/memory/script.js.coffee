@@ -6,24 +6,30 @@ $ = require('jquery')
 MemoryGrid = require('./memorygrid')
 
 levels = [
-  { numCards: 12, cardsPerRow: 4 }
-  { numCards: 16, cardsPerRow: 4 }
-  { numCards: 20, cardsPerRow: 5 }
-  { numCards: 24, cardsPerRow: 6 }
-  { numCards: 28, cardsPerRow: 7 }
+  { numCards: 12, cardsPerRow: 4, description: 'easy' }
+  { numCards: 16, cardsPerRow: 4, description: 'medium' }
+  { numCards: 20, cardsPerRow: 5, description: 'hard' }
+  { numCards: 24, cardsPerRow: 6, description: 'harder' }
+  { numCards: 28, cardsPerRow: 7, description: 'hardest' }
 ]
 
-nextLevel = ->
-  return if levels.length is 0
-  level = levels.shift()
+memoryGrid = null
 
+levelComplete = ->
+  alert 'level complete'+memoryGrid.movesTaken
+
+loadLevel = (level) ->
   $container = $('#memory-game-container')
   $container.empty()
-  new MemoryGrid($container, nextLevel, level.numCards, level.cardsPerRow)
-
-  $('#level-progress > li').removeClass('active')
-  $('#level-progress').append($("<li class='active'>#{level.numCards} cards</li>"))
-
+  memoryGrid = new MemoryGrid($container, levelComplete, level.numCards, level.cardsPerRow)
 
 $(document).ready ->
-  nextLevel()
+  # Add all levels to the dropdown
+  $levelSelectDropdown = $('#level-select-dropdown')
+  for level in levels
+    $level = $("<li><a href='javascript:void(0)'>#{level.numCards} cards (#{level.description})</a></li>")
+    $level.click $.proxy(loadLevel, null, level)
+    $levelSelectDropdown.append $level
+
+  # Load the first level
+  loadLevel(levels[0])

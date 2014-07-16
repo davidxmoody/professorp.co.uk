@@ -70,3 +70,7 @@ $card-spacing: 4px;
   border-spacing: $card-spacing 0px;
   perspective: 1000; //TODO is this line required?
 }
+
+#level-select-dropdown {
+  z-index: 100;
+}

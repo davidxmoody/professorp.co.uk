@@ -19,7 +19,15 @@ scripts:
         <p>Each level is more difficult than the last.</p>
       </div>
       <div class="col-sm-6">
-        <ol id="level-progress" class="breadcrumb"></ol>
+
+        <div class="dropdown">
+          <button class="btn btn-default dropdown-toggle" type="button" id="levelSelect" data-toggle="dropdown">
+            Select level 
+            <span class="caret"></span>
+          </button>
+          <ul id="level-select-dropdown" class="dropdown-menu"></ul>
+        </div>
+
       </div>
     </div>
   </div>
