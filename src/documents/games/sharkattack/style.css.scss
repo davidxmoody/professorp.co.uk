@@ -30,6 +30,7 @@
   width: 394px;
   overflow: hidden;
   text-align: right;
+  z-index: 50;
 
   .heart {
     background-image: url('images/heart.png');
@@ -39,6 +40,7 @@
     background-repeat: no-repeat;
     overflow: hidden;
     margin-left: 2px;
+    z-index: 50;
   }
 }
 
@@ -49,6 +51,7 @@
   overflow: hidden;
   position: absolute;
   background-image: url('images/raft.gif');
+  z-index: 20;
 }
 
 @for $i from 0 through 2 {
@@ -95,6 +98,7 @@
   background-repeat: no-repeat;
   overflow: hidden;
   position: absolute;
+  z-index: 10;
 }
 
 .shark.right {

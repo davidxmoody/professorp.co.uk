@@ -286,9 +286,11 @@ angular.module('sharkAttackApp', []).controller('SharkAttackCtrl', ['$scope', ($
   $scope.keyevent = ($event) ->
     keydown = $event.type is 'keydown'
     switch $event.which
-      when 37 then $scope.goLeft = keydown
-      when 39 then $scope.goRight = keydown
-
+      when 37 then $scope.goLeft = keydown  # (left arrow key)
+      when 39 then $scope.goRight = keydown # (right arrow key)
+      # Also add in alternate WASD style controls
+      when 65 then $scope.goLeft = keydown  # ('a' key)
+      when 68 then $scope.goRight = keydown # ('d' key)
 
   $scope.getHP = ->
     new Array(Math.max($scope.raft.hp - $scope.raft.damage, 0))

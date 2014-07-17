@@ -71,17 +71,20 @@ scripts:
       </div>
     </div>
 
+    <div class="shark" ng-repeat="shark in sharks"
+        ng-style="shark.getStyle()"
+        ng-class="shark.getClasses()">
+    </div>
+  
+    <div class="raft"
+        ng-style="raft.getStyle()"
+        ng-class="raft.getClasses()">
+    </div>
+
     <div class="health-bar">
       <div class="heart" ng-repeat="i in getHP() track by $index"></div>
     </div>
   
-    <div class="shark" ng-repeat="shark in sharks"
-        ng-style="shark.getStyle()"
-        ng-class="shark.getClasses()"></div>
-  
-    <div class="raft"
-        ng-style="raft.getStyle()"
-        ng-class="raft.getClasses()"></div>
   </div>
 
 </div>
