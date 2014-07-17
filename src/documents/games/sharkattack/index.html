@@ -34,57 +34,59 @@ scripts:
     </div>
   </div>
   
-  <div class="sharkattack-container" tabindex="0"
-      ng-keydown="keyevent($event)"
-      ng-keyup="keyevent($event)">
-
-    <div class="alert-container">
-      <div class="alert alert-info text-center" ng-show="showTutorialAlert">
-        <p>Try to reach the sandy beach while avoiding the sharks! 
-        Use the <em>left</em> and <em>right</em> arrow keys to control the raft.</p>
-        <p>Press <em>Enter</em> or click the button to start.</p>
-        <p><button ng-click="startGame()" class="btn btn-default default-choice">Start game</button></p>
+  <div class="sharkattack-container-container">
+    <div class="sharkattack-container" tabindex="0"
+        ng-keydown="keyevent($event)"
+        ng-keyup="keyevent($event)">
+    
+      <div class="alert-container">
+        <div class="alert alert-info text-center" ng-show="showTutorialAlert">
+          <p>Try to reach the sandy beach while avoiding the sharks! 
+          Use the <em>left</em> and <em>right</em> arrow keys to control the raft.</p>
+          <p>Press <em>Enter</em> or click the button to start.</p>
+          <p><button ng-click="startGame()" class="btn btn-default default-choice">Start game</button></p>
+        </div>
       </div>
-    </div>
-
-    <div class="alert-container">
-      <div class="alert alert-success text-center" ng-show="showLevelCompletedAlert">
-        <p><strong>Well done!</strong> You reached the safety of the beach. 
-        Try the next level which has more sharks.</p>
-        <p><button ng-click="restartLevel()" class="btn btn-default">Replay level</button>
-        <button ng-click="nextLevel()" class="btn btn-default default-choice">Next level</button></p>
+    
+      <div class="alert-container">
+        <div class="alert alert-success text-center" ng-show="showLevelCompletedAlert">
+          <p><strong>Well done!</strong> You reached the safety of the beach. 
+          Try the next level which has more sharks.</p>
+          <p><button ng-click="restartLevel()" class="btn btn-default">Replay level</button>
+          <button ng-click="nextLevel()" class="btn btn-default default-choice">Next level</button></p>
+        </div>
       </div>
-    </div>
-  
-    <div class="alert-container">
-      <div class="alert alert-success text-center" ng-show="showGameCompletedAlert">
-        <p><strong>Congratulations!</strong> You've beaten all the levels!</p>
-        <p><button ng-click="location.reload()" class="btn btn-default">Restart game</button>
-        <button ng-click="restartLevel()" class="btn btn-default default-choice">Replay level</button></p>
+    
+      <div class="alert-container">
+        <div class="alert alert-success text-center" ng-show="showGameCompletedAlert">
+          <p><strong>Congratulations!</strong> You've beaten all the levels!</p>
+          <p><button ng-click="location.reload()" class="btn btn-default">Restart game</button>
+          <button ng-click="restartLevel()" class="btn btn-default default-choice">Replay level</button></p>
+        </div>
       </div>
-    </div>
-  
-    <div class="alert-container">
-      <div class="alert alert-danger text-center" ng-show="showLevelFailedAlert">
-        <p><strong>Oh no!</strong> You {{ methodOfLastDeath }}!</p>
-        <p><button ng-click="restartLevel()" class="btn btn-default default-choice">Restart level</button></p>
+    
+      <div class="alert-container">
+        <div class="alert alert-danger text-center" ng-show="showLevelFailedAlert">
+          <p><strong>Oh no!</strong> You {{ methodOfLastDeath }}!</p>
+          <p><button ng-click="restartLevel()" class="btn btn-default default-choice">Restart level</button></p>
+        </div>
       </div>
+    
+      <div class="shark" ng-repeat="shark in sharks"
+          ng-style="shark.getStyle()"
+          ng-class="shark.getClasses()">
+      </div>
+    
+      <div class="raft"
+          ng-style="raft.getStyle()"
+          ng-class="raft.getClasses()">
+      </div>
+    
+      <div class="health-bar">
+        <div class="heart" ng-repeat="i in getHP() track by $index"></div>
+      </div>
+    
     </div>
-
-    <div class="shark" ng-repeat="shark in sharks"
-        ng-style="shark.getStyle()"
-        ng-class="shark.getClasses()">
-    </div>
-  
-    <div class="raft"
-        ng-style="raft.getStyle()"
-        ng-class="raft.getClasses()">
-    </div>
-
-    <div class="health-bar">
-      <div class="heart" ng-repeat="i in getHP() track by $index"></div>
-    </div>
-  
   </div>
 
 </div>

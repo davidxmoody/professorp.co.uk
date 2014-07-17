@@ -1,3 +1,11 @@
+// Fixes overflow:hidden; not working on tables in Firefox
+.sharkattack-container-container {
+  overflow: hidden;
+  width: 400px;
+  height: 400px;
+  margin: auto;
+}
+
 .sharkattack-container {
   width: 400px;
   height: 400px;
