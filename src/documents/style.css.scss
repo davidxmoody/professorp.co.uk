@@ -24,3 +24,7 @@ img {
     color: #000;
     padding: 8px;
 }
+
+// Stop Firefox showing annoying selection border
+a:focus { outline: none; }
+::-moz-focus-inner { border: 0; }
