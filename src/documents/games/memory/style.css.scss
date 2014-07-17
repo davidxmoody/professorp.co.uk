@@ -3,13 +3,14 @@ $card-spacing: 4px;
 
 // A card which is hidden
 .memory-card {
-  display: table-cell;
+  display: inline-block;
+  position: relative;
+  width: $card-size+2px;
+  height: $card-size+2px;
   border-radius: 2px;
-  width: $card-size;
-  height: $card-size;
   border: 1px solid black;
-  box-sizing: content-box;
   z-index: 2;
+  margin-left: $card-spacing;
 
   -webkit-touch-callout: none;
   -webkit-user-select: none;
@@ -21,7 +22,6 @@ $card-spacing: 4px;
   transition: 0.2s;
   transform-style: preserve-3d;
   -webkit-transform-style: preserve-3d;
-  position: relative;
   
   .front, .back {
     backface-visibility: hidden;
@@ -40,6 +40,10 @@ $card-spacing: 4px;
   }
 
   .back {
+    // For some reason, specifying a 0 degree transform fixes an off by one
+    // pixel bug in Firefox
+    transform: rotateY(0deg);
+    -webkit-transform: rotateY(0deg);
     background-image: url(images/back.gif);
     z-index: 2;
   }
@@ -58,18 +62,16 @@ $card-spacing: 4px;
   -webkit-transform: rotateY(180deg);
 }
 
-// Sort out even grid like spacing
 .memory-grid {
   display: inline-block;
   border: 1px solid black;
-  box-sizing: content-box;
+  padding-top: $card-spacing;
 }
 
 .memory-grid>div {
-  margin-top: $card-spacing;
+  height: 102px; 
   margin-bottom: $card-spacing;
-  border-spacing: $card-spacing 0px;
-  perspective: 1000; //TODO is this line required?
+  margin-right: $card-spacing;
 }
 
 // This fails to fix the problem of the dropdown only sometimes getting mouse
@@ -83,10 +85,7 @@ $card-spacing: 4px;
   left: 20%;
   top: 80px;;
   width: 60%;
-
-  button {
-    z-index: 50;
-  }
+  z-index: 50;
 }
 
 #memory-game-container {
