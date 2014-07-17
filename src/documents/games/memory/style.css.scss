@@ -9,6 +9,7 @@ $card-spacing: 4px;
   height: $card-size;
   border: 1px solid black;
   box-sizing: content-box;
+  z-index: 2;
 
   -webkit-touch-callout: none;
   -webkit-user-select: none;
@@ -71,7 +72,9 @@ $card-spacing: 4px;
   perspective: 1000; //TODO is this line required?
 }
 
-#level-select-dropdown {
+// This fails to fix the problem of the dropdown only sometimes getting mouse
+// focus when over faceup cards, I don't know how to fix that
+#level-select-dropdown, #level-select-dropdown * {
   z-index: 100;
 }
 
