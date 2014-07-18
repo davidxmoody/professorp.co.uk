@@ -8,16 +8,17 @@ getQuestions = require './questions'
 angular.module('quizGame', []).controller 'QuizCtrl', ($scope, $timeout) ->
 
   $scope.levels = [
-    { description: 'Inventions from book 1 (15 questions)', numQuestions: 15, totalSeconds: 120, penalty: 100 }
-    { description: 'Inventions from book 1 (20 questions)', numQuestions: 20, totalSeconds: 120, penalty: 15 }
+    { description: 'Inventions from book 1 (easy)', category: 'inventionsBook1', numQuestions: 15, totalSeconds: 120, penalty: 10 }
+    { description: 'Inventions from book 1 (hard)', category: 'inventionsBook1', numQuestions: 20, totalSeconds: 120, penalty: 15 }
+    { description: 'Dinosaurs (easy)', category: 'dinosaurs', numQuestions: 15, totalSeconds: 120, penalty: 10 }
   ]
 
   # Load the specified question set
   $scope.loadLevel = (level) ->
     $scope.lastLevel = level
-    $scope.numQuestions = level.numQuestions
+    $scope.questions = getQuestions(level.category, level.numQuestions)
+    $scope.numQuestions = $scope.questions.length
     $scope.numAnswered = 0
-    $scope.questions = getQuestions('inventionsBook1', $scope.numQuestions)
     $scope.totalSeconds = level.totalSeconds
     $scope.secondsRemaining = $scope.totalSeconds
     $scope.penalty = level.penalty
