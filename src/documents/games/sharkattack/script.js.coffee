@@ -106,16 +106,6 @@ angular.module('sharkAttackApp', []).controller('SharkAttackCtrl', ['$scope', ($
     }
   ]
 
-  $scope.currentLevelIndex = 0
-
-  $scope.raft = new Raft()
-  $scope.sharks = []
-  $scope.updatesUntilNextShark = 0
-
-  $scope.showTutorialAlert = true
-  $scope.showLevelCompletedAlert = false
-  $scope.showGameCompletedAlert = false
-  $scope.showLevelFailedAlert = false
 
   $scope.width = 400
   $scope.height = 400
@@ -124,6 +114,34 @@ angular.module('sharkAttackApp', []).controller('SharkAttackCtrl', ['$scope', ($
   $scope.goRight = false
 
 
+  # Load the given level and initialise tutorial alert
+  $scope.loadLevel = (level) ->
+    $scope.currentLevel = level
+
+    $scope.showTutorialAlert = true
+    $scope.showLevelCompletedAlert = false
+    $scope.showGameCompletedAlert = false
+    $scope.showLevelFailedAlert = false
+
+    $scope.setFocus()
+
+    $scope.raft = new Raft()
+    $scope.sharks = []
+    $scope.updatesUntilNextShark = 0
+
+
+  # Reload the current level
+  $scope.restartLevel = ->
+    $scope.loadLevel($scope.currentLevel)
+
+
+  # Load the level after the current level
+  $scope.nextLevel = ->
+    nextLevelIndex = Math.min($scope.levels.indexOf($scope.currentLevel)+1, $scope.levels.length-1)
+    $scope.loadLevel($scope.levels[nextLevelIndex])
+
+  
+  # Dismiss the tutorial alert and start the update cycle going
   $scope.startGame = ->
     $scope.showTutorialAlert = false
 
@@ -135,42 +153,7 @@ angular.module('sharkAttackApp', []).controller('SharkAttackCtrl', ['$scope', ($
     requestAnimationFrame($scope.startLoop)
 
 
-  $scope.nextLevel = ->
-    $scope.showLevelCompletedAlert = false
-    $scope.currentLevelIndex++
-    $scope.setFocus()
-
-    $scope.raft = new Raft()
-    $scope.sharks = []
-    $scope.updatesUntilNextShark = 0
-
-
-  $scope.restartLevel = ->
-    $scope.showLevelCompletedAlert = false
-    $scope.showGameCompletedAlert = false
-    $scope.showLevelFailedAlert = false
-    $scope.setFocus()
-
-    $scope.raft = new Raft()
-    $scope.sharks = []
-    $scope.updatesUntilNextShark = 0
-
-
-  #TODO this is absolutely terrible, redo the entire level selection stuff
-  $scope.loadLevel = (levelIndex) ->
-    $scope.showTutorialAlert = false
-    $scope.showLevelCompletedAlert = false
-    $scope.showGameCompletedAlert = false
-    $scope.showLevelFailedAlert = false
-    $scope.currentLevelIndex = levelIndex
-    $scope.setFocus()
-
-    $scope.raft = new Raft()
-    $scope.sharks = []
-    $scope.updatesUntilNextShark = 0
-    $scope.startGame()
-
-
+  # jQuery hack to set the focus on the container so keypresses are registered
   $scope.setFocus = ->
     # Do it via timeout to prevent angular error
     setTimeout (-> $('.sharkattack-container').focus()), 1
@@ -183,6 +166,7 @@ angular.module('sharkAttackApp', []).controller('SharkAttackCtrl', ['$scope', ($
         $('.sharkattack-container div.alert:not(.ng-hide) button.default-choice').click()
 
 
+  # Update the underlying model with new positions for all entities
   $scope.update = ->
     try
       # Move raft first
@@ -205,7 +189,7 @@ angular.module('sharkAttackApp', []).controller('SharkAttackCtrl', ['$scope', ($
       $scope.updatesUntilNextShark--
       if $scope.updatesUntilNextShark <= 0
         $scope.spawnShark()
-        sharksPerSecond = $scope.levels[$scope.currentLevelIndex].sharksPerSecond
+        sharksPerSecond = $scope.currentLevel.sharksPerSecond
         $scope.updatesUntilNextShark = 1/sharksPerSecond/$scope.step
         
     catch err
@@ -213,7 +197,7 @@ angular.module('sharkAttackApp', []).controller('SharkAttackCtrl', ['$scope', ($
         when 'safe'
           # Load next level
           next = ->
-            if $scope.currentLevelIndex is $scope.levels.length-1
+            if $scope.currentLevel is $scope.levels[$scope.levels.length-1]
               $scope.showGameCompletedAlert = true
             else
               $scope.showLevelCompletedAlert = true
@@ -246,12 +230,16 @@ angular.module('sharkAttackApp', []).controller('SharkAttackCtrl', ['$scope', ($
 
   $scope.startLoop = ->
     $scope.frame()
-    requestAnimationFrame($scope.startLoop)
+    # Hack to stop sharks moving while the tutorial is being shown after
+    # restarting the game
+    unless $scope.showTutorialAlert
+      requestAnimationFrame($scope.startLoop)
 
 
+  # Spawn a single shark with random parameters
   $scope.spawnShark = ->
     # Small chance to spawn a fast shark heading for the raft
-    if Math.random()<$scope.levels[$scope.currentLevelIndex].fastSharkChance
+    if Math.random()<$scope.currentLevel.fastSharkChance
       speed = 2
       verticalDistanceFromRaft = 100+Math.random()*80
       timeToCollision = verticalDistanceFromRaft/(speed+$scope.raft.forwardSpeed)
@@ -292,6 +280,12 @@ angular.module('sharkAttackApp', []).controller('SharkAttackCtrl', ['$scope', ($
       when 65 then $scope.goLeft = keydown  # ('a' key)
       when 68 then $scope.goRight = keydown # ('d' key)
 
+
+  # Helper function for displaying the number of hearts remaining
   $scope.getHP = ->
     new Array(Math.max($scope.raft.hp - $scope.raft.damage, 0))
+
+
+  # Load the first level
+  $scope.loadLevel($scope.levels[0])
 ])
