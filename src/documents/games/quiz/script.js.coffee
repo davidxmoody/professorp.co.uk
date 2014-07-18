@@ -17,7 +17,7 @@ angular.module('quizGame', []).controller 'QuizCtrl', ($scope, $timeout) ->
     $scope.lastLevel = level
     $scope.numQuestions = level.numQuestions
     $scope.numAnswered = 0
-    $scope.questions = getQuestions($scope.numQuestions)
+    $scope.questions = getQuestions('inventionsBook1', $scope.numQuestions)
     $scope.totalSeconds = level.totalSeconds
     $scope.secondsRemaining = $scope.totalSeconds
     $scope.penalty = level.penalty
