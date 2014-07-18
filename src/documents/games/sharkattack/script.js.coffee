@@ -104,6 +104,11 @@ angular.module('sharkAttackApp', []).controller('SharkAttackCtrl', ['$scope', ($
       fastSharkChance: 0.5
       sharksPerSecond: 4.5
     }
+    {
+      text: "Impossible"
+      fastSharkChance: 0.5
+      sharksPerSecond: 6.0
+    }
   ]
 
 
@@ -258,10 +263,11 @@ angular.module('sharkAttackApp', []).controller('SharkAttackCtrl', ['$scope', ($
       speed = 0.5+Math.random()
 
       # Move its position if it is too close to the raft
-      if 0 < $scope.raft.x-x < 20 and -20 < $scope.raft.y-y < 20
-        x -= 40
-      if -20 < $scope.raft.x-x < 0 and -20 < $scope.raft.y-y < 20
-        x += 40
+      minDistance = 40
+      if 0 < $scope.raft.x-x < minDistance and -1*minDistance < $scope.raft.y-y < minDistance
+        x -= minDistance
+      if -1*minDistance < $scope.raft.x-x < 0 and -1*minDistance < $scope.raft.y-y < minDistance
+        x += minDistance
 
       # Set the velocity to make the shark travel towards the center of the map
       velX = if x<$scope.width/2 then speed else -1*speed
