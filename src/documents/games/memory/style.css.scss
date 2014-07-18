@@ -91,3 +91,12 @@ $card-spacing: 4px;
 #memory-game-container {
   position: relative;
 }
+
+.no-transforms .memory-card {
+  &:not(.faceup) .front {
+    display: none;
+  }
+  &.faceup .back {
+    display: none;
+  }
+}
