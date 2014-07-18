@@ -11,13 +11,18 @@ htmlmin: true
   <title><%= @getPreparedTitle() %></title>
   <meta name="description" content="<%= @getPreparedDescription() %>" />
 
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.2/html5shiv-printshiv.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/respond.js/1.4.2/respond.min.js"></script>
+  <![endif]-->
+
   <%- @getBlock('meta').toHTML() %>
   <%- @getBlock('styles').add(@site.styles).add(@document.styles).toHTML() %>
 </head>
 <body>
 
   <div class="container">
-    <!--[if lt IE 7]>
+    <!--[if lt IE 9]>
     <p class="browsehappy">You are using an <strong>outdated</strong> browser. 
     Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
     <![endif]-->
