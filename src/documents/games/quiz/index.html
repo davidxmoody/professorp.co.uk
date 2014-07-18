@@ -23,8 +23,24 @@ scripts:
       </div>
       <div class="panel-body">
         <p>This quiz will test your knowledge of the Professor P books. 
-           Answer {{ numQuestions }} questions correctly before the time runs out.</p>
-        <p>There is a {{ penalty }} second penalty for every incorrect answer.</p>
+        Answer <strong>{{ numQuestions }}</strong> questions correctly before the time runs out.</p>
+        <p>There is a <strong>{{ penalty }}</strong> second penalty for every incorrect answer.</p>
+
+        <p>
+          <div class="dropdown">
+            <button class="btn btn-default dropdown-toggle" type="button" id="levelSelect" data-toggle="dropdown">
+              Choose question set
+              <span class="caret"></span>
+            </button>
+            <ul id="level-select-dropdown" class="dropdown-menu">
+              <li ng-repeat="level in levels">
+                <a href="javascript:void(0)" ng-click="loadLevel(level)">
+                  {{ level.description }}
+                </a>
+              </li>
+            </ul>
+          </div>
+        </p>
 
         <div class="progress">
           <div class="progress-bar" ng-style="{ width: 100*numAnswered/numQuestions+'%' }"></div>
