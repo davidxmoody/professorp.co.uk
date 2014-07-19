@@ -1,3 +1,7 @@
+---
+htmlmin: true
+---
+
 <% url = @url or '/'+@title.replace(/\s+/g, '-').toLowerCase()+'/' %>
 <% pages = @getCollection(@collection or @title.toLowerCase())?.sortArray(name: 1) %>
 <% hasPages = pages? and pages.length>0 %>
