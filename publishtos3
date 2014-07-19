@@ -12,7 +12,7 @@ docpad generate --out build --env production
   cd build
   python -m SimpleHTTPServer &
   pid=$!
-  trap "kill $pid; echo killed pid $pid" EXIT
+  trap "kill $pid; echo Killed server pid $pid" EXIT
   xdg-open http://localhost:8000/
   echo "Please test the site in your browser and then press enter to continue or Ctrl-C to abort" && read
 )
@@ -20,6 +20,8 @@ docpad generate --out build --env production
 # Re-upload everything but static images and files
 aws s3 sync build s3://professorp.co.uk --delete \
     --exclude 'logs/*' \
+    --exclude 'events/20*.html' \
+    --exclude 'events/20*/index.html' \
     --exclude '*.jpg' \
     --exclude '*.gif' \
     --exclude '*.png' \
