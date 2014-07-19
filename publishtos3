@@ -1,0 +1,36 @@
+#!/bin/bash
+
+# Stop if any step fails
+set -e
+
+# Output site to build dir
+rm -r build || true
+docpad generate --out build --env production
+
+# Check it works before publishing
+(
+  cd build
+  python -m SimpleHTTPServer &
+  pid=$!
+  trap "kill $pid; echo killed pid $pid" EXIT
+  xdg-open http://localhost:8000/
+  echo "Please test the site in your browser and then press enter to continue or Ctrl-C to abort" && read
+)
+
+# Re-upload everything but static images and files
+aws s3 sync build s3://professorp.co.uk --delete \
+    --exclude 'logs/*' \
+    --exclude '*.jpg' \
+    --exclude '*.gif' \
+    --exclude '*.png' \
+    --exclude '*.pdf' \
+    --exclude '*.zip'
+
+# Upload static images and files only if the size is different
+aws s3 sync build s3://professorp.co.uk --delete --size-only \
+    --exclude '*' \
+    --include '*.jpg' \
+    --include '*.gif' \
+    --include '*.png' \
+    --include '*.pdf' \
+    --include '*.zip'
