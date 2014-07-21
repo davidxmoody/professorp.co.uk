@@ -39,4 +39,4 @@ There are many excellent fossil sites in the UK. The Dorset coast is especially 
 
 ### I would like to become an author, can you give me any advice?
 
-It’s a good idea to keep a notebook to write down all you ideas. - then every so often you can look over what you've written and you’ll find you have new thoughts and like a jigsaw, you can fit the pieces together. It's also important to really believe in your characters, to know them and care about them. Sometimes it’s even worth writing down background information that you may never use in the actual story. When you really know your characters you’ll find that the story is much easier to write.
+It’s a good idea to keep a notebook to write down all you ideas - then every so often you can look over what you've written and you’ll find you have new thoughts and like a jigsaw, you can fit the pieces together. It's also important to really believe in your characters, to know them and care about them. Sometimes it’s even worth writing down background information that you may never use in the actual story. When you really know your characters you’ll find that the story is much easier to write.
