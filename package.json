@@ -10,7 +10,7 @@
   "dependencies": {
     "browserify": "^4.1.10",
     "browserify-shim": "^3.5.0",
-    "docpad": "~6.68.0",
+    "docpad": "^6.68.0",
     "docpad-plugin-browserifydocs": "~2.2.0",
     "docpad-plugin-cleanurls": "~2.7.0",
     "docpad-plugin-coffeescript": "~2.4.0",
@@ -35,5 +35,9 @@
     "angular": "global:angular",
     "underscore": "global:_",
     "jquery": "global:$"
+  },
+  "scripts": {
+    "start": "rm -r out; docpad run",
+    "publish": "echo hello"
   }
 }
