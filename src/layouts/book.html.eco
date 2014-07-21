@@ -16,6 +16,10 @@ layout: narrow
   <p>Read the <a href="<%= @document.deletedScenes %>">Deleted Scenes (PDF)</a>.</p>
 <% end %>
 
+<% if @document.endGuide?: %>
+  <p>Read the <a href="<%= @document.endGuide %>"><%= @document.endGuideTitle or 'Fossil Guide' %> (PDF)</a>.</p>
+<% end %>
+
 <br>
 <br>
 <p class="text-right small">

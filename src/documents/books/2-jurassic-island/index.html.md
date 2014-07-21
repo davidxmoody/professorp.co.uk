@@ -11,6 +11,8 @@ isbn: 9780954615116
 image: /images/2-jurassic-island-cover.jpg
 firstChapter: /pdf/profp-jurassic-island-first-chapter.pdf
 deletedScenes: /pdf/profp-jurassic-island-deleted-scenes.pdf
+endGuide: /pdf/profp-jurassic-island-dinosaur-guide.pdf
+endGuideTitle: Dinosaur Guide
 ---
 
 ### An Amazing Dinosaur Adventure!
