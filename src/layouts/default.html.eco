@@ -31,7 +31,7 @@ htmlmin: true
     <![endif]-->
 
     <a href="/">
-      <img src="/images/header.jpg" alt="">
+      <img src="/images/header.png" alt="">
     </a>
 
     <nav class="navbar navbar-default" role="navigation">
