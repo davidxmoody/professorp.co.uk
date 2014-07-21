@@ -188,7 +188,7 @@ angular.module('wordsearchApp', []).controller 'WordsearchCtrl', ['$scope', ($sc
       if $scope.words.length is 0
         $scope.enableInput = false
         alertCongrats = ->
-          alert("Congratulations, you found all #{$scope.foundWords.length} words!")
+          alert("Congratulations, you found all #{$scope.foundWords.length} words! Select a new difficulty level from the menu to play again.")
         setTimeout(alertCongrats, 400)  # The delay allows the wordlist crossout to be updated
 
 
