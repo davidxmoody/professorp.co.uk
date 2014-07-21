@@ -25,3 +25,7 @@ module.exports = class AIGrid extends ShuffleGrid
     # Hack to make the AIGrid wait for the player to begin before it starts
     @gameStarted = true
     @readyForInput()
+
+
+  stopMoves: ->
+    @gameStarted = false

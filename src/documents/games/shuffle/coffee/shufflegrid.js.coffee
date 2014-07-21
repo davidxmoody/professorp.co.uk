@@ -6,6 +6,7 @@ module.exports = class ShuffleGrid
   constructor: (@levels, @random, @$container) ->
     @random ?= new Random()
     @levelIndex = 0
+    @movesTaken = 0
     
     # Make the jQuery grid
     @$container.empty()
@@ -88,6 +89,7 @@ module.exports = class ShuffleGrid
   tryMoveTile: (tile) ->
     if tile.adjacentTo(@emptyTile)
       @trigger('tile-moved')
+      @movesTaken++
       tile.swapWith @emptyTile, =>
         if @_isSolved()
           @levelComplete()
