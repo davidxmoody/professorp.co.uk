@@ -38,6 +38,6 @@
   },
   "scripts": {
     "start": "rm -r out; docpad run",
-    "publish": "echo hello"
+    "deploy": "rm -r build; docpad generate --out build --env production"
   }
 }
