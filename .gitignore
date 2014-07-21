@@ -1,4 +1,4 @@
-^node_modules$
-^out$
-^build$
-^config.json$
+/node_modules/
+/out/
+/build/
+/config.json
