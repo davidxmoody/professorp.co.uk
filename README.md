@@ -1,3 +1,7 @@
+## Introduction
+
+This is the source code for the new version of the <http://www.professorp.co.uk/> website. That link still points to the old version but the new one should be up within a week or so. 
+
 ## Setup
 
 1. Install Node.js
@@ -6,13 +10,13 @@
 4. `cd` into the project directory
 5. Run `npm install`
 
-# Making changes
+## Making changes
 
 1. Run `npm start` to start the development server
 2. Make changes to the source files and view the website in your browser at `http://localhost:9778`
 3. Commit changes with `git commit`
 
-# Deployment
+## Deployment
 
 1. Create a file called `config.json` in the project directory with your FTP settings:
 
