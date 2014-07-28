@@ -26,4 +26,5 @@ This is the source code for the new version of the <http://www.professorp.co.uk/
           "pass": "PASSWORD"
         }
 
-2. Run `npm run-script deploy`
+2. Run `npm run-script build`
+3. Run `npm run-script deploy`

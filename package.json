@@ -39,6 +39,7 @@
   },
   "scripts": {
     "start": "docpad run",
-    "deploy": "docpad generate --out build --env production && ftpsync --verbose --local ./build --host professorp.co.uk --connections 2"
+    "build": "docpad generate --out build --env production",
+    "deploy": "./node_modules/ftpsync/bin/ftpsync --verbose --local ./build --host professorp.co.uk --connections 2"
   }
 }
