@@ -47,16 +47,16 @@ module.exports = docpadConfig = {
 
   collections:
     books: ->
-      @getCollection('documents').findAllLive({relativeOutPath: /books\/[^\/]+\/index.html/})
+      @getCollection('documents').findAllLive({collection: 'books'})
 
     games: ->
-      @getCollection('documents').findAllLive({relativeOutPath: /games\/[^\/]+\/index.html/})
+      @getCollection('documents').findAllLive({collection: 'games'})
 
     activities: ->
-      @getCollection('documents').findAllLive({relativeOutPath: /activities\/[^\/]+\/index.html/})
+      @getCollection('documents').findAllLive({collection: 'activities'})
 
     individualEvents: ->
-      @getCollection('documents').findAllLive({relativeOutPath: /events\/\d\d\d\d-\d\d-\d\d\.html/})
+      @getCollection('documents').findAllLive({collection: 'events'})
 
 
   # DocPad's default environment is the production environment

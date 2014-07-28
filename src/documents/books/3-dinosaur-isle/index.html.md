@@ -1,6 +1,7 @@
 ---
 layout: book
 title: Professor P and the Dinosaur Isle
+collection: books
 image: http://placehold.it/325x497&text=Coming+soon
 ---
 

@@ -1,6 +1,7 @@
 ---
 layout: book
 title: Professor P and the Jurassic Coast
+collection: books
 author: P. J. Davidson
 illustrator: A. T. Royce
 publisher: Positive Books
