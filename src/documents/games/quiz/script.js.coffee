@@ -10,7 +10,7 @@ angular.module('quizGame', []).controller 'QuizCtrl', ($scope, $timeout) ->
   $scope.levels = [
     { description: 'Inventions from book 1 (easy)', category: 'inventionsBook1', numQuestions: 15, totalSeconds: 120, penalty: 10 }
     { description: 'Inventions from book 1 (hard)', category: 'inventionsBook1', numQuestions: 20, totalSeconds: 120, penalty: 15 }
-    { description: 'Dinosaurs (easy)', category: 'dinosaurs', numQuestions: 15, totalSeconds: 120, penalty: 10 }
+    #{ description: 'Dinosaurs (easy)', category: 'dinosaurs', numQuestions: 15, totalSeconds: 120, penalty: 10 }
   ]
 
   # Load the specified question set
