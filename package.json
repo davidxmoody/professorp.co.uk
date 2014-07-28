@@ -38,7 +38,7 @@
     "jquery": "global:$"
   },
   "scripts": {
-    "start": "rm -r out; docpad run",
-    "deploy": "rm -r build; docpad generate --out build --env production && ftpsync --verbose --local ./build --host professorp.co.uk --connections 2"
+    "start": "docpad run",
+    "deploy": "docpad generate --out build --env production && ftpsync --verbose --local ./build --host professorp.co.uk --connections 2"
   }
 }
