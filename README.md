@@ -4,8 +4,8 @@ This is the source code for the new version of the <http://www.professorp.co.uk/
 
 ## Setup
 
-1. Install [Node.js](http://nodejs.org/download/)
-2. Install [npm](https://www.npmjs.org/) (if it didn't already come with your installation of Node.js)
+1. Install [Node.js](http://nodejs.org/download/) and [npm](https://www.npmjs.org/) (if it didn't already come with your installation of Node.js)
+2. Install [Ruby](http://rubyinstaller.org/) and Sass (`gem install sass`)
 3. Install [Git](http://git-scm.com/downloads)
 4. Clone this repo `git clone https://github.com/davidxmoody/professorp.co.uk`
 5. `cd` into the project directory
