@@ -1,6 +1,6 @@
 ## Introduction
 
-This is the source code for the new version of the <http://www.professorp.co.uk/> website. That link still points to the old version but the new one should be up within a week or so. 
+This is the source code for the [professorp.co.uk](http://professorp.co.uk/) website about the Professor P series of children's books. It includes information about the books, JavaScript games, offline activities for children, photos of past events, information about the author and contact info. 
 
 ## Setup
 
