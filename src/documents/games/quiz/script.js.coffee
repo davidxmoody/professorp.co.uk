@@ -3,20 +3,53 @@ browserify: true
 ---
 
 angular = require 'angular'
-getQuestions = require './questions'
+_ = require 'underscore'
+
+class Answer
+  constructor: (@text, @isCorrect=false, @isSelected=false, @isDisabled=false) ->
+
+class Question
+  constructor: (@text, correctAnswer, incorrectAnswers...) ->
+    @answers = (new Answer(answer) for answer in incorrectAnswers)
+    @answers.push(new Answer(correctAnswer, true))
+    @answers = _.shuffle(@answers)
+
+getQuestions = (questionData, numQuestions) ->
+  unformattedQuestions = _.sample(questionData, numQuestions)
+  for question in unformattedQuestions
+    new Question(question...)
+
 
 angular.module('quizGame', []).controller 'QuizCtrl', ($scope, $timeout) ->
 
   $scope.levels = [
-    { description: 'Inventions from book 1 (easy)', category: 'inventionsBook1', numQuestions: 15, totalSeconds: 120, penalty: 10 }
-    { description: 'Inventions from book 1 (hard)', category: 'inventionsBook1', numQuestions: 20, totalSeconds: 120, penalty: 15 }
-    #{ description: 'Dinosaurs (easy)', category: 'dinosaurs', numQuestions: 15, totalSeconds: 120, penalty: 10 }
+    {
+      description: 'Book 1 (easy)'
+      questionData: require('./book1easy')
+      numQuestions: 15
+      totalSeconds: 120
+      penalty: 10
+    }
+    {
+      description: 'Book 1 (medium)'
+      questionData: require('./book1medium')
+      numQuestions: 20
+      totalSeconds: 120
+      penalty: 10
+    }
+    {
+      description: 'Book 1 (hard)'
+      questionData: require('./book1hard')
+      numQuestions: 20
+      totalSeconds: 120
+      penalty: 15
+    }
   ]
 
   # Load the specified question set
   $scope.loadLevel = (level) ->
     $scope.lastLevel = level
-    $scope.questions = getQuestions(level.category, level.numQuestions)
+    $scope.questions = getQuestions(level.questionData, level.numQuestions)
     $scope.numQuestions = $scope.questions.length
     $scope.numAnswered = 0
     $scope.totalSeconds = level.totalSeconds
