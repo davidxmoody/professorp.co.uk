@@ -47,16 +47,16 @@ module.exports = docpadConfig = {
 
   collections:
     books: ->
-      @getCollection('documents').findAllLive({collection: 'books'})
+      @getCollection('documents').findAllLive({collection: 'books'}, [filename: 1])
 
     games: ->
-      @getCollection('documents').findAllLive({collection: 'games'})
+      @getCollection('documents').findAllLive({collection: 'games'}, [filename: 1])
 
     activities: ->
-      @getCollection('documents').findAllLive({collection: 'activities'})
+      @getCollection('documents').findAllLive({collection: 'activities'}, [filename: 1])
 
     individualEvents: ->
-      @getCollection('documents').findAllLive({collection: 'events'})
+      @getCollection('documents').findAllLive({collection: 'events'}, [filename: 1])
 
 
   # DocPad's default environment is the production environment
