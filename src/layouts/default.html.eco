@@ -32,7 +32,7 @@ htmlmin: true
     <![endif]-->
 
     <a href="/">
-      <img src="/images/header.png" alt="">
+      <img src="/images/header.png" alt="Professor P's Website">
     </a>
 
     <nav class="navbar navbar-default" role="navigation">
