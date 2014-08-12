@@ -1,12 +1,12 @@
 module.exports = [
   [
-    "What does Professor P’s toaster do?"
+    "What does Professor P's toaster do?"
     "Tells jokes"
     "Explodes"
     "Hates mornings"
   ]
   [
-    "Which of Professor P’s inventions is most likely to explode?"
+    "Which of Professor P's inventions is most likely to explode?"
     "His can of self-heating beans"
     "His toaster"
     "His phone"
@@ -18,19 +18,19 @@ module.exports = [
     "It did not have enough capastulators"
   ]
   [
-    "What is unusual about the coloured balls in Professor P’s basement?"
-    "They don’t stop bouncing"
+    "What is unusual about the coloured balls in Professor P's basement?"
+    "They don't stop bouncing"
     "They explode"
     "Nothing, they are just ordinary plastic balls"
   ]
   [
-    "What is unusual about the Professor P’s safe?"
+    "What is unusual about the Professor P's safe?"
     "It explodes if you use the wrong combination"
-    "It’s hidden behind the fireplace"
+    "It's hidden behind the fireplace"
     "It opens if you ask nicely"
   ]
   [
-    "What is the name of Peter’s dog?"
+    "What is the name of Peter's dog?"
     "Sparky"
     "Sleepy"
     "Snowy"
@@ -54,22 +54,16 @@ module.exports = [
     "Coin collecting"
   ]
   [
-    "What type of hair does Tara have?"
-    "Long fair hair"
-    "Long dark hair"
-    "Short red hair"
-  ]
-  [
     "What does Professor P look like?"
     "Tall with grey streaks in his straggly beard"
     "Tall and clean shaven"
     "Short and fat"
   ]
   [
-    "What is Professor P’s job?"
-    "He’s an inventor"
+    "What is Professor P's job?"
+    "He's an inventor"
     "He works in the Fossil Shop"
-    "He’s a schoolteacher"
+    "He's a schoolteacher"
   ]
   [
     "How many pets does Professor P have?"
@@ -78,7 +72,7 @@ module.exports = [
     "Five, one dog, two cats and two rabbits"
   ]
   [
-    "What is the name of Professor P’s dog?"
+    "What is the name of Professor P's dog?"
     "Sleepy"
     "Snowy"
     "Sparky"
@@ -90,16 +84,16 @@ module.exports = [
     "Small and timid"
   ]
   [
-    "What is Mary’s job?"
+    "What is Mary's job?"
     "She works in the Fossil Shop"
-    "She’s an inventor"
-    "She’s a schoolteacher"
+    "She's an inventor"
+    "She's a schoolteacher"
   ]
   [
     "Who or what is Floppy?"
     "A supercomputer"
-    "Professor P’s pet tortoise"
-    "Professor P’s pet parrot"
+    "Professor P's pet tortoise"
+    "Professor P's pet parrot"
   ]
   [
     "How does Floppy usually appear?"
@@ -110,7 +104,7 @@ module.exports = [
   [
     "What was the first fossil that Peter and Tara found together?"
     "An ammonite"
-    "A shark’s tooth"
+    "A shark's tooth"
     "An ichthyosaurus"
   ]
   [
@@ -123,13 +117,13 @@ module.exports = [
     "Where did Peter and Tara first meet?"
     "On the beach"
     "At school"
-    "At Tara’s house"
+    "At Tara's house"
   ]
   [
     "Where did Peter and Tara first meet Professor P?"
-    "In Professor P’s garden"
+    "In Professor P's garden"
     "On the beach"
-    "At Peter’s house"
+    "At Peter's house"
   ]
   [
     "What was Professor P doing when Peter and Tara first met him?"
@@ -150,7 +144,7 @@ module.exports = [
     "A dinosaur tooth"
   ]
   [
-    "How did Peter and Tara intend to find more ‘gold’ on the beach?"
+    "How did Peter and Tara intend to find more 'gold' on the beach?"
     "With a metal detector"
     "By training Sparky to sniff it out"
     "By asking Mary to help"
@@ -162,7 +156,7 @@ module.exports = [
     "He thought Professor P had been attacked"
   ]
   [
-    "Why did Floppy ask Peter and Tara to read Professor P’s diary?"
+    "Why did Floppy ask Peter and Tara to read Professor P's diary?"
     "To find out where Professor P had gone"
     "To find out what Professor P ate for breakfast"
     "He was just being nosey"
@@ -174,7 +168,7 @@ module.exports = [
     "In the basement"
   ]
   [
-    "What did Peter and Tara watch on Professor P’s diary CD?"
+    "What did Peter and Tara watch on Professor P's diary CD?"
     "A video of Professor P giving a lecture at Cambridge University"
     "A video of Professor P performing a dangerous experiment"
     "Nothing, they could not get the CD to work"
@@ -188,7 +182,7 @@ module.exports = [
   [
     "How did Floppy intend to fix the time machine?"
     "By upgrading his program to Superbrain 4.0"
-    "By adding capastulators to the time machine circuit board"
+    "By adding capacitors to the time machine circuit board"
     "By using superglue to reattach the tubes"
   ]
   [
@@ -211,8 +205,8 @@ module.exports = [
   ]
   [
     "How did Peter scare away the sharks that attacked him on his homemade raft?"
-    "Using Professor P’s self-heating beans"
-    "Using Professor P’s electric penknife"
+    "Using Professor P's self-heating beans"
+    "Using Professor P's electric penknife"
     "By waving his arms wildly"
   ]
   [
@@ -231,7 +225,7 @@ module.exports = [
     "What did Peter and Tara find at the bottom of the lake on the Jurassic island?"
     "A large ammonite shell"
     "A large ammonite fossil"
-    "A large shark’s tooth"
+    "A large shark's tooth"
   ]
   [
     "What did Floppy do when Peter and Tara were attacked by a dinosaur?"
@@ -241,7 +235,7 @@ module.exports = [
   ]
   [
     "How did Peter and Tara travel to Cambridge to meet Professor P?"
-    "In Mary’s car"
+    "In Mary's car"
     "By bus"
     "By train"
   ]

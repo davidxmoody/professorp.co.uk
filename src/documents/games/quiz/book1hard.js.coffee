@@ -1,147 +1,129 @@
 module.exports = [
   [
-    "What is the problem with Professor P’s automatic dog bathing machine?"
+    "What is the problem with Professor P's automatic dog bathing machine?"
     "It pulled some hairs out of Sleepy"
-    "It doesn’t get Sleepy clean"
+    "It doesn't get Sleepy clean"
     "Nothing, it works fine"
   ]
   [
-    "What is the problem with Professor P’s electric flea comb?"
+    "What is the problem with Professor P's electric flea comb?"
     "It gave Sleepy an electric shock"
-    "It doesn’t kill fleas"
+    "It doesn't kill fleas"
     "Nothing, it works fine"
   ]
   [
-    "What colour is Professor P’s watch?"
+    "What colour is Professor P's watch?"
     "Purple"
     "Pink"
     "Peach"
   ]
   [
-    "What is the problem with Professor P’s automatic pet feeder?"
+    "What is the problem with Professor P's automatic pet feeder?"
     "Nothing, it works fine"
-    "It gave Professor P’s cats an electric shock"
+    "It gave Professor P's cats an electric shock"
     "It explodes"
   ]
   [
-    "Which of Professor P’s pet products works very well?"
+    "Which of Professor P's pet products works very well?"
     "The automatic pet feeder"
     "The automatic dog bathing machine"
     "The electric flea comb"
   ]
   [
-    "What’s special about Professor P’s solar powered kettle?"
+    "What's special about Professor P's solar powered kettle?"
     "It can use sea water"
     "It tells jokes"
     "It explodes"
   ]
   [
-    "What’s special about Professor P’s dinghy?"
-    "It’s solar powered and self-inflating"
-    "Nothing, it’s just an ordinary dinghy"
+    "What's special about Professor P's dinghy?"
+    "It's solar powered and self-inflating"
+    "Nothing, it's just an ordinary dinghy"
     "It explodes"
   ]
   [
-    "What is unusual about the lights in Professor P’s basement?"
-    "They won’t switch on unless you say ‘please’"
+    "What is unusual about the lights in Professor P's basement?"
+    "They won't switch on unless you say 'please'"
     "They switch on automatically"
-    "They don’t work"
+    "They don't work"
   ]
   [
-    "What is the problem with Professor P’s solar powered cool box?"
-    "There’s no room for the food"
+    "What is the problem with Professor P's solar powered cool box?"
+    "There's no room for the food"
     "It freezes the food"
     "It explodes"
   ]
   [
     "What is unusual about Professor P dishwasher?"
-    "Nothing, it’s just an ordinary dishwasher"
+    "Nothing, it's just an ordinary dishwasher"
     "It also washes clothes"
     "It often breaks the dishes"
   ]
   [
-    "What is the combination of Professor P’s safe?"
+    "What is the combination of Professor P's safe?"
     "831"
     "318"
     "999"
   ]
   [
-    "Which of Professor P’s inventions apologises for not working properly?"
+    "Which of Professor P's inventions apologises for not working properly?"
     "The computer in his basement"
     "The large screen TV in his living room"
     "The digital radio in his bathroom"
   ]
   [
-    "What flavour does Professor P’s crisp making machine make?"
+    "What flavour does Professor P's crisp making machine make?"
     "Banana and custard"
     "Salt and ketchup"
     "Coffee and walnut"
   ]
   [
-    "What is unusual about the Professor P’s binoculars?"
+    "What is unusual about the Professor P's binoculars?"
     "Nothing, they are ordinary binoculars"
     "They make everything look smaller"
     "They turn everything upside down"
   ]
   [
-    "What is unusual about the Professor P’s toolbox?"
-    "It’s very helpful"
-    "It’s very unhelpful"
-    "It won’t open unless you say please"
+    "What is unusual about the Professor P's toolbox?"
+    "It's very helpful"
+    "It's very unhelpful"
+    "It won't open unless you say please"
   ]
   [
-    "How many buttons does Professor P’s can of Superstuff have?"
+    "How many buttons does Professor P's can of Superstuff have?"
     "Three"
     "Four"
     "One"
   ]
   [
-    "What colour is Professor P’s electric penknife?"
+    "What colour is Professor P's electric penknife?"
     "Bright red"
     "Purple"
     "Bright blue"
   ]
   [
-    "What colour is Professor P’s Superstring?"
+    "What colour is Professor P's Superstring?"
     "Yellow"
     "Blue"
     "Purple"
   ]
   [
-    "What colour is Professor P’s Superfoam?"
+    "What colour is Professor P's Superfoam?"
     "Pink"
     "Yellow"
     "Purple"
   ]
   [
-    "What colour is Professor P’s Super-superglue?"
-    "Bright blue"
-    "Bright red"
-    "Purple"
-  ]
-  [
-    "How many tubes does Professor P’s portable time machine have?"
+    "How many tubes does Professor P's portable time machine have?"
     "Sixteen"
     "Eight"
     "Six"
-  ]
-  [
-    "Where does Peter live?"
-    "Seaview Close"
-    "Seaside Close"
-    "Seaview Road"
   ]
   [
     "Where did Peter live before he moved to the Jurassic Coast?"
     "London"
     "Cambridge"
     "Birmingham"
-  ]
-  [
-    "Where does Tara live?"
-    "Seaview Close"
-    "Seaside Close"
-    "Seaview Road"
   ]
   [
     "Where did Tara live before she moved to the Jurassic Coast?"
@@ -156,13 +138,13 @@ module.exports = [
     "Yellow shorts"
   ]
   [
-    "What is the name of Professor P’s business?"
+    "What is the name of Professor P's business?"
     "Professor P Products"
     "Inventions Incorporated"
     "Interesting Inventions Limited"
   ]
   [
-    "What are the names of Professor P’s cats?"
+    "What are the names of Professor P's cats?"
     "Cuddles and Claws"
     "Fluffy and Fuzzy"
     "Paws and Claws"
@@ -192,7 +174,7 @@ module.exports = [
     "Counted to one million"
   ]
   [
-    "What was Mary’s job before she started work in the fossil shop?"
+    "What was Mary's job before she started work in the fossil shop?"
     "She worked in an office"
     "She worked in a sweet shop"
     "She was a schoolteacher"
@@ -207,12 +189,12 @@ module.exports = [
     "Why did Floppy believe Professor P was trapped in the past?"
     "Because the time machine was still in the cave"
     "Because Professor P had disappeared without trace"
-    "Because of what he read in Professor P’s notebook"
+    "Because of what he read in Professor P's notebook"
   ]
   [
     "How long did Floppy say it would take him to fix the time machine?"
     "Fourteen hours, twenty nine minutes and fifteen seconds"
-    "Fourteen hours, twenty nine minutes and fourteen seconds"
+    "Fourteen hours and thirty minutes"
     "Approximately 15 hours"
   ]
   [
@@ -228,10 +210,10 @@ module.exports = [
     "The end of the Cretaceous"
   ]
   [
-    "What was Floppy’s first Theory of Everything?"
-    "‘I think therefore’"
-    "‘I think therefore I am’"
-    "‘It’s all cool’"
+    "What was Floppy's first Theory of Everything?"
+    "'I think therefore'"
+    "'I think therefore I am'"
+    "'It's all cool'"
   ]
   [
     "Why did Peter and Tara use Superfoam in their tree house?"
@@ -258,10 +240,10 @@ module.exports = [
     "Because the calibration of the time machine was beginning to drift"
   ]
   [
-    "When Peter and Tara returned to an alternative world, who did they find living in Professor P’s house?"
+    "When Peter and Tara returned to an alternative world, who did they find living in Professor P's house?"
     "An old lady"
     "An old man"
-    "An old couple"
+    "Nobody"
   ]
   [
     "When Peter and Tara returned to an alternative world, how did they try to find Professor P?"
@@ -279,7 +261,7 @@ module.exports = [
     "What type of car does Mary have?"
     "An old Morris Minor"
     "A large estate car"
-    "A small sport’s car"
+    "A small sport's car"
   ]
   [
     "When was the University of Cambridge founded?"
@@ -312,10 +294,10 @@ module.exports = [
     "230"
   ]
   [
-    "How large was the shark’s tooth that Tara found on the beach?"
+    "How large was the shark's tooth that Tara found on the beach?"
     "About 2 centimetres long"
     "3 centimetres long"
-    "Tara never found a shark’s tooth on the beach"
+    "Tara never found a shark's tooth on the beach"
   ]
   [
     "What does ichthyosaurus mean?"
@@ -379,7 +361,7 @@ module.exports = [
   ]
   [
     "What were belemnites once called?"
-    "St Peter’s fingers"
+    "St Peter's fingers"
     "Pencil-stones"
     "Bullet-stones"
   ]

@@ -1,98 +1,86 @@
 module.exports = [
   [
-    "Where would you be most likely to find Professor P’s phone?"
-    "In Sleepy’s basket"
+    "Where would you be most likely to find Professor P's phone?"
+    "In Sleepy's basket"
     "On the hall table"
     "In the living room"
   ]
   [
-    "What is the best way to find Professor P’s phone?"
+    "What is the best way to find Professor P's phone?"
     "Call out and ask it where it is"
     "Ask Sleepy to go and fetch it"
     "Wait for it to ring"
   ]
   [
-    "Which of Professor P’s inventions is polite and helpful?"
+    "Which of Professor P's inventions is polite and helpful?"
     "His phone"
     "His fridge"
     "His dishwasher"
   ]
   [
-    "How does Professor P’s fridge behave?"
+    "How does Professor P's fridge behave?"
     "Grumpy"
     "Helpful"
     "Funny"
   ]
   [
-    "What is the best way to open Professor P’s fridge?"
+    "What is the best way to open Professor P's fridge?"
     "Ask it nicely"
     "Yank the handle hard"
     "Prise it open with a screwdriver"
   ]
   [
-    "Which of Professor P’s inventions is bad tempered?"
+    "Which of Professor P's inventions is bad tempered?"
     "His fridge"
     "His toaster"
     "His washing machine"
   ]
   [
-    "What does Professor P’s toaster do?"
+    "What does Professor P's toaster do?"
     "Sometimes burns toast"
     "Never burns toast"
     "Always burns toast"
   ]
   [
-    "Which of Professor P’s inventions tells jokes?"
+    "Which of Professor P's inventions tells jokes?"
     "His toaster"
     "His fridge"
     "His dishwasher"
   ]
   [
-    "Which of Professor P’s inventions doesn’t know when to stop talking?"
+    "Which of Professor P's inventions doesn't know when to stop talking?"
     "His toaster"
     "His phone"
     "His washing machine"
   ]
   [
-    "What does Professor P’s front door do?"
+    "What does Professor P's front door do?"
     "Talks in a loud commanding voice"
     "Often bursts into fits of giggles"
     "Laughs loudly"
   ]
   [
-    "Which of Professor P’s inventions talks in a loud commanding voice?"
-    "His front door"
-    "His phone"
-    "His watch"
-  ]
-  [
-    "What’s unusual about Professor P’s cans of self-heating beans?"
+    "What's unusual about Professor P's cans of self-heating beans?"
     "They sometimes explode"
     "They always explode"
-    "They don’t heat up the beans"
+    "They don't heat up the beans"
   ]
   [
-    "Which of Professor P’s inventions does not talk?"
+    "Which of Professor P's inventions does not talk?"
     "His dishwasher"
     "His phone"
     "His watch"
   ]
   [
-    "What is unusual about Professor P’s watch?"
+    "What is unusual about Professor P's watch?"
     "It reminds him of appointments"
     "It often gets the time wrong"
     "It keeps falling off his wrist"
   ]
   [
-    "What is unusual about the Professor P’s answer phone?"
-    "It won’t let you talk to Professor P if you’re trying to sell something"
-    "It doesn’t record messages"
-    "It explodes"
-  ]
-  [
-    "What is unusual about the Professor P’s answer phone?"
-    "It sings badly"
-    "Nothing, it works fine"
+    "What is unusual about the Professor P's answer phone?"
+    "It won't let you talk to Professor P if you're trying to sell something"
+    "It doesn't record messages"
     "It explodes"
   ]
   [
@@ -114,25 +102,19 @@ module.exports = [
     "Short red hair"
   ]
   [
-    "What was Professor P’s job before he became an inventor?"
+    "What was Professor P's job before he became an inventor?"
     "He was a professor at Cambridge University"
     "He was a school teacher"
-    "Nothing, he’s always been an inventor"
+    "Nothing, he's always been an inventor"
   ]
   [
-    "What type of house does Professor P’s live in?"
+    "What type of house does Professor P's live in?"
     "An old stone building overgrown with ivy and roses"
     "A modern semi-detached on an estate"
     "A large mansion"
   ]
   [
-    "What does Mary look like?"
-    "She has brown eyes and long curly brown hair"
-    "She has blue eyes and long fair hair"
-    "She’s short and fat"
-  ]
-  [
-    "What was the colour of the smoke from Professor P’s failed experiment?"
+    "What was the colour of the smoke from Professor P's failed experiment?"
     "Purple"
     "White"
     "Grey"
@@ -141,31 +123,31 @@ module.exports = [
     "What did Mary give to Peter and Tara to thank them for their help?"
     "A box of fossil collecting tools"
     "A polished ammonite"
-    "A large shark’s tooth"
+    "A large shark's tooth"
   ]
   [
     "Why did Peter and Tara search for Professor P in a cave?"
     "Because they read in his diary that he had gone to a cave"
     "Because Sleepy led them to the cave"
-    "Because Mary told them he was there "
+    "Because Mary told them he was there"
   ]
   [
-    "Why were Peter and Tara horrified when they first went into Professor P’s bedroom?"
+    "Why were Peter and Tara horrified when they first went into Professor P's bedroom?"
     "Because they thought it had been burgled"
     "Because they discovered a dead body"
     "Because it was completely empty"
   ]
   [
-    "What did Peter and Tara discover from reading the notebook beside Professor P’s bed?"
+    "What did Peter and Tara discover from reading the notebook beside Professor P's bed?"
     "That Professor P was planning a trip back in time"
     "That Professor P was staying in Cambridge"
-    "Nothing, they couldn’t find it"
+    "Nothing, they couldn't find it"
   ]
   [
     "Why did Floppy tell Peter and Tara that they had to go back in time?"
     "To find Professor P"
     "To discover what the Jurassic was like"
-    "He didn’t, it was Peter and Tara’s idea"
+    "He didn't, it was Peter and Tara's idea"
   ]
   [
     "Why did Peter and Tara ask Mary what life was like 150 million years ago?"
@@ -187,7 +169,7 @@ module.exports = [
   ]
   [
     "What did Peter do after Tara had gone back in time?"
-    "He went to Professor P’s house"
+    "He went to Professor P's house"
     "He went home to tell his parents what had happened"
     "He asked Mary for help"
   ]
@@ -207,7 +189,7 @@ module.exports = [
     "What did Peter see on one of the Jurassic islands when he looked through the binoculars?"
     "The letter P, made out of rocks and stones"
     "The letters Professor P, made out of seaweed"
-    "The word ‘HELP’ written in the sand"
+    "The word 'HELP' written in the sand"
   ]
   [
     "What happened to the first raft that Peter built?"
@@ -217,7 +199,7 @@ module.exports = [
   ]
   [
     "What did Peter use to get his raft to float?"
-    "Professor P’s Superfoam"
+    "Professor P's Superfoam"
     "Plastic bags filled with air"
     "Rubber tyres"
   ]
@@ -229,12 +211,12 @@ module.exports = [
   ]
   [
     "What did Peter and Tara use to build their tree house?"
-    "Professor P’s electric penknife, Superstring, Superfoam and Super-superglue"
-    "Professor P’s tree-house making machine"
+    "Professor P's electric penknife, Superstring, Superfoam and Super-superglue"
+    "Professor P's tree-house making machine"
     "A saw, hammer and nails"
   ]
   [
-    "What went wrong with Professor P’s Superstring?"
+    "What went wrong with Professor P's Superstring?"
     "The button got stuck and the string went everywhere"
     "The button broke and no string came out"
     "Nothing, it worked fine"
@@ -246,8 +228,8 @@ module.exports = [
     "By explaining how the time machine worked"
   ]
   [
-    "What did Mary tell Peter and Tara about the ‘gold’ they had found on the beach?"
-    "That it was not real gold, it was called fool’s gold"
+    "What did Mary tell Peter and Tara about the 'gold' they had found on the beach?"
+    "That it was not real gold, it was called fool's gold"
     "That it was very valuable"
     "That it was a type of copper ore"
   ]
@@ -258,7 +240,7 @@ module.exports = [
     "Because he realised he had forgotten to bring his packed lunch"
   ]
   [
-    "Why did the porter at Professor P’s college get annoyed?"
+    "Why did the porter at Professor P's college get annoyed?"
     "Because no dogs are allowed in the college"
     "Because no cats are allowed in the college"
     "Because walking on the grass is not allowed "
@@ -282,7 +264,7 @@ module.exports = [
     "Because their own world had dinosaurs"
   ]
   [
-    "What did Professor P say when he heard Floppy’s First Theory of Everything?"
+    "What did Professor P say when he heard Floppy's First Theory of Everything?"
     "He said it was brilliant"
     "He said he did not understand it"
     "He said it needed more work"
@@ -306,13 +288,13 @@ module.exports = [
     "A company director"
   ]
   [
-    "What was the name of Peter and Tara’s exhibition in the Fossil Shop?"
+    "What was the name of Peter and Tara's exhibition in the Fossil Shop?"
     "Life in the Jurassic"
     "Dinosaur Display"
     "Ammonite Adventures"
   ]
   [
-    "What was the ‘little present’ that Professor P gave Peter and Tara at their exhibition?"
+    "What was the 'little present' that Professor P gave Peter and Tara at their exhibition?"
     "Photos from their trip to the Jurassic"
     "An ammonite fossil"
     "A book about fossils"
@@ -321,12 +303,12 @@ module.exports = [
     "What is the name of the fossil that Peter thought looked like a hedgehog spine?"
     "Belemnite"
     "Ammonite"
-    "Shark’s tooth"
+    "Shark's tooth"
   ]
   [
     "Where is the Jurassic Coast?"
     "In Dorset and East Devon"
     "In California, America"
-    "It is not a real place, it’s just made up for the story"
+    "It is not a real place, it's just made up for the story"
   ]
 ]
