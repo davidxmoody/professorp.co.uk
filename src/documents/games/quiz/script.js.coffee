@@ -44,6 +44,27 @@ angular.module('quizGame', []).controller 'QuizCtrl', ($scope, $timeout) ->
       totalSeconds: 120
       penalty: 15
     }
+    {
+      description: 'Book 2 (easy)'
+      questionData: require('./book2easy')
+      numQuestions: 15
+      totalSeconds: 120
+      penalty: 10
+    }
+    {
+      description: 'Book 2 (medium)'
+      questionData: require('./book2medium')
+      numQuestions: 20
+      totalSeconds: 120
+      penalty: 10
+    }
+    {
+      description: 'Book 2 (hard)'
+      questionData: require('./book2hard')
+      numQuestions: 20
+      totalSeconds: 120
+      penalty: 15
+    }
   ]
 
   # Load the specified question set
