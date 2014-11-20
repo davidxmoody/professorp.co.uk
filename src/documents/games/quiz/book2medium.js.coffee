@@ -171,7 +171,7 @@ module.exports = [
     "What did Mary believe she saw in the Fossil Shop that caused her to scream out in terror?"
     "She thought she saw a rat"
     "She thought she saw a mouse"
-    "She thought she saw a T­Rex"
+    "She thought she saw a T-Rex"
   ]
   [
     "What gave Tara a shock when she returned home from the Fossil Shop and opened the box that she had put Dotty in?"
@@ -236,7 +236,7 @@ module.exports = [
   [
     "What type of dinosaur came through the portal to the island?"
     "An allosaurus"
-    "A T­Rex"
+    "A T-Rex"
     "A diplodocus"
   ]
   [
@@ -253,7 +253,7 @@ module.exports = [
   ]
   [
     "What is unusual about Professor P's Total Tent?"
-    "It is self­inflating"
+    "It is self-inflating"
     "It sometimes explodes"
     "Nothing, it is just an ordinary tent"
   ]
@@ -319,14 +319,14 @@ module.exports = [
   ]
   [
     "What type of dinosaur was a scelidosaurus?"
-    "A four­legged plant eating dinosaur"
-    "A small two­legged meat eating dinosaur"
+    "A four-legged plant eating dinosaur"
+    "A small two-legged meat eating dinosaur"
     "A huge meat eating dinosaur"
   ]
   [
     "What type of dinosaur was a stegosaurus?"
-    "A four­legged plant eating dinosaur"
-    "A small two­legged meat eating dinosaur"
+    "A four-legged plant eating dinosaur"
+    "A small two-legged meat eating dinosaur"
     "A huge meat eating dinosaur"
   ]
   [

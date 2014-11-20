@@ -187,7 +187,7 @@ module.exports = [
   ]
   [
     "What sort of car does Professor P drive?"
-    "A red open­top vintage car"
+    "A red open-top vintage car"
     "A Morris Minor"
     "A flashy new sports car"
   ]
@@ -213,7 +213,7 @@ module.exports = [
     "What did Peter and Tara see when they arrived on the island?"
     "A huge scaffolding supporting a triangle made of yellow tubes"
     "A herd of dinosaurs"
-    "A huge T­Rex"
+    "A huge T-Rex"
   ]
   [
     "What is the IDP?"

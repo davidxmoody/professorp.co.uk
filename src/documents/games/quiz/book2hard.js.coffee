@@ -171,7 +171,7 @@ module.exports = [
     "What species of dinosaur is Dotty?"
     "Diplodocus longus"
     "Diplodocus diplosaurus"
-    "T­Rex"
+    "T-Rex"
   ]
   [
     "What was the warning sign on the IDP?"
@@ -289,8 +289,8 @@ module.exports = [
   ]
   [
     "What type of dinosaur was a dryosaurus?"
-    "A two­legged plant eating dinosaur"
-    "A two­legged meat eating dinosaur"
+    "A two-legged plant eating dinosaur"
+    "A two-legged meat eating dinosaur"
     "A long tailed plant eating dinosaur"
   ]
   [
@@ -302,7 +302,7 @@ module.exports = [
   [
     "What type of dinosaur was a megalosaurus?"
     "A large fierce meat eating dinosaur"
-    "A two­legged plant eating dinosaur"
+    "A two-legged plant eating dinosaur"
     "A long tailed plant eating dinosaur"
   ]
   [
@@ -313,7 +313,7 @@ module.exports = [
   ]
   [
     "What type of dinosaur was a ornitholestes?"
-    "A two­legged dinosaur that ate eggs and small animals"
+    "A two-legged dinosaur that ate eggs and small animals"
     "A large fierce meat eating dinosaur"
     "A long tailed plant eating dinosaur"
   ]
