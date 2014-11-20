@@ -26,6 +26,7 @@ angular.module('quizGame', []).controller 'QuizCtrl', ($scope, $timeout) ->
   # difficulties, could be improved
   $scope.difficulties = ['Easy', 'Medium', 'Hard']
   $scope.books = ['Book 1', 'Book 2']
+  $scope.bookDescriptions = ['Professor P and the Jurassic Coast', 'Professor P and the Jurassic Island']
 
   $scope.difficulty = $scope.difficulties[0]
   $scope.book = $scope.books[0]

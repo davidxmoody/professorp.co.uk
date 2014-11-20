@@ -38,7 +38,7 @@ scripts:
                 <ul id="level-select-dropdown" class="dropdown-menu">
                   <li ng-repeat="book in books">
                     <a href="javascript:void(0)" ng-click="setBook(book)">
-                      {{ book }}
+                      {{ book }}: {{ bookDescriptions[$index] }}
                     </a>
                   </li>
                 </ul>
