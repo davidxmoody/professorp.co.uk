@@ -22,44 +22,54 @@ getQuestions = (questionData, numQuestions) ->
 
 angular.module('quizGame', []).controller 'QuizCtrl', ($scope, $timeout) ->
 
+  # This is a bit of a hack to separate the level selection into books and
+  # difficulties, could be improved
+  $scope.difficulties = ['Easy', 'Medium', 'Hard']
+  $scope.books = ['Book 1', 'Book 2']
+
+  $scope.difficulty = $scope.difficulties[0]
+  $scope.book = $scope.books[0]
+
+  $scope.setDifficulty = (difficulty) ->
+    $scope.difficulty = difficulty
+    $scope.loadLevel()
+
+  $scope.setBook = (book) ->
+    $scope.book = book
+    $scope.loadLevel()
+
   $scope.levels = [
     {
-      description: 'Book 1 (easy)'
       questionData: require('./book1easy')
       numQuestions: 15
       totalSeconds: 120
       penalty: 10
     }
     {
-      description: 'Book 1 (medium)'
       questionData: require('./book1medium')
       numQuestions: 20
       totalSeconds: 120
       penalty: 10
     }
     {
-      description: 'Book 1 (hard)'
       questionData: require('./book1hard')
       numQuestions: 20
       totalSeconds: 120
       penalty: 15
     }
     {
-      description: 'Book 2 (easy)'
       questionData: require('./book2easy')
       numQuestions: 15
       totalSeconds: 120
       penalty: 10
     }
     {
-      description: 'Book 2 (medium)'
       questionData: require('./book2medium')
       numQuestions: 20
       totalSeconds: 120
       penalty: 10
     }
     {
-      description: 'Book 2 (hard)'
       questionData: require('./book2hard')
       numQuestions: 20
       totalSeconds: 120
@@ -68,7 +78,11 @@ angular.module('quizGame', []).controller 'QuizCtrl', ($scope, $timeout) ->
   ]
 
   # Load the specified question set
-  $scope.loadLevel = (level) ->
+  $scope.loadLevel = () ->
+    # This is an awful hack to find the correct level from the book and
+    # difficulty, was done only to keep the loadLevel method compatible
+    level = $scope.levels[$scope.books.indexOf($scope.book)*$scope.difficulties.length + $scope.difficulties.indexOf($scope.difficulty)]
+
     $scope.lastLevel = level
     $scope.questions = getQuestions(level.questionData, level.numQuestions)
     $scope.numQuestions = $scope.questions.length
@@ -84,7 +98,7 @@ angular.module('quizGame', []).controller 'QuizCtrl', ($scope, $timeout) ->
     }
 
   # Load the first level by default
-  $scope.loadLevel($scope.levels[0])
+  $scope.loadLevel()
 
 
   # Update time remaining and trigger end game if time is up

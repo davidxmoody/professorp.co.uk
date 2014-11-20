@@ -28,18 +28,37 @@ scripts:
         <p>There is a <strong>{{ penalty }}</strong> second penalty for every incorrect answer.</p>
 
         <p>
-          <div class="dropdown">
-            <button class="btn btn-default dropdown-toggle" type="button" id="levelSelect" data-toggle="dropdown">
-              Choose question set
-              <span class="caret"></span>
-            </button>
-            <ul id="level-select-dropdown" class="dropdown-menu">
-              <li ng-repeat="level in levels">
-                <a href="javascript:void(0)" ng-click="loadLevel(level)">
-                  {{ level.description }}
-                </a>
-              </li>
-            </ul>
+          <div class="row">
+            <div class="col-sm-6">
+              <div class="dropdown">
+                <button class="btn btn-default dropdown-toggle" type="button" id="levelSelect" data-toggle="dropdown">
+                  Choose book ({{ book }})
+                  <span class="caret"></span>
+                </button>
+                <ul id="level-select-dropdown" class="dropdown-menu">
+                  <li ng-repeat="book in books">
+                    <a href="javascript:void(0)" ng-click="setBook(book)">
+                      {{ book }}
+                    </a>
+                  </li>
+                </ul>
+              </div>
+            </div>
+            <div class="col-sm-6">
+              <div class="dropdown">
+                <button class="btn btn-default dropdown-toggle" type="button" id="difficultySelect" data-toggle="dropdown">
+                  Difficulty ({{ difficulty }})
+                  <span class="caret"></span>
+                </button>
+                <ul id="level-select-dropdown" class="dropdown-menu">
+                  <li ng-repeat="difficulty in difficulties">
+                    <a href="javascript:void(0)" ng-click="setDifficulty(difficulty)">
+                      {{ difficulty }}
+                    </a>
+                  </li>
+                </ul>
+              </div>
+            </div>
           </div>
         </p>
 
