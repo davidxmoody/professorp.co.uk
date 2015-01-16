@@ -12,9 +12,9 @@ You can email me at <peter@professorp.co.uk> or write to me at:
   <br>
   <strong>Peter J Davidson</strong><br>
   Positive Books Limited<br>
-  66 High Street<br>
+  4 St. Michaels Close<br>
   Glastonbury<br>
   Somerset<br>
-  BA6 9DZ
+  BA6 8EU
 </address>
 </blockquote>

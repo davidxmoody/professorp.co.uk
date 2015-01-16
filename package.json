@@ -14,7 +14,7 @@
     "docpad-plugin-browserifydocs": "~2.2.0",
     "docpad-plugin-cleanurls": "~2.7.0",
     "docpad-plugin-coffeescript": "~2.4.0",
-    "docpad-plugin-cson": "~2.0.1",
+    "docpad-plugin-cson": "~2.1.0",
     "docpad-plugin-eco": "~2.0.3",
     "docpad-plugin-htmlmin": "~2.4.0",
     "docpad-plugin-marked": "~2.2.1",
