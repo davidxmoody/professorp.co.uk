@@ -5,6 +5,7 @@ write: false
 ### All past events
 
 - 12/03/2015 Ashcott Primary School, Somerset
+- 05/03/2015 Watcombe Primary School, Devon
 - 19/01/2015 Blackpool Primary School, Devon
 - 06/10/2014 Verwood First School, Dorset
 - 02/04/2014 Horningsham Primary School, Wiltshire
