@@ -16,7 +16,6 @@
     "docpad-plugin-marked": "^2.4.0",
     "docpad-plugin-partials": "^2.12.0",
     "docpad-plugin-sass": "^2.8.0",
-    "ftpsync": "^0.2.0",
     "moment": "^2.22.1"
   },
   "devDependencies": {
@@ -35,6 +34,6 @@
   },
   "scripts": {
     "start": "docpad run",
-    "deploy": "docpad generate --out build --env production && ftpsync --verbose --local ./build --host professorp.co.uk --connections 2"
+    "build": "docpad generate --out build --env production"
   }
 }
