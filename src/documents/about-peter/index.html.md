@@ -27,7 +27,7 @@ When David was little, I used to tell him bed-time stories about a kind and clev
 
 ### How long did it take you to write your books?
 
-It took me five years to complete my first published book, *Professor P and the Jurassic Coast*. I kept revising and altering the story until I was completely happy with it. I took about 3 years to complete *Professor P and the Jurassic Island* and 2 years to complete *Professor P and the Dinosaur Island*. I'm getting quicker!
+It took me five years to complete my first published book, *Professor P and the Jurassic Coast*. I kept revising and altering the story until I was completely happy with it. I took about 3 years to complete *Professor P and the Jurassic Island*.
 
 ### What author has most influenced your writing?
 
