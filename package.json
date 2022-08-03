@@ -35,6 +35,6 @@
   },
   "scripts": {
     "start": "docpad run",
-    "build": "docpad generate --out build --env production"
+    "build": "docpad generate --env production"
   }
 }
