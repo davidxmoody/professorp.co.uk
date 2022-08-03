@@ -95,6 +95,8 @@ module.exports = docpadConfig = {
         development:
           enabled: false
 
+    sass:
+      scssPath: 'node-sass'
 
   events:
 

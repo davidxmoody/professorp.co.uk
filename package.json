@@ -16,7 +16,8 @@
     "docpad-plugin-marked": "^2.4.0",
     "docpad-plugin-partials": "^2.12.0",
     "docpad-plugin-sass": "^2.8.0",
-    "moment": "^2.22.1"
+    "moment": "^2.22.1",
+    "node-sass": "^7.0.1"
   },
   "devDependencies": {
     "docpad-plugin-livereload": "^2.9.0"
