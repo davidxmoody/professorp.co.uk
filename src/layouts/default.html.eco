@@ -55,7 +55,6 @@ htmlmin: true
             <%- @partial('menuitem', {title: 'Activities'}) %>
             <%- @partial('menuitem', {title: 'Events'}) %>
             <%- @partial('menuitem', {title: 'About Peter'}) %>
-            <%- @partial('menuitem', {title: 'Contact'}) %>
           </ul>
         </div>
   
