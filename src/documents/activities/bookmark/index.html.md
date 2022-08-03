@@ -13,7 +13,3 @@ sidebarContent: >
 1. Click on the picture to download the image
 2. Print it out on good quality photo paper
 3. Stick it onto card and cut it out
-
-### Signed & Dedicated Bookmarks
-
-Send me your bookmark in a stamped addressed envelope. I'll sign and dedicate it to you free of charge!
